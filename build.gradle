@@ -23,23 +23,6 @@ plugins {
 }
 
 
-/************
-* SOURCE SETS
-*************/
-
-sourceSets {
-      main {
-         java {
-            srcDir 'src/main/java'
-         }
-      }
-      test {
-         java {
-            srcDir 'src/test/java'
-         }
-      }
-}
-
 
 /********************************
 * APP PROPERTIES AND DEPENDENCIES
@@ -70,8 +53,7 @@ checkstyle {
 	// Whether to allow the build to continue if there are warnings.
     // (default: ignoreFailures = false)
 	ignoreFailures = true
-	sourceSets = [sourceSets.main]
-	toolVersion "8.8"
+	toolVersion "10.1"
 }
 
 /*
@@ -118,6 +100,14 @@ eclipse {
 /***********
 * TASK SETUP
 ************/
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source ='src/test/java'
+}
 
 spotbugsMain {
     reports {
