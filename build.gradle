@@ -15,7 +15,7 @@ plugins {
     id "java"
     id "jacoco"
     id "checkstyle"
-    id "com.github.spotbugs" version "5.0.6"
+    id "com.github.spotbugs" version "5.0.4"
     id "com.github.kt3k.coveralls" version "2.12.0"
     id "application"
     id "eclipse"
@@ -38,6 +38,7 @@ dependencies {
     // JUnit 5
     testImplementation(platform('org.junit:junit-bom:5.8.2'))
 	testImplementation('org.junit.jupiter:junit-jupiter')
+    compileOnly("com.github.spotbugs:spotbugs-annotations:${spotbugs.toolVersion.get()}")
 }
 
 
@@ -61,6 +62,8 @@ checkstyle {
 */
 spotbugs {
     ignoreFailures = true
+    toolVersion = "4.5.3"
+    reportsDir = file("$buildDir/reports/spotbugs")
 }
 
 /*
@@ -111,13 +114,15 @@ checkstyleTest {
 
 spotbugsMain {
     reports {
-        html {
-            required = true
-            outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
-        }
-        xml {
-            required = false
-        }
+        html.required = true
+        text.required = true
+    }
+}
+
+spotbugsTest {
+    reports {
+        html.required = true
+        text.required = true
     }
 }
 
@@ -136,6 +141,32 @@ test {
     finalizedBy jacocoTestReport
 }
 
+// Print spotbugs report (for the `main` sourceset) to the console
+task spotbugsMainReport {
+    doLast {
+        if(file("$buildDir/reports/spotbugs/main.txt").exists()) {
+            file("$buildDir/reports/spotbugs/main.txt").readLines().forEach {
+                println( it )
+            }
+        }
+        
+    }
+}
+tasks.getByName('spotbugsMain').finalizedBy('spotbugsMainReport')
+
+// Print spotbugs report (for the `test` sourceset) to the console
+task spotbugsTestReport {
+    doLast {
+        if(file("$buildDir/reports/spotbugs/test.txt").exists()){
+            file("$buildDir/reports/spotbugs/test.txt").readLines().forEach {
+                println( it )
+            }
+        }
+    }
+}
+tasks.getByName('spotbugsTest').finalizedBy('spotbugsTestReport')
+
+// Generate the executable Jar (to be included in the Docker container)
 task fatJar(type: Jar) {
     manifest {
         attributes 'Main-Class': 'it.uniba.app/App'
