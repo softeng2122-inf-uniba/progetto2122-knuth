@@ -3,6 +3,9 @@
  */
 package it.uniba.app;
 
+/**
+ * Main class of the application.
+ */
 public final class App {
     public String getGreeting() {
         return "Hello World!";
@@ -10,9 +13,5 @@ public final class App {
 
     public static void main(final String[] args) {
         System.out.println(new App().getGreeting());
-    }
-
-    public static double circumference(double diameter) {
-        return diameter * 3.141;
     }
 }
