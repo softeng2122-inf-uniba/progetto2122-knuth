@@ -35,5 +35,5 @@ Tra le passioni di Knuth vi è anche la musica. In particolare, ama suonare l'or
 
 ## Onoreficenze
 Nel 1971 Knuth fu il destinatario del primo Grace Murray Hopper Award dell'Association for Computing Machinery (ACM). Ricevette altri vari premi tra cui il Turing Award, la National Medal of Science, il John von Neumann Medal e il Premio Kyōto. Dal 1992 divenne socio straniero dell'Académie des sciences di Parigi e nel 2003 fu eletto alla Royal Society.
-
-A riconoscimento dei suoi contributi nel campo dell'informatica, nel 1990 Knuth fu insignito con il singolare titolo accademico di Professore emerito nell'arte della programmazione.
+## Premio Knuth
+Al suo nome è intitolato il Premio Donald E. Knuth, conferito ogni anno e mezzo, dal 1996, a uno studioso che abbia dato contributi di rilievo ai fondamenti dell'informatica.A riconoscimento dei suoi contributi nel campo dell'informatica, nel 1990 Knuth fu insignito con il singolare titolo accademico di Professore emerito nell'arte della programmazione.
