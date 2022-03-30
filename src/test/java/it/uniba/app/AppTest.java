@@ -1,6 +1,3 @@
-/**
- * Main test package of the application.
- */
 package it.uniba.app;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
