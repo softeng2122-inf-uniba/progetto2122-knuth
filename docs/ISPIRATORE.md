@@ -1,4 +1,4 @@
-# Biografia di Donand Ervin Knuth
+# Biografia di Donald Ervin Knuth
 ## Studi e carriera accademica
 **Donald Ervin Knuth** (Milwaukee, 10 gennaio 1938) è un informatico statunitense. Rinomato studioso di matematica (soprattutto di conoscenze che ora sono confluite nell'informatica), è professore emerito presso la Stanford University. 
 
@@ -19,11 +19,11 @@ Knuth è stato anche il precursore del concetto di *literate programming*, tradu
 ## Curiosità e vita privata
 Oltre che come famoso programmatore, Knuth è conosciuto per il suo umorismo informatico:
 
-Paga un premio di 2,56 dollari per ogni errore scoperto nei suoi libri, perché "256 penny sono un dollaro esadecimale". Nella maggioranza dei casi gli assegni non vengono riscossi, ma conservati come simbolici "trofei".
+- Paga un premio di 2,56 dollari per ogni errore scoperto nei suoi libri, perché "256 penny sono un dollaro esadecimale". Nella maggioranza dei casi gli assegni non vengono riscossi, ma conservati come simbolici "trofei".
 
-I numeri di versione del suo software TEX si avvicinano al numero pi greco; dopo la versione 3, i valori man mano assegnati sono stati 3.1, 3.14, 3.141 e così via. I numeri di versione di Metafont si avvicinano al numero e in maniera simile al precedente. Ha pubblicamente affermato che alla sua morte tutti gli eventuali bug ancora presenti saranno promossi a funzionalità, mentre le versioni saranno cristallizzate a π ed e.
+- I numeri di versione del suo software TEX si avvicinano al numero pi greco; dopo la versione 3, i valori man mano assegnati sono stati 3.1, 3.14, 3.141 e così via. I numeri di versione di Metafont si avvicinano al numero e in maniera simile al precedente. Ha pubblicamente affermato che alla sua morte tutti gli eventuali bug ancora presenti saranno promossi a funzionalità, mentre le versioni saranno cristallizzate a π ed e.
 
-Una volta avvisò gli utenti del suo software, "Badate ai bug nel codice suddetto; io ho solo dimostrato che è corretto, non l'ho provato."
+- Una volta avvisò gli utenti del suo software, "Badate ai bug nel codice suddetto; io ho solo dimostrato che è corretto, non l'ho provato."
 
 Oltre ai suoi scritti di informatica, Knuth è anche l'autore di 3:16 Bible Texts Illuminated (1991), nel quale cerca di esaminare la Bibbia tramite un processo di "campionamento casuale stratificato", vale a dire un'analisi del capitolo terzo, versetto sedicesimo di ogni libro. Ogni verso è accompagnato da un'interpretazione calligrafica: l'analisi è fornita da un gruppo di calligrafici capeggiati da Hermann Zapf.
 
