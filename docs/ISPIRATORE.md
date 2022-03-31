@@ -1,4 +1,4 @@
-# Biografia di Donand Ervin Knuth
+# Biografia di Donald Ervin Knuth
 ## Studi e carriera accademica
 **Donald Ervin Knuth** (Milwaukee, 10 gennaio 1938) è un informatico statunitense. Rinomato studioso di matematica (soprattutto di conoscenze che ora sono confluite nell'informatica), è professore emerito presso la Stanford University. 
 
