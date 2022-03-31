@@ -1,0 +1,596 @@
+From ed6cdaaf10ca4c43040687819892de825dee3809 Mon Sep 17 00:00:00 2001
+From: Luigi Quaranta <luigi.quaranta@uniba.it>
+Date: Mon, 28 Mar 2022 12:01:24 +0200
+Subject: [PATCH 1/4] Introduced some defects to show spotbugs and checkstyle
+ in action
+
+---
+ src/main/java/it/uniba/app/App.java | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/src/main/java/it/uniba/app/App.java b/src/main/java/it/uniba/app/App.java
+index ea8e6db..83a4981 100644
+--- a/src/main/java/it/uniba/app/App.java
++++ b/src/main/java/it/uniba/app/App.java
+@@ -3,9 +3,6 @@
+  */
+ package it.uniba.app;
+ 
+-/**
+- * Main class of the application.
+- */
+ public final class App {
+     public String getGreeting() {
+         return "Hello World!";
+@@ -14,4 +11,8 @@ public final class App {
+     public static void main(final String[] args) {
+         System.out.println(new App().getGreeting());
+     }
++
++    public static double circumference(double diameter) {
++        return diameter * 3.141;
++    }
+ }
+-- 
+2.32.0 (Apple Git-132)
+
+
+From 280e58a734b4fa1abf99294441925b019d036b4d Mon Sep 17 00:00:00 2001
+From: Luigi Quaranta <luigi.quaranta@uniba.it>
+Date: Mon, 28 Mar 2022 14:07:51 +0200
+Subject: [PATCH 2/4] Update checkstyle to the latest version
+
+- solves the problem of the duplicate checkstyle results
+- the updated checkstyle configuration has been taken from here: https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/sun_checks.xml (#52728d7)
+---
+ build.gradle                     |  28 +--
+ config/checkstyle/checkstyle.xml | 346 +++++++++++++++++--------------
+ 2 files changed, 203 insertions(+), 171 deletions(-)
+
+diff --git a/build.gradle b/build.gradle
+index 1db206a..0efa5eb 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -23,23 +23,6 @@ plugins {
+ }
+ 
+ 
+-/************
+-* SOURCE SETS
+-*************/
+-
+-sourceSets {
+-      main {
+-         java {
+-            srcDir 'src/main/java'
+-         }
+-      }
+-      test {
+-         java {
+-            srcDir 'src/test/java'
+-         }
+-      }
+-}
+-
+ 
+ /********************************
+ * APP PROPERTIES AND DEPENDENCIES
+@@ -70,8 +53,7 @@ checkstyle {
+ 	// Whether to allow the build to continue if there are warnings.
+     // (default: ignoreFailures = false)
+ 	ignoreFailures = true
+-	sourceSets = [sourceSets.main]
+-	toolVersion "8.8"
++	toolVersion "10.1"
+ }
+ 
+ /*
+@@ -119,6 +101,14 @@ eclipse {
+ * TASK SETUP
+ ************/
+ 
++checkstyleMain {
++    source = 'src/main/java'
++}
++
++checkstyleTest {
++    source ='src/test/java'
++}
++
+ spotbugsMain {
+     reports {
+         html {
+diff --git a/config/checkstyle/checkstyle.xml b/config/checkstyle/checkstyle.xml
+index 762aa99..0e00f56 100644
+--- a/config/checkstyle/checkstyle.xml
++++ b/config/checkstyle/checkstyle.xml
+@@ -1,156 +1,198 @@
+ <?xml version="1.0"?>
+ <!DOCTYPE module PUBLIC
+-          "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+-          "http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd">
+-
+-<!-- Checkstyle configuration that checks the sun coding conventions from: 
+-	- the Java Language Specification at http://java.sun.com/docs/books/jls/second_edition/html/index.html 
+-	- the Sun Code Conventions at http://java.sun.com/docs/codeconv/ - the Javadoc 
+-	guidelines at http://java.sun.com/j2se/javadoc/writingdoccomments/index.html 
+-	- the JDK Api documentation http://java.sun.com/j2se/docs/api/index.html 
+-	- some best practices Checkstyle is very configurable. Be sure to read the 
+-	documentation at http://checkstyle.sf.net (or in your downloaded distribution). 
+-	Most Checks are configurable, be sure to consult the documentation. To completely 
+-	disable a check, just comment it out or delete it from the file. Finally, 
+-	it is worth reading the documentation. -->
++          "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
++          "https://checkstyle.org/dtds/configuration_1_3.dtd">
++
++<!--
++
++  Checkstyle configuration that checks the sun coding conventions from:
++
++    - the Java Language Specification at
++      https://docs.oracle.com/javase/specs/jls/se11/html/index.html
++
++    - the Sun Code Conventions at https://www.oracle.com/java/technologies/javase/codeconventions-contents.html
++
++    - the Javadoc guidelines at
++      https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html
++
++    - the JDK Api documentation https://docs.oracle.com/en/java/javase/11/
++
++    - some best practices
++
++  Checkstyle is very configurable. Be sure to read the documentation at
++  https://checkstyle.org (or in your downloaded distribution).
++
++  Most Checks are configurable, be sure to consult the documentation.
++
++  To completely disable a check, just comment it out or delete it from the file.
++  To suppress certain violations please review suppression filters.
++
++  Finally, it is worth reading the documentation.
++
++-->
+ 
+ <module name="Checker">
+-	<!-- If you set the basedir property below, then all reported file names 
+-		will be relative to the specified directory. See http://checkstyle.sourceforge.net/5.x/config.html#Checker 
+-		<property name="basedir" value="${basedir}"/> -->
+-
+-	<property name="fileExtensions" value="java, properties, xml" />
+-
+-	<!-- Checks that a package-info.java file exists for each package. -->
+-	<!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocPackage -->
+-	<!-- <module name="JavadocPackage"/> -->
+-
+-	<!-- Checks whether files end with a new line. -->
+-	<!-- See http://checkstyle.sf.net/config_misc.html#NewlineAtEndOfFile -->
+-	<module name="NewlineAtEndOfFile" />
+-
+-	<!-- Checks that property files contain the same keys. -->
+-	<!-- See http://checkstyle.sf.net/config_misc.html#Translation -->
+-	<module name="Translation" />
+-
+-	<!-- Checks for Size Violations. -->
+-	<!-- See http://checkstyle.sf.net/config_sizes.html -->
+-	<module name="FileLength" />
+-
+-	<!-- Checks for whitespace -->
+-	<!-- See http://checkstyle.sf.net/config_whitespace.html -->
+-	<!-- <module name="FileTabCharacter"/> -->
+-
+-	<!-- Miscellaneous other checks. -->
+-	<!-- See http://checkstyle.sf.net/config_misc.html -->
+-	<module name="RegexpSingleline">
+-		<!-- <property name="format" value="\s+$" />
+-		<property name="minimum" value="0" />
+-		<property name="maximum" value="0" /> -->
+-		<property name="format" value="^(?!\s+\* $).*?\s+$"/>
+-		<property name="message" value="Line has trailing spaces." />
+-	</module>
+-
+-	<!-- Checks for Headers -->
+-	<!-- See http://checkstyle.sf.net/config_header.html -->
+-	<!-- <module name="Header"> -->
+-	<!-- <property name="headerFile" value="${checkstyle.header.file}"/> -->
+-	<!-- <property name="fileExtensions" value="java"/> -->
+-	<!-- </module> -->
+-
+-
+-	<module name="TreeWalker">
+-
+-		<!-- Checks for Javadoc comments. -->
+-		<!-- See http://checkstyle.sf.net/config_javadoc.html -->
+-		<!-- <module name="JavadocMethod" /> -->
+-		<module name="JavadocType" />
+-		<!-- <module name="JavadocVariable" /> -->
+-		<!-- <module name="JavadocStyle" /> -->
+-
+-		<!-- Checks for Naming Conventions. -->
+-		<!-- See http://checkstyle.sf.net/config_naming.html -->
+-		<module name="ConstantName" />
+-		<module name="LocalFinalVariableName" />
+-		<module name="LocalVariableName" />
+-		<module name="MemberName" />
+-		<module name="MethodName" />
+-		<module name="PackageName" />
+-		<module name="ParameterName" />
+-		<module name="StaticVariableName" />
+-		<module name="TypeName" />
+-
+-		<!-- Checks for imports -->
+-		<!-- See http://checkstyle.sf.net/config_import.html -->
+-		<module name="AvoidStarImport" />
+-		<module name="IllegalImport" /> <!-- defaults to sun.* packages -->
+-		<module name="RedundantImport" />
+-		<module name="UnusedImports">
+-			<property name="processJavadoc" value="false" />
+-		</module>
+-
+-		<!-- Checks for Size Violations. -->
+-		<!-- See http://checkstyle.sf.net/config_sizes.html -->
+-		<module name="LineLength">
+-			<property name="max" value="120" />
+-		</module>
+-		<module name="MethodLength" />
+-		<module name="ParameterNumber" />
+-
+-		<!-- Checks for whitespace -->
+-		<!-- See http://checkstyle.sf.net/config_whitespace.html -->
+-		<module name="EmptyForIteratorPad" />
+-		<module name="GenericWhitespace" />
+-		<module name="MethodParamPad" />
+-		<module name="NoWhitespaceAfter" />
+-		<module name="NoWhitespaceBefore" />
+-		<module name="OperatorWrap" />
+-		<module name="ParenPad" />
+-		<module name="TypecastParenPad" />
+-		<module name="WhitespaceAfter" />
+-		<module name="WhitespaceAround" />
+-
+-		<!-- Modifier Checks -->
+-		<!-- See http://checkstyle.sf.net/config_modifiers.html -->
+-		<module name="ModifierOrder" />
+-		<module name="RedundantModifier" />
+-
+-		<!-- Checks for blocks. You know, those {}'s -->
+-		<!-- See http://checkstyle.sf.net/config_blocks.html -->
+-		<module name="AvoidNestedBlocks" />
+-		<module name="EmptyBlock" />
+-		<module name="LeftCurly" />
+-		<module name="NeedBraces" />
+-		<module name="RightCurly" />
+-
+-		<!-- Checks for common coding problems -->
+-		<!-- See http://checkstyle.sf.net/config_coding.html -->
+-		<module name="AvoidInlineConditionals" />
+-		<module name="EmptyStatement" />
+-		<module name="EqualsHashCode" />
+-		<module name="HiddenField" />
+-		<module name="IllegalInstantiation" />
+-		<module name="InnerAssignment" />
+-		<module name="MagicNumber" />
+-		<module name="MissingSwitchDefault" />
+-		<module name="SimplifyBooleanExpression" />
+-		<module name="SimplifyBooleanReturn" />
+-
+-		<!-- Checks for class design -->
+-		<!-- See http://checkstyle.sf.net/config_design.html -->
+-		<module name="DesignForExtension" />
+-		<module name="FinalClass" />
+-		<module name="HideUtilityClassConstructor" />
+-		<module name="InterfaceIsType" />
+-		<module name="VisibilityModifier" />
+-
+-		<!-- Miscellaneous other checks. -->
+-		<!-- See http://checkstyle.sf.net/config_misc.html -->
+-		<module name="ArrayTypeStyle" />
+-		<module name="FinalParameters" />
+-		<module name="TodoComment" />
+-		<module name="UpperEll" />
+-
+-	</module>
+-
+-</module>
++  <!--
++      If you set the basedir property below, then all reported file
++      names will be relative to the specified directory. See
++      https://checkstyle.org/config.html#Checker
++
++      <property name="basedir" value="${basedir}"/>
++  -->
++  <property name="severity" value="error"/>
++
++  <property name="fileExtensions" value="java, properties, xml"/>
++
++  <!-- Excludes all 'module-info.java' files              -->
++  <!-- See https://checkstyle.org/config_filefilters.html -->
++  <module name="BeforeExecutionExclusionFileFilter">
++    <property name="fileNamePattern" value="module\-info\.java$"/>
++  </module>
++
++  <!-- https://checkstyle.org/config_filters.html#SuppressionFilter -->
++  <module name="SuppressionFilter">
++    <property name="file" value="${org.checkstyle.sun.suppressionfilter.config}"
++              default="checkstyle-suppressions.xml" />
++    <property name="optional" value="true"/>
++  </module>
++
++  <!-- Checks that a package-info.java file exists for each package.     -->
++  <!-- See https://checkstyle.org/config_javadoc.html#JavadocPackage -->
++  <module name="JavadocPackage"/>
++
++  <!-- Checks whether files end with a new line.                        -->
++  <!-- See https://checkstyle.org/config_misc.html#NewlineAtEndOfFile -->
++  <module name="NewlineAtEndOfFile"/>
++
++  <!-- Checks that property files contain the same keys.         -->
++  <!-- See https://checkstyle.org/config_misc.html#Translation -->
++  <module name="Translation"/>
++
++  <!-- Checks for Size Violations.                    -->
++  <!-- See https://checkstyle.org/config_sizes.html -->
++  <module name="FileLength"/>
++  <module name="LineLength">
++    <property name="fileExtensions" value="java"/>
++  </module>
++
++  <!-- Checks for whitespace                               -->
++  <!-- See https://checkstyle.org/config_whitespace.html -->
++  <module name="FileTabCharacter"/>
++
++  <!-- Miscellaneous other checks.                   -->
++  <!-- See https://checkstyle.org/config_misc.html -->
++  <module name="RegexpSingleline">
++    <property name="format" value="\s+$"/>
++    <property name="minimum" value="0"/>
++    <property name="maximum" value="0"/>
++    <property name="message" value="Line has trailing spaces."/>
++  </module>
++
++  <!-- Checks for Headers                                -->
++  <!-- See https://checkstyle.org/config_header.html   -->
++  <!-- <module name="Header"> -->
++  <!--   <property name="headerFile" value="${checkstyle.header.file}"/> -->
++  <!--   <property name="fileExtensions" value="java"/> -->
++  <!-- </module> -->
++
++  <module name="TreeWalker">
++
++    <!-- Checks for Javadoc comments.                     -->
++    <!-- See https://checkstyle.org/config_javadoc.html -->
++    <module name="InvalidJavadocPosition"/>
++    <module name="JavadocMethod"/>
++    <module name="JavadocType"/>
++    <module name="JavadocVariable"/>
++    <module name="JavadocStyle"/>
++    <module name="MissingJavadocMethod"/>
++
++    <!-- Checks for Naming Conventions.                  -->
++    <!-- See https://checkstyle.org/config_naming.html -->
++    <module name="ConstantName"/>
++    <module name="LocalFinalVariableName"/>
++    <module name="LocalVariableName"/>
++    <module name="MemberName"/>
++    <module name="MethodName"/>
++    <module name="PackageName"/>
++    <module name="ParameterName"/>
++    <module name="StaticVariableName"/>
++    <module name="TypeName"/>
++
++    <!-- Checks for imports                              -->
++    <!-- See https://checkstyle.org/config_imports.html -->
++    <module name="AvoidStarImport"/>
++    <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
++    <module name="RedundantImport"/>
++    <module name="UnusedImports">
++      <property name="processJavadoc" value="false"/>
++    </module>
++
++    <!-- Checks for Size Violations.                    -->
++    <!-- See https://checkstyle.org/config_sizes.html -->
++    <module name="MethodLength"/>
++    <module name="ParameterNumber"/>
++
++    <!-- Checks for whitespace                               -->
++    <!-- See https://checkstyle.org/config_whitespace.html -->
++    <module name="EmptyForIteratorPad"/>
++    <module name="GenericWhitespace"/>
++    <module name="MethodParamPad"/>
++    <module name="NoWhitespaceAfter"/>
++    <module name="NoWhitespaceBefore"/>
++    <module name="OperatorWrap"/>
++    <module name="ParenPad"/>
++    <module name="TypecastParenPad"/>
++    <module name="WhitespaceAfter"/>
++    <module name="WhitespaceAround"/>
++
++    <!-- Modifier Checks                                    -->
++    <!-- See https://checkstyle.org/config_modifier.html -->
++    <module name="ModifierOrder"/>
++    <module name="RedundantModifier"/>
++
++    <!-- Checks for blocks. You know, those {}'s         -->
++    <!-- See https://checkstyle.org/config_blocks.html -->
++    <module name="AvoidNestedBlocks"/>
++    <module name="EmptyBlock"/>
++    <module name="LeftCurly"/>
++    <module name="NeedBraces"/>
++    <module name="RightCurly"/>
++
++    <!-- Checks for common coding problems               -->
++    <!-- See https://checkstyle.org/config_coding.html -->
++    <module name="EmptyStatement"/>
++    <module name="EqualsHashCode"/>
++    <module name="HiddenField"/>
++    <module name="IllegalInstantiation"/>
++    <module name="InnerAssignment"/>
++    <module name="MagicNumber"/>
++    <module name="MissingSwitchDefault"/>
++    <module name="MultipleVariableDeclarations"/>
++    <module name="SimplifyBooleanExpression"/>
++    <module name="SimplifyBooleanReturn"/>
++
++    <!-- Checks for class design                         -->
++    <!-- See https://checkstyle.org/config_design.html -->
++    <module name="DesignForExtension"/>
++    <module name="FinalClass"/>
++    <module name="HideUtilityClassConstructor"/>
++    <module name="InterfaceIsType"/>
++    <module name="VisibilityModifier"/>
++
++    <!-- Miscellaneous other checks.                   -->
++    <!-- See https://checkstyle.org/config_misc.html -->
++    <module name="ArrayTypeStyle"/>
++    <module name="FinalParameters"/>
++    <module name="TodoComment"/>
++    <module name="UpperEll"/>
++
++    <!-- https://checkstyle.org/config_filters.html#SuppressionXpathFilter -->
++    <module name="SuppressionXpathFilter">
++      <property name="file" value="${org.checkstyle.sun.suppressionxpathfilter.config}"
++                default="checkstyle-xpath-suppressions.xml" />
++      <property name="optional" value="true"/>
++    </module>
++
++  </module>
++
++</module>
+\ No newline at end of file
+-- 
+2.32.0 (Apple Git-132)
+
+
+From b7fc593457e9e9a29e6f55f2128d9860fdd74a7f Mon Sep 17 00:00:00 2001
+From: Luigi Quaranta <luigi.quaranta@uniba.it>
+Date: Tue, 29 Mar 2022 10:52:59 +0200
+Subject: [PATCH 3/4] Print spotbugs textual reports to the console
+
+---
+ build.gradle | 47 +++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 39 insertions(+), 8 deletions(-)
+
+diff --git a/build.gradle b/build.gradle
+index 0efa5eb..b5c19a8 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -15,7 +15,7 @@ plugins {
+     id "java"
+     id "jacoco"
+     id "checkstyle"
+-    id "com.github.spotbugs" version "5.0.6"
++    id "com.github.spotbugs" version "5.0.4"
+     id "com.github.kt3k.coveralls" version "2.12.0"
+     id "application"
+     id "eclipse"
+@@ -38,6 +38,7 @@ dependencies {
+     // JUnit 5
+     testImplementation(platform('org.junit:junit-bom:5.8.2'))
+ 	testImplementation('org.junit.jupiter:junit-jupiter')
++    compileOnly("com.github.spotbugs:spotbugs-annotations:${spotbugs.toolVersion.get()}")
+ }
+ 
+ 
+@@ -61,6 +62,8 @@ checkstyle {
+ */
+ spotbugs {
+     ignoreFailures = true
++    toolVersion = "4.5.3"
++    reportsDir = file("$buildDir/reports/spotbugs")
+ }
+ 
+ /*
+@@ -111,13 +114,15 @@ checkstyleTest {
+ 
+ spotbugsMain {
+     reports {
+-        html {
+-            required = true
+-            outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+-        }
+-        xml {
+-            required = false
+-        }
++        html.required = true
++        text.required = true
++    }
++}
++
++spotbugsTest {
++    reports {
++        html.required = true
++        text.required = true
+     }
+ }
+ 
+@@ -136,6 +141,32 @@ test {
+     finalizedBy jacocoTestReport
+ }
+ 
++// Print spotbugs report (for the `main` sourceset) to the console
++task spotbugsMainReport {
++    doLast {
++        if(file("$buildDir/reports/spotbugs/main.txt").exists()) {
++            file("$buildDir/reports/spotbugs/main.txt").readLines().forEach {
++                println( it )
++            }
++        }
++        
++    }
++}
++tasks.getByName('spotbugsMain').finalizedBy('spotbugsMainReport')
++
++// Print spotbugs report (for the `test` sourceset) to the console
++task spotbugsTestReport {
++    doLast {
++        if(file("$buildDir/reports/spotbugs/test.txt").exists()){
++            file("$buildDir/reports/spotbugs/test.txt").readLines().forEach {
++                println( it )
++            }
++        }
++    }
++}
++tasks.getByName('spotbugsTest').finalizedBy('spotbugsTestReport')
++
++// Generate the executable Jar (to be included in the Docker container)
+ task fatJar(type: Jar) {
+     manifest {
+         attributes 'Main-Class': 'it.uniba.app/App'
+-- 
+2.32.0 (Apple Git-132)
+
+
+From 00649b97a8649b5b07b65579b8d2993756ec1785 Mon Sep 17 00:00:00 2001
+From: Luigi Quaranta <luigi.quaranta@uniba.it>
+Date: Tue, 29 Mar 2022 10:59:33 +0200
+Subject: [PATCH 4/4] Restore docstring and methods in `App.java`
+
+---
+ src/main/java/it/uniba/app/App.java | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/src/main/java/it/uniba/app/App.java b/src/main/java/it/uniba/app/App.java
+index 83a4981..ea8e6db 100644
+--- a/src/main/java/it/uniba/app/App.java
++++ b/src/main/java/it/uniba/app/App.java
+@@ -3,6 +3,9 @@
+  */
+ package it.uniba.app;
+ 
++/**
++ * Main class of the application.
++ */
+ public final class App {
+     public String getGreeting() {
+         return "Hello World!";
+@@ -11,8 +14,4 @@ public final class App {
+     public static void main(final String[] args) {
+         System.out.println(new App().getGreeting());
+     }
+-
+-    public static double circumference(double diameter) {
+-        return diameter * 3.141;
+-    }
+ }
+-- 
+2.32.0 (Apple Git-132)
+
