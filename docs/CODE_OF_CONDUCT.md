@@ -5,7 +5,7 @@ Il presente scritto ha l'intenzione chiara di mettere in luce il codice etico di
 **manifesto agile**
 https://agilemanifesto.org/iso/it/manifesto.html
 
-## INSIEME COSTRUIAMO, UNITI TRIOFIAMO
+## INSIEME COSTRUIAMO, UNITI TRIONFIAMO
 
 In completa adesione con il manifesto agile dichiariamo:
 
