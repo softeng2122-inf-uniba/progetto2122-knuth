@@ -55,7 +55,7 @@ Nella sincerità verso il team e nello svolgere le nostre attività dichiariamo:
 	- Creo software per utenti, per i loro benefici e per la loro e la mia soddifazione personale e professionale. 
     - Riconosco che siamo più forti e efficienti come una squadra interfunzionale, lavorando per un obiettivo condiviso.
     - Condividerò le mie conoscenze e competenze con altri e li aiuterò a crescere, proprio come altri aiuteranno me a perseguire virtù e conoscenza.
-    - Tratterò le persone del mio team come vorrei essere trattato da loro, avendo cura nel rispettare le loro idee, la loro cultura e muovendo ogni qualvolta lo ritengo opportuno critiche sempre in maniera costruttiva e mai con l'intensione di ledere la fiducia e le capacità che membri del mio team hanno in sé stessi.
+    - Tratterò le persone del mio team come vorrei essere trattato da loro, avendo cura nel rispettare le loro idee, la loro cultura e muovendo ogni qualvolta lo ritengo opportuno critiche sempre in maniera costruttiva e mai con l'intenzione di ledere la fiducia e le capacità che membri del mio team hanno in se stessi.
 	- Domanderò spiegazioni e cercherò di capire la causa di non adempimento ai principi del codice di condotta, al fine di un onesta e quiete collaborazione. 
     - Guiderò gli altri ad abbracciare e aderire a questi principi.
 
