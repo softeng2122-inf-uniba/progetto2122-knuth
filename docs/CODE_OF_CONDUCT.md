@@ -72,7 +72,7 @@ Nella sincerità verso il team e nello svolgere le nostre attività dichiariamo:
     - Vige il regolamento di chiusura per gli issues LRAC "last reviewer arrived closes", per cui essendo cinque componenti ogni issue sarà chiuso dal quarto revisore che notificherà l'avvenuta procedura aggiornando la board dello sprint. 
     - In caso di necessità e in modalità straordinaria la chiusura degli issues potrà avvenire con un numero di revisori non inferiore a due e previa notifica al team.
     - Il lavoro sarà suddiviso in modo equo tra i componenti del team e gli issues sarannò assegnati in modo randomico ad ogni sprint.
-    - Se per particolari necessità si vuole effettuare una cambio di issue con un altro membro consenziente allo scambio del proprio è possibile farlo notificando lo scambio al team ed effettuandolo all'inizo dello sprint.
+    - Se per particolari necessità si vuole effettuare un cambio di issue con un altro membro consenziente allo scambio del proprio è possibile farlo notificando lo scambio al team ed effettuandolo all'inizio dello sprint.
     - Permane non ammesso lo scambio di issues a sprint già avviato. Nel qual caso sorgessero problematiche è possibile chiedere il supporto degli altri membri del team per la risoluzione dell'issue assegnato.
 
 **Divieti e restrizioni:**
