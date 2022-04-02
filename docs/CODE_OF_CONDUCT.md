@@ -27,7 +27,7 @@ Le azioni di ogni componente del gruppo saranno svolte in piena trasparenza senz
 
 ### **Coraggio**
 
-I membri dello Scrum Team Knuth hanno il coraggio di fare ciocché è giusto, perseguiere gli obiettivi comuni e in virtù dell'integrità del gruppo essi anteporranno le proprie ambizioni. Nessuno rimarrà tacito per timore degli altri e delle loro idee, ma comunicheremo le nostre idee anche se non pienamente condivise poiché solo attraverso la comunicazione potremmo costruire l'intesa, la fiducia e un clima coeso.     
+I membri dello Scrum Team Knuth hanno il coraggio di fare ciò che è giusto, perseguire gli obiettivi comuni e in virtù dell'integrità del gruppo essi anteporranno le proprie ambizioni. Nessuno rimarrà tacito per timore degli altri e delle loro idee, ma comunicheremo le nostre idee anche se non pienamente condivise poiché solo attraverso la comunicazione potremmo costruire l'intesa, la fiducia e un clima coeso.     
 
 Nella sincerità verso il team e nello svolgere le nostre attività dichiariamo:
 
