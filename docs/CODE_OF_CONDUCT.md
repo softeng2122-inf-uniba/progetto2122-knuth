@@ -61,7 +61,7 @@ Nella sincerità verso il team e nello svolgere le nostre attività dichiariamo:
 
 **Obblighi nella pratica scrum:**
 
-    - Parteciperò ad tutti i daily meeting e avrò premura nel non essere in ritardo e nel limitare le assenze, le quali sarannò giustificate e comunicate il prima possibile al team. 
+    - Parteciperò a tutti i daily meeting e avrò premura nel non essere in ritardo e nel limitare le assenze, le quali saranno giustificate e comunicate il prima possibile al team. 
     - Permane responsabilità comune il tenere aggiornata e in ordine la tabella del progresso di ogni sprint sul quale si lavora. In particolare si dovrà seguire con cura l'evoluzione di ogni issue indipendentemente dall'appartenenza dell'issue ai propri doveri assegnati.
 
 **Revisione e assegnazione degli issues:**
