@@ -42,7 +42,7 @@ Nella sincerità verso il team e nello svolgere le nostre attività dichiariamo:
 	- Aiuterò a rendere trasparente il mio lavoro in modo da poter prendere decisioni informate su ciò che deve ancora essere fatto e in quale ordine.
     - Aiuterò a dare priorità al lavoro per un prodotto software in base al valore che ha per il team, non alle mie preferenze personali, simpatie o antipatie.
 	- Chiederò aiuto, senza indugiare e senza temere critiche, quando sarò nell'impossibilità di trovare una soluzione al problema affidatomi e motiverò gli altri a fare lo stesso.
-	- Aiuterò ad abbreviare il ciclo di feedback in modo da poter comunicare agilmente e apprendere più velocemente dagli sbagli fatti. Ciò include la 	mia responsabilità nell'aggiornare le mie conoscenze sugli strumenti utilizzati dal team quali git, github, intellij, staruml e mermaid. 
+	- Aiuterò ad abbreviare il ciclo di feedback in modo da poter comunicare agilmente e apprendere più velocemente dagli sbagli fatti. Ciò include la mia responsabilità nell'aggiornare le mie conoscenze sugli strumenti utilizzati dal team quali git, github, intellij, staruml e mermaid. 
 
 **Onestà riguardo alla complessità:**
 
