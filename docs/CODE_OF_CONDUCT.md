@@ -19,7 +19,7 @@ Tutti si concentrano sul lavoro dello Sprint in corso e sugli obiettivi discussi
 
 ### **Rispetto**
 
-I membri dello Scrum Team Knuth si rispettano a vicenda in quanto persone capaci e indipendenti e si sostengono l'un l'altro in caso di necessità. Il rispetto di ogni membro del team come persona è base fondante e imprescindibile per la collaborazione e cooperazione e non ci saranno né occasioni né motivazioni che né giustificheranno la mancanza.   
+I membri dello Scrum Team Knuth si rispettano a vicenda in quanto persone capaci e indipendenti e si sostengono l'un l'altro in caso di necessità. Il rispetto di ogni membro del team come persona è base fondante e imprescindibile per la collaborazione e cooperazione e non ci saranno né occasioni né motivazioni che ne giustificheranno la mancanza.   
 
 ### **Trasparenza**
 
