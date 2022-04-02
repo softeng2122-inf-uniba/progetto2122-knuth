@@ -48,7 +48,7 @@ Nella sincerità verso il team e nello svolgere le nostre attività dichiariamo:
 
     - Non presumerò di essere in grado di fornire stime o piani dettagliati quando so che è implicata una complessità significativa. Il dettaglio delle mie stime e dei miei piani sarà regolato in base alla complessità e/o alla tempistica, nonché ai feedback ottenuti dai meeting e dai piani di velocità media del gruppo che saranno aggiustati in base agli output raggiunti alla fine di ogni sprint.
     - Riconosco che lo sviluppo del software è un'attività complessa, che richiede una comunicazione frequente, costante e intensa con il mio team e le parti interessate per chiarire sia il problema che la soluzione.
-    - Accetto e aiuterò gli altri ad accettare che gli errori sono inevitabili. Perciò non cercherò di evitare del tutto gli errori, ma né 	limiterò l'impatto e mi impegnerò ad apprendere da essi per evitare errori simili in futuro.
+    - Accetto e aiuterò gli altri ad accettare che gli errori sono inevitabili. Perciò non cercherò di evitare del tutto gli errori, ma ne limiterò l'impatto e mi impegnerò ad apprendere da essi per evitare errori simili in futuro.
 
 **Focus del developer:**
 
