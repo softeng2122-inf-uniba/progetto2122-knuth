@@ -79,7 +79,7 @@ Nella sincerità verso il team e nello svolgere le nostre attività dichiariamo:
 
     - Resta interdetto apportare modifiche alla repository sorgente senza il consenso di tutti i membri del team o senza seguire il regolamento LRAC.
     - Si accorda la possibilità ad uno ed un solo membro di abbandonare il team e il progetto solo dopo aver terminato l'issue che gli era stato affidato. Non saranno ammesse rinunce da parte di altri membri in  quanto il team scenderebbe sotto il numero di componenti minimi e il progetto dovrebbe essere in tali condizioni dichiarato come rinuncia per abbandono e rottura del team.
-    - E' considerato come deprecabile chiedere aiuto ad altri team o inoltrare richieste di aiuto al professore, sensa averne prima discusso le ragioni con gli altri membri. Pena per tale comportamento la decisione a carico dei restanti membri del team di considerare la squalifica dal team Knuth del membro interessato.
+    - E' considerato come deprecabile chiedere aiuto ad altri team o inoltrare richieste di aiuto al professore, senza averne prima discusso le ragioni con gli altri membri. Pena per tale comportamento la decisione a carico dei restanti membri del team di considerare la squalifica dal team Knuth del membro interessato.
     - Proibizione totale della condivisione di qualsiasi informazione sensibile inerente allo sviluppo del progetto assegnato con membri estranei al team.  
 
 
