@@ -69,7 +69,7 @@ Nella sincerità verso il team e nello svolgere le nostre attività dichiariamo:
     - In quanto team Agile siamo e restiamo membri paritari con equale potere decisionale.
     - In quanto revisore del lavoro effettuato da altri mi impegnerò a porre sotto attento scrutinio l'operato dei miei colleghi prima di approvare, commentare o criticare il lavoro svolto. 
     - Nel caso in cui sia stato taggato da un membro come revisore esplicito dell'issue sarà mia responsabilità revisionarlo il prima possibile per non rallentare né il lavoro del collega né quello del team. 
-    - Vige il regolamento di chiusura per gli issues LRAC "last reviewer arrived close", per cui essendo cinque componeti ogni issue sarà chiuso dal quarto revisore che notificherà l'avvenuta procedura aggiornando la board dello sprint. 
+    - Vige il regolamento di chiusura per gli issues LRAC "last reviewer arrived closes", per cui essendo cinque componenti ogni issue sarà chiuso dal quarto revisore che notificherà l'avvenuta procedura aggiornando la board dello sprint. 
     - In caso di necessità e in modalità straordinaria la chiusura degli issues potrà avvenire con un numero di revisori non inferiore a due e previa notifica al team.
     - Il lavoro sarà suddiviso in modo equo tra i componenti del team e gli issues sarannò assegnati in modo randomico ad ogni sprint.
     - Se per particolari necessità si vuole effettuare una cambio di issue con un altro membro consenziente allo scambio del proprio è possibile farlo notificando lo scambio al team ed effettuandolo all'inizo dello sprint.
