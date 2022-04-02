@@ -1,6 +1,6 @@
 # CODICE DI CONDOTTA DELLO SCRUM TEAM KNUTH
 
-Il presente scritto ha l'intenzione chiara di mettere in luce il codice etico di comportamento al quale i componeti del gruppo Knuth dovranno attenersi con massimo rigore e in degno rispetto degli altri membri. Il team si ispira a essere portavoce attivo dello sviluppo del metodo Agile e di tenere presenti i valori fondanti descritti dal manifesto per lo sviluppo agile del software ad opera di Kent Beck, Mike Beedle, Arie van Bennekum, Alistair Cockburn, Ward Cunningham, Martin Fowler, James Grenning, Jim Highsmith, Andrew Hunt, Ron Jeffries, Jon Kern, Brian Marick, Robert C. Martin, Steve Mellor, Ken Schwaber, Jeff Sutherland, Dave Thomas. 
+Il presente scritto ha l'intenzione chiara di mettere in luce il codice etico di comportamento al quale i componenti del gruppo Knuth dovranno attenersi con massimo rigore e in degno rispetto degli altri membri. Il team si ispira a essere portavoce attivo dello sviluppo del metodo Agile e di tenere presenti i valori fondanti descritti dal manifesto per lo sviluppo agile del software ad opera di Kent Beck, Mike Beedle, Arie van Bennekum, Alistair Cockburn, Ward Cunningham, Martin Fowler, James Grenning, Jim Highsmith, Andrew Hunt, Ron Jeffries, Jon Kern, Brian Marick, Robert C. Martin, Steve Mellor, Ken Schwaber, Jeff Sutherland, Dave Thomas. 
 
 **manifesto agile**
 https://agilemanifesto.org/iso/it/manifesto.html
