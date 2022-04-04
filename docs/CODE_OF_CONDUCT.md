@@ -35,7 +35,7 @@ Nella sincerità verso il team e nello svolgere le nostre attività dichiariamo:
 
 	- Aiuterò sempre a trovare un equilibrio tra necessità di urgenza e necessità di qualità, ma mai in modo da danneggiare il prodotto, gli utenti o la reputazione del team.
 	- Non condividerò codice che non ho prima personalmente revisionato e debuggato a meno che non abbia bisogno di sottoporlo al parere del team per la risoluzione di un problema.
-	- Nel codice che scrivo mi ci rivedo come professionista e lo creo con style, gusto e serietà.
+	- Nel codice che scrivo mi ci rivedo come professionista e lo creo con stile, gusto e serietà.
 	
 **Sincerità verso il team:**
 
