@@ -63,6 +63,7 @@ Nella sincerità verso il team e nello svolgere le nostre attività dichiariamo:
 
     - Parteciperò a tutti i daily meeting e avrò premura nel non essere in ritardo e nel limitare le assenze, le quali saranno giustificate e comunicate il prima possibile al team. 
     - Permane responsabilità comune il tenere aggiornata e in ordine la tabella del progresso di ogni sprint sul quale si lavora. In particolare si dovrà seguire con cura l'evoluzione di ogni issue indipendentemente dall'appartenenza dell'issue ai propri doveri assegnati.
+    - E' compito di ogni componente quello di impegnarsi nel migliorare il lavoro di squadra, proporre miglioramenti nel coordinamento e nell'incentivare al massimo la comunicazione.
 
 **Revisione e assegnazione degli issues:**
 
@@ -71,9 +72,8 @@ Nella sincerità verso il team e nello svolgere le nostre attività dichiariamo:
     - Nel caso in cui sia stato taggato da un membro come revisore esplicito dell'issue sarà mia responsabilità revisionarlo il prima possibile per non rallentare né il lavoro del collega né quello del team. 
     - Vige il regolamento di chiusura per gli issues LRAC "last reviewer arrived closes", per cui essendo cinque componenti ogni issue sarà chiuso dal quarto revisore che notificherà l'avvenuta procedura aggiornando la board dello sprint. 
     - In caso di necessità e in modalità straordinaria la chiusura degli issues potrà avvenire con un numero di revisori non inferiore a due e previa notifica al team.
-    - Il lavoro sarà suddiviso in modo equo tra i componenti del team e gli issues sarannò assegnati in modo randomico ad ogni sprint.
-    - Se per particolari necessità si vuole effettuare un cambio di issue con un altro membro consenziente allo scambio del proprio è possibile farlo notificando lo scambio al team ed effettuandolo all'inizio dello sprint.
-    - Permane non ammesso lo scambio di issues a sprint già avviato. Nel qual caso sorgessero problematiche è possibile chiedere il supporto degli altri membri del team per la risoluzione dell'issue assegnato.
+    - Il lavoro sarà suddiviso in modo equo tra i componenti del team e gli issues sarannò assegnati in base a un livello di priorità basato su competenze del membro del gruppo, carico di lavoro e infine preferenza personale.
+    - L'assegnazione degli issues potrà in qualunque momento essere rivista e migliorata in base agli output forniti dagli sprint precedenti o dagli issues già portati a termine. Sulla riassegnazione degli issues saranno applicati i principi dello sviluppo agile che permetteranno di gestire e riorganizzare gli issues e il loro carico lavorativo in qualunque momento e al fine di migliorare la produttività e l'efficienza del team. 
 
 **Divieti e restrizioni:**
 
