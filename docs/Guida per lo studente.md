@@ -312,7 +312,7 @@ Dopo ogni operazione di push o pull request sul repository, GitHub Actions tenta
 
 Svolgere le seguenti operazioni:
 
-- avviare Docker Desktop localmente; una volta aperta l’applicazione, bisogna attendere che nel menu di Docker compaia la scritta “Docker is running”;
+- avviare Docker Desktop localmente; 
 
 - effettuare l'autenticazione di Docker a GitHub Packages:
   - se non l'avete già fatto, create un vostro *personal access token* di GitHub seguendo le istruzioni riportate in questa guida nella sezione ["Creazione del Personal Access Token"](#creazione-del-personal-access-token);
