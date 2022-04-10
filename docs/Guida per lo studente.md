@@ -325,7 +325,8 @@ Svolgere le seguenti operazioni:
 
     **N.B.**: è necessario effettuare questo passaggio soltanto al primo utilizzo di Docker con GitHub Packages;
 
-- se si utilizza Windows selezionare `Switch to Linux containers` nel menu di Docker;
+<!--- se si utilizza Windows selezionare `Switch to Linux containers` nel menu di Docker;
+-->
 
 - recarsi alla pagina principale dedicata al repository su GitHub e fare click sul link del package sotto il titolo *"Packages"*, come evidenziato in figura;
    **N.B.**: se i Secret menzionati in questa guida sono stati impostati correttamente e se almeno un'esecuzione del workflow di GitHub Actions è andata a buon fine, la vostra immagine Docker (nella sua ultima versione) dovrebbe essere disponibile.
