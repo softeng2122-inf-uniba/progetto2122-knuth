@@ -327,11 +327,9 @@ Svolgere le seguenti operazioni:
 
 - se si utilizza Windows selezionare `Switch to Linux containers` nel menu di Docker;
 
-- recarsi alla pagina principale dedicata al repository su GitHub e fare click sul link *"package"*, nella barra evidenziata in figura;
+- recarsi alla pagina principale dedicata al repository su GitHub e fare click sul link del package sotto il titolo *"Packages"*, come evidenziato in figura;
    **N.B.**: se i Secret menzionati in questa guida sono stati impostati correttamente e se almeno un'esecuzione del workflow di GitHub Actions è andata a buon fine, la vostra immagine Docker (nella sua ultima versione) dovrebbe essere disponibile.
    ![ExecuteDockerImage_1](./img/ExecuteDockerImage_1.png)
-
-- nella pagina successiva, fare quindi click sul link del package che la contiene;
 
 - nella pagina dedicata al package è indicato il comando da copiare ed eseguire nel terminale per scaricare l'immagine Docker in locale.
    ![ExecuteDockerImage_2](./img/ExecuteDockerImage_2.png)
