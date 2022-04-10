@@ -11,6 +11,7 @@
   - Creazione di un Personal Access Token e impostazione del Secret 
     - Creazione del Personal Access Token
     - Impostazione del GitHub Secret
+  - Abilitazione package/immagini Docker
   - Aggiunta del badge di GitHub Actions nel README
 - Configurazione Coveralls
   - Aggiunta del badge di Coveralls nel README
@@ -157,6 +158,14 @@ A questo punto, il membro del team che ha generato il token dovrà:
   - concludere l'operazione cliccando sul pulsante *"Add secret"*.
 
 **N.B.:** È fondamentale che i nomi dei due GitHub Secret vengano scritti esattamente come sono riportati in questa guida: `GH_ACCESS_TOKEN` e `GH_USERNAME`(rispettando le maiuscole e gli underscore).
+
+## Abilitazione package/immagini Docker
+Per poter abilitare la creazione di immagini Docker all'interno di GitHub Packages, seguire le seguenti istruzioni:
+1.	visitare la pagina GitHub dell'organizzazione dedicata al corso; l'indirizzo dell'organizzazione per l'anno 21/22 è il seguente: https://github.com/softeng2122-inf-uniba;
+2.	cliccare sulla scheda "Settings", in alto a destra;
+3.	selezionare la voce "Packages", nel pannello laterale sinistro di navigazione;
+4.	spuntare l'opzione "Internal" nella sezione "Container Creation"; così facendo, si abilitano i membri dell'organizzazione alla creazione di immagini Docker a visibilità interna, cioè visibili a tutti i membri dell'organizzazione;
+5.	cliccare sul bottone "Save".
 
 
 ## Aggiunta del badge di GitHub Actions nel README
