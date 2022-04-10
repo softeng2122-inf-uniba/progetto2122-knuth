@@ -319,7 +319,7 @@ Svolgere le seguenti operazioni:
   - salvate il vostro token in un file di testo (ad esempio, potete salvarlo in un file chiamato `TOKEN.txt`);
   - portatevi nella cartella in cui avete salvato il token ed eseguite il comando:
     ```bash
-    cat ./TOKEN.txt | docker login https://docker.pkg.github.com -u <USERNAME> --password-stdin
+    cat ./TOKEN.txt | docker login ghcr.io -u <USERNAME> --password-stdin
     ```
     sostituendo il vostro username di GitHub alla voce `<USERNAME>`.
 
