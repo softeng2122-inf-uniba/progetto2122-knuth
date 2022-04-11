@@ -18,8 +18,7 @@
 - Clonazione del repository
 - Lavoro sul codice dell’applicazione
 - Test automatici e Controlli di Qualità
-- Esecuzione immagine docker
-
+- Esecuzione immagin
 
 
 ## Pipeline di progetto
@@ -160,12 +159,13 @@ A questo punto, il membro del team che ha generato il token dovrà:
 **N.B.:** È fondamentale che i nomi dei due GitHub Secret vengano scritti esattamente come sono riportati in questa guida: `GH_ACCESS_TOKEN` e `GH_USERNAME`(rispettando le maiuscole e gli underscore).
 
 ## Abilitazione package/immagini Docker
-Per poter abilitare la creazione di immagini Docker all'interno di GitHub Packages, seguire le seguenti istruzioni:
-1.	visitare la pagina GitHub dell'organizzazione dedicata al corso; l'indirizzo dell'organizzazione per l'anno 21/22 è il seguente: https://github.com/softeng2122-inf-uniba;
-2.	cliccare sulla scheda "Settings", in alto a destra;
-3.	selezionare la voce "Packages", nel pannello laterale sinistro di navigazione;
-4.	spuntare l'opzione "Internal" nella sezione "Container Creation"; così facendo, si abilitano i membri dell'organizzazione alla creazione di immagini Docker a visibilità interna, cioè visibili a tutti i membri dell'organizzazione;
-5.	cliccare sul bottone "Save".
+Affinché tutti i membri del team possano visualizzare e scaricare l'immagine Docker del proprio progetto da GitHub Packages, è necessario che colui che ha inserito il proprio Personal Access Token tra i secret del repository svolga i seguenti passaggi:
+1. accedere al proprio repository su GitHub;
+2. cliccare sul link del package associato al repository; il link è collocato nella barra laterale destra della pagina principale del repository, sotto l'intestazione "Packages"
+(vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/ExecuteDockerImage_1.png)
+N.B.: il package sarà visibile solo dopo che GitHub Actions avrà completato con successo la prima build del progetto;
+3. cliccare sul link "Package settings", presente nella pagina dedicata al package come ultima voce nella barra laterale destra (vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/packageSettings.png)
+4. scorrere in basso, sino all'intestazione "Manage access"; aggiungere il proprio team alla lista dei membri, conferendo allo stesso i permessi di "Admin" (vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/manageAccess.png).
 
 
 ## Aggiunta del badge di GitHub Actions nel README
