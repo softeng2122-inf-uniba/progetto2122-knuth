@@ -18,7 +18,7 @@
 - Clonazione del repository
 - Lavoro sul codice dell’applicazione
 - Test automatici e Controlli di Qualità
-- Esecuzione immagin
+- Esecuzione immagine Docker
 
 
 ## Pipeline di progetto
