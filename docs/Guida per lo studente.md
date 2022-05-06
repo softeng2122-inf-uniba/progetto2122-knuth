@@ -143,7 +143,7 @@ A questo punto, il membro del team che ha generato il token dovrà:
 
 - recarsi sulla pagina principale del repository e fare click sull'icona *"Settings"* (ultima tab in alto a destra);
   **N.B.**: solo l'amministratore visualizza questa tab!
-  ![SaveTokenInSecret_5](./img/SaveTokenInSecret_5.png)
+  ![SaveTokenInSecret_5(modificata)](./img/im_da_aggiungere/SaveTokenInSecret_5(modificata).png)
 - selezionare la voce *"Secrets"* e la sottovoce *"Actions"* dalla barra laterale;
   ![SaveTokenInSecret_6](./img/SaveTokenInSecret_6.png)
 - fare click sul pulsante *"New repository secret"*:
