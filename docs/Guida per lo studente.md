@@ -113,7 +113,7 @@ L'intervento iniziale a voi richiesto deve essere svolto da *un solo membro del 
 Il membro del team, avendo i diritti di amministratore sul repository, deve:
 
 - entrare nella pagina delle impostazioni del proprio profilo GitHub (click sull'immagine di profilo in alto a destra, poi click sulla voce *"Settings"* nel menù a tendina che compare);
-  ![SaveTokenInSecret_1](./img/SaveTokenInSecret_1.png)
+  ![SaveTokenInSecret_1(modificata)](./img/im_da_aggiungere/SaveTokenInSecret_1(modificata).png)
 
 - entrare nella sezione delle impostazioni per sviluppatori, *"Developer Settings"*, facendo click sul relativo pulsante nella barra laterale;
   ![SaveTokenInSecret_2](./img/SaveTokenInSecret_2.png)
