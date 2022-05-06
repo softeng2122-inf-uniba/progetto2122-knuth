@@ -119,7 +119,7 @@ Il membro del team, avendo i diritti di amministratore sul repository, deve:
   ![SaveTokenInSecret_2(modificata)](./img/im_da_aggiungere/SaveTokenInSecret_2(modificata).png)
 
 - selezionare *"Personal Access Token"* nella barra laterale e successivamente fare click su *"Generate new Token"*, in alto a destra; 
-  ![SaveTokenInSecret_3](./img/SaveTokenInSecret_3.png)
+  ![SaveTokenInSecret_3(modificata)](./img/im_da_aggiungere/SaveTokenInSecret_3(modificata).png)
 
 - indicare nel campo *"Note"* l'utilizzo che si intende fare del token (ad es.: *"Uploads of Docker images to GitHub Packages"*). Tale appunto tornerà utile in futuro per ricordarsi a quale scopo era stato generato il token;
 
