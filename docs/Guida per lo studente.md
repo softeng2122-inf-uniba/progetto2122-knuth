@@ -193,7 +193,7 @@ Per configurare Coveralls, collegarsi al [sito web del servizio](https://coveral
 Il repository `SOFTENG2122-INF-UNIBA/<nome repository>` dovrebbe essere immediatamente visibile nella pagina. Qualora non lo fosse, digitare le prime lettere del nome nel campo di testo. Se così facendo ancora non fosse visibile, andare in fondo alla pagina e cliccare sul pulsante **REFRESH PRIVATE REPOS**. 
 Quando la riga relativa al progetto compare, fare click sul tasto OFF per trasformarlo in ON, come mostrato in figura.
 
-![](./img/add_repo_coveralls.png)
+![187](./img/im_da_aggiungere/187.png)
 
 Una volta attivato il progetto, fare click su **DETAILS** per visualizzare il _token privato_ associato al repository. Questo token andrà salvato in un Secret di GitHub denominato `COVERALLS_REPO_TOKEN`, seguendo la procedura riportata al passo precedente per il salvataggio del GitHub Access Token. Più precisamente:
 
