@@ -116,7 +116,7 @@ Il membro del team, avendo i diritti di amministratore sul repository, deve:
   ![SaveTokenInSecret_1(modificata)](./img/im_da_aggiungere/SaveTokenInSecret_1(modificata).png)
 
 - entrare nella sezione delle impostazioni per sviluppatori, *"Developer Settings"*, facendo click sul relativo pulsante nella barra laterale;
-  ![SaveTokenInSecret_2](./img/SaveTokenInSecret_2.png)
+  ![SaveTokenInSecret_2(modificata)](./img/im_da_aggiungere/SaveTokenInSecret_2(modificata).png)
 
 - selezionare *"Personal Access Token"* nella barra laterale e successivamente fare click su *"Generate new Token"*, in alto a destra; 
   ![SaveTokenInSecret_3](./img/SaveTokenInSecret_3.png)
