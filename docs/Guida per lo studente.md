@@ -171,7 +171,7 @@ N.B.: il package sarà visibile solo dopo che GitHub Actions avrà completato co
 ## Aggiunta del badge di GitHub Actions nel README
 Per aggiungere il badge che riporta l'ultimo esito dell'esecuzione del workflow (stato del workflow) all'interno del file README del vostro repository, seguire le seguenti istruzioni:
 - entrare nella pagina principale del repository e cliccare su `Actions` (subito sotto il titolo, in alto al centro);
-![Update_GitHub_badge_1](./img/Update_GitHub_badge_1.png)
+![Update_GitHub_badge_1(modificata)](./img/im_da_aggiungere/Update_GitHub_badge_1(modificata).png)
 - *"All workflows"*, riporta l'elenco delle esecuzioni del workflow  `ingsw2122.yml` (ogni push e ogni pull request sul repository inducono una nuova esecuzione); fare click sul record relativo alla run più recente (quello più in alto) che riporta il tag `master` (**N.B.**: svolgendo questa operazione all'inizio del progetto, in questa lista troverete soltanto un record, quello relativo all'unica esecuzione del workflow indotta dalla creazione del repository);
   ![Update_GitHub_badge_2](./img/Update_GitHub_badge_2.png)
 - fare click sul pulsante `Create status badge` in alto a destra nella pagina e, lasciando invariate le impostazioni di default (`branch` e `event`), fare click su `Copy status badge Markdown`;
