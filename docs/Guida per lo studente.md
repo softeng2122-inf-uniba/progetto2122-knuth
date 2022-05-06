@@ -11,14 +11,14 @@
   - Creazione di un Personal Access Token e impostazione del Secret 
     - Creazione del Personal Access Token
     - Impostazione del GitHub Secret
+  - Abilitazione package/immagini Docker
   - Aggiunta del badge di GitHub Actions nel README
 - Configurazione Coveralls
   - Aggiunta del badge di Coveralls nel README
 - Clonazione del repository
 - Lavoro sul codice dell’applicazione
 - Test automatici e Controlli di Qualità
-- Esecuzione immagine docker
-
+- Esecuzione immagine Docker
 
 
 ## Pipeline di progetto
@@ -158,6 +158,15 @@ A questo punto, il membro del team che ha generato il token dovrà:
 
 **N.B.:** È fondamentale che i nomi dei due GitHub Secret vengano scritti esattamente come sono riportati in questa guida: `GH_ACCESS_TOKEN` e `GH_USERNAME`(rispettando le maiuscole e gli underscore).
 
+## Abilitazione package/immagini Docker
+Affinché tutti i membri del team possano visualizzare e scaricare l'immagine Docker del proprio progetto da GitHub Packages, è necessario che colui che ha inserito il proprio Personal Access Token tra i secret del repository svolga i seguenti passaggi:
+1. accedere al proprio repository su GitHub;
+2. cliccare sul link del package associato al repository; il link è collocato nella barra laterale destra della pagina principale del repository, sotto l'intestazione "Packages"
+(vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/ExecuteDockerImage_1.png)
+N.B.: il package sarà visibile solo dopo che GitHub Actions avrà completato con successo la prima build del progetto;
+3. cliccare sul link "Package settings", presente nella pagina dedicata al package come ultima voce nella barra laterale destra (vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/packageSettings.png)
+4. scorrere in basso, sino all'intestazione "Manage access"; aggiungere il proprio team alla lista dei membri, conferendo allo stesso i permessi di "Admin" (vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/manageAccess.png).
+
 
 ## Aggiunta del badge di GitHub Actions nel README
 Per aggiungere il badge che riporta l'ultimo esito dell'esecuzione del workflow (stato del workflow) all'interno del file README del vostro repository, seguire le seguenti istruzioni:
@@ -273,7 +282,7 @@ Il workflow da utilizzare è il [GitHub Flow](https://guides.github.com/introduc
 
 - Subito prima di lavorare sul codice, è opportuno eseguire una `git fetch` e, se `git status` informa che ci sono modifiche, eseguire quindi una `git pull` per poi lavorare sul codice più aggiornato
 - Per ogni nuova *feature*, *user story* o *bug fix* occorre creare o scegliere l’issue su cui lavorare su GitHub e segnarsi come **assigned**
-- Creare un nuovo **branch** sul repository locale con il numero dell'issue o il titolo come nome del branch (*issue#n* oppure *titoloissue*) attraverso il comando `git branch <nome branch> `
+- Creare un nuovo **branch** sul repository locale con il numero dell'issue o il titolo come nome del branch (*issue#n* oppure *titoloissue*) attraverso il comando `git branch <nome branch> `
 - Spostarsi sul nuovo branch appena creato con il comando `git checkout <nome branch>` 	
 - Lavorare al codice dell’applicazione. È consigliabile fare piccole **commit** autoconsistenti di volta in volta, con uno scopo ben preciso e una descrizione dettagliata. *Evitare di fare un’unica grande commit alla fine del lavoro, a meno che la feature o il bug fix non sia davvero di poco conto.*
 - Aggiorna con regolarità il branch sul server origin in GitHub con il comando `git push origin <nome branch>`
@@ -312,29 +321,28 @@ Dopo ogni operazione di push o pull request sul repository, GitHub Actions tenta
 
 Svolgere le seguenti operazioni:
 
-- avviare Docker Desktop localmente; una volta aperta l’applicazione, bisogna attendere che nel menu di Docker compaia la scritta “Docker is running”;
+- avviare Docker Desktop localmente; 
 
 - effettuare l'autenticazione di Docker a GitHub Packages:
   - se non l'avete già fatto, create un vostro *personal access token* di GitHub seguendo le istruzioni riportate in questa guida nella sezione ["Creazione del Personal Access Token"](#creazione-del-personal-access-token);
   - salvate il vostro token in un file di testo (ad esempio, potete salvarlo in un file chiamato `TOKEN.txt`);
   - portatevi nella cartella in cui avete salvato il token ed eseguite il comando:
     ```bash
-    cat ./TOKEN.txt | docker login https://docker.pkg.github.com -u <USERNAME> --password-stdin
+    cat ./TOKEN.txt | docker login ghcr.io -u <USERNAME> --password-stdin
     ```
     sostituendo il vostro username di GitHub alla voce `<USERNAME>`.
 
     **N.B.**: è necessario effettuare questo passaggio soltanto al primo utilizzo di Docker con GitHub Packages;
 
-- se si utilizza Windows selezionare `Switch to Linux containers` nel menu di Docker;
+<!--- se si utilizza Windows selezionare `Switch to Linux containers` nel menu di Docker;
+-->
 
-- recarsi alla pagina principale dedicata al repository su GitHub e fare click sul link *"package"*, nella barra evidenziata in figura;
+- recarsi alla pagina principale dedicata al repository su GitHub e fare click sul link del package sotto il titolo *"Packages"*, come evidenziato in figura;
    **N.B.**: se i Secret menzionati in questa guida sono stati impostati correttamente e se almeno un'esecuzione del workflow di GitHub Actions è andata a buon fine, la vostra immagine Docker (nella sua ultima versione) dovrebbe essere disponibile.
-   ![332](./img/im_da_aggiungere/332.png)
-
-- nella pagina successiva, fare quindi click sul link del package che la contiene;
+   ![ExecuteDockerImage_1](./img/ExecuteDockerImage_1.png)
 
 - nella pagina dedicata al package è indicato il comando da copiare ed eseguire nel terminale per scaricare l'immagine Docker in locale.
-   ![337](./img/im_da_aggiungere/337.png)
+   ![ExecuteDockerImage_2](./img/ExecuteDockerImage_2.png)
    
 - incollare ed eseguire il comando nel terminale. Attendere che Docker scarichi l’immagine dell’applicazione
 
