@@ -129,7 +129,7 @@ Il membro del team, avendo i diritti di amministratore sul repository, deve:
   - `write:packages`
   - `read:packages`
 
-  ![SaveTokenInSecret_4](./img/SaveTokenInSecret_4.png)
+  ![SaveTokenInSecret_4(modificata)](./img/im_da_aggiungere/SaveTokenInSecret_4(modificata).png)
 
 - fare click sul pulsante *"Generate token"*, in basso nella pagina;
 - copiare il token che apparirà alla pagina seguente e memorizzarlo in un luogo sicuro.
