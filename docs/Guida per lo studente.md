@@ -165,7 +165,7 @@ Affinché tutti i membri del team possano visualizzare e scaricare l'immagine Do
 (vedi freccia rossa in figura); ![165-342](./img/im_da_aggiungere/165-342.png)
 N.B.: il package sarà visibile solo dopo che GitHub Actions avrà completato con successo la prima build del progetto;
 3. cliccare sul link "Package settings", presente nella pagina dedicata al package come ultima voce nella barra laterale destra (vedi freccia rossa in figura); ![167](./img/im_da_aggiungere/167.png)
-4. scorrere in basso, sino all'intestazione "Manage access"; aggiungere il proprio team alla lista dei membri, conferendo allo stesso i permessi di "Admin" (vedi freccia rossa in figura); ![ExecuteDockerImage_1](./img/manageAccess.png).
+4. scorrere in basso, sino all'intestazione "Manage access"; aggiungere il proprio team alla lista dei membri, conferendo allo stesso i permessi di "Admin" (vedi freccia rossa in figura); ![168](./img/im_da_aggiungere/168.png).
 
 
 ## Aggiunta del badge di GitHub Actions nel README
