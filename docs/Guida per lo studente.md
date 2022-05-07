@@ -342,7 +342,7 @@ Svolgere le seguenti operazioni:
    ![165-342](./img/im_da_aggiungere/165-342.png)
 
 - nella pagina dedicata al package è indicato il comando da copiare ed eseguire nel terminale per scaricare l'immagine Docker in locale.
-   ![ExecuteDockerImage_2](./img/ExecuteDockerImage_2.png)
+   ![345](./img/im_da_aggiungere/345.png)
    
 - incollare ed eseguire il comando nel terminale. Attendere che Docker scarichi l’immagine dell’applicazione
 
