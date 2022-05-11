@@ -8,7 +8,7 @@ public class Wordle
     static String secretWord = null;
     static WordleGame currentGame = null;
 
-    //startGame() { new WordleGame(secretWord, 6, 5) }
+    //startGame()
     //guess()
     //endGame()
     //setSecretWord()
