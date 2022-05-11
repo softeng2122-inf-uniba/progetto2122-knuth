@@ -1,2 +1,7 @@
-package it.uniba.app;public class Board {
+package it.uniba.app;
+
+public class Board
+{
+    Guess[] guessArray;
+    int wordLength;
 }
