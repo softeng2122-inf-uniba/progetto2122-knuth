@@ -5,6 +5,6 @@ package it.uniba.app;
  */
 public class WordleGame
 {
-    //String secretWord;
-    //Board gameBoard;
+    String secretWord;
+    Board gameBoard;
 }
