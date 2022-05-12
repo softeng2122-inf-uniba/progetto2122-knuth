@@ -2,7 +2,6 @@ package it.uniba.app;
 
 import java.io.InputStreamReader;
 import java.util.Scanner;
-//import package.class.Command;
 
 /**
  * Main class of the application.
@@ -26,7 +25,7 @@ public final class App {
     public static void main(final String[] args)
     {
         Scanner keyboardInput = new Scanner (new InputStreamReader(System.in));
-        System.out.println("Inserisci un comanddo: ");
+        System.out.println("Inserisci un comando: ");
         String inputLine = keyboardInput.nextLine();
 
         Command command = Parser.parseInput(inputLine);
