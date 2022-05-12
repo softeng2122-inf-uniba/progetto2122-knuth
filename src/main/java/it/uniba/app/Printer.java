@@ -40,7 +40,17 @@ public class Printer
 
     private static String upperPart(int wordLength)
     {
-        return null;
+        //nota: effettuare il cambio in stringBuilder
+
+        String upperPart = L_U_ANGLE + "" + HORIZONTAL_EDGE_X3;
+
+        for(int i = 1; i <= wordLength - 1; i++)
+        {
+            upperPart = upperPart + U_SEPARATOR + HORIZONTAL_EDGE_X3;
+        }
+        upperPart = upperPart + R_U_ANGLE;
+
+        return upperPart;
     }
 
     private static String guessSlice(int wordLength, String word)
