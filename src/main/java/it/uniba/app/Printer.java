@@ -77,58 +77,58 @@ public class Printer
     {
         //nota: effettuare il cambio in stringBuilder
 
-        String upperPart = L_U_ANGLE + "" + HORIZONTAL_EDGE_X3;
+        StringBuilder upperPart = new StringBuilder(L_U_ANGLE + "" + HORIZONTAL_EDGE_X3);
 
         for(int i = 1; i <= wordLength - 1; i++)
         {
-            upperPart = upperPart + U_SEPARATOR + HORIZONTAL_EDGE_X3;
+            upperPart.append(U_SEPARATOR + "" + HORIZONTAL_EDGE_X3);
         }
-        upperPart = upperPart + R_U_ANGLE;
+        upperPart.append(R_U_ANGLE);
 
-        return upperPart;
+        return upperPart.toString();
     }
 
     private static String guessSlice(int wordLength, String word)
     {
         // nota: non effettuare controllo su parametri, già fatto dal metodo printBoard
         char[] chars = word.toCharArray();
-        String guessSlice = VERTICAL_EDGE + "";
+        StringBuilder guessSlice = new StringBuilder(VERTICAL_EDGE + "");
 
         for(int i = 0; i < wordLength; i++)
         {
-            guessSlice = guessSlice + " " + chars[i] + " " + VERTICAL_EDGE;
+            guessSlice.append(" " + chars[i] + " " + VERTICAL_EDGE);
         }
 
-        return guessSlice;
+        return guessSlice.toString();
     }
 
     private static String separatorSlice(int wordLength)
     {
         //nota: effettuare il cambio in stringBuilder
-        String separatorSlice = L_SEPARATOR + "" + HORIZONTAL_EDGE_X3;
+        StringBuilder separatorSlice = new StringBuilder(L_SEPARATOR + "" + HORIZONTAL_EDGE_X3);
 
         for(int i = 1; i <= wordLength - 1; i++)
         {
-            separatorSlice = separatorSlice + CROSS + HORIZONTAL_EDGE_X3;
+            separatorSlice.append(CROSS + HORIZONTAL_EDGE_X3);
         }
-        separatorSlice = separatorSlice + R_SEPARATOR;
+        separatorSlice.append(R_SEPARATOR);
 
-        return separatorSlice;
+        return separatorSlice.toString();
     }
 
     private static String lowerPart(int wordLength)
     {
         //nota: effettuare il cambio in stringBuilder
 
-        String lowerPart = L_D_ANGLE + "" + HORIZONTAL_EDGE_X3;
+        StringBuilder lowerPart = new StringBuilder(L_D_ANGLE + "" + HORIZONTAL_EDGE_X3);
 
         for(int i = 1; i <= wordLength - 1; i++)
         {
-            lowerPart = lowerPart +  D_SEPARATOR +  HORIZONTAL_EDGE_X3;
+            lowerPart.append(D_SEPARATOR +  HORIZONTAL_EDGE_X3);
         }
-        lowerPart = lowerPart + R_D_ANGLE;
+        lowerPart.append(R_D_ANGLE);
 
-        return lowerPart;
+        return lowerPart.toString();
     }
 
 
