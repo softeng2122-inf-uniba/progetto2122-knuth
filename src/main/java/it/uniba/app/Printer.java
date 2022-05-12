@@ -69,7 +69,16 @@ public class Printer
 
     private static String separatorSlice(int wordLength)
     {
-        return null;
+        //nota: effettuare il cambio in stringBuilder
+        String separatorSlice = L_SEPARATOR + "" + HORIZONTAL_EDGE_X3;
+
+        for(int i = 1; i <= wordLength - 1; i++)
+        {
+            separatorSlice = separatorSlice + CROSS + HORIZONTAL_EDGE_X3;
+        }
+        separatorSlice = separatorSlice + R_SEPARATOR;
+
+        return separatorSlice;
     }
 
     private static String lowerPart(int wordLength)
