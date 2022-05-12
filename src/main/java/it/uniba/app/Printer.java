@@ -55,7 +55,16 @@ public class Printer
 
     private static String guessSlice(int wordLength, String word)
     {
-        return null;
+        // nota: non effettuare controllo su parametri, già fatto dal metodo printBoard
+        char[] chars = word.toCharArray();
+        String guessSlice = VERTICAL_EDGE + "";
+
+        for(int i = 0; i < wordLength; i++)
+        {
+            guessSlice = guessSlice + " " + chars[i] + " " + VERTICAL_EDGE;
+        }
+
+        return guessSlice;
     }
 
     private static String separatorSlice(int wordLength)
