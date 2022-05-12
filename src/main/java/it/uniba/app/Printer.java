@@ -8,7 +8,7 @@ import java.io.PrintWriter;
  */
 public class Printer
 {
-    private static PrintWriter printer = new PrintWriter(System.out,true);
+    private static final PrintWriter printer = new PrintWriter(System.out,true);
     // angoli (L = left, R = right, U = up, D = down)
     private static final char L_U_ANGLE = '\u2554';
     private static final char R_U_ANGLE = '\u2557';
@@ -47,9 +47,9 @@ public class Printer
             throw new IllegalArgumentException("Il numero di elementi dell'array supera il numero di righe");
         }
 
-        for (int i = 0; i<words.length; i++)
+        for (String word : words)
         {
-            if (words[i].length() != columns)
+            if (word.length() != columns)
             {
                 throw new IllegalArgumentException("Parola di dimensioni non valide");
             }
@@ -71,10 +71,6 @@ public class Printer
         String rowContent = wordToPrint(words, rows-1, columns);
         printer.println(guessSlice(columns, rowContent));
         printer.println(lowerPart(columns));
-
-        // stampa upperPart
-        // for per stampare le varie righe (composte da guessSlice e separator slice)
-        //stampa downPart
     }
 
     private static String upperPart(int wordLength)
