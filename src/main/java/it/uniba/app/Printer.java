@@ -65,7 +65,17 @@ public class Printer
 
     private static String lowerPart(int wordLength)
     {
-        return null;
+        //nota: effettuare il cambio in stringBuilder
+
+        String lowerPart = L_D_ANGLE + "" + HORIZONTAL_EDGE_X3;
+
+        for(int i = 1; i <= wordLength - 1; i++)
+        {
+            lowerPart = lowerPart +  D_SEPARATOR +  HORIZONTAL_EDGE_X3;
+        }
+        lowerPart = lowerPart + R_D_ANGLE;
+
+        return lowerPart;
     }
 
 
