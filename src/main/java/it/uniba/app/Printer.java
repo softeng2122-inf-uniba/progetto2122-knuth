@@ -30,7 +30,7 @@ public class Printer
     private static final String HORIZONTAL_EDGE_X3 = HORIZONTAL_EDGE + "" + HORIZONTAL_EDGE + HORIZONTAL_EDGE;
 
 
-    public static void printBoard(int rows, int columns, int filledRows, List<String> words)
+    public static void printBoard(int rows, int columns, int filledRows, String[] words)
     {
         // aggiungere controlli sui parametri
 
@@ -38,15 +38,15 @@ public class Printer
         printer.println(upperPart(columns));
 
         // stampa le righe (dalla prima alla penultima)
-        for(int i = 1; i <= rows - 1; i++)
+        for(int i = 0; i < rows - 1; i++)
         {
-            String rowContent = "dummy"; // creare metodo per estrapolare parola da stampare
+            String rowContent = wordToPrint(words, i, columns); // creare metodo per estrapolare parola da stampare
             printer.println(guessSlice(columns, rowContent));
             printer.println(separatorSlice(columns));
         }
 
         // stampa ultima riga
-        String rowContent = "dummy";
+        String rowContent = wordToPrint(words, rows-1, columns);
         printer.println(guessSlice(columns, rowContent));
         printer.println(lowerPart(columns));
 
@@ -114,9 +114,22 @@ public class Printer
     }
 
 
-    public static String wordToPrint(List<String> words, int wordNumber)
+    public static String wordToPrint(String[] words, int wordNumber, int wordLength)
     {
-        return null;
+        int length = words.length;
+        if (wordNumber < length)
+        {
+            return words[wordNumber];
+        }
+        else
+        {
+            String hollow = "";
+            for (int i = 0; i < wordLength; i++)
+            {
+                hollow = hollow + " ";
+            }
+            return hollow;
+        }
     }
 
 
