@@ -1,13 +1,14 @@
 package it.uniba.app;
 
 import java.util.List;
+import java.io.PrintWriter;
 
 /** Questa classe si occupa delle stampe sul terminale
  *
  */
 public class Printer
 {
-
+    private static PrintWriter printer = new PrintWriter(System.out,true);
     // angoli (L = left, R = right, U = up, D = down)
     private static final char L_U_ANGLE = '\u2554';
     private static final char R_U_ANGLE = '\u2557';
@@ -32,6 +33,22 @@ public class Printer
     public static void printBoard(int rows, int columns, int filledRows, List<String> words)
     {
         // aggiungere controlli sui parametri
+
+        //stampa parte superiore della Board
+        printer.println(upperPart(columns));
+
+        // stampa le righe (dalla prima alla penultima)
+        for(int i = 1; i <= rows - 1; i++)
+        {
+            String rowContent = "dummy"; // creare metodo per estrapolare parola da stampare
+            printer.println(guessSlice(columns, rowContent));
+            printer.println(separatorSlice(columns));
+        }
+
+        // stampa ultima riga
+        String rowContent = "dummy";
+        printer.println(guessSlice(columns, rowContent));
+        printer.println(lowerPart(columns));
 
         // stampa upperPart
         // for per stampare le varie righe (composte da guessSlice e separator slice)
