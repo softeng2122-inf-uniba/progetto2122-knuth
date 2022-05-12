@@ -1,5 +1,7 @@
 package it.uniba.app;
 
+import java.util.List;
+
 /** Questa classe si occupa delle stampe sul terminale
  *
  */
@@ -27,10 +29,36 @@ public class Printer
     private static final String HORIZONTAL_EDGE_X3 = HORIZONTAL_EDGE + "" + HORIZONTAL_EDGE + HORIZONTAL_EDGE;
 
 
-    static void printBoard()
+    public static void printBoard(int rows, int columns, int filledRows, List<String> words)
     {
+        // aggiungere controlli sui parametri
 
+        // stampa upperPart
+        // for per stampare le varie righe (composte da guessSlice e separator slice)
+        //stampa downPart
     }
+
+    private static String upperPart(int wordLength)
+    {
+        return null;
+    }
+
+    private static String guessSlice(int wordLength, String word)
+    {
+        return null;
+    }
+
+    private static String separatorSlice(int wordLength)
+    {
+        return null;
+    }
+
+    private static String lowerPart(int wordLength)
+    {
+        return null;
+    }
+
+
 
     //static void printSecretWord()
     //static void printHelp()
