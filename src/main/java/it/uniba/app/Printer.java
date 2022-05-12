@@ -30,9 +30,31 @@ public class Printer
     private static final String HORIZONTAL_EDGE_X3 = HORIZONTAL_EDGE + "" + HORIZONTAL_EDGE + HORIZONTAL_EDGE;
 
 
-    public static void printBoard(int rows, int columns, int filledRows, String[] words)
+    public static void printBoard(int rows, int columns, String[] words)
     {
-        // aggiungere controlli sui parametri
+        if (rows <= 0)
+        {
+            throw new IllegalArgumentException(Integer.toString(rows));
+        }
+
+        if (columns <= 0)
+        {
+            throw new IllegalArgumentException(Integer.toString(columns));
+        }
+
+        if (words.length > rows)
+        {
+            throw new IllegalArgumentException("Il numero di elementi dell'array supera il numero di righe");
+        }
+
+        for (int i = 0; i<words.length; i++)
+        {
+            if (words[i].length() != columns)
+            {
+                throw new IllegalArgumentException("Parola di dimensioni non valide");
+            }
+
+        }
 
         //stampa parte superiore della Board
         printer.println(upperPart(columns));
