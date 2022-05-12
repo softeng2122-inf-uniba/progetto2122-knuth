@@ -42,7 +42,7 @@ public final class App {
                     Printer.printInvalid();
                     break;
             }
-            System.out.println("Inserisci un comanddo: ");
+            System.out.println("Inserisci un comando: ");
             inputLine = keyboardInput.nextLine();
             command = Parser.parseInput(inputLine);
         }
