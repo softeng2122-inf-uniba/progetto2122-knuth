@@ -1,6 +1,5 @@
 package it.uniba.app;
 
-import java.util.List;
 import java.io.PrintWriter;
 
 /** Questa classe si occupa delle stampe sul terminale
@@ -96,7 +95,7 @@ public class Printer
 
         for(int i = 0; i < wordLength; i++)
         {
-            guessSlice.append(" " + chars[i] + " " + VERTICAL_EDGE);
+            guessSlice.append(" ").append(chars[i]).append(" ").append(VERTICAL_EDGE);
         }
 
         return guessSlice.toString();
@@ -141,12 +140,12 @@ public class Printer
         }
         else
         {
-            String hollow = "";
+            StringBuilder hollow = new StringBuilder();
             for (int i = 0; i < wordLength; i++)
             {
-                hollow = hollow + " ";
+                hollow.append(" ");
             }
-            return hollow;
+            return hollow.toString();
         }
     }
 
