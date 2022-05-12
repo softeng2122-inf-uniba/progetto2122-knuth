@@ -114,6 +114,11 @@ public class Printer
     }
 
 
+    public static String wordToPrint(List<String> words, int wordNumber)
+    {
+        return null;
+    }
+
 
     //static void printSecretWord()
     //static void printHelp()
