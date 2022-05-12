@@ -1,5 +1,8 @@
 package it.uniba.app;
 
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
 /**
  * Main class of the application.
  */
@@ -19,7 +22,31 @@ public final class App {
      *
      * @param args command line arguments
      */
-    public static void main(final String[] args) {
-        System.out.println(new App().getGreeting());
+    public static void main(final String[] args)
+    {
+        Scanner keyboardInput = new Scanner (new InputStreamReader(System.in));
+        System.out.println("Inserisci un comando: ");
+        String inputLine = keyboardInput.nextLine();
+
+        Command command = Parser.parseInput(inputLine);
+        //inputParse comando per parsificare l'input
+
+        while (!inputLine.equals("exit"))
+        {
+            switch (command)
+            {
+                case DUMMY:
+                    Printer.printDummy();
+                    break;
+                case INVALID:
+                    Printer.printInvalid();
+                    break;
+            }
+            System.out.println("Inserisci un comando: ");
+            inputLine = keyboardInput.nextLine();
+            command = Parser.parseInput(inputLine);
+        }
+
+        System.out.println("ciao");
     }
 }
