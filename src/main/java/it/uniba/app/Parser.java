@@ -5,7 +5,16 @@ package it.uniba.app;
  */
 public class Parser
 {
-    // parseInput()
+    public static Command parseInput(String inputLine)
+    {
+        Command outParser;
+        if (inputLine.compareToIgnoreCase("dummy")==0)
+        {
+            outParser = Command.DUMMY;
+        } else outParser = Command.INVALID;
+        return outParser;
+    }
+
     //parseConfirmation()
 
 }
