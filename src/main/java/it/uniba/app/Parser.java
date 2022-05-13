@@ -19,14 +19,10 @@ public class Parser
         feed(inputLine);
     }
     */
-    public static Command parseInput(String inputLine)
-    {
-        Command outParser;
-        if (inputLine.compareToIgnoreCase("dummy")==0)
-        {
-            outParser = Command.DUMMY;
-        } else outParser = Command.INVALID;
-        return outParser;
+    public void feed(String inputLine) {
+        //this.input = inputLine.trim();
+        //this.command = setCommand();
+        //this.args = setArgs();
     }
 
     //parseConfirmation()
