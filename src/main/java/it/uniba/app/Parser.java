@@ -1,6 +1,6 @@
 package it.uniba.app;
 
-/** Questa classe effettua il parsing dell'input inserito dall'utente 
+/** Questa classe effettua il parsing dell'input inserito dall'utente
  *
  */
 public class Parser
@@ -20,9 +20,9 @@ public class Parser
     }
     */
     public void feed(String inputLine) {
-        //this.input = inputLine.trim();
-        //this.command = setCommand();
-        //this.args = setArgs();
+        this.input = inputLine.trim();
+        this.command = setCommand();
+        this.args = setArgs();
     }
 
     /**
@@ -41,11 +41,10 @@ public class Parser
     }
 
     //deve avvalorare l'attributo command
-    private Command setCommand() {
-        Command command = null;
+    private Command setCommand()
+    {
+        Command command = Command.INVALID;
         String[] tokens = tokenize();
-        //Pattern p = Pattern.compile("\\s+");
-        //Matcher m = p.matcher(input);
         if (tokens == null)
         {
             command = Command.SPACE;
@@ -53,13 +52,13 @@ public class Parser
         else
         {
             Character firstChar = tokens[0].charAt(0);
-            if (firstChar.equals('/')) {
+            if (firstChar.equals('/'))
+            {
                 //salvo solo il comando, i valori di enum non avranno il carattere /
                 String tokenCommand = tokens[0].substring(1, tokens[0].length());
-                if (tokenCommand.equalsIgnoreCase(Command.DUMMY.toString())) {
+                if (tokenCommand.equalsIgnoreCase(Command.DUMMY.toString()))
+                {
                     command = Command.DUMMY;
-                } else {
-                    command = Command.INVALID;
                 }
             }
         }
@@ -105,8 +104,5 @@ public class Parser
     {
         return this.args;
     }
-
-
     //parseConfirmation()
-
 }
