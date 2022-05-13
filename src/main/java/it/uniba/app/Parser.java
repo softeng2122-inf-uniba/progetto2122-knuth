@@ -25,6 +25,22 @@ public class Parser
         //this.args = setArgs();
     }
 
+    /**
+     * Metodo privato che viene utilizzato dai metodi della classe per tokenizzare l'input del parser
+     *
+     * @return
+     */
+    private String[] tokenizer() {
+        if (input.length()==0)
+        {
+            return null;
+        }
+        String[] tokens;
+        tokens = input.split("\\s+");
+        return tokens;
+    }
+
+
     //parseConfirmation()
 
 }
