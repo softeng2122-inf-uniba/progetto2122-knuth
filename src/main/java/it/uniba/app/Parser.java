@@ -95,6 +95,17 @@ public class Parser
         return args;
     }
 
+    //deve restituire l'attributo command
+    public Command getCommand()
+    {
+        return this.command;
+    }
+
+    public String[] getArgs()
+    {
+        return this.args;
+    }
+
 
     //parseConfirmation()
 
