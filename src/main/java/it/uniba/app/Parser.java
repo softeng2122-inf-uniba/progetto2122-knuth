@@ -66,6 +66,35 @@ public class Parser
         return command;
     }
 
+    private String[] setArgs()
+    {
+        String[] tokens = tokenize();
+        if (tokens==null)
+        {
+            args = null;
+        }
+        else
+        {
+            //se il primo token è un comando lo salti
+            if (tokens[0].charAt(0) == '/')
+            {
+                args = new String[tokens.length - 1];
+                int countArg = 0;
+                for (int nToken = 1; nToken < tokens.length; nToken++)
+                {
+                    args[countArg] = tokens[nToken];
+                    countArg++;
+                }
+            } //se il primo token non è un comando allora è un tentativo e considero solo il primo argomento
+            else
+            {
+                args = new String[1];
+                args[0] = tokens[0];
+            }
+        }
+        return args;
+    }
+
 
     //parseConfirmation()
 
