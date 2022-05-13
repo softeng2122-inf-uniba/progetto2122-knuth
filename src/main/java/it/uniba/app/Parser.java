@@ -30,7 +30,7 @@ public class Parser
      *
      * @return
      */
-    private String[] tokenizer() {
+    private String[] tokenize() {
         if (input.length()==0)
         {
             return null;
@@ -38,6 +38,32 @@ public class Parser
         String[] tokens;
         tokens = input.split("\\s+");
         return tokens;
+    }
+
+    //deve avvalorare l'attributo command
+    private Command setCommand() {
+        Command command = null;
+        String[] tokens = tokenize();
+        //Pattern p = Pattern.compile("\\s+");
+        //Matcher m = p.matcher(input);
+        if (tokens == null)
+        {
+            command = Command.SPACE;
+        }
+        else
+        {
+            Character firstChar = tokens[0].charAt(0);
+            if (firstChar.equals('/')) {
+                //salvo solo il comando, i valori di enum non avranno il carattere /
+                String tokenCommand = tokens[0].substring(1, tokens[0].length());
+                if (tokenCommand.equalsIgnoreCase(Command.DUMMY.toString())) {
+                    command = Command.DUMMY;
+                } else {
+                    command = Command.INVALID;
+                }
+            }
+        }
+        return command;
     }
 
 
