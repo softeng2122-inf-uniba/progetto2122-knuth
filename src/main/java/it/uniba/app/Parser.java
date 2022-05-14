@@ -8,6 +8,8 @@ public class Parser
     private String input;
     private Command command;
     private String[] args;
+    private String[] tokens;
+
     public Parser() {
         this.input = null;
         this.command = null;
@@ -21,6 +23,7 @@ public class Parser
     */
     public void feed(String inputLine) {
         this.input = inputLine.trim();
+        tokens = tokenizeInput();
         this.command = setCommand();
         this.args = setArgs();
     }
@@ -30,7 +33,7 @@ public class Parser
      *
      * @return
      */
-    private String[] tokenize() {
+    private String[] tokenizeInput() {
         if (input.length()==0)
         {
             return null;
@@ -44,7 +47,6 @@ public class Parser
     private Command setCommand()
     {
         Command command = Command.INVALID;
-        String[] tokens = tokenize();
         if (tokens == null)
         {
             command = Command.SPACE;
@@ -67,7 +69,6 @@ public class Parser
 
     private String[] setArgs()
     {
-        String[] tokens = tokenize();
         if (tokens==null)
         {
             args = null;
