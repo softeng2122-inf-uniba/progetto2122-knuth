@@ -149,7 +149,12 @@ public class Printer
         }
     }
 
+    public static void printStartGame()
+    {
+        System.out.println("Hai iniziato la partita.");
 
+        printBoard(5, 6, null);
+    }
     //static void printSecretWord()
     //static void printHelp()
 
