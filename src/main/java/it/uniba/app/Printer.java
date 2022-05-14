@@ -41,18 +41,21 @@ public class Printer
             throw new IllegalArgumentException(Integer.toString(columns));
         }
 
-        if (words.length > rows)
+        if (words != null && words.length > rows)
         {
             throw new IllegalArgumentException("Il numero di elementi dell'array supera il numero di righe");
         }
 
-        for (String word : words)
+        if (words != null)
         {
-            if (word.length() != columns)
+            for (String word : words)
             {
-                throw new IllegalArgumentException("Parola di dimensioni non valide");
-            }
+                if (word.length() != columns)
+                {
+                    throw new IllegalArgumentException("Parola di dimensioni non valide");
+                }
 
+            }
         }
 
         //stampa parte superiore della Board
@@ -133,7 +136,16 @@ public class Printer
 
     public static String wordToPrint(String[] words, int wordNumber, int wordLength)
     {
-        int length = words.length;
+        int length;
+        if (words == null)
+        {
+            length = 0;
+        }
+        else
+        {
+            length = words.length;
+        }
+
         if (wordNumber < length)
         {
             return words[wordNumber];
@@ -149,7 +161,12 @@ public class Printer
         }
     }
 
+    public static void printStartGame()
+    {
+        System.out.println("Hai iniziato la partita.");
 
+        printBoard(6, 5, null);
+    }
     //static void printSecretWord()
     //static void printHelp()
 
