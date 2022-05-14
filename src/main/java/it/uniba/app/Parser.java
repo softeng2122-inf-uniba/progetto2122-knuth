@@ -62,6 +62,10 @@ public class Parser
                 {
                     command = Command.DUMMY;
                 }
+                if (tokenCommand.equalsIgnoreCase(Command.GIOCA.toString()))
+                {
+                    command = Command.GIOCA;
+                }
             }
         }
         return command;
