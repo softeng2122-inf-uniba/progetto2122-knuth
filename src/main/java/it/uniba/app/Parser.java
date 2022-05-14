@@ -66,6 +66,10 @@ public class Parser
                 {
                     command = Command.GIOCA;
                 }
+                if (tokenCommand.equalsIgnoreCase(Command.NUOVA.toString()))
+                {
+                    command = Command.NUOVA;
+                }
             }
         }
         return command;
@@ -90,6 +94,9 @@ public class Parser
                     case INVALID:
                     case GIOCA:
                         numberArgsExpected = 0;
+                        break;
+                    case NUOVA:
+                        numberArgsExpected = 1;
                         break;
                     default:
                         numberArgsExpected = 0;
