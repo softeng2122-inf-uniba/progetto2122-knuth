@@ -165,7 +165,7 @@ public class Printer
     {
         System.out.println("Hai iniziato la partita.");
 
-        printBoard(5, 6, null);
+        printBoard(6, 5, null);
     }
     //static void printSecretWord()
     //static void printHelp()
