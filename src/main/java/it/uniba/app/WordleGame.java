@@ -20,4 +20,24 @@ public class WordleGame
         this.secretWord = secretWord;
         this.gameBoard = new Board(column, row);
     }
+
+    public Color getColor(int row, int column)
+    {
+        return gameBoard.getColor(row, column);
+    }
+
+    public void setColor(int row, int column, Color color)
+    {
+        gameBoard.setColor(row, column, color);
+    }
+
+    public char getLetter(int row, int column)
+    {
+        return gameBoard.getLetter(row, column);
+    }
+
+    public void setLetter(int row, int column, char letter)
+    {
+        gameBoard.setLetter(row, column, letter);
+    }
 }

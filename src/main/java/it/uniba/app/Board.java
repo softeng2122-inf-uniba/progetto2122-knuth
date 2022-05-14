@@ -21,4 +21,25 @@ public class Board
         this.guessArray = new Guess[row];
         this.wordLength = column;
     }
+
+    public Color getColor(int row, int column)
+    {
+        return guessArray[row].getColor(column);
+    }
+
+    public void setColor(int row, int column, Color color)
+    {
+         guessArray[row].setColor(column, color);
+    }
+
+    public char getLetter(int row, int column)
+    {
+        return guessArray[row].getLetter(column);
+    }
+
+    public void setLetter(int row, int column, char letter)
+    {
+        guessArray[row].setLetter(column, letter);
+    }
+
 }
