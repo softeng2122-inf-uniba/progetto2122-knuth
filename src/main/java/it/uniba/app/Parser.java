@@ -88,6 +88,7 @@ public class Parser
                 {
                     case DUMMY:
                     case INVALID:
+                    case GIOCA:
                         numberArgsExpected = 0;
                         break;
                     default:
