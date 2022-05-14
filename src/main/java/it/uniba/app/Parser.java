@@ -83,8 +83,6 @@ public class Parser
                 switch (command)
                 {
                     case DUMMY:
-                        numberArgsExpected = 0;
-                        break;
                     case INVALID:
                         numberArgsExpected = 0;
                         break;
