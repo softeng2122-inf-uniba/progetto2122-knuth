@@ -32,7 +32,7 @@ public final class App {
         // invia l'input al parser
         parser.feed(inputLine);
         Command command = parser.getCommand();
-
+        String[] arguments = parser.getArgs();
         while (!inputLine.equals("exit"))
         {
             switch (command)
@@ -48,6 +48,7 @@ public final class App {
             inputLine = keyboardInput.nextLine();
             parser.feed(inputLine);
             command = parser.getCommand();
+            arguments = parser.getArgs();
         }
 
         System.out.println("ciao");
