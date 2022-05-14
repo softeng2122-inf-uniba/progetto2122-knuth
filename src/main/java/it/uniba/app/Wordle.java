@@ -22,7 +22,7 @@ public class Wordle
     }
     //guess()
     //startGame()
-    static void guess(String guessWord)
+    public static void guess(String guessWord)
     {
         // controllo sulla partita che deve esistere
         // controllo sulla parola
@@ -76,10 +76,30 @@ public class Wordle
         // in questi casi chiudi la partita
     }
 
-    static int getGuessResult()
+    public static int getGuessResult()
     {
         // ritorna 1 se il tentativo è vincente
         // ritorna 0 se il tentativo non è vincente
+    }
+
+    public static int getMaxGuesses()
+    {
+        return currentGame.getMaxGuesses();
+    }
+
+    public static int getWordLength()
+    {
+        return currentGame.getWordLength();
+    }
+
+    public static char getLetter(int row, int column)
+    {
+        return currentGame.getLetter(row, column);
+    }
+
+    public static Color getColor(int row, int column)
+    {
+        return currentGame.getColor(row, column);
     }
 
 

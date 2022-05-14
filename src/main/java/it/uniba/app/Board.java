@@ -51,4 +51,14 @@ public class Board
         guessArray[firstEmptyIndex] = g;
         firstEmptyIndex++;
     }
+
+    public int getRowsNumber()
+    {
+        return guessArray.length;
+    }
+
+    public int getWordLength()
+    {
+        return wordLength;
+    }
 }

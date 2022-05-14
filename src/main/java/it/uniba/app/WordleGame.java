@@ -40,4 +40,25 @@ public class WordleGame
     {
         gameBoard.setLetter(row, column, letter);
     }
+
+    public String getSecretWord()
+    {
+        return secretWord;
+    }
+
+    public Board getGameBoard()
+    {
+        return gameBoard;
+    }
+
+    public int getMaxGuesses()
+    {
+        return gameBoard.getRowsNumber();
+    }
+
+    public int getWordLength()
+    {
+        return gameBoard.getWordLength();
+    }
+
 }
