@@ -22,12 +22,15 @@ public class Wordle
     //setSecretWord()
     public static void setSecretWord(String newWord, int wordLength) throws Exception
     {
-        // controllo sulla dimensione
         if (newWord.length() < wordLength)
         {
             throw new Exception("Parola troppo corta");
         }
-        // controllo sui caratteri
+        if (newWord.length() > wordLength)
+        {
+            throw new Exception("Parola troppo lunga");
+        }
+
         if (!newWord.matches("[a-zA-Z]+"))
         {
             throw new Exception("Parola contenente caratteri diversi da lettere");
