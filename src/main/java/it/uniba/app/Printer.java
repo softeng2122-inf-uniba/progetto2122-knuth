@@ -41,18 +41,21 @@ public class Printer
             throw new IllegalArgumentException(Integer.toString(columns));
         }
 
-        if (words.length > rows)
+        if (words != null && words.length > rows)
         {
             throw new IllegalArgumentException("Il numero di elementi dell'array supera il numero di righe");
         }
 
-        for (String word : words)
+        if (words != null)
         {
-            if (word.length() != columns)
+            for (String word : words)
             {
-                throw new IllegalArgumentException("Parola di dimensioni non valide");
-            }
+                if (word.length() != columns)
+                {
+                    throw new IllegalArgumentException("Parola di dimensioni non valide");
+                }
 
+            }
         }
 
         //stampa parte superiore della Board
