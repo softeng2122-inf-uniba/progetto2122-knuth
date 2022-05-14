@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Guess
 {
-    List<LetterBox> cellArray;
+    private final LetterBox[] cellArray;
 
     /** Rappresenta una cella contenente una lettera del tentativo e il colore associato
      *
@@ -29,6 +29,16 @@ public class Guess
         {
             this.letter = letter;
             this.color = color;
+        }
+    }
+
+    //costruttore di Guess con argomento il tentativo effettuato
+    Guess(String guessingWord)
+    {
+        cellArray = new LetterBox[guessingWord.length()];
+        for (int i = 0; i < guessingWord.length() ; i++)
+        {
+            cellArray[i] = new LetterBox(guessingWord.charAt(i), Color.NO_COLOR);
         }
     }
 
