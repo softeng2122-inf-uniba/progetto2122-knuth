@@ -40,6 +40,9 @@ public final class App {
                 case DUMMY:
                     Printer.printDummy();
                     break;
+                case GIOCA:
+                    executeStart();
+                    break;
                 case INVALID:
                     Printer.printInvalid();
                     break;
@@ -52,5 +55,18 @@ public final class App {
         }
 
         System.out.println("ciao");
+    }
+
+    public static void executeStart()
+    {
+        try
+        {
+            Wordle.startGame();
+            Printer.printStartGame();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 }
