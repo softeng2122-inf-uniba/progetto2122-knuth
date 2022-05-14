@@ -77,7 +77,7 @@ public final class App {
     {
         try
         {
-            Wordle.setSecretWord(secretWord, 5);
+            Wordle.setSecretWord(secretWord);
             Printer.printSetSecretWord();
         }
         catch (Exception e)
