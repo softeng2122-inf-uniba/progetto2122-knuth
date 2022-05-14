@@ -5,12 +5,25 @@ package it.uniba.app;
  */
 public class Wordle
 {
-    static String secretWord = null;
-    static WordleGame currentGame = null;
+    private static String secretWord = null;
+    private static WordleGame currentGame = null;
 
-    //startGame()
+    public static void startGame() throws Exception
+    {
+        if (isGameRunning())
+        {
+            throw new Exception("Partita in corso.");
+        }
+
+        currentGame = new WordleGame("dummy");
+    }
     //guess()
     //endGame()
     //setSecretWord()
     //showSecretWord()
+
+    public static boolean isGameRunning()
+    {
+        return currentGame != null;
+    }
 }
