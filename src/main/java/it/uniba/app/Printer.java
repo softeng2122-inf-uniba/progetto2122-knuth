@@ -133,7 +133,16 @@ public class Printer
 
     public static String wordToPrint(String[] words, int wordNumber, int wordLength)
     {
-        int length = words.length;
+        int length;
+        if (words == null)
+        {
+            length = 0;
+        }
+        else
+        {
+            length = words.length;
+        }
+
         if (wordNumber < length)
         {
             return words[wordNumber];
