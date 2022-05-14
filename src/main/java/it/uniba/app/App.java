@@ -27,10 +27,12 @@ public final class App {
         Scanner keyboardInput = new Scanner (new InputStreamReader(System.in));
         System.out.println("Inserisci un comando: ");
         String inputLine = keyboardInput.nextLine();
+        Parser parser = new Parser();
 
-        Command command = Parser.parseInput(inputLine);
-        //inputParse comando per parsificare l'input
-
+        // invia l'input al parser
+        parser.feed(inputLine);
+        Command command = parser.getCommand();
+        String[] arguments = parser.getArgs();
         while (!inputLine.equals("exit"))
         {
             switch (command)
@@ -44,7 +46,9 @@ public final class App {
             }
             System.out.println("Inserisci un comando: ");
             inputLine = keyboardInput.nextLine();
-            command = Parser.parseInput(inputLine);
+            parser.feed(inputLine);
+            command = parser.getCommand();
+            arguments = parser.getArgs();
         }
 
         System.out.println("ciao");
