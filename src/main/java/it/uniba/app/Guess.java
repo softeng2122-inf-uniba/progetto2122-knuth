@@ -16,7 +16,20 @@ public class Guess
     public class LetterBox
     {
         Character letter;
-        String color;
+        Color color;
+
+        //costruttore senza argomenti
+        LetterBox() {
+            this.letter = ' ';
+            this.color = Color.NO_COLOR;
+        }
+
+        //costruttore con argomenti
+        LetterBox(char letter, Color color)
+        {
+            this.letter = letter;
+            this.color = color;
+        }
     }
 
 }
