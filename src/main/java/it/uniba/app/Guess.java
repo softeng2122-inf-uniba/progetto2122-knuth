@@ -15,8 +15,8 @@ public class Guess
      */
     public class LetterBox
     {
-        Character letter;
-        Color color;
+        private Character letter;
+        private Color color;
 
         //costruttore senza argomenti
         LetterBox() {
@@ -31,6 +31,26 @@ public class Guess
             this.color = color;
         }
 
+        public Color getColor()
+        {
+            return color;
+        }
+
+        public void setColor(Color color)
+        {
+            this.color = color;
+        }
+
+        public Character getLetter()
+        {
+            return letter;
+        }
+
+        public void setLetter(Character letter)
+        {
+            this.letter = letter;
+        }
+
     }
 
     //costruttore di Guess con argomento il tentativo effettuato
@@ -41,6 +61,26 @@ public class Guess
         {
             cellArray[i] = new LetterBox(guessingWord.charAt(i), Color.NO_COLOR);
         }
+    }
+
+    public void setColor(int index, Color color)
+    {
+        cellArray[index].setColor(color);
+    }
+
+    public Color getColor(int index)
+    {
+        return cellArray[index].getColor();
+    }
+
+    public void setLetter(int index, char letter)
+    {
+        cellArray[index].setLetter(letter);
+    }
+
+    public char getLetter(int index)
+    {
+        return cellArray[index].getLetter();
     }
 
 }
