@@ -78,12 +78,35 @@ public class Parser
             //se il primo token è un comando lo salti
             if (tokens[0].charAt(0) == '/')
             {
-                args = new String[tokens.length - 1];
-                int countArg = 0;
-                for (int nToken = 1; nToken < tokens.length; nToken++)
+                int numberArgsExpected;
+                //Questo switch deve prendere il giusto numero di argomenti per il comando riconosciuto
+                switch (command)
                 {
-                    args[countArg] = tokens[nToken];
-                    countArg++;
+                    case DUMMY:
+                        numberArgsExpected = 0;
+                        break;
+                    case INVALID:
+                        numberArgsExpected = 0;
+                        break;
+                    default:
+                        numberArgsExpected = 0;
+                }
+                if (numberArgsExpected == 0)    //warning risolto con almeno un case >=1
+                {
+                    args = null;
+                }
+                else
+                {
+                    args = new String[numberArgsExpected];
+                    int countArg = 0;
+
+                    //Inserisce gli argomenti contenuti in tokens partendo dalla posizione 1,
+                    //così da saltare il token contenente il comando
+                    for (int nToken = 1; nToken <= numberArgsExpected; nToken++)
+                    {
+                        args[countArg] = tokens[nToken];
+                        countArg++;
+                    }
                 }
             } //se il primo token non è un comando allora è un tentativo e considero solo il primo argomento
             else
