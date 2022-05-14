@@ -63,6 +63,10 @@ public class Parser
                     command = Command.DUMMY;
                 }
             }
+            else //il primo carattere non è '/', quindi è un tentativo
+            {
+                command = Command.GUESS;
+            }
         }
         return command;
     }
