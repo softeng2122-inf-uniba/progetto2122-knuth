@@ -163,10 +163,21 @@ public class Printer
 
     public static void printGuessResult()
     {
+        int maxGuesses = Wordle.getMaxGuesses();
+        int remainingGuesses = Wordle.getNumRemainingGuesses();
         if(Wordle.getGuessResult())
-            printer.println("Hai indovinato.");
+        {
+            printer.println("Parola segreta indovinata");
+            printer.println("Numero di tentativi: "+ (maxGuesses - remainingGuesses));
+        }
         else
-            printer.println("Non hai indovinato.");
+        {
+            if(remainingGuesses == 0)
+            {
+                printer.println("Hai raggiunto il numero massimo di tentativi");
+                printer.println("La parola segreta è: " + Wordle.getGameSecretWord());
+            }
+        }
     }
 
 }
