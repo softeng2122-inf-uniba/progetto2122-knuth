@@ -189,4 +189,17 @@ public class Wordle
         if (word.length() > wordLength)
             throw new Exception("Tentativo eccessivo");
     }
+
+    // nota: ci sarà (forse) un'altra funzione getSecretWord separata
+    public static String getGameSecretWord()
+    {
+        return currentGame.getSecretWord();
+    }
+
+    // metodo che sarà implementato nella user story corrispondente
+    public static void endGame()
+    {
+
+    }
+
 }
