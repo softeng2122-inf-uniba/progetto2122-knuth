@@ -25,7 +25,16 @@ public class Wordle
         currentGame = new WordleGame(secretWord);
     }
     //guess()
-    //endGame()
+
+    public static void endGame() throws Exception
+    {
+        if(!isGameRunning())
+        {
+            throw new Exception("Nessuna partita in corso");
+        }
+        currentGame = null;
+    }
+
     //setSecretWord()
     public static void setSecretWord(String newWord) throws Exception
     {
