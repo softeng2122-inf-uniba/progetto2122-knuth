@@ -184,4 +184,9 @@ public class Printer
     {
         System.out.println("Hai inserito un comando invalido.");
     }
+
+    public static void printMissingArgs ()
+    {
+        printer.println("Argomento/i mancante/i");
+    }
 }

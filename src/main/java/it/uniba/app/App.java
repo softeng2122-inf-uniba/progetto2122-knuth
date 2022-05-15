@@ -75,6 +75,11 @@ public final class App {
 
     public static void executeSetSecretWord(String secretWord)
     {
+        if (secretWord == null)
+        {
+            Printer.printMissingArgs();
+            return;
+        }
         try
         {
             Wordle.setSecretWord(secretWord);

@@ -112,11 +112,19 @@ public class Parser
 
                     //Inserisce gli argomenti contenuti in tokens partendo dalla posizione 1,
                     //così da saltare il token contenente il comando
-                    for (int nToken = 1; nToken <= numberArgsExpected; nToken++)
+                    try
                     {
-                        args[countArg] = tokens[nToken];
-                        countArg++;
+                        for (int nToken = 1; nToken <= numberArgsExpected; nToken++)
+                        {
+                            args[countArg] = tokens[nToken];
+                            countArg++;
+                        }
                     }
+                    catch (ArrayIndexOutOfBoundsException e)
+                    {
+                        return args;
+                    }
+
                 }
             } //se il primo token non è un comando allora è un tentativo e considero solo il primo argomento
             else
