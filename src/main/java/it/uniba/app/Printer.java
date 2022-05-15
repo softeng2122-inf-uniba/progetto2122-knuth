@@ -170,6 +170,11 @@ public class Printer
     //static void printSecretWord()
     //static void printHelp()
 
+    public static void printSetSecretWord()
+    {
+        System.out.println("Hai impostato la parola segreta");
+    }
+
     public static void printDummy()
     {
         System.out.println("Hai inserito il comando Dummy.");
@@ -178,5 +183,10 @@ public class Printer
     public static void printInvalid ()
     {
         System.out.println("Hai inserito un comando invalido.");
+    }
+
+    public static void printMissingArgs ()
+    {
+        printer.println("Argomento/i mancante/i");
     }
 }
