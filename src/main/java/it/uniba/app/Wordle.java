@@ -27,8 +27,7 @@ public class Wordle
 
         currentGame = new WordleGame(secretWord);
     }
-    //guess()
-    //startGame()
+
     public static void guess(String guessWord) throws Exception
     {
         if (!isGameRunning())
