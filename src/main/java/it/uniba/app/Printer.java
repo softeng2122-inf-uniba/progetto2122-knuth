@@ -5,9 +5,9 @@ import java.io.PrintWriter;
 /** Questa classe si occupa delle stampe sul terminale
  *
  */
-public class Printer
+public class Printer extends PrintWriter
 {
-    private static final PrintWriter printer = new PrintWriter(System.out,true);
+    //private static final PrintWriter printer = new PrintWriter(System.out,true);
     // angoli (L = left, R = right, U = up, D = down)
     private static final char L_U_ANGLE = '\u2554';
     private static final char R_U_ANGLE = '\u2557';
@@ -28,8 +28,12 @@ public class Printer
     // unioni
     private static final String HORIZONTAL_EDGE_X3 = HORIZONTAL_EDGE + "" + HORIZONTAL_EDGE + HORIZONTAL_EDGE;
 
+    Printer()
+    {
+        super(System.out,true);
+    }
 
-    public static void printBoard(int rows, int columns, String[] words)
+    public void printBoard(int rows, int columns, String[] words)
     {
         if (rows <= 0)
         {
@@ -59,23 +63,23 @@ public class Printer
         }
 
         //stampa parte superiore della Board
-        printer.println(upperPart(columns));
+        println(upperPart(columns));
 
         // stampa le righe (dalla prima alla penultima)
         for(int i = 0; i < rows - 1; i++)
         {
             String rowContent = wordToPrint(words, i, columns); // creare metodo per estrapolare parola da stampare
-            printer.println(guessSlice(columns, rowContent));
-            printer.println(separatorSlice(columns));
+            println(guessSlice(columns, rowContent));
+            println(separatorSlice(columns));
         }
 
         // stampa ultima riga
         String rowContent = wordToPrint(words, rows-1, columns);
-        printer.println(guessSlice(columns, rowContent));
-        printer.println(lowerPart(columns));
+        println(guessSlice(columns, rowContent));
+        println(lowerPart(columns));
     }
 
-    private static String upperPart(int wordLength)
+    private String upperPart(int wordLength)
     {
         //nota: effettuare il cambio in stringBuilder
 
@@ -90,7 +94,7 @@ public class Printer
         return upperPart.toString();
     }
 
-    private static String guessSlice(int wordLength, String word)
+    private String guessSlice(int wordLength, String word)
     {
         // nota: non effettuare controllo su parametri, già fatto dal metodo printBoard
         char[] chars = word.toCharArray();
@@ -104,7 +108,7 @@ public class Printer
         return guessSlice.toString();
     }
 
-    private static String separatorSlice(int wordLength)
+    private String separatorSlice(int wordLength)
     {
         //nota: effettuare il cambio in stringBuilder
         StringBuilder separatorSlice = new StringBuilder(L_SEPARATOR + "" + HORIZONTAL_EDGE_X3);
@@ -118,7 +122,7 @@ public class Printer
         return separatorSlice.toString();
     }
 
-    private static String lowerPart(int wordLength)
+    private String lowerPart(int wordLength)
     {
         //nota: effettuare il cambio in stringBuilder
 
@@ -134,7 +138,7 @@ public class Printer
     }
 
 
-    public static String wordToPrint(String[] words, int wordNumber, int wordLength)
+    public String wordToPrint(String[] words, int wordNumber, int wordLength)
     {
         int length;
         if (words == null)
@@ -161,7 +165,7 @@ public class Printer
         }
     }
 
-    public static void printStartGame()
+    public void printStartGame()
     {
         System.out.println("Hai iniziato la partita.");
 
@@ -170,23 +174,23 @@ public class Printer
     //static void printSecretWord()
     //static void printHelp()
 
-    public static void printSetSecretWord()
+    public void printSetSecretWord()
     {
-        System.out.println("Hai impostato la parola segreta");
+        println("Hai impostato la parola segreta");
     }
 
-    public static void printDummy()
+    public void printDummy()
     {
-        System.out.println("Hai inserito il comando Dummy.");
+        println("Hai inserito il comando Dummy.");
     }
 
-    public static void printInvalid ()
+    public void printInvalid ()
     {
-        System.out.println("Hai inserito un comando invalido.");
+        println("Hai inserito un comando invalido.");
     }
 
-    public static void printMissingArgs ()
+    public void printMissingArgs ()
     {
-        printer.println("Argomento/i mancante/i");
+        println("Argomento/i mancante/i");
     }
 }
