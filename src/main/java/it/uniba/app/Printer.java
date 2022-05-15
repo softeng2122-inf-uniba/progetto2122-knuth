@@ -33,6 +33,9 @@ public class Printer
     public static final String GREEN_BACKGROUND = "\033[42m";  // GREEN
     public static final String YELLOW_BACKGROUND = "\033[43m"; // YELLOW
 
+    // reset background
+    public static final String RESET = "\033[0m";  // Text Reset
+
     public static void printBoard()
     {
         int rows = Wordle.getMaxGuesses();
@@ -95,7 +98,7 @@ public class Printer
                     background = "";
                     break;
             }
-            guessSlice.append(background +" "+l+" ").append(VERTICAL_EDGE);
+            guessSlice.append(background +" "+l+" "+RESET).append(VERTICAL_EDGE);
         }
 
         return guessSlice.toString();
@@ -133,8 +136,7 @@ public class Printer
     public static void printStartGame()
     {
         System.out.println("Hai iniziato la partita.");
-
-        printBoard(6, 5, null);
+        printBoard();
     }
     //static void printSecretWord()
     //static void printHelp()
