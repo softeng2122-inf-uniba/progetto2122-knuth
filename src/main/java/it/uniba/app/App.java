@@ -33,7 +33,7 @@ public final class App {
         parser.feed(inputLine);
         Command command = parser.getCommand();
         String[] arguments = parser.getArgs();
-        while (!inputLine.equals(true))
+        while (true)
         {
             switch (command)
             {
