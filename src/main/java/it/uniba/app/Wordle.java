@@ -29,19 +29,21 @@ public class Wordle
     }
     //guess()
     //startGame()
-    public static void guess(String guessWord)
+    public static void guess(String guessWord) throws Exception
     {
-        // controllo sulla partita che deve esistere
-        // controllo sulla parola
-        // cioè controllo su lunghezza e validità caratteri
+        if (!isGameRunning())
+        {
+            throw new Exception("Partita inesistente");
+        }
 
+        wordCheck(guessWord);
+
+        //Inizializzazione tentativo
         String secretWord = currentGame.getSecretWord();
         Guess newGuess = new Guess(guessWord);
+        Map<Character, Integer> letterMap = new HashMap<>(); //Conterrà le coppie (lettera, numOccorrenze) della secret
 
-        // dizionario per contenere coppie (lettera, numOccorrenze) della secret
-        Map<Character, Integer> letterMap = new HashMap<>();
-
-        // metti nel dizionario le coppie
+        //Inserimento delle coppie nel dizionario
         for(char letter : secretWord.toCharArray())
         {
             if(!letterMap.containsKey(letter))
@@ -50,37 +52,39 @@ public class Wordle
                 letterMap.put(letter, letterMap.get(letter) + 1);
         }
 
-        //primo ciclo: controlla se è verde
+        //Primo step: setting delle lettere verdi
         for(int i = 0; i < guessWord.length(); i++)
         {
             char l = guessWord.charAt(i);
             if(l == secretWord.charAt(i))
             {
-                newGuess.setColor(i, Color.GREEN);
+                newGuess.getLetterBox(i).setColor(Color.GREEN);
 
                 //decrementa dizionario
                 letterMap.put(l, letterMap.get(l) - 1);
             }
         }
 
-        // secondo ciclo: controlla se è giallo
+        //Secondo step: setting delle lettere gialle e grigie
         for(int i = 0; i < guessWord.length(); i++)
         {
             char l = guessWord.charAt(i);
             if(letterMap.containsKey(l) && letterMap.get(l) > 0) //test YELLOW
             {
-                newGuess.setColor(i, Color.YELLOW);
+                newGuess.getLetterBox(i).setColor(Color.YELLOW);
                 letterMap.put(l, letterMap.get(l) - 1);
             }
             else
-                newGuess.setColor(i, Color.GREY);
+                newGuess.getLetterBox(i).setColor(Color.GREY);
         }
 
         // aggiungi il tentativo alla matrice dei tentativi
         Board gameBoard = currentGame.getGameBoard();
         gameBoard.acceptNewGuess(newGuess);
+
         // se hai indovinato dillo, se era l'ultimo tentativo possibile dillo
         // in questi casi chiudi la partita
+
     }
 
     public static int getGuessResult()
@@ -128,19 +132,7 @@ public class Wordle
     //setSecretWord()
     public static void setSecretWord(String newWord) throws Exception
     {
-        if (newWord.length() < wordLength)
-        {
-            throw new Exception("Parola troppo corta");
-        }
-        if (newWord.length() > wordLength)
-        {
-            throw new Exception("Parola troppo lunga");
-        }
-
-        if (!newWord.matches("[a-zA-Z]+"))
-        {
-            throw new Exception("Parola contenente caratteri diversi da lettere");
-        }
+        wordCheck(newWord);
 
         if (isGameRunning())
         {
@@ -155,5 +147,17 @@ public class Wordle
     public static boolean isGameRunning()
     {
         return currentGame != null;
+    }
+
+    private static void wordCheck(String word) throws Exception
+    {
+        if (word.length() < wordLength)
+            throw new Exception("Parola troppo corta");
+
+        if (word.length() > wordLength)
+            throw new Exception("Parola troppo lunga");
+
+        if (!word.matches("[a-zA-Z]+"))
+            throw new Exception("Parola contenente caratteri diversi da lettere");
     }
 }
