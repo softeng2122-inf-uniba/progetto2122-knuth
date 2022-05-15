@@ -41,4 +41,9 @@ public class WordleGame
         return gameBoard.getWordLength();
     }
 
+    public int getNumRemainingGuesses()
+    {
+        return getMaxGuesses() - gameBoard.getNumFilledRows();
+    }
+
 }
