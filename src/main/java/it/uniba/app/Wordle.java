@@ -32,9 +32,10 @@ public class Wordle
     public static void guess(String guessWord) throws Exception
     {
         if (!isGameRunning())
-        {
             throw new Exception("Partita inesistente");
-        }
+
+        if (getNumRemainingGuesses() == 0)
+            throw new Exception("Numero massimo di tentativi raggiunto");
 
         guessWordCheck(guessWord);
 
@@ -101,6 +102,13 @@ public class Wordle
 
         return currentWord.equals(currentGame.getSecretWord());
     }
+
+    // restituisci il numero di tentativi che rimangono
+    public static int getNumRemainingGuesses()
+    {
+        return currentGame.getNumRemainingGuesses();
+    }
+
 
     public static int getMaxGuesses()
     {
