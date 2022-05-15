@@ -15,13 +15,11 @@ public class Guess
         private final Character letter;
         private Color color;
 
-        //costruttore senza argomenti
         LetterBox(char letter)
         {
             this(letter, Color.NO_COLOR);
         }
 
-        //costruttore con argomenti
         LetterBox(char letter, Color color)
         {
             this.letter = letter;

@@ -96,11 +96,6 @@ public final class App {
 
     public static void executeGuess(String guessWord)
     {
-        if (guessWord == null)
-        {
-            Printer.printMissingArgs();
-            return;
-        }
         try
         {
             Wordle.guess(guessWord);
