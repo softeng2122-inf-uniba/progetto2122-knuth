@@ -33,7 +33,7 @@ public final class App {
         parser.feed(inputLine);
         Command command = parser.getCommand();
         String[] arguments = parser.getArgs();
-        while (!inputLine.equals("exit"))
+        while (!inputLine.equals(true))
         {
             switch (command)
             {
@@ -52,6 +52,10 @@ public final class App {
                 case INVALID:
                     Printer.printInvalid();
                     break;
+                case EXIT:
+                    System.exit(0)
+                    break;
+
             }
             System.out.println("Inserisci un comando: ");
             inputLine = keyboardInput.nextLine();
