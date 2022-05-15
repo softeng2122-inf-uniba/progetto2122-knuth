@@ -87,10 +87,13 @@ public class Wordle
 
     }
 
-    public static int getGuessResult()
+    public static boolean getGuessResult()
     {
-        // ritorna 1 se il tentativo è vincente
-        // ritorna 0 se il tentativo non è vincente
+        Board currentBoard = currentGame.getGameBoard();
+        int lastGuessIndex = currentBoard.getNumFilledRows()-1;
+        String currentWord = currentBoard.getGuess(lastGuessIndex).getWord();
+
+        return currentWord.equals(currentGame.getSecretWord());
     }
 
     public static int getMaxGuesses()
