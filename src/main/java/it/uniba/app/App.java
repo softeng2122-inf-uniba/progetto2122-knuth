@@ -106,6 +106,8 @@ public final class App {
             Wordle.guess(guessWord);
             Printer.printBoard();
             Printer.printGuessResult();
+            if(Wordle.getNumRemainingGuesses() == 0)
+                Wordle.endGame();
         }
         catch (Exception e)
         {
