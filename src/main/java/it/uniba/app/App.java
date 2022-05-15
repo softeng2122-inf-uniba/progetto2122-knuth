@@ -17,6 +17,8 @@ public final class App {
         return "Hello World!";
     }
 
+    static Scanner keyboardInput = new Scanner (new InputStreamReader(System.in));
+    static Printer consoleOutPut = new Printer();
     /**
      * Entrypoint of the application.
      *
@@ -24,7 +26,6 @@ public final class App {
      */
     public static void main(final String[] args)
     {
-        Scanner keyboardInput = new Scanner (new InputStreamReader(System.in));
         System.out.println("Inserisci un comando: ");
         String inputLine = keyboardInput.nextLine();
         Parser parser = new Parser();
@@ -38,7 +39,7 @@ public final class App {
             switch (command)
             {
                 case DUMMY:
-                    Printer.printDummy();
+                    consoleOutPut.printDummy();
                     break;
                 case GIOCA:
                     executeStart();
@@ -46,8 +47,11 @@ public final class App {
                 case NUOVA:
                     executeSetSecretWord(arguments[0]);
                     break;
+                case ABBANDONA:
+                    //executeQuitGame(keyboardInput);
+                    break;
                 case INVALID:
-                    Printer.printInvalid();
+                    consoleOutPut.printInvalid();
                     break;
             }
             System.out.println("Inserisci un comando: ");
@@ -65,7 +69,7 @@ public final class App {
         try
         {
             Wordle.startGame();
-            Printer.printStartGame();
+            consoleOutPut.printStartGame();
         }
         catch (Exception e)
         {
@@ -77,13 +81,13 @@ public final class App {
     {
         if (secretWord == null)
         {
-            Printer.printMissingArgs();
+            consoleOutPut.printMissingArgs();
             return;
         }
         try
         {
             Wordle.setSecretWord(secretWord);
-            Printer.printSetSecretWord();
+            consoleOutPut.printSetSecretWord();
         }
         catch (Exception e)
         {
