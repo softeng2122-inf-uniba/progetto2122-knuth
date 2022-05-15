@@ -48,7 +48,7 @@ public class Wordle
             throw new Exception("Partita in corso");
         }
 
-        secretWord = newWord;
+        secretWord = newWord.toUpperCase();
     }
 
     //showSecretWord()
