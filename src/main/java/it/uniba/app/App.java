@@ -53,7 +53,7 @@ public final class App {
                     Printer.printInvalid();
                     break;
                 case EXIT:
-                    System.exit(0)
+                    executeExitGame();
                     break;
 
             }
@@ -113,4 +113,18 @@ public final class App {
             System.out.println(e.getMessage());
         }
     }
+
+    public static void executeExitGame()
+    {
+        String answer = null;
+        do {
+            consoleOutPut.println("Sei sicuro di voler uscire da Wordle? [si | no]");
+            answer = keyboardInput.nextLine();
+        } while (!answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
+
+        if (answer.equalsIgnoreCase("si")) {
+            System.exit(0)
+        }
+    }
+
 }
