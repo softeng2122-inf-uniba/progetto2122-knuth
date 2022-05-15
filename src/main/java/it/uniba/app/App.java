@@ -48,7 +48,7 @@ public final class App {
                     executeSetSecretWord(arguments[0]);
                     break;
                 case ABBANDONA:
-                    //executeQuitGame(keyboardInput);
+                    executeQuitGame();
                     break;
                 case INVALID:
                     consoleOutPut.printInvalid();
@@ -92,6 +92,36 @@ public final class App {
         catch (Exception e)
         {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public static void executeQuitGame()
+    {
+        if(!Wordle.isGameRunning())
+        {
+            consoleOutPut.println("Nessuna partita in corso");
+            return;
+        }
+
+        String answer = null;
+
+        do
+        {
+            consoleOutPut.println("Sei sicuro di voler abbandonare la partita in corso? [si | no]");
+            answer = keyboardInput.nextLine();
+        } while (!answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
+
+        if (answer.equalsIgnoreCase("si"))
+        {
+            try
+            {
+                consoleOutPut.println("Hai abbandonato la partita");
+                Wordle.endGame();
+            }
+            catch (Exception e)
+            {
+                consoleOutPut.println(e.getMessage());
+            }
         }
     }
 }
