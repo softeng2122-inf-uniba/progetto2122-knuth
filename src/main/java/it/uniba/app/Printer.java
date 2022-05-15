@@ -160,4 +160,13 @@ public class Printer
     {
         printer.println("Argomento/i mancante/i");
     }
+
+    public static void printGuessResult()
+    {
+        if(Wordle.getGuessResult())
+            printer.println("Hai indovinato.");
+        else
+            printer.println("Non hai indovinato.");
+    }
+
 }
