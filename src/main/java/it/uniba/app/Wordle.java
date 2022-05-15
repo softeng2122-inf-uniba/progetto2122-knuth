@@ -36,7 +36,7 @@ public class Wordle
             throw new Exception("Partita inesistente");
         }
 
-        wordCheck(guessWord);
+        guessWordCheck(guessWord);
 
         //Inizializzazione tentativo
         guessWord = guessWord.toUpperCase();
@@ -141,7 +141,19 @@ public class Wordle
     //setSecretWord()
     public static void setSecretWord(String newWord) throws Exception
     {
-        wordCheck(newWord);
+        if (newWord.length() < wordLength)
+        {
+            throw new Exception("Parola troppo corta");
+        }
+        if (newWord.length() > wordLength)
+        {
+            throw new Exception("Parola troppo lunga");
+        }
+
+        if (!newWord.matches("[a-zA-Z]+"))
+        {
+            throw new Exception("Parola contenente caratteri diversi da lettere");
+        }
 
         if (isGameRunning())
         {
@@ -158,15 +170,15 @@ public class Wordle
         return currentGame != null;
     }
 
-    private static void wordCheck(String word) throws Exception
+    private static void guessWordCheck(String word) throws Exception
     {
+        if (!word.matches("[a-zA-Z]+"))
+            throw new Exception("Tentativo non valido");
+
         if (word.length() < wordLength)
-            throw new Exception("Parola troppo corta");
+            throw new Exception("Tentantivo incompleto");
 
         if (word.length() > wordLength)
-            throw new Exception("Parola troppo lunga");
-
-        if (!word.matches("[a-zA-Z]+"))
-            throw new Exception("Parola contenente caratteri diversi da lettere");
+            throw new Exception("Tentativo eccessivo");
     }
 }
