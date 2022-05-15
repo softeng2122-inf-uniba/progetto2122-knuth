@@ -101,12 +101,26 @@ public class Wordle
 
     public static char getLetter(int row, int column)
     {
-        return currentGame.getLetter(row, column);
+        Board currentBoard = currentGame.getGameBoard();
+        if (row < 0 || column < 0 || row >= currentBoard.getRowsNumber() || column >= currentBoard.getWordLength())
+            throw new IllegalArgumentException();
+
+        if (row >= currentBoard.getNumFilledRows())
+            return ' ';
+        else
+            return currentBoard.getGuess(row).getLetterBox(column).getLetter();
     }
 
     public static Color getColor(int row, int column)
     {
-        return currentGame.getColor(row, column);
+        Board currentBoard = currentGame.getGameBoard();
+        if (row < 0 || column < 0 || row >= currentBoard.getRowsNumber() || column >= currentBoard.getWordLength())
+            throw new IllegalArgumentException();
+
+        if (row >= currentBoard.getNumFilledRows())
+            return Color.NO_COLOR;
+        else
+            return currentBoard.getGuess(row).getLetterBox(column).getColor();
     }
 
 
