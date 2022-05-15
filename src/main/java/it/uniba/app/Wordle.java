@@ -1,5 +1,7 @@
 package it.uniba.app;
 
+import java.util.Locale;
+
 /** Gestisce la logica del gioco
  *
  */
@@ -48,7 +50,7 @@ public class Wordle
             throw new Exception("Partita in corso");
         }
 
-        secretWord = newWord;
+        secretWord = newWord.toUpperCase();
     }
 
     //showSecretWord()
