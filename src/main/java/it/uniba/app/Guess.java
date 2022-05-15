@@ -1,8 +1,5 @@
 package it.uniba.app;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /** Rappresenta un tentativo del giocatore che cerca di indovinare la parola segreta
  *
  */
@@ -15,13 +12,13 @@ public class Guess
      */
     public class LetterBox
     {
-        private Character letter;
+        private final Character letter;
         private Color color;
 
         //costruttore senza argomenti
-        LetterBox() {
-            this.letter = ' ';
-            this.color = Color.NO_COLOR;
+        LetterBox(char letter)
+        {
+            this(letter, Color.NO_COLOR);
         }
 
         //costruttore con argomenti
@@ -45,12 +42,6 @@ public class Guess
         {
             return letter;
         }
-
-        public void setLetter(Character letter)
-        {
-            this.letter = letter;
-        }
-
     }
 
     //costruttore di Guess con argomento il tentativo effettuato
@@ -63,24 +54,9 @@ public class Guess
         }
     }
 
-    public void setColor(int index, Color color)
+    public LetterBox getLetterBox(int index)
     {
-        cellArray[index].setColor(color);
-    }
-
-    public Color getColor(int index)
-    {
-        return cellArray[index].getColor();
-    }
-
-    public void setLetter(int index, char letter)
-    {
-        cellArray[index].setLetter(letter);
-    }
-
-    public char getLetter(int index)
-    {
-        return cellArray[index].getLetter();
+        return cellArray[index];
     }
 
 }
