@@ -70,6 +70,10 @@ public class Parser
                 {
                     command = Command.NUOVA;
                 }
+                if (tokenCommand.equalsIgnoreCase(Command.EXIT.toString()))
+                {
+                    command = Command.EXIT;
+                }
             }
             else //il primo carattere non è '/', quindi è un tentativo
             {
