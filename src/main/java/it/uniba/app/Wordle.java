@@ -39,6 +39,7 @@ public class Wordle
         wordCheck(guessWord);
 
         //Inizializzazione tentativo
+        guessWord = guessWord.toUpperCase();
         String secretWord = currentGame.getSecretWord();
         Guess newGuess = new Guess(guessWord);
         Map<Character, Integer> letterMap = new HashMap<>(); //Conterrà le coppie (lettera, numOccorrenze) della secret
@@ -66,8 +67,13 @@ public class Wordle
         }
 
         //Secondo step: setting delle lettere gialle e grigie
+        Guess.LetterBox lb;
         for(int i = 0; i < guessWord.length(); i++)
         {
+            lb = newGuess.getLetterBox(i);
+            if (lb.getColor() == Color.GREEN)
+                continue;
+
             char l = guessWord.charAt(i);
             if(letterMap.containsKey(l) && letterMap.get(l) > 0) //test YELLOW
             {
