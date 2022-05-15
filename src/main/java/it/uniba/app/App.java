@@ -46,6 +46,9 @@ public final class App {
                 case NUOVA:
                     executeSetSecretWord(arguments[0]);
                     break;
+                case GUESS:
+                    executeGuess(arguments[0]);
+                    break;
                 case INVALID:
                     Printer.printInvalid();
                     break;
@@ -84,6 +87,25 @@ public final class App {
         {
             Wordle.setSecretWord(secretWord);
             Printer.printSetSecretWord();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void executeGuess(String guessWord)
+    {
+        if (guessWord == null)
+        {
+            Printer.printMissingArgs();
+            return;
+        }
+        try
+        {
+            Wordle.guess(guessWord);
+            Printer.printBoard();
+            Printer.printGuessResult();
         }
         catch (Exception e)
         {
