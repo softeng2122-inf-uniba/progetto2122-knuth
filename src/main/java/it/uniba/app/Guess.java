@@ -59,5 +59,15 @@ public class Guess
         return cellArray[index];
     }
 
+    public String getWord()
+    {
+        StringBuilder s = new StringBuilder("");
+        for (LetterBox lb : cellArray)
+        {
+            s.append(lb.getLetter());
+        }
+        return s.toString();
+    }
+
 }
 
