@@ -52,7 +52,7 @@ public final class App {
                 case INVALID:
                     Printer.printInvalid();
                     break;
-                case EXIT:
+                case ESCI:
                     executeExitGame();
                     break;
 

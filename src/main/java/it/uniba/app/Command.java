@@ -2,5 +2,5 @@ package it.uniba.app;
 
 public enum Command
 {
-    DUMMY, INVALID, SPACE, GIOCA, NUOVA, GUESS, EXIT
+    DUMMY, INVALID, SPACE, GIOCA, NUOVA, GUESS, ESCI
 }
