@@ -29,11 +29,7 @@ public class Printer
     private static final String HORIZONTAL_EDGE_X3 = HORIZONTAL_EDGE + "" + HORIZONTAL_EDGE + HORIZONTAL_EDGE;
 
 
-    public static void printBoard()
-    {
-        printBoard(Wordle.getMaxGuesses(), Wordle.getWordLength(), //aggiungere);
-    }
-    public static void printBoard(int rows, int columns, Guess[] words)
+    public static void printBoard(int rows, int columns, String[] words)
     {
         if (rows <= 0)
         {
@@ -52,12 +48,12 @@ public class Printer
 
         if (words != null)
         {
-            for (Guess g : words)
+            for (String word : words)
             {
-                //if (word.length() != columns)
-                //{
-                //    throw new IllegalArgumentException("Parola di dimensioni non valide");
-                //}
+                if (word.length() != columns)
+                {
+                    throw new IllegalArgumentException("Parola di dimensioni non valide");
+                }
 
             }
         }
@@ -138,8 +134,7 @@ public class Printer
     }
 
 
-    //per ora ignoriamo i colori
-    public static String wordToPrint(Guess[] words, int wordNumber, int wordLength)
+    public static String wordToPrint(String[] words, int wordNumber, int wordLength)
     {
         int length;
         if (words == null)
@@ -153,15 +148,7 @@ public class Printer
 
         if (wordNumber < length)
         {
-            Guess g = words[wordNumber];
-            StringBuilder s = new StringBuilder("");
-
-            for(int i = 0; i < wordLength; i++)
-            {
-                s.append(g.getLetter(i));
-            }
-
-            return s.toString();
+            return words[wordNumber];
         }
         else
         {
