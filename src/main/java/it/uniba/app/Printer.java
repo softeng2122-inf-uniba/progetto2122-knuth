@@ -28,35 +28,18 @@ public class Printer
     // unioni
     private static final String HORIZONTAL_EDGE_X3 = HORIZONTAL_EDGE + "" + HORIZONTAL_EDGE + HORIZONTAL_EDGE;
 
+    //backgrounds
+    public static final String GREY_BACKGROUND = "\033[100m"; //GREY
+    public static final String GREEN_BACKGROUND = "\033[42m";  // GREEN
+    public static final String YELLOW_BACKGROUND = "\033[43m"; // YELLOW
 
-    public static void printBoard(int rows, int columns, String[] words)
+    // reset background
+    public static final String RESET = "\033[0m";  // Text Reset
+
+    public static void printBoard()
     {
-        if (rows <= 0)
-        {
-            throw new IllegalArgumentException(Integer.toString(rows));
-        }
-
-        if (columns <= 0)
-        {
-            throw new IllegalArgumentException(Integer.toString(columns));
-        }
-
-        if (words != null && words.length > rows)
-        {
-            throw new IllegalArgumentException("Il numero di elementi dell'array supera il numero di righe");
-        }
-
-        if (words != null)
-        {
-            for (String word : words)
-            {
-                if (word.length() != columns)
-                {
-                    throw new IllegalArgumentException("Parola di dimensioni non valide");
-                }
-
-            }
-        }
+        int rows = Wordle.getMaxGuesses();
+        int columns = Wordle.getWordLength();
 
         //stampa parte superiore della Board
         printer.println(upperPart(columns));
@@ -64,14 +47,12 @@ public class Printer
         // stampa le righe (dalla prima alla penultima)
         for(int i = 0; i < rows - 1; i++)
         {
-            String rowContent = wordToPrint(words, i, columns); // creare metodo per estrapolare parola da stampare
-            printer.println(guessSlice(columns, rowContent));
+            printer.println(guessSlice(i));
             printer.println(separatorSlice(columns));
         }
 
         // stampa ultima riga
-        String rowContent = wordToPrint(words, rows-1, columns);
-        printer.println(guessSlice(columns, rowContent));
+        printer.println(guessSlice(rows-1));
         printer.println(lowerPart(columns));
     }
 
@@ -90,15 +71,34 @@ public class Printer
         return upperPart.toString();
     }
 
-    private static String guessSlice(int wordLength, String word)
+    private static String guessSlice(int row)
     {
-        // nota: non effettuare controllo su parametri, già fatto dal metodo printBoard
-        char[] chars = word.toCharArray();
         StringBuilder guessSlice = new StringBuilder(VERTICAL_EDGE + "");
+        Color c;
+        char l;
+        String background = "";
 
-        for(int i = 0; i < wordLength; i++)
+        for(int i = 0; i < Wordle.getWordLength(); i++)
         {
-            guessSlice.append(" ").append(chars[i]).append(" ").append(VERTICAL_EDGE);
+            l = Wordle.getLetter(row, i);
+            c = Wordle.getColor(row, i);
+
+            switch (c)
+            {
+                case GREEN:
+                    background = GREEN_BACKGROUND;
+                    break;
+                case YELLOW:
+                    background = YELLOW_BACKGROUND;
+                    break;
+                case GREY:
+                    background = GREY_BACKGROUND;
+                    break;
+                case NO_COLOR:
+                    background = "";
+                    break;
+            }
+            guessSlice.append(background +" "+l+" "+RESET).append(VERTICAL_EDGE);
         }
 
         return guessSlice.toString();
@@ -133,39 +133,10 @@ public class Printer
         return lowerPart.toString();
     }
 
-
-    public static String wordToPrint(String[] words, int wordNumber, int wordLength)
-    {
-        int length;
-        if (words == null)
-        {
-            length = 0;
-        }
-        else
-        {
-            length = words.length;
-        }
-
-        if (wordNumber < length)
-        {
-            return words[wordNumber];
-        }
-        else
-        {
-            StringBuilder hollow = new StringBuilder();
-            for (int i = 0; i < wordLength; i++)
-            {
-                hollow.append(" ");
-            }
-            return hollow.toString();
-        }
-    }
-
     public static void printStartGame()
     {
         System.out.println("Hai iniziato la partita.");
-
-        printBoard(6, 5, null);
+        printBoard();
     }
     //static void printSecretWord()
     //static void printHelp()
@@ -189,4 +160,24 @@ public class Printer
     {
         printer.println("Argomento/i mancante/i");
     }
+
+    public static void printGuessResult()
+    {
+        int maxGuesses = Wordle.getMaxGuesses();
+        int remainingGuesses = Wordle.getNumRemainingGuesses();
+        if(Wordle.getGuessResult())
+        {
+            printer.println("Parola segreta indovinata");
+            printer.println("Numero di tentativi: "+ (maxGuesses - remainingGuesses));
+        }
+        else
+        {
+            if(remainingGuesses == 0)
+            {
+                printer.println("Hai raggiunto il numero massimo di tentativi");
+                printer.println("La parola segreta è: " + Wordle.getGameSecretWord());
+            }
+        }
+    }
+
 }

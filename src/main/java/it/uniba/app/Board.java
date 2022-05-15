@@ -7,6 +7,7 @@ public class Board
 {
     private final Guess[] guessArray;
     private final int wordLength;
+    private int firstEmptyIndex;
 
     //costruttore per wordle classico con parola da 5 lettere
     Board()
@@ -20,5 +21,34 @@ public class Board
     {
         this.guessArray = new Guess[row];
         this.wordLength = column;
+        this.firstEmptyIndex = 0;
+    }
+
+    public Guess getGuess(int index)
+    {
+        return guessArray[index];
+    }
+
+    //prende il guess con i colori settati e lo aggiunge alla prima riga libera
+    public void acceptNewGuess(Guess g)
+    {
+        //nota: non ci sono controlli
+        guessArray[firstEmptyIndex] = g;
+        firstEmptyIndex++;
+    }
+
+    public int getRowsNumber()
+    {
+        return guessArray.length;
+    }
+
+    public int getWordLength()
+    {
+        return wordLength;
+    }
+
+    public int getNumFilledRows()
+    {
+        return firstEmptyIndex;
     }
 }
