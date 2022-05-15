@@ -24,24 +24,9 @@ public class Board
         this.firstEmptyIndex = 0;
     }
 
-    public Color getColor(int row, int column)
+    public Guess getGuess(int index)
     {
-        return guessArray[row].getColor(column);
-    }
-
-    public void setColor(int row, int column, Color color)
-    {
-         guessArray[row].setColor(column, color);
-    }
-
-    public char getLetter(int row, int column)
-    {
-        return guessArray[row].getLetter(column);
-    }
-
-    public void setLetter(int row, int column, char letter)
-    {
-        guessArray[row].setLetter(column, letter);
+        return guessArray[index];
     }
 
     //prende il guess con i colori settati e lo aggiunge alla prima riga libera
@@ -60,5 +45,10 @@ public class Board
     public int getWordLength()
     {
         return wordLength;
+    }
+
+    public int getNumFilledRows()
+    {
+        return firstEmptyIndex;
     }
 }
