@@ -43,6 +43,9 @@ public final class App {
                 case GIOCA:
                     executeStart();
                     break;
+                case NUOVA:
+                    executeSetSecretWord(arguments[0]);
+                    break;
                 case INVALID:
                     Printer.printInvalid();
                     break;
@@ -63,6 +66,24 @@ public final class App {
         {
             Wordle.startGame();
             Printer.printStartGame();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void executeSetSecretWord(String secretWord)
+    {
+        if (secretWord == null)
+        {
+            Printer.printMissingArgs();
+            return;
+        }
+        try
+        {
+            Wordle.setSecretWord(secretWord);
+            Printer.printSetSecretWord();
         }
         catch (Exception e)
         {
