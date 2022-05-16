@@ -68,7 +68,6 @@ public final class App {
             arguments = parser.getArgs();
         }
 
-        System.out.println("ciao");
     }
 
     public static void executeStart()
@@ -157,7 +156,7 @@ public final class App {
         } while (!answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
 
         if (answer.equalsIgnoreCase("si")) {
-            System.exit(0)
+            System.exit(0);
         }
     }
 
