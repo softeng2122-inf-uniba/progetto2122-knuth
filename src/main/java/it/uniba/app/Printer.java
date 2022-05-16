@@ -31,6 +31,10 @@ public class Printer extends PrintWriter
     public static final String GREY_BACKGROUND = "\033[100m"; //GREY
     public static final String GREEN_BACKGROUND = "\033[42m";  // GREEN
     public static final String YELLOW_BACKGROUND = "\033[43m"; // YELLOW
+
+    // bold
+    public static final String BOLD = "\u001B[1m";
+
     Printer()
     {
         super(System.out,true);
@@ -236,6 +240,15 @@ public class Printer extends PrintWriter
         return(background + " " + c + " " + RESET);
     }
 
-
+    public void printHelp()
+    {
+        println("Il gioco accetta i seguenti comandi:");
+        println(BOLD + "\t/gioca" + RESET + "\t\t\tinizia una nuova partita (la parola segreta deve essere impostata)");
+        println(BOLD + "\t/nuova <parola>" + RESET + "\timposta <parola> come parola segreta");
+        println(BOLD + "\t/mostra" + RESET + "\t\t\tvisualizza la parola segreta impostata");
+        println(BOLD +  "\t/abbandona" + RESET + "\t\tabbandona la partita in corso");
+        println(BOLD + "\t/esci" + RESET + "\t\t\tchiude il gioco");
+        println(BOLD + "\t<parola>" + RESET + "\t\tper effettuare un tentativo\n");
+    }
 
 }
