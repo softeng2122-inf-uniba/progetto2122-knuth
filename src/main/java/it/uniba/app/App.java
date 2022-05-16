@@ -135,7 +135,7 @@ public final class App {
             Wordle.guess(guessWord);
             consoleOutPut.printBoard();
             consoleOutPut.printGuessResult();
-            if(Wordle.getNumRemainingGuesses() == 0)
+            if(Wordle.getNumRemainingGuesses() == 0 || Wordle.getGuessResult() == true)
                 Wordle.endGame();
         }
         catch (Exception e)
