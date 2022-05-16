@@ -146,7 +146,7 @@ public class Printer extends PrintWriter
     {
         try
         {
-            System.out.format("Parola segreta: %s\n", Wordle.getSecretWord());
+            format("Parola segreta: %s\n", Wordle.getSecretWord());
         }
         catch (Exception e)
         {
