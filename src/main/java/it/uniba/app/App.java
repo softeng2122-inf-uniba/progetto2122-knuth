@@ -65,6 +65,9 @@ public final class App {
                 case ESCI:
                     executeExitGame();
                     break;
+                case MOSTRA:
+                    executePrintSecretWord();
+                    break;
                 case HELP:
                     consoleOutPut.printDescription();
                     consoleOutPut.printHelp();
@@ -160,14 +163,20 @@ public final class App {
     public static void executeExitGame()
     {
         String answer = null;
-        do {
+        do
+        {
             consoleOutPut.println("Sei sicuro di voler uscire da Wordle? [si | no]");
             answer = keyboardInput.nextLine();
         } while (!answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
 
-        if (answer.equalsIgnoreCase("si")) {
+        if (answer.equalsIgnoreCase("si"))
+        {
             System.exit(0);
         }
     }
 
+    public static void executePrintSecretWord()
+    {
+        consoleOutPut.printSecretWord();
+    }
 }

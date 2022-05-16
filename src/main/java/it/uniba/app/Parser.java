@@ -78,6 +78,10 @@ public class Parser
                 {
                     command = Command.ESCI;
                 }
+                if (tokenCommand.equalsIgnoreCase(Command.MOSTRA.toString()))
+                {
+                    command = Command.MOSTRA;
+                }
                 if (tokenCommand.equalsIgnoreCase(Command.HELP.toString()))
                 {
                     command = Command.HELP;
@@ -111,6 +115,7 @@ public class Parser
                     case GIOCA:
                     case ABBANDONA:
                     case ESCI:
+                    case MOSTRA:
                     case HELP:
                         numberArgsExpected = 0;
                         break;
