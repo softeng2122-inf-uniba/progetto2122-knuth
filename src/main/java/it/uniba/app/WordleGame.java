@@ -20,4 +20,30 @@ public class WordleGame
         this.secretWord = secretWord;
         this.gameBoard = new Board(column, row);
     }
+
+    public String getSecretWord()
+    {
+        return secretWord;
+    }
+
+    public Board getGameBoard()
+    {
+        return gameBoard;
+    }
+
+    public int getMaxGuesses()
+    {
+        return gameBoard.getRowsNumber();
+    }
+
+    public int getWordLength()
+    {
+        return gameBoard.getWordLength();
+    }
+
+    public int getNumRemainingGuesses()
+    {
+        return getMaxGuesses() - gameBoard.getNumFilledRows();
+    }
+
 }

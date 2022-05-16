@@ -50,6 +50,9 @@ public final class App {
                 case ABBANDONA:
                     executeQuitGame();
                     break;
+                case GUESS:
+                    executeGuess(arguments[0]);
+                    break;
                 case INVALID:
                     consoleOutPut.printInvalid();
                     break;
@@ -122,6 +125,22 @@ public final class App {
             {
                 consoleOutPut.println(e.getMessage());
             }
+        }
+    }
+
+    public static void executeGuess(String guessWord)
+    {
+        try
+        {
+            Wordle.guess(guessWord);
+            consoleOutPut.printBoard();
+            consoleOutPut.printGuessResult();
+            if(Wordle.getNumRemainingGuesses() == 0)
+                Wordle.endGame();
+        }
+        catch (Exception e)
+        {
+            consoleOutPut.println(e.getMessage());
         }
     }
 }
