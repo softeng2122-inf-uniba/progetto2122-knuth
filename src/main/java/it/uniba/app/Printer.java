@@ -142,6 +142,17 @@ public class Printer extends PrintWriter
         printBoard();
     }
     //static void printSecretWord()
+    public static void printSecretWord()
+    {
+        try
+        {
+            System.out.format("Parola segreta: %s", Wordle.getSecretWord());
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
     //static void printHelp()
 
     public void printSetSecretWord()
