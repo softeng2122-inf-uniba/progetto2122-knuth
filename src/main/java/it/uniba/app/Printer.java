@@ -141,6 +141,8 @@ public class Printer extends PrintWriter
         System.out.println("Hai iniziato la partita.");
         printBoard();
     }
+    //static void printSecretWord()
+    //static void printHelp()
 
     public void printSetSecretWord()
     {
@@ -179,6 +181,27 @@ public class Printer extends PrintWriter
                 println("La parola segreta è: " + Wordle.getGameSecretWord());
             }
         }
+    }
+
+    public void printDescription()
+    {
+
+        printWordleLogo();
+
+        println("Wordle è un videogioco in cui il giocatore deve indovinare una parola segreta");
+        println("avendo a disposizione 6 tentativi che dovranno essere parole di una lunghezza");
+        println("prestabilita (nel nostro caso 5 lettere).");
+        println("Ad ogni tentativo, ogni lettera della parola inserita viene evidenziata in:");
+
+        print(GREEN_BACKGROUND + "VERDE" + RESET);
+        println(" se è contenuta nella parola segreta ed è nella giusta posizione");
+
+        print(YELLOW_BACKGROUND + "GIALLO" + RESET);
+        println(" se è contenuta nella parola segreta ma in una posizione diversa");
+
+        print(GREY_BACKGROUND + "GRIGIO" + RESET);
+        println(" se non è contenuta nella parola segreta");
+        println();
     }
 
     private void printWordleLogo()
