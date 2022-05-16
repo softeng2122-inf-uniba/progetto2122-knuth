@@ -141,19 +141,6 @@ public class Printer extends PrintWriter
         System.out.println("Hai iniziato la partita.");
         printBoard();
     }
-    //static void printSecretWord()
-    public void printSecretWord()
-    {
-        try
-        {
-            format("Parola segreta: %s\n", Wordle.getSecretWord());
-        }
-        catch (Exception e)
-        {
-            println(e.getMessage());
-        }
-    }
-    //static void printHelp()
 
     public void printSetSecretWord()
     {
@@ -193,5 +180,39 @@ public class Printer extends PrintWriter
             }
         }
     }
+
+    private void printWordleLogo()
+    {
+
+        println(upperPart(6));
+        print(VERTICAL_EDGE);
+        print(coloredLetterSpace('W', Color.GREEN) + VERTICAL_EDGE);
+        print(coloredLetterSpace('O', Color.GREY) + VERTICAL_EDGE);
+        print(coloredLetterSpace('R', Color.YELLOW) + VERTICAL_EDGE);
+        print(coloredLetterSpace('D', Color.GREEN) + VERTICAL_EDGE);
+        print(coloredLetterSpace('L', Color.YELLOW) + VERTICAL_EDGE);
+        println(coloredLetterSpace('E', Color.GREY) + VERTICAL_EDGE);
+        println(lowerPart(6));
+    }
+
+    private String coloredLetterSpace(char c, Color color)
+    {
+        String background = "";
+        switch (color)
+        {
+            case GREEN:
+                background = GREEN_BACKGROUND;
+                break;
+            case YELLOW:
+                background = YELLOW_BACKGROUND;
+                break;
+            case GREY:
+                background = GREY_BACKGROUND;
+                break;
+        }
+        return(background + " " + c + " " + RESET);
+    }
+
+
 
 }
