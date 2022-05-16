@@ -34,7 +34,7 @@ public final class App {
         parser.feed(inputLine);
         Command command = parser.getCommand();
         String[] arguments = parser.getArgs();
-        while (!inputLine.equals("exit"))
+        while (true)
         {
             switch (command)
             {
@@ -56,6 +56,10 @@ public final class App {
                 case INVALID:
                     consoleOutPut.printInvalid();
                     break;
+                case ESCI:
+                    executeExitGame();
+                    break;
+
             }
             System.out.println("Inserisci un comando: ");
             inputLine = keyboardInput.nextLine();
@@ -64,7 +68,6 @@ public final class App {
             arguments = parser.getArgs();
         }
 
-        System.out.println("ciao");
     }
 
     public static void executeStart()
@@ -143,4 +146,18 @@ public final class App {
             consoleOutPut.println(e.getMessage());
         }
     }
+
+    public static void executeExitGame()
+    {
+        String answer = null;
+        do {
+            consoleOutPut.println("Sei sicuro di voler uscire da Wordle? [si | no]");
+            answer = keyboardInput.nextLine();
+        } while (!answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
+
+        if (answer.equalsIgnoreCase("si")) {
+            System.exit(0);
+        }
+    }
+
 }
