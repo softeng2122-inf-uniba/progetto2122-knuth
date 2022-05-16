@@ -160,4 +160,9 @@ public final class App {
         }
     }
 
+    public static void executePrintSecretWord()
+    {
+        consoleOutPut.printSecretWord();
+    }
+
 }

@@ -142,7 +142,7 @@ public class Printer extends PrintWriter
         printBoard();
     }
     //static void printSecretWord()
-    public static void printSecretWord()
+    public void printSecretWord()
     {
         try
         {
