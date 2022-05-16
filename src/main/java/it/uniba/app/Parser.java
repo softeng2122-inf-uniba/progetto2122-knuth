@@ -70,6 +70,10 @@ public class Parser
                 {
                     command = Command.NUOVA;
                 }
+                if (tokenCommand.equalsIgnoreCase(Command.ABBANDONA.toString()))
+                {
+                    command = Command.ABBANDONA;
+                }
                 if (tokenCommand.equalsIgnoreCase(Command.ESCI.toString()))
                 {
                     command = Command.ESCI;
@@ -101,6 +105,7 @@ public class Parser
                     case DUMMY:
                     case INVALID:
                     case GIOCA:
+                    case ABBANDONA:
                     case ESCI:
                         numberArgsExpected = 0;
                         break;
