@@ -17,6 +17,8 @@ public final class App {
         return "Hello World!";
     }
 
+    static Scanner keyboardInput = new Scanner (new InputStreamReader(System.in));
+    static Printer consoleOutPut = new Printer();
     /**
      * Entrypoint of the application.
      *
@@ -24,7 +26,6 @@ public final class App {
      */
     public static void main(final String[] args)
     {
-        Scanner keyboardInput = new Scanner (new InputStreamReader(System.in));
         System.out.println("Inserisci un comando: ");
         String inputLine = keyboardInput.nextLine();
         Parser parser = new Parser();
@@ -38,7 +39,7 @@ public final class App {
             switch (command)
             {
                 case DUMMY:
-                    Printer.printDummy();
+                    consoleOutPut.printDummy();
                     break;
                 case GIOCA:
                     executeStart();
@@ -46,11 +47,14 @@ public final class App {
                 case NUOVA:
                     executeSetSecretWord(arguments[0]);
                     break;
+                case ABBANDONA:
+                    executeQuitGame();
+                    break;
                 case GUESS:
                     executeGuess(arguments[0]);
                     break;
                 case INVALID:
-                    Printer.printInvalid();
+                    consoleOutPut.printInvalid();
                     break;
             }
             System.out.println("Inserisci un comando: ");
@@ -68,7 +72,7 @@ public final class App {
         try
         {
             Wordle.startGame();
-            Printer.printStartGame();
+            consoleOutPut.printStartGame();
         }
         catch (Exception e)
         {
@@ -80,17 +84,47 @@ public final class App {
     {
         if (secretWord == null)
         {
-            Printer.printMissingArgs();
+            consoleOutPut.printMissingArgs();
             return;
         }
         try
         {
             Wordle.setSecretWord(secretWord);
-            Printer.printSetSecretWord();
+            consoleOutPut.printSetSecretWord();
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public static void executeQuitGame()
+    {
+        if(!Wordle.isGameRunning())
+        {
+            consoleOutPut.println("Nessuna partita in corso");
+            return;
+        }
+
+        String answer = null;
+
+        do
+        {
+            consoleOutPut.println("Sei sicuro di voler abbandonare la partita in corso? [si | no]");
+            answer = keyboardInput.nextLine();
+        } while (!answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
+
+        if (answer.equalsIgnoreCase("si"))
+        {
+            try
+            {
+                consoleOutPut.println("Hai abbandonato la partita");
+                Wordle.endGame();
+            }
+            catch (Exception e)
+            {
+                consoleOutPut.println(e.getMessage());
+            }
         }
     }
 
@@ -99,14 +133,14 @@ public final class App {
         try
         {
             Wordle.guess(guessWord);
-            Printer.printBoard();
-            Printer.printGuessResult();
-            if(Wordle.getNumRemainingGuesses() == 0)
+            consoleOutPut.printBoard();
+            consoleOutPut.printGuessResult();
+            if(Wordle.getNumRemainingGuesses() == 0 || Wordle.getGuessResult() == true)
                 Wordle.endGame();
         }
         catch (Exception e)
         {
-            System.out.println(e.getMessage());
+            consoleOutPut.println(e.getMessage());
         }
     }
 }

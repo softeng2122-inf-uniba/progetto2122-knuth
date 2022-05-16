@@ -5,9 +5,8 @@ import java.io.PrintWriter;
 /** Questa classe si occupa delle stampe sul terminale
  *
  */
-public class Printer
+public class Printer extends PrintWriter
 {
-    private static final PrintWriter printer = new PrintWriter(System.out,true);
     // angoli (L = left, R = right, U = up, D = down)
     private static final char L_U_ANGLE = '\u2554';
     private static final char R_U_ANGLE = '\u2557';
@@ -32,31 +31,35 @@ public class Printer
     public static final String GREY_BACKGROUND = "\033[100m"; //GREY
     public static final String GREEN_BACKGROUND = "\033[42m";  // GREEN
     public static final String YELLOW_BACKGROUND = "\033[43m"; // YELLOW
+    Printer()
+    {
+        super(System.out,true);
+    }
 
     // reset background
     public static final String RESET = "\033[0m";  // Text Reset
 
-    public static void printBoard()
+    public void printBoard()
     {
         int rows = Wordle.getMaxGuesses();
         int columns = Wordle.getWordLength();
 
         //stampa parte superiore della Board
-        printer.println(upperPart(columns));
+        println(upperPart(columns));
 
         // stampa le righe (dalla prima alla penultima)
         for(int i = 0; i < rows - 1; i++)
         {
-            printer.println(guessSlice(i));
-            printer.println(separatorSlice(columns));
+            println(guessSlice(i));
+            println(separatorSlice(columns));
         }
 
         // stampa ultima riga
-        printer.println(guessSlice(rows-1));
-        printer.println(lowerPart(columns));
+        println(guessSlice(rows-1));
+        println(lowerPart(columns));
     }
 
-    private static String upperPart(int wordLength)
+    private String upperPart(int wordLength)
     {
         //nota: effettuare il cambio in stringBuilder
 
@@ -71,7 +74,7 @@ public class Printer
         return upperPart.toString();
     }
 
-    private static String guessSlice(int row)
+    private String guessSlice(int row)
     {
         StringBuilder guessSlice = new StringBuilder(VERTICAL_EDGE + "");
         Color c;
@@ -104,7 +107,7 @@ public class Printer
         return guessSlice.toString();
     }
 
-    private static String separatorSlice(int wordLength)
+    private String separatorSlice(int wordLength)
     {
         //nota: effettuare il cambio in stringBuilder
         StringBuilder separatorSlice = new StringBuilder(L_SEPARATOR + "" + HORIZONTAL_EDGE_X3);
@@ -118,7 +121,7 @@ public class Printer
         return separatorSlice.toString();
     }
 
-    private static String lowerPart(int wordLength)
+    private String lowerPart(int wordLength)
     {
         //nota: effettuare il cambio in stringBuilder
 
@@ -133,7 +136,7 @@ public class Printer
         return lowerPart.toString();
     }
 
-    public static void printStartGame()
+    public void printStartGame()
     {
         System.out.println("Hai iniziato la partita.");
         printBoard();
@@ -141,41 +144,41 @@ public class Printer
     //static void printSecretWord()
     //static void printHelp()
 
-    public static void printSetSecretWord()
+    public void printSetSecretWord()
     {
-        System.out.println("Hai impostato la parola segreta");
+        println("Hai impostato la parola segreta");
     }
 
-    public static void printDummy()
+    public void printDummy()
     {
-        System.out.println("Hai inserito il comando Dummy.");
+        println("Hai inserito il comando Dummy.");
     }
 
-    public static void printInvalid ()
+    public void printInvalid ()
     {
-        System.out.println("Hai inserito un comando invalido.");
+        println("Hai inserito un comando invalido.");
     }
 
-    public static void printMissingArgs ()
+    public void printMissingArgs ()
     {
-        printer.println("Argomento/i mancante/i");
+        println("Argomento/i mancante/i");
     }
 
-    public static void printGuessResult()
+    public void printGuessResult()
     {
         int maxGuesses = Wordle.getMaxGuesses();
         int remainingGuesses = Wordle.getNumRemainingGuesses();
         if(Wordle.getGuessResult())
         {
-            printer.println("Parola segreta indovinata");
-            printer.println("Numero di tentativi: "+ (maxGuesses - remainingGuesses));
+            println("Parola segreta indovinata");
+            println("Numero di tentativi: "+ (maxGuesses - remainingGuesses));
         }
         else
         {
             if(remainingGuesses == 0)
             {
-                printer.println("Hai raggiunto il numero massimo di tentativi");
-                printer.println("La parola segreta è: " + Wordle.getGameSecretWord());
+                println("Hai raggiunto il numero massimo di tentativi");
+                println("La parola segreta è: " + Wordle.getGameSecretWord());
             }
         }
     }

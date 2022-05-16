@@ -143,8 +143,15 @@ public class Wordle
             return currentBoard.getGuess(row).getLetterBox(column).getColor();
     }
 
+    public static void endGame() throws Exception
+    {
+        if(!isGameRunning())
+        {
+            throw new Exception("Nessuna partita in corso");
+        }
+        currentGame = null;
+    }
 
-    //endGame()
     //setSecretWord()
     public static void setSecretWord(String newWord) throws Exception
     {
@@ -194,11 +201,4 @@ public class Wordle
     {
         return currentGame.getSecretWord();
     }
-
-    // metodo che sarà implementato nella user story corrispondente
-    public static void endGame()
-    {
-
-    }
-
 }
