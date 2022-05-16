@@ -78,6 +78,10 @@ public class Parser
                 {
                     command = Command.ESCI;
                 }
+                if (tokenCommand.equalsIgnoreCase(command.MOSTRA.toString()))
+                {
+                    command = Command.MOSTRA;
+                }
             }
             else //il primo carattere non è '/', quindi è un tentativo
             {
@@ -107,6 +111,7 @@ public class Parser
                     case GIOCA:
                     case ABBANDONA:
                     case ESCI:
+                    case MOSTRA:
                         numberArgsExpected = 0;
                         break;
                     case NUOVA:

@@ -59,6 +59,8 @@ public final class App {
                 case ESCI:
                     executeExitGame();
                     break;
+                case MOSTRA:
+                    executePrintSecretWord();
 
             }
             System.out.println("Inserisci un comando: ");
@@ -158,6 +160,11 @@ public final class App {
         if (answer.equalsIgnoreCase("si")) {
             System.exit(0);
         }
+    }
+
+    public static void executePrintSecretWord()
+    {
+        consoleOutPut.printSecretWord();
     }
 
 }

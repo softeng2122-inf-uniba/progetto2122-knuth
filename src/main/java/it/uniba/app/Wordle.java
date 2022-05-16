@@ -196,6 +196,16 @@ public class Wordle
             throw new Exception("Tentativo eccessivo");
     }
 
+    public static String getSecretWord() throws Exception
+    {
+        if (secretWord == null)
+        {
+            throw new Exception("Parola segreta non impostata");
+        }
+
+        return secretWord;
+    }
+
     // nota: ci sarà (forse) un'altra funzione getSecretWord separata
     public static String getGameSecretWord()
     {
