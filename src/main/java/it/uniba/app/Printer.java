@@ -150,7 +150,7 @@ public class Printer extends PrintWriter
         }
         catch (Exception e)
         {
-            System.out.println(e.getMessage());
+            println(e.getMessage());
         }
     }
     //static void printHelp()
