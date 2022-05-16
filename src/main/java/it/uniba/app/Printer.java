@@ -31,6 +31,10 @@ public class Printer extends PrintWriter
     public static final String GREY_BACKGROUND = "\033[100m"; //GREY
     public static final String GREEN_BACKGROUND = "\033[42m";  // GREEN
     public static final String YELLOW_BACKGROUND = "\033[43m"; // YELLOW
+
+    // bold
+    public static final String BOLD = "\u001B[1m";
+
     Printer()
     {
         super(System.out,true);
@@ -192,6 +196,70 @@ public class Printer extends PrintWriter
                 println("La parola segreta è: " + Wordle.getGameSecretWord());
             }
         }
+    }
+
+    public void printDescription()
+    {
+
+        printWordleLogo();
+
+        println("Wordle è un videogioco in cui il giocatore deve indovinare una parola segreta");
+        println("avendo a disposizione 6 tentativi che dovranno essere parole di una lunghezza");
+        println("prestabilita (nel nostro caso 5 lettere).");
+        println("Ad ogni tentativo, ogni lettera della parola inserita viene evidenziata in:");
+
+        print(GREEN_BACKGROUND + "VERDE" + RESET);
+        println(" se è contenuta nella parola segreta ed è nella giusta posizione");
+
+        print(YELLOW_BACKGROUND + "GIALLO" + RESET);
+        println(" se è contenuta nella parola segreta ma in una posizione diversa");
+
+        print(GREY_BACKGROUND + "GRIGIO" + RESET);
+        println(" se non è contenuta nella parola segreta");
+        println();
+    }
+
+    private void printWordleLogo()
+    {
+
+        println(upperPart(6));
+        print(VERTICAL_EDGE);
+        print(coloredLetterSpace('W', Color.GREEN) + VERTICAL_EDGE);
+        print(coloredLetterSpace('O', Color.GREY) + VERTICAL_EDGE);
+        print(coloredLetterSpace('R', Color.YELLOW) + VERTICAL_EDGE);
+        print(coloredLetterSpace('D', Color.GREEN) + VERTICAL_EDGE);
+        print(coloredLetterSpace('L', Color.YELLOW) + VERTICAL_EDGE);
+        println(coloredLetterSpace('E', Color.GREY) + VERTICAL_EDGE);
+        println(lowerPart(6));
+    }
+
+    private String coloredLetterSpace(char c, Color color)
+    {
+        String background = "";
+        switch (color)
+        {
+            case GREEN:
+                background = GREEN_BACKGROUND;
+                break;
+            case YELLOW:
+                background = YELLOW_BACKGROUND;
+                break;
+            case GREY:
+                background = GREY_BACKGROUND;
+                break;
+        }
+        return(background + " " + c + " " + RESET);
+    }
+
+    public void printHelp()
+    {
+        println("Il gioco accetta i seguenti comandi:");
+        println(BOLD + "\t/gioca" + RESET + "\t\t\tinizia una nuova partita (la parola segreta deve essere impostata)");
+        println(BOLD + "\t/nuova <parola>" + RESET + "\timposta <parola> come parola segreta");
+        println(BOLD + "\t/mostra" + RESET + "\t\t\tvisualizza la parola segreta impostata");
+        println(BOLD +  "\t/abbandona" + RESET + "\t\tabbandona la partita in corso");
+        println(BOLD + "\t/esci" + RESET + "\t\t\tchiude il gioco");
+        println(BOLD + "\t<parola>" + RESET + "\t\tper effettuare un tentativo\n");
     }
 
 }

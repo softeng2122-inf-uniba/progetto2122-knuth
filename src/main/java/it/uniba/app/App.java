@@ -26,6 +26,12 @@ public final class App {
      */
     public static void main(final String[] args)
     {
+        // stampe iniziali
+        consoleOutPut.printDescription();
+
+        if (args.length > 0 && (args[0].equals("--help") || args[0].equals("-h")))
+            consoleOutPut.printHelp();
+
         System.out.println("Inserisci un comando: ");
         String inputLine = keyboardInput.nextLine();
         Parser parser = new Parser();
@@ -61,6 +67,11 @@ public final class App {
                     break;
                 case MOSTRA:
                     executePrintSecretWord();
+                    break;
+                case HELP:
+                    consoleOutPut.printDescription();
+                    consoleOutPut.printHelp();
+                    break;
 
             }
             System.out.println("Inserisci un comando: ");
@@ -152,12 +163,14 @@ public final class App {
     public static void executeExitGame()
     {
         String answer = null;
-        do {
+        do
+        {
             consoleOutPut.println("Sei sicuro di voler uscire da Wordle? [si | no]");
             answer = keyboardInput.nextLine();
         } while (!answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
 
-        if (answer.equalsIgnoreCase("si")) {
+        if (answer.equalsIgnoreCase("si"))
+        {
             System.exit(0);
         }
     }
@@ -166,5 +179,4 @@ public final class App {
     {
         consoleOutPut.printSecretWord();
     }
-
 }
