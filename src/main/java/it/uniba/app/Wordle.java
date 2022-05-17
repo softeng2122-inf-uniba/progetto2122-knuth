@@ -1,5 +1,7 @@
 package it.uniba.app;
 
+import jdk.nashorn.internal.runtime.regexp.joni.WarnCallback;
+
 import java.util.Map;
 import java.util.HashMap;
 
@@ -13,28 +15,28 @@ public class Wordle
     private static int nMaxGuesses = 6;
     private static int wordLength = 5;
 
-    public static void startGame() throws Exception
+    public static void startGame() throws WordleGameException, WordleSettingException
     {
         if (isGameRunning())
         {
-            throw new Exception("Partita in corso");
+            throw new WordleGameException("Partita in corso");
         }
 
         if (secretWord == null)
         {
-            throw new Exception("Parola segreta non impostata");
+            throw new WordleSettingException("Parola segreta non impostata");
         }
 
         currentGame = new WordleGame(secretWord);
     }
 
-    public static void guess(String guessWord) throws Exception
+    public static void guess(String guessWord) throws WordleGameException
     {
         if (!isGameRunning())
-            throw new Exception("Partita inesistente");
+            throw new WordleGameException("Partita inesistente");
 
         if (getNumRemainingGuesses() == 0)
-            throw new Exception("Numero massimo di tentativi raggiunto");
+            throw new WordleGameException("Numero massimo di tentativi raggiunto");
 
         guessWordCheck(guessWord);
 
@@ -143,11 +145,11 @@ public class Wordle
             return currentBoard.getGuess(row).getLetterBox(column).getColor();
     }
 
-    public static void endGame() throws Exception
+    public static void endGame() throws WordleGameException
     {
         if(!isGameRunning())
         {
-            throw new Exception("Nessuna partita in corso");
+            throw new WordleGameException("Nessuna partita in corso");
         }
         currentGame = null;
     }
@@ -198,11 +200,11 @@ public class Wordle
             throw new IllegalArgumentException("Tentativo eccessivo");
     }
 
-    public static String getSecretWord() throws Exception
+    public static String getSecretWord() throws WordleSettingException
     {
         if (secretWord == null)
         {
-            throw new Exception("Parola segreta non impostata");
+            throw new WordleSettingException("Parola segreta non impostata");
         }
 
         return secretWord;
