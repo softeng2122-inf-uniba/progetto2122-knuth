@@ -10,157 +10,134 @@ public class Parser
     private String[] args;
     private String[] tokens;
 
-    public Parser() {
+    public Parser()
+    {
         this.input = null;
         this.command = null;
         this.args = null;
     }
-    /*
-    public Parser(String inputLine)
+
+    public void feed(String inputLine)
     {
-        feed(inputLine);
-    }
-    */
-    public void feed(String inputLine) {
         this.input = inputLine.trim();
         tokens = tokenizeInput();
         this.command = setCommand();
-        this.args = setArgs();
+        this.args = extractArgs();
     }
 
-    /**
-     * Metodo privato che viene utilizzato dai metodi della classe per tokenizzare l'input del parser
-     *
-     * @return
-     */
-    private String[] tokenizeInput() {
-        if (input.length()==0)
-        {
+    private String[] tokenizeInput()
+    {
+        if (input.length() == 0)
             return null;
-        }
+
         String[] tokens;
         tokens = input.split("\\s+");
         return tokens;
     }
 
-    //deve avvalorare l'attributo command
     private Command setCommand()
     {
         Command command = Command.INVALID;
+
+        // CASO 1: solo spazi
         if (tokens == null)
         {
             command = Command.SPACE;
+            return command;
         }
-        else
+
+        // CASO 2: comando effettivo
+        char firstChar = tokens[0].charAt(0);
+        if (firstChar == '/')
         {
-            Character firstChar = tokens[0].charAt(0);
-            if (firstChar.equals('/'))
-            {
-                //salvo solo il comando, i valori di enum non avranno il carattere /
-                String tokenCommand = tokens[0].substring(1, tokens[0].length());
-                if (tokenCommand.equalsIgnoreCase(Command.DUMMY.toString()))
-                {
-                    command = Command.DUMMY;
-                }
-                if (tokenCommand.equalsIgnoreCase(Command.GIOCA.toString()))
-                {
-                    command = Command.GIOCA;
-                }
-                if (tokenCommand.equalsIgnoreCase(Command.NUOVA.toString()))
-                {
-                    command = Command.NUOVA;
-                }
-                if (tokenCommand.equalsIgnoreCase(Command.ABBANDONA.toString()))
-                {
-                    command = Command.ABBANDONA;
-                }
-                if (tokenCommand.equalsIgnoreCase(Command.ESCI.toString()))
-                {
-                    command = Command.ESCI;
-                }
-                if (tokenCommand.equalsIgnoreCase(Command.MOSTRA.toString()))
-                {
-                    command = Command.MOSTRA;
-                }
-                if (tokenCommand.equalsIgnoreCase(Command.HELP.toString()))
-                {
-                    command = Command.HELP;
-                }
-            }
-            else //il primo carattere non è '/', quindi è un tentativo
-            {
-                command = Command.GUESS;
-            }
+            //salvo solo il comando, i valori di enum non contengono "/"
+            String tokenCommand = tokens[0].substring(1);
+
+            if (tokenCommand.equalsIgnoreCase(Command.GIOCA.toString()))
+                command = Command.GIOCA;
+
+            if (tokenCommand.equalsIgnoreCase(Command.NUOVA.toString()))
+                command = Command.NUOVA;
+
+            if (tokenCommand.equalsIgnoreCase(Command.ABBANDONA.toString()))
+                command = Command.ABBANDONA;
+
+            if (tokenCommand.equalsIgnoreCase(Command.ESCI.toString()))
+                command = Command.ESCI;
+
+            if (tokenCommand.equalsIgnoreCase(Command.MOSTRA.toString()))
+                command = Command.MOSTRA;
+
+            if (tokenCommand.equalsIgnoreCase(Command.HELP.toString()))
+                command = Command.HELP;
         }
+        else //CASO 3: tentativo
+            command = Command.GUESS;
+
         return command;
     }
 
-    private String[] setArgs()
+    private String[] extractArgs()
     {
-        if (tokens==null)
+        if (tokens == null)
+            return null;
+
+        //se il primo token è un comando lo salti
+        if (tokens[0].charAt(0) == '/')
         {
-            args = null;
-        }
-        else
-        {
-            //se il primo token è un comando lo salti
-            if (tokens[0].charAt(0) == '/')
+            int numberArgsExpected;
+
+            // imposta il numero di argomenti atteso
+            switch (command)
             {
-                int numberArgsExpected;
-                //Questo switch deve prendere il giusto numero di argomenti per il comando riconosciuto
-                switch (command)
-                {
-                    case DUMMY:
-                    case INVALID:
-                    case GIOCA:
-                    case ABBANDONA:
-                    case ESCI:
-                    case MOSTRA:
-                    case HELP:
-                        numberArgsExpected = 0;
-                        break;
-                    case NUOVA:
-                        numberArgsExpected = 1;
-                        break;
-                    default:
-                        numberArgsExpected = 0;
-                }
-                if (numberArgsExpected == 0)    //warning risolto con almeno un case >=1
-                {
-                    args = null;
-                }
-                else
-                {
-                    args = new String[numberArgsExpected];
-                    int countArg = 0;
+                case INVALID:
+                case GIOCA:
+                case ABBANDONA:
+                case ESCI:
+                case MOSTRA:
+                case HELP:
+                    numberArgsExpected = 0;
+                    break;
+                case NUOVA:
+                    numberArgsExpected = 1;
+                    break;
+                default:
+                    numberArgsExpected = 0;
+            }
 
-                    //Inserisce gli argomenti contenuti in tokens partendo dalla posizione 1,
-                    //così da saltare il token contenente il comando
-                    try
-                    {
-                        for (int nToken = 1; nToken <= numberArgsExpected; nToken++)
-                        {
-                            args[countArg] = tokens[nToken];
-                            countArg++;
-                        }
-                    }
-                    catch (ArrayIndexOutOfBoundsException e)
-                    {
-                        return args;
-                    }
-
-                }
-            } //se il primo token non è un comando allora è un tentativo e considero solo il primo argomento
+            if (numberArgsExpected == 0)
+                return null;
             else
             {
-                args = new String[1];
-                args[0] = tokens[0];
+                // array di grandezza pari al numero massimo di argomenti del comando
+                String[] tempArgs = new String[numberArgsExpected];
+                int countArg = 0;
+
+                try
+                {
+                    //partendo dal token 1 (cioè escludendo quello contenente il comando)
+                    // inserisci in tempArgs
+                    for (int nToken = 1; nToken <= numberArgsExpected; nToken++)
+                    {
+                        tempArgs[countArg] = tokens[nToken];
+                        countArg++;
+                    }
+                    return tempArgs;
+                } // nel caso in cui leggi un numero minore di argomenti
+                catch (ArrayIndexOutOfBoundsException e)
+                {
+                    return tempArgs;
+                }
             }
         }
-        return args;
+        else //se è un tentativo considero solo il primo argomento
+        {
+            String[] tempArgs = new String[1];
+            tempArgs[0] = tokens[0];
+            return tempArgs;
+        }
     }
 
-    //deve restituire l'attributo command
     public Command getCommand()
     {
         return this.command;
@@ -170,5 +147,5 @@ public class Parser
     {
         return this.args;
     }
-    //parseConfirmation()
+
 }
