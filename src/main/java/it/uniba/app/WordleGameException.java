@@ -1,6 +1,6 @@
 package it.uniba.app;
 
-public class WordleGameException extends Exception
+public class WordleGameException extends RuntimeException
 {
     WordleGameException (String message)
     {

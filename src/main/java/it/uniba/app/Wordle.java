@@ -94,7 +94,7 @@ public class Wordle
     }
 
     // per convenzione, se non hai fatto ancora tentativi return false
-    public static boolean getGuessResult() throws WordleGameException
+    public static boolean getGuessResult()
     {
         if(!isGameRunning())
             throw new WordleGameException("Partita inesistente");
@@ -112,7 +112,7 @@ public class Wordle
     }
 
     // restituisci il numero di tentativi che rimangono
-    public static int getNumRemainingGuesses() throws WordleGameException
+    public static int getNumRemainingGuesses()
     {
         if(!isGameRunning())
             throw new WordleGameException("Partita inesistente");
@@ -121,7 +121,7 @@ public class Wordle
     }
 
 
-    public static int getMaxGuesses() throws WordleGameException
+    public static int getMaxGuesses()
     {
         if(!isGameRunning())
             throw new WordleGameException("Partita inesistente");
@@ -129,7 +129,7 @@ public class Wordle
         return currentGame.getMaxGuesses();
     }
 
-    public static int getWordLength() throws WordleGameException
+    public static int getWordLength()
     {
         if(!isGameRunning())
             throw new WordleGameException("Partita inesistente");
@@ -137,7 +137,7 @@ public class Wordle
         return currentGame.getWordLength();
     }
 
-    public static char getLetter(int row, int column) throws WordleGameException
+    public static char getLetter(int row, int column)
     {
         if(!isGameRunning())
             throw new WordleGameException("Partita inesistente");
@@ -152,7 +152,7 @@ public class Wordle
             return currentBoard.getGuess(row).getLetterBox(column).getLetter();
     }
 
-    public static Color getColor(int row, int column) throws WordleGameException
+    public static Color getColor(int row, int column)
     {
         if(!isGameRunning())
             throw new WordleGameException("Partita inesistente");
