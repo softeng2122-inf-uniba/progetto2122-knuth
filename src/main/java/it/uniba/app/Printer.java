@@ -159,10 +159,6 @@ public class Printer extends PrintWriter
     }
     //static void printHelp()
 
-    public void printSetSecretWord()
-    {
-        println("Hai impostato la parola segreta");
-    }
 
     public void printDummy()
     {

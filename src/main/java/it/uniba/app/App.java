@@ -106,7 +106,7 @@ public final class App {
         try
         {
             Wordle.setSecretWord(secretWord);
-            consoleOutPut.printSetSecretWord();
+            consoleOutPut.println("OK");
         }
         catch (Exception e)
         {
