@@ -1,6 +1,5 @@
 package it.uniba.app;
 
-import jdk.nashorn.internal.runtime.regexp.joni.WarnCallback;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -30,7 +29,7 @@ public class Wordle
         currentGame = new WordleGame(secretWord);
     }
 
-    public static void guess(String guessWord) throws WordleGameException
+    public static void guess(String guessWord) throws WordleGameException, IllegalArgumentException
     {
         if (!isGameRunning())
             throw new WordleGameException("Partita inesistente");
@@ -38,8 +37,14 @@ public class Wordle
         if (getNumRemainingGuesses() == 0)
             throw new WordleGameException("Numero massimo di tentativi raggiunto");
 
-        guessWordCheck(guessWord);
-
+        try
+        {
+            guessWordCheck(guessWord);
+        }
+        catch (IllegalArgumentException e)
+        {
+            throw e;
+        }
         //Inizializzazione tentativo
         guessWord = guessWord.toUpperCase();
         String secretWord = currentGame.getSecretWord();

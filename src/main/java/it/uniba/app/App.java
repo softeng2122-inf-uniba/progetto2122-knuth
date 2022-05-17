@@ -154,7 +154,7 @@ public final class App {
             if(Wordle.getNumRemainingGuesses() == 0 || Wordle.getGuessResult() == true)
                 Wordle.endGame();
         }
-        catch (WordleGameException e)
+        catch (WordleGameException | IllegalArgumentException e)
         {
             consoleOutPut.println(e.getMessage());
         }
