@@ -90,7 +90,7 @@ public final class App {
             Wordle.startGame();
             consoleOutPut.printStartGame();
         }
-        catch (Exception e)
+        catch (WordleGameException | WordleSettingException e)
         {
             System.out.println(e.getMessage());
         }
@@ -108,7 +108,7 @@ public final class App {
             Wordle.setSecretWord(secretWord);
             consoleOutPut.println("OK");
         }
-        catch (Exception e)
+        catch (IllegalArgumentException | WordleGameException e)
         {
             System.out.println(e.getMessage());
         }
@@ -137,7 +137,7 @@ public final class App {
                 consoleOutPut.println("Hai abbandonato la partita");
                 Wordle.endGame();
             }
-            catch (Exception e)
+            catch (WordleGameException e)
             {
                 consoleOutPut.println(e.getMessage());
             }
@@ -154,7 +154,7 @@ public final class App {
             if(Wordle.getNumRemainingGuesses() == 0 || Wordle.getGuessResult() == true)
                 Wordle.endGame();
         }
-        catch (Exception e)
+        catch (WordleGameException | IllegalArgumentException e)
         {
             consoleOutPut.println(e.getMessage());
         }
