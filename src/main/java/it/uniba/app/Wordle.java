@@ -155,6 +155,11 @@ public class Wordle
     //setSecretWord()
     public static void setSecretWord(String newWord) throws Exception
     {
+        if (!newWord.matches("[a-zA-Z]+"))
+        {
+            throw new Exception("Parola segreta non valida");
+        }
+
         if (newWord.length() < wordLength)
         {
             throw new Exception("Parola segreta troppo corta");
@@ -164,10 +169,7 @@ public class Wordle
             throw new Exception("Parola segreta troppo lunga");
         }
 
-        if (!newWord.matches("[a-zA-Z]+"))
-        {
-            throw new Exception("Parola segreta non valida");
-        }
+
 
         if (isGameRunning())
         {
