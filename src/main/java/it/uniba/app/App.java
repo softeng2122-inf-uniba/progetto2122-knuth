@@ -4,7 +4,10 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 /**
- * Main class of the application.
+ * {@literal <<Boundary>>} <br>
+ * Classe principale dell'applicazione. <p></p>
+ * Contiene il main e i metodi specifici per l'esecuzione dei comandi inseriti dall'utente.
+ * Utilizza {@link Parser} per processare l'input e {@link Printer} per visualizzare l'output.
  */
 public final class App
 {
@@ -14,9 +17,10 @@ public final class App
     static Parser parser = new Parser();
 
     /**
-     * Entrypoint of the application.
+     * Contiene il ciclo principale di gioco in cui a seconda del comando riconosciuto
+     * vengono eseguite le corrispondenti istruzioni.
      *
-     * @param args command line arguments
+     * @param args argomenti in input da linea di comando
      */
     public static void main(final String[] args)
     {
