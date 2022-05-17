@@ -153,7 +153,7 @@ public class Wordle
     }
 
     //setSecretWord()
-    public static void setSecretWord(String newWord) throws IllegalArgumentException
+    public static void setSecretWord(String newWord) throws IllegalArgumentException, WordleGameException
     {
         if (!newWord.matches("[a-zA-Z]+"))
         {
@@ -173,7 +173,7 @@ public class Wordle
 
         if (isGameRunning())
         {
-            throw new Exception("Partita in corso");
+            throw new WordleGameException("Partita in corso");
         }
 
         secretWord = newWord.toUpperCase();
