@@ -17,7 +17,7 @@ public class Board
 
     //costruttore
     // riceve column lunghezza della matrice e row che permette di avere tante righe quanti sono i tentativi
-    Board(int column ,int row )
+    Board(int column, int row)
     {
         this.guessArray = new Guess[row];
         this.wordLength = column;
@@ -32,7 +32,6 @@ public class Board
     //prende il guess con i colori settati e lo aggiunge alla prima riga libera
     public void acceptNewGuess(Guess g)
     {
-        //nota: non ci sono controlli
         guessArray[firstEmptyIndex] = g;
         firstEmptyIndex++;
     }
