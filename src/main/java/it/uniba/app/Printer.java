@@ -1,9 +1,10 @@
 package it.uniba.app;
 
 import java.io.PrintWriter;
-
-/** Questa classe si occupa delle stampe sul terminale
- *
+/**
+ * {@literal <<Boundary>>} <br>
+ * Classe per la stampa dell'output da visualizzare sulla console. <p></p>
+ * Utilizza codici ANSI per la visualizzazione dei colori e costanti UNICODE nelle stampe di gioco.
  */
 public class Printer extends PrintWriter
 {
@@ -41,6 +42,10 @@ public class Printer extends PrintWriter
         super(System.out,true);
     }
 
+    /**
+     * Stampa la matrice dei tentativi per la partita in corso,
+     * impostando il colore delle caselle in base al risultato di ogni tentativo.
+     */
     public void printBoard()
     {
         int rows;
@@ -113,8 +118,6 @@ public class Printer extends PrintWriter
                 println(e.getMessage());
                 return null;
             }
-
-
 
             switch (c)
             {
