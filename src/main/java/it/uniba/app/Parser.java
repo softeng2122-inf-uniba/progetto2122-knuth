@@ -1,7 +1,9 @@
 package it.uniba.app;
 
-/** Questa classe effettua il parsing dell'input inserito dall'utente
- *
+/**
+ * {@literal <<Boundary>>} <br>
+ * Classe per il parsing dell'input dell'utente. <p></p>
+ * Estrae {@link Command} e relativi argomenti a partire dalle linee digitate.
  */
 public class Parser
 {
