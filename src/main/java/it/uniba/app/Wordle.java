@@ -153,20 +153,20 @@ public class Wordle
     }
 
     //setSecretWord()
-    public static void setSecretWord(String newWord) throws Exception
+    public static void setSecretWord(String newWord) throws IllegalArgumentException
     {
         if (!newWord.matches("[a-zA-Z]+"))
         {
-            throw new Exception("Parola segreta non valida");
+            throw new IllegalArgumentException("Parola segreta non valida");
         }
 
         if (newWord.length() < wordLength)
         {
-            throw new Exception("Parola segreta troppo corta");
+            throw new IllegalArgumentException("Parola segreta troppo corta");
         }
         if (newWord.length() > wordLength)
         {
-            throw new Exception("Parola segreta troppo lunga");
+            throw new IllegalArgumentException("Parola segreta troppo lunga");
         }
 
 
@@ -186,16 +186,16 @@ public class Wordle
         return currentGame != null;
     }
 
-    private static void guessWordCheck(String word) throws Exception
+    private static void guessWordCheck(String word) throws IllegalArgumentException
     {
         if (!word.matches("[a-zA-Z]+"))
-            throw new Exception("Tentativo non valido");
+            throw new IllegalArgumentException("Tentativo non valido");
 
         if (word.length() < wordLength)
-            throw new Exception("Tentantivo incompleto");
+            throw new IllegalArgumentException("Tentantivo incompleto");
 
         if (word.length() > wordLength)
-            throw new Exception("Tentativo eccessivo");
+            throw new IllegalArgumentException("Tentativo eccessivo");
     }
 
     public static String getSecretWord() throws Exception
