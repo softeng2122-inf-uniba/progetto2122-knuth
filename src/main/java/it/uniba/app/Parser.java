@@ -23,7 +23,7 @@ public class Parser
     {
         this.input = inputLine.trim();
         tokens = tokenizeInput();
-        this.command = setCommand();
+        this.command = extractCommand();
         this.args = extractArgs();
     }
 
@@ -37,7 +37,7 @@ public class Parser
         return tokens;
     }
 
-    private Command setCommand()
+    private Command extractCommand()
     {
         Command command = Command.INVALID;
 

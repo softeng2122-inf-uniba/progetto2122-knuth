@@ -1,6 +1,6 @@
 package it.uniba.app;
 
-public class WordleSettingException extends Exception
+public class WordleSettingException extends RuntimeException
 {
     WordleSettingException (String message)
     {

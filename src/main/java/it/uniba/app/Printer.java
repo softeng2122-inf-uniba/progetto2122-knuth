@@ -48,18 +48,8 @@ public class Printer extends PrintWriter
      */
     public void printBoard()
     {
-        int rows;
-        int columns;
-        try
-        {
-            rows = Wordle.getMaxGuesses();
-            columns = Wordle.getWordLength();
-        }
-        catch (WordleGameException e)
-        {
-            println(e.getMessage());
-            return;
-        }
+        int rows = Wordle.getMaxGuesses();
+        int columns = Wordle.getWordLength();
 
         //stampa parte superiore della Board
         println(upperPart(columns));
@@ -96,28 +86,10 @@ public class Printer extends PrintWriter
         String background = "";
         int wordLength;
 
-        try
+        for(int i = 0; i < Wordle.getWordLength(); i++)
         {
-            wordLength = Wordle.getWordLength();
-        }
-        catch (WordleGameException e)
-        {
-            println(e.getMessage());
-            return null;
-        }
-
-        for(int i = 0; i < wordLength; i++)
-        {
-            try
-            {
-                l = Wordle.getLetter(row, i);
-                c = Wordle.getColor(row, i);
-            }
-            catch (WordleGameException e)
-            {
-                println(e.getMessage());
-                return null;
-            }
+            l = Wordle.getLetter(row, i);
+            c = Wordle.getColor(row, i);
 
             switch (c)
             {
@@ -171,30 +143,22 @@ public class Printer extends PrintWriter
 
     public void printGuessResult()
     {
-        try
-        {
-            int maxGuesses = Wordle.getMaxGuesses();
-            int remainingGuesses = Wordle.getNumRemainingGuesses();
+        int maxGuesses = Wordle.getMaxGuesses();
+        int remainingGuesses = Wordle.getNumRemainingGuesses();
 
-            if(Wordle.getGuessResult())
+        if(Wordle.getGuessResult())
+        {
+            println("Parola segreta indovinata");
+            println("Numero di tentativi: "+ (maxGuesses - remainingGuesses));
+        }
+        else
+        {
+            if(remainingGuesses == 0)
             {
-                println("Parola segreta indovinata");
-                println("Numero di tentativi: "+ (maxGuesses - remainingGuesses));
-            }
-            else
-            {
-                if(remainingGuesses == 0)
-                {
-                    println("Hai raggiunto il numero massimo di tentativi");
-                    println("La parola segreta è: " + Wordle.getGameSecretWord());
-                }
+                println("Hai raggiunto il numero massimo di tentativi");
+                println("La parola segreta è: " + Wordle.getGameSecretWord());
             }
         }
-        catch(WordleGameException e)
-        {
-            println(e.getMessage());
-        }
-
     }
 
     public void printDescription()
