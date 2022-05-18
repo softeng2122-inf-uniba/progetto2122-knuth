@@ -18,8 +18,9 @@ public final class App
 
     /**
      * Contiene il ciclo principale di gioco in cui a seconda del comando riconosciuto
-     * vengono eseguite le corrispondenti istruzioni.
-     *
+     * vengono eseguite le corrispondenti istruzioni. <p></p>
+     * Successivamente all'invocazione viene visualizzata una breve descrizione del gioco.
+     * Se l'app viene invocata con il flag "--help" oppure "-h" viene stampata la lista dei comandi disponibili.
      * @param args argomenti in input da linea di comando
      */
     public static void main(final String[] args)
