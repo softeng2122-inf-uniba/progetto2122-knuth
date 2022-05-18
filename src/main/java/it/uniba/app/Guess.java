@@ -1,14 +1,17 @@
 package it.uniba.app;
 
-/** Rappresenta un tentativo del giocatore che cerca di indovinare la parola segreta
- *
+/**
+ * {@literal <<Entity>>} <br>
+ * Classe che rappresenta un tentativo del giocatore.
+ * Ogni lettera del tentativo viene memorizzata in un oggetto di {@link LetterBox}.
  */
 public class Guess
 {
     private final LetterBox[] cellArray;
 
-    /** Rappresenta una cella contenente una lettera del tentativo e il colore associato
-     *
+    /**
+     * {@literal <<Entity>>} <br>
+     * Classe che rappresenta una singola cella di {@link Board} e incapsula lettera e colore.
      */
     public class LetterBox
     {

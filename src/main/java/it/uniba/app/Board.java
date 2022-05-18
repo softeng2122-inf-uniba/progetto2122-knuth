@@ -2,7 +2,7 @@ package it.uniba.app;
 
 /**
  * {@literal <<Entity>>} <br>
- * Classe che rappresenta una griglia di dimensioni 5 righe per 6 colonne che contiene i tentativi validi inseriti dall'utente. <br>
+ * Classe che rappresenta la matrice dei tentativi di dimensioni 5 righe per 6 colonne che contiene i tentativi validi inseriti dall'utente. <br>
  * Questa classe contiene metodi che forniscono informazioni sulla griglia e per l'inserimento di nuovi tentativi.
  */
 public class Board
