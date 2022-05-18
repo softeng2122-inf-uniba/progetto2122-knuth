@@ -1,7 +1,8 @@
 package it.uniba.app;
 
-/** Questa classe si occupa di mantenere i colori del gioco
- *
+/**
+ * {@literal <<NoECB>>} <br>
+ * Il tipo enumerativo Color contiene le costanti che rappresentano i colori utilizzati nel gioco.
  */
 public enum Color
 {
