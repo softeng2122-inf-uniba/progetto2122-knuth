@@ -63,7 +63,7 @@ public class Wordle
             char l = guessWord.charAt(i);
             if(l == secretWord.charAt(i))
             {
-                newGuess.getLetterBox(i).setColor(Color.GREEN);
+                newGuess.setColor(i, Color.GREEN);
 
                 //decrementa dizionario
                 letterMap.put(l, letterMap.get(l) - 1);
@@ -74,18 +74,17 @@ public class Wordle
         Guess.LetterBox lb;
         for(int i = 0; i < guessWord.length(); i++)
         {
-            lb = newGuess.getLetterBox(i);
-            if (lb.getColor() == Color.GREEN)
+            if (newGuess.getColor(i) == Color.GREEN)
                 continue;
 
             char l = guessWord.charAt(i);
             if(letterMap.containsKey(l) && letterMap.get(l) > 0) //test YELLOW
             {
-                newGuess.getLetterBox(i).setColor(Color.YELLOW);
+                newGuess.setColor(i, Color.YELLOW);
                 letterMap.put(l, letterMap.get(l) - 1);
             }
             else
-                newGuess.getLetterBox(i).setColor(Color.GREY);
+                newGuess.setColor(i, Color.GREY);
         }
 
         // aggiungi il tentativo alla matrice dei tentativi
@@ -149,7 +148,7 @@ public class Wordle
         if (row >= currentBoard.getNumFilledRows())
             return ' ';
         else
-            return currentBoard.getGuess(row).getLetterBox(column).getLetter();
+            return currentBoard.getGuess(row).getLetter(column);
     }
 
     public static Color getColor(int row, int column)
@@ -164,7 +163,7 @@ public class Wordle
         if (row >= currentBoard.getNumFilledRows())
             return Color.NO_COLOR;
         else
-            return currentBoard.getGuess(row).getLetterBox(column).getColor();
+            return currentBoard.getGuess(row).getColor(column);
     }
 
     public static void endGame() throws WordleGameException

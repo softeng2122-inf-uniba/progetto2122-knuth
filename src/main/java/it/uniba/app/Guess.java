@@ -52,9 +52,19 @@ public class Guess
         }
     }
 
-    public LetterBox getLetterBox(int index)
+    public Color getColor(int index)
     {
-        return cellArray[index];
+        return cellArray[index].color;
+    }
+
+    public void setColor(int index, Color color)
+    {
+        cellArray[index].color = color;
+    }
+
+    public Character getLetter(int index)
+    {
+        return cellArray[index].letter;
     }
 
     public String getWord()
