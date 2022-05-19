@@ -33,9 +33,9 @@ public class Printer extends PrintWriter
     public static final String GREEN_BACKGROUND = "\u001b[30;42m";  // GREEN
     public static final String YELLOW_BACKGROUND = "\u001b[30;43m"; // YELLOW
     // bold
-    public static final String BOLD = "\u001B[1m";
+    public static final String BOLD = "\u001b[1m";
     // reset
-    public static final String RESET = "\033[0m";  // Text Reset
+    public static final String RESET = "\u001b[0m";  // Text Reset
 
     Printer()
     {
