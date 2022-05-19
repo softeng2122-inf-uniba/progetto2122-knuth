@@ -189,7 +189,7 @@ public final class App
         if(!encoding.equalsIgnoreCase("UTF-8") && !encoding.equalsIgnoreCase("UTF-16"))
         {
             consoleOutput.println("Codifica [" + encoding + "] non supportata");
-            System.exit(1);
+            consoleOutput.println("Alcuni caratteri potrebbero non essere visualizzati correttamente");
         }
     }
 }
