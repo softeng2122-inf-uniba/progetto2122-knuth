@@ -4,37 +4,34 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 /**
- * Main class of the application.
+ * {@literal <<Boundary>>} <br>
+ * Classe principale dell'applicazione. <p></p>
+ * Contiene il main e i metodi specifici per l'esecuzione dei comandi inseriti dall'utente.
+ * Utilizza {@link Parser} per processare l'input e {@link Printer} per visualizzare l'output.
  */
-public final class App {
-
-    /**
-     * Get a greeting sentence.
-     *
-     * @return the "Hello World!" string.
-     */
-    public String getGreeting() {
-        return "Hello World!";
-    }
+public final class App
+{
 
     static Scanner keyboardInput = new Scanner (new InputStreamReader(System.in));
-    static Printer consoleOutPut = new Printer();
+    static Printer consoleOutput = new Printer();
+    static Parser parser = new Parser();
+
     /**
-     * Entrypoint of the application.
-     *
-     * @param args command line arguments
+     * Contiene il ciclo principale di gioco in cui a seconda del comando riconosciuto
+     * vengono eseguite le corrispondenti istruzioni. <p></p>
+     * Successivamente all'invocazione viene visualizzata una breve descrizione del gioco.
+     * Se l'app viene invocata con il flag "--help" oppure "-h" viene stampata la lista dei comandi disponibili.
+     * @param args argomenti in input da linea di comando
      */
     public static void main(final String[] args)
     {
         // stampe iniziali
-        consoleOutPut.printDescription();
-
+        consoleOutput.printDescription();
         if (args.length > 0 && (args[0].equals("--help") || args[0].equals("-h")))
-            consoleOutPut.printHelp();
+            consoleOutput.printHelp();
 
-        System.out.println("Inserisci un comando: ");
+        System.out.print("Wordle> ");
         String inputLine = keyboardInput.nextLine();
-        Parser parser = new Parser();
 
         // invia l'input al parser
         parser.feed(inputLine);
@@ -44,9 +41,6 @@ public final class App {
         {
             switch (command)
             {
-                case DUMMY:
-                    consoleOutPut.printDummy();
-                    break;
                 case GIOCA:
                     executeStart();
                     break;
@@ -60,7 +54,7 @@ public final class App {
                     executeGuess(arguments[0]);
                     break;
                 case INVALID:
-                    consoleOutPut.printInvalid();
+                    consoleOutput.println("Comando invalido");
                     break;
                 case ESCI:
                     executeExitGame();
@@ -69,18 +63,18 @@ public final class App {
                     executePrintSecretWord();
                     break;
                 case HELP:
-                    consoleOutPut.printDescription();
-                    consoleOutPut.printHelp();
+                    consoleOutput.printDescription();
+                    consoleOutput.printHelp();
                     break;
-
             }
-            System.out.println("Inserisci un comando: ");
+
+            System.out.print("Wordle> ");
             inputLine = keyboardInput.nextLine();
+
             parser.feed(inputLine);
             command = parser.getCommand();
             arguments = parser.getArgs();
         }
-
     }
 
     public static void executeStart()
@@ -88,11 +82,12 @@ public final class App {
         try
         {
             Wordle.startGame();
-            consoleOutPut.printStartGame();
+            consoleOutput.println("Hai iniziato la partita");
+            consoleOutput.printBoard();
         }
         catch (WordleGameException | WordleSettingException e)
         {
-            System.out.println(e.getMessage());
+            consoleOutput.println(e.getMessage());
         }
     }
 
@@ -100,17 +95,18 @@ public final class App {
     {
         if (secretWord == null)
         {
-            consoleOutPut.printMissingArgs();
+            consoleOutput.printMissingArgs();
             return;
         }
+
         try
         {
             Wordle.setSecretWord(secretWord);
-            consoleOutPut.println("OK");
+            consoleOutput.println("OK");
         }
         catch (IllegalArgumentException | WordleGameException e)
         {
-            System.out.println(e.getMessage());
+            consoleOutput.println(e.getMessage());
         }
     }
 
@@ -118,15 +114,14 @@ public final class App {
     {
         if(!Wordle.isGameRunning())
         {
-            consoleOutPut.println("Nessuna partita in corso");
+            consoleOutput.println("Nessuna partita in corso");
             return;
         }
 
-        String answer = null;
-
+        String answer;
         do
         {
-            consoleOutPut.println("Sei sicuro di voler abbandonare la partita in corso? [si | no]");
+            consoleOutput.println("Sei sicuro di voler abbandonare la partita in corso? [si | no]");
             answer = keyboardInput.nextLine();
         } while (!answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
 
@@ -134,12 +129,12 @@ public final class App {
         {
             try
             {
-                consoleOutPut.println("Hai abbandonato la partita");
+                consoleOutput.println("Hai abbandonato la partita");
                 Wordle.endGame();
             }
             catch (WordleGameException e)
             {
-                consoleOutPut.println(e.getMessage());
+                consoleOutput.println(e.getMessage());
             }
         }
     }
@@ -149,34 +144,39 @@ public final class App {
         try
         {
             Wordle.guess(guessWord);
-            consoleOutPut.printBoard();
-            consoleOutPut.printGuessResult();
-            if(Wordle.getNumRemainingGuesses() == 0 || Wordle.getGuessResult() == true)
+            consoleOutput.printBoard();
+            consoleOutput.printGuessResult();
+            if(Wordle.getNumRemainingGuesses() == 0 || Wordle.getGuessResult())
                 Wordle.endGame();
         }
         catch (WordleGameException | IllegalArgumentException e)
         {
-            consoleOutPut.println(e.getMessage());
+            consoleOutput.println(e.getMessage());
         }
     }
 
     public static void executeExitGame()
     {
-        String answer = null;
+        String answer;
         do
         {
-            consoleOutPut.println("Sei sicuro di voler uscire da Wordle? [si | no]");
+            consoleOutput.println("Sei sicuro di voler uscire da Wordle? [si | no]");
             answer = keyboardInput.nextLine();
         } while (!answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
 
         if (answer.equalsIgnoreCase("si"))
-        {
             System.exit(0);
-        }
     }
 
     public static void executePrintSecretWord()
     {
-        consoleOutPut.printSecretWord();
+        try
+        {
+            consoleOutput.format("Parola segreta: %s\n", Wordle.getSecretWord());
+        }
+        catch (WordleSettingException e)
+        {
+            consoleOutput.println(e.getMessage());
+        }
     }
 }

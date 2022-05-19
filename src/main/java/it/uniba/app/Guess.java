@@ -1,14 +1,17 @@
 package it.uniba.app;
 
-/** Rappresenta un tentativo del giocatore che cerca di indovinare la parola segreta
- *
+/**
+ * {@literal <<Entity>>} <br>
+ * Classe che rappresenta un tentativo del giocatore.
+ * Ogni lettera del tentativo viene memorizzata in un oggetto di {@link LetterBox}.
  */
 public class Guess
 {
     private final LetterBox[] cellArray;
 
-    /** Rappresenta una cella contenente una lettera del tentativo e il colore associato
-     *
+    /**
+     * {@literal <<Entity>>} <br>
+     * Classe che rappresenta una singola cella di {@link Board} e incapsula lettera e colore.
      */
     public class LetterBox
     {
@@ -52,18 +55,26 @@ public class Guess
         }
     }
 
-    public LetterBox getLetterBox(int index)
+    public Color getColor(int index)
     {
-        return cellArray[index];
+        return cellArray[index].color;
+    }
+
+    public void setColor(int index, Color color)
+    {
+        cellArray[index].color = color;
+    }
+
+    public Character getLetter(int index)
+    {
+        return cellArray[index].letter;
     }
 
     public String getWord()
     {
         StringBuilder s = new StringBuilder("");
         for (LetterBox lb : cellArray)
-        {
             s.append(lb.getLetter());
-        }
         return s.toString();
     }
 

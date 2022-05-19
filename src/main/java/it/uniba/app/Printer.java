@@ -1,9 +1,10 @@
 package it.uniba.app;
 
 import java.io.PrintWriter;
-
-/** Questa classe si occupa delle stampe sul terminale
- *
+/**
+ * {@literal <<Boundary>>} <br>
+ * Classe per la stampa dell'output da visualizzare sulla console. <p></p>
+ * Utilizza codici ANSI per la visualizzazione dei colori e costanti UNICODE nelle stampe di gioco.
  */
 public class Printer extends PrintWriter
 {
@@ -28,21 +29,23 @@ public class Printer extends PrintWriter
     private static final String HORIZONTAL_EDGE_X3 = HORIZONTAL_EDGE + "" + HORIZONTAL_EDGE + HORIZONTAL_EDGE;
 
     //backgrounds
-    public static final String GREY_BACKGROUND = "\033[100m"; //GREY
-    public static final String GREEN_BACKGROUND = "\033[42m";  // GREEN
-    public static final String YELLOW_BACKGROUND = "\033[43m"; // YELLOW
-
+    public static final String GREY_BACKGROUND = "\033[30;100;1m"; //GREY
+    public static final String GREEN_BACKGROUND = "\033[30;42;1m";  // GREEN
+    public static final String YELLOW_BACKGROUND = "\033[30;43;1m"; // YELLOW
     // bold
     public static final String BOLD = "\u001B[1m";
+    // reset
+    public static final String RESET = "\033[0m";  // Text Reset
 
     Printer()
     {
         super(System.out,true);
     }
 
-    // reset background
-    public static final String RESET = "\033[0m";  // Text Reset
-
+    /**
+     * Stampa la matrice dei tentativi per la partita in corso,
+     * impostando il colore delle caselle in base al risultato di ogni tentativo.
+     */
     public void printBoard()
     {
         int rows = Wordle.getMaxGuesses();
@@ -65,14 +68,11 @@ public class Printer extends PrintWriter
 
     private String upperPart(int wordLength)
     {
-        //nota: effettuare il cambio in stringBuilder
-
         StringBuilder upperPart = new StringBuilder(L_U_ANGLE + "" + HORIZONTAL_EDGE_X3);
 
         for(int i = 1; i <= wordLength - 1; i++)
-        {
             upperPart.append(U_SEPARATOR + "" + HORIZONTAL_EDGE_X3);
-        }
+
         upperPart.append(R_U_ANGLE);
 
         return upperPart.toString();
@@ -84,6 +84,7 @@ public class Printer extends PrintWriter
         Color c;
         char l;
         String background = "";
+        int wordLength;
 
         for(int i = 0; i < Wordle.getWordLength(); i++)
         {
@@ -105,7 +106,7 @@ public class Printer extends PrintWriter
                     background = "";
                     break;
             }
-            guessSlice.append(background +" "+l+" "+RESET).append(VERTICAL_EDGE);
+            guessSlice.append(background + " " + l + " " + RESET).append(VERTICAL_EDGE);
         }
 
         return guessSlice.toString();
@@ -113,13 +114,11 @@ public class Printer extends PrintWriter
 
     private String separatorSlice(int wordLength)
     {
-        //nota: effettuare il cambio in stringBuilder
         StringBuilder separatorSlice = new StringBuilder(L_SEPARATOR + "" + HORIZONTAL_EDGE_X3);
 
         for(int i = 1; i <= wordLength - 1; i++)
-        {
             separatorSlice.append(CROSS + HORIZONTAL_EDGE_X3);
-        }
+
         separatorSlice.append(R_SEPARATOR);
 
         return separatorSlice.toString();
@@ -127,50 +126,17 @@ public class Printer extends PrintWriter
 
     private String lowerPart(int wordLength)
     {
-        //nota: effettuare il cambio in stringBuilder
-
         StringBuilder lowerPart = new StringBuilder(L_D_ANGLE + "" + HORIZONTAL_EDGE_X3);
 
         for(int i = 1; i <= wordLength - 1; i++)
-        {
             lowerPart.append(D_SEPARATOR +  HORIZONTAL_EDGE_X3);
-        }
+
         lowerPart.append(R_D_ANGLE);
 
         return lowerPart.toString();
     }
 
-    public void printStartGame()
-    {
-        System.out.println("Hai iniziato la partita.");
-        printBoard();
-    }
-    //static void printSecretWord()
-    public void printSecretWord()
-    {
-        try
-        {
-            format("Parola segreta: %s\n", Wordle.getSecretWord());
-        }
-        catch (WordleSettingException e)
-        {
-            println(e.getMessage());
-        }
-    }
-    //static void printHelp()
-
-
-    public void printDummy()
-    {
-        println("Hai inserito il comando Dummy.");
-    }
-
-    public void printInvalid ()
-    {
-        println("Hai inserito un comando invalido.");
-    }
-
-    public void printMissingArgs ()
+    public void printMissingArgs()
     {
         println("Argomento/i mancante/i");
     }
@@ -179,6 +145,7 @@ public class Printer extends PrintWriter
     {
         int maxGuesses = Wordle.getMaxGuesses();
         int remainingGuesses = Wordle.getNumRemainingGuesses();
+
         if(Wordle.getGuessResult())
         {
             println("Parola segreta indovinata");
@@ -196,7 +163,6 @@ public class Printer extends PrintWriter
 
     public void printDescription()
     {
-
         printWordleLogo();
 
         println("Wordle è un videogioco in cui il giocatore deve indovinare una parola segreta");
@@ -211,21 +177,21 @@ public class Printer extends PrintWriter
         println(" se è contenuta nella parola segreta ma in una posizione diversa");
 
         print(GREY_BACKGROUND + "GRIGIO" + RESET);
-        println(" se non è contenuta nella parola segreta");
-        println();
+        println(" se non è contenuta nella parola segreta\n");
     }
 
     private void printWordleLogo()
     {
-
         println(upperPart(6));
         print(VERTICAL_EDGE);
+
         print(coloredLetterSpace('W', Color.GREEN) + VERTICAL_EDGE);
         print(coloredLetterSpace('O', Color.GREY) + VERTICAL_EDGE);
         print(coloredLetterSpace('R', Color.YELLOW) + VERTICAL_EDGE);
         print(coloredLetterSpace('D', Color.GREEN) + VERTICAL_EDGE);
         print(coloredLetterSpace('L', Color.YELLOW) + VERTICAL_EDGE);
         println(coloredLetterSpace('E', Color.GREY) + VERTICAL_EDGE);
+
         println(lowerPart(6));
     }
 
