@@ -29,9 +29,9 @@ public class Printer extends PrintWriter
     private static final String HORIZONTAL_EDGE_X3 = HORIZONTAL_EDGE + "" + HORIZONTAL_EDGE + HORIZONTAL_EDGE;
 
     //backgrounds
-    public static final String GREY_BACKGROUND = "\033[30;100;1m"; //GREY
-    public static final String GREEN_BACKGROUND = "\033[30;42;1m";  // GREEN
-    public static final String YELLOW_BACKGROUND = "\033[30;43;1m"; // YELLOW
+    public static final String GREY_BACKGROUND = "\u001b[30;47m"; //GREY
+    public static final String GREEN_BACKGROUND = "\u001b[30;42m";  // GREEN
+    public static final String YELLOW_BACKGROUND = "\u001b[30;43m"; // YELLOW
     // bold
     public static final String BOLD = "\u001B[1m";
     // reset

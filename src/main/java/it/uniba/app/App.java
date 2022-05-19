@@ -25,6 +25,9 @@ public final class App
      */
     public static void main(final String[] args)
     {
+        //controlla codifica del terminale su cui l'app è eseguita
+        checkEncoding();
+
         // stampe iniziali
         consoleOutput.printDescription();
         if (args.length > 0 && (args[0].equals("--help") || args[0].equals("-h")))
@@ -177,6 +180,16 @@ public final class App
         catch (WordleSettingException e)
         {
             consoleOutput.println(e.getMessage());
+        }
+    }
+
+    public static void checkEncoding()
+    {
+        String encoding = System.getProperty("file.encoding");
+        if(!encoding.equalsIgnoreCase("UTF-8") && !encoding.equalsIgnoreCase("UTF-16"))
+        {
+            consoleOutput.println("Codifica [" + encoding + "] non supportata");
+            consoleOutput.println("Alcuni caratteri potrebbero non essere visualizzati correttamente");
         }
     }
 }
