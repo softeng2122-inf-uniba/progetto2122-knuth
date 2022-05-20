@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 740 731" style="enable-background:new 0 0 740 731;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{font-family:'Arial-BoldMT';}
+	.st4{font-size:13px;}
+	.st5{fill:none;stroke:#000000;stroke-miterlimit:10;stroke-dasharray:3;}
+	.st6{font-family:'ArialMT';}
+	.st7{font-size:10.928px;}
+</style>
+<g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="903" y="47" class="st0" width="71.7" height="39"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="896" y="40" class="st1" width="71.7" height="39"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M896,40h71.7v39H896V40z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 909.9592 58)" class="st3 st4">Wordle</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st5" d="M932.5,80v640"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="639" y="47" class="st0" width="81.8" height="39"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="632" y="40" class="st1" width="81.8" height="39"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M632,40h81.8v39H632V40z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 648 58)" class="st3 st4">: Printer</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st5" d="M673.5,80v640"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st1" d="M960,168h157l10,10v69H960V168"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M960,168h157l10,10v69H960V168L960,168"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M1117,168v10h10L1117,168"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 965 183)" class="st6 st4">si recuperano dalla classe</text>
+			<text transform="matrix(1 0 0 1 965 196)" class="st6 st4">di controllo Wordle tutte le</text>
+			<text transform="matrix(1 0 0 1 965 209)" class="st6 st4">informazioni per poter</text>
+			<text transform="matrix(1 0 0 1 965 222)" class="st6 st4">stampare la matrice dei</text>
+			<text transform="matrix(1 0 0 1 965 235)" class="st6 st4">tentativi</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path d="M504,103.5c0-3.9,3.1-7,7-7c3.9,0,7,3.1,7,7s-3.1,7-7,7C507.1,110.5,504,107.4,504,103.5z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M518,104h148"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path d="M655.8,108.2L666,104l-10.2-4.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M655.8,108.2L666,104l-10.2-4.2V108.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 548.5 99)" class="st6 st4">1 : printBoard()</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="666" y="104" class="st1" width="13" height="600"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M666,104h13v600h-13V104z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M679,128h246"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path d="M914.8,132.2L925,128l-10.2-4.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M914.8,132.2L925,128l-10.2-4.2V132.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 714.5 123)" class="st6 st4">2 : nRows = getMaxGuesses()</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="925" y="128" class="st1" width="13" height="28"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M925,128h13v28h-13V128z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M679,168h246"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path d="M914.8,172.2L925,168l-10.2-4.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M914.8,172.2L925,168l-10.2-4.2V172.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 706.5 162)" class="st6 st4">3 : nColumns = getWordLength()</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="925" y="168" class="st1" width="13" height="28"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M925,168h13v28h-13V168z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M679,224h30v20h-23"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path d="M696.2,239.8L686,244l10.2,4.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M696.2,239.8L686,244l10.2,4.2V239.8"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 726.2236 235)" class="st6 st4">4 : upperPart()</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="673" y="244" class="st1" width="13" height="28"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M673,244h13v28h-13V244z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M679,328h30v20h-23"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path d="M696.2,343.8L686,348l10.2,4.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M696.2,343.8L686,348l10.2,4.2V343.8"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 709.5854 323)" class="st6 st4">5 : guessSlice()</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="673" y="348" class="st1" width="13" height="180"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M673,348h13v180h-13V348z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M686,416h239"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path d="M914.8,420.2L925,416l-10.2-4.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M914.8,420.2L925,416l-10.2-4.2V420.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 746.813 410)" class="st6 st4">6 : getLetter(i, j)</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="925" y="416" class="st1" width="13" height="28"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M925,416h13v28h-13V416z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M686,456h239"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path d="M914.8,460.2L925,456l-10.2-4.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M914.8,460.2L925,456l-10.2-4.2V460.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 746.2954 450)" class="st6 st4">7 : getColor(i, j)</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="925" y="456" class="st1" width="13" height="28"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M925,456h13v28h-13V456z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M679,536h30v20h-23"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path d="M696.2,551.8L686,556l10.2,4.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M696.2,551.8L686,556l10.2,4.2V551.8"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 719.9009 547)" class="st6 st4">8 : separatorSlice()</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="673" y="556" class="st1" width="13" height="28"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M673,556h13v28h-13V556z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M679,616h30v20h-23"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path d="M696.2,631.8L686,636l10.2,4.2"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M696.2,631.8L686,636l10.2,4.2V631.8"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 719.5 627)" class="st6 st4">9 : lowerPart()</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<rect x="673" y="636" class="st1" width="13" height="28"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M673,636h13v28h-13V636z"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M624,280h344v328H624V280"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st1" d="M624,280v22h134.9l11-11v-11H624"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M624,280v22h134.9l11-11v-11H624L624,280"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 659.5781 296)" class="st6 st4">[0 &lt;= i &lt; nRows]</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 627.5718 296)" class="st3 st4">loop</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M640,368h312v136H640V368"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st1" d="M640,368v22h153.7l11-11v-11H640"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M640,368v22h153.7l11-11v-11H640L640,368"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 675.5781 384)" class="st6 st4">[0 &lt;= j &lt; nColumns]</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 643.5718 384)" class="st3 st4">loop</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M456,16h720v711H456V16"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st1" d="M456,16v22h96.9l11-11V16H456"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<path class="st2" d="M456,16v22h96.9l11-11V16H456L456,16"/>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 487.96 32)" class="st6 st4">printBoard</text>
+		</g>
+	</g>
+	<g transform="translate(-446,-6) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text id="sd" transform="matrix(1.1896 0 0 1 460.2793 31.28)" class="st3 st7">sd</text>
+		</g>
+	</g>
+</g>
+</svg>

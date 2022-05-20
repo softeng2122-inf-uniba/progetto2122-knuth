@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 572.2 237" style="enable-background:new 0 0 572.2 237;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{font-family:'ArialMT';}
+	.st4{font-size:13px;}
+	.st5{font-family:'Arial-BoldMT';}
+	.st6{fill:none;stroke:#000000;stroke-miterlimit:10;stroke-dasharray:3;}
+</style>
+<g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<rect x="215" y="167" class="st0" width="202.7" height="83"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<rect x="208" y="160" class="st1" width="202.7" height="83"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M208,160h202.7v83H208V160z"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M208,198h202.7"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M208,221h202.7"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 275.0149 175.71)" class="st3 st4">«boundary»</text>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 296.7144 190.4719)" class="st5 st4">App</text>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 213 213.71)" class="st3 st4">~keyboardInput: Scanner</text>
+			<path class="st2" d="M213,215.5h145.6"/>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 213 236.71)" class="st3 st4">+executeSetSecretWord()</text>
+			<path class="st2" d="M213,238.5h149.7"/>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<rect x="247" y="311" class="st0" width="137.6" height="57"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<rect x="240" y="304" class="st1" width="137.6" height="57"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M240,304h137.6v57H240V304z"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M240,342h137.6"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M240,352h137.6"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 274.4641 319.71)" class="st3 st4">«boundary»</text>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 288.5591 334.4719)" class="st5 st4">Parser</text>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<rect x="583" y="151" class="st0" width="184.2" height="113"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<rect x="576" y="144" class="st1" width="184.2" height="113"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M576,144h184.2v113H576V144z"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M576,182h184.2"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M576,235h184.2"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 641.3677 159.71)" class="st3 st4">«control»</text>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 646.1982 174.71)" class="st5 st4">Wordle</text>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 581 197.71)" class="st3 st4">-secretWord: String</text>
+			<path class="st2" d="M581,199.5h111.7"/>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 581 212.71)" class="st3 st4">-nMaxGuesses: int</text>
+			<path class="st2" d="M581,214.5h108.4"/>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 581 227.71)" class="st3 st4">-wordLength: int</text>
+			<path class="st2" d="M581,229.5h93.2"/>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 581 250.71)" class="st3 st4">+setSecretWord()</text>
+			<path class="st2" d="M581,252.5h102"/>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st6" d="M412,201l163-1"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M564.9,204.3L575,200l-10.2-4.1"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 476.5 190.71)" class="st3 st4">«call»</text>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M309,244l-1,59"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M304,292.8l4,10.2l4.4-10.1"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 291.5 297.4719)" class="st3 st4">1</text>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<rect x="439" y="311" class="st0" width="134.7" height="57"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<rect x="432" y="304" class="st1" width="134.7" height="57"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M432,304h134.7v57H432V304z"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M432,342h134.7"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M432,352h134.7"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 465.0295 319.71)" class="st3 st4">«boundary»</text>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 478.4136 334.71)" class="st5 st4">Printer</text>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M371,244l86,59"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<path class="st2" d="M446.2,300.7L457,303l-6-9.2"/>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 447.5 290.71)" class="st3 st4">~consoleOutput</text>
+		</g>
+	</g>
+	<g transform="translate(-198,-134) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 423.5 297.4719)" class="st3 st4">1</text>
+		</g>
+	</g>
+</g>
+</svg>
