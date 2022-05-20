@@ -24,7 +24,7 @@ La versione presentata in questo progetto è una variante del gioco originale ch
 Si è considerata la griglia di gioco come una matrice di tentativi a dimensione fissa (6 righe, 5 colonne), che inizialmente viene raffigurata come una griglia vuota, le cui righe verranno popolate dall'alto verso il basso con le parole rappresentanti i tentativi validi. Questo giustifica la molteplicità scelta, in quanto il numero di legami della matrice dei tentativi con i tentativi aumenta nel corso della partita.
 
 <p align="center">
-  <img src="../drawings/modello di dominio.svg" alt="modello di dominio" width="450"/>
+  <img src="./drawings/modello di dominio.svg" alt="modello di dominio" width="450"/>
 </p>
 
 
@@ -195,17 +195,17 @@ Nei seguenti diagrammi vengono omessi alcuni dettagli facilmente comprensibili d
 _Nota: gli attributi e i metodi della classe parser vengono tutti utilizzati in ogni User story, per cui si presenta tale classe nella sua interezza in modo tale da non ripeterne i membri negli altri diagrammi delle classi._
 
 <p align="center">
-<img src="./img/Parser.svg" alt="Parser" width="200" />
+<img src="./drawings/Parser.svg" alt="Parser" width="200" />
 </p>
 
 - **Impostazione manuale parola segreta**: *Come paroliere voglio impostare una parola segreta manualmente*  
 
 <p align="center">
-  <img src="./img/CLS - Nuova parola.svg" alt="CLS - Nuova parola" width="800"/>
+  <img src="./drawings/CLS - Nuova parola.svg" alt="CLS - Nuova parola" width="800"/>
 </p>
 
 <p align="center">
-  <img src="./img/SEQ - Nuova parola.svg" alt="SEQ - Nuova parola" width="800"/>
+  <img src="./drawings/SEQ - Nuova parola.svg" alt="SEQ - Nuova parola" width="800"/>
 </p>
 
 
@@ -228,28 +228,28 @@ _Nota: gli attributi e i metodi della classe parser vengono tutti utilizzati in 
   La molteplicità 0..1 nel legame tra **Wordle** e **WordleGame** è giustificata dal fatto che all'inizio la partita non esiste ma viene creata nel corso dell'interazione
 
 <p align="center">
-  <img src="./img/CLS - Inizio nuova partita.svg" alt="CLS - Inizio nuova partita" width="800"/>
+  <img src="./drawings/CLS - Inizio nuova partita.svg" alt="CLS - Inizio nuova partita" width="800"/>
 </p>
 
 <p align="center">
-  <img src="./img/SEQ - Inizio nuova partita.svg" alt="SEQ - Inizio nuova partita" width="1000"/>
+  <img src="./drawings/SEQ - Inizio nuova partita.svg" alt="SEQ - Inizio nuova partita" width="1000"/>
 </p>
 
 Diagramma di sequenza **printBoard**:
 
 <p align="center">
-  <img src="./img/printBoard.svg" alt="printBoard" width="800"/>
+  <img src="./drawings/printBoard.svg" alt="printBoard" width="800"/>
 </p>
 
 
 - **Abbandono partita**: *Come giocatore voglio abbandonare la partita*
 
 <p align="center">
-  <img src="./img/CLS - Abbandono partita.svg" alt="CLS Abbandono Partita" width="800"/>
+  <img src="./drawings/CLS - Abbandono partita.svg" alt="CLS Abbandono Partita" width="800"/>
 </p>
 
 <p align="center">
-  <img src="./img/SEQ - Abbandono partita.svg" alt="SEQ - Abbandono partita" width="900"/>
+  <img src="./drawings/SEQ - Abbandono partita.svg" alt="SEQ - Abbandono partita" width="900"/>
 </p>
 
 
@@ -264,17 +264,17 @@ Diagramma di sequenza **printBoard**:
 - **Tentativo parola segreta**: *Come giocatore voglio effettuare un tentativo per indovinare la parola segreta*
 
 <p align="center">
-  <img src="./img/CLS - Tentativo.svg" alt="CLS tentativo" width="1000"/>
+  <img src="./drawings/CLS - Tentativo.svg" alt="CLS tentativo" width="1000"/>
 </p>
 
 <p align="center">
-  <img src="./img/SEQ - Tentativo.svg" alt="SEQ tentativo" width="1000"/>
+  <img src="./drawings/SEQ - Tentativo.svg" alt="SEQ tentativo" width="1000"/>
 </p>
 
 Diagramma di sequenza **guess**: Alla creazione delle **LetterBox** vengono inserite le lettere che compongono la stringa _w_ e viene impostato il valore *NO_COLOR*
 
 <p align="center">
-  <img src="./img/guess.svg" alt="guess" width="1000"/>
+  <img src="./drawings/guess.svg" alt="guess" width="1000"/>
 </p>
 
 La realizzazione dell'algoritmo per l'impostazione dei colori prevede l'utilizzo di un dizionario in quanto è necessario memorizzare delle coppie in cui la chiave sia una lettera presente nella parola segreta e il valore associato sia il numero di occorrenze in cui è presente. 
