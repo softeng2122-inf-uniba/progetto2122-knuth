@@ -172,3 +172,119 @@ Si è considerata la griglia di gioco come una matrice di tentativi a dimensione
     _Tra questi 8 colori non vi è il grigio (https://en.wikipedia.org/wiki/ANSI_escape_code#3-bit_and_4-bit), per cui abbiamo cercato una soluzione che funzionasse per ognuno dei terminali citati: non avendo trovato un modo semplice per individuare a run-time il numero di colori supportati in base al terminale su cui si sta eseguendo l'applicazione, abbiamo scelto di utilizzare il colore **bianco** come sostituto del grigio._
 
     _Per una migliore visualizzazione dei colori è comunque consigliato utilizzare il tema di default in ogni terminale (temi diversi potrebbero portare a una visualizzazione incoerente ed effetti non prevedibili a priori)._
+
+## 5. OO design
+Nella modellazione delle classi abbiamo mantenuto una costante attenzione sullla suddivisione dei ruoli **entity**, **control** e **boundary**.
+
+- Le classi boundary, che costituiscono la parte dell'applicazione adibita alla *User Interface*, comunicano solo tra di loro e con la classe di controllo **Wordle**. 
+
+- La classe **Wordle** permette di gestire interamente le partite del gioco: fornisce un'API composta da metodi che
+  - sono indipendenti dalla particolare UI implementata
+  - racchiudono tutte le interazioni con le classi di tipo entity non esponendole all'esterno
+  - controllano tutte le condizioni di integrità per la corretta esecuzione delle partite.
+
+- Le classi entity ricalcano le classi concettuali individuate nel modello di dominio: abbiamo ritenuto opportuno che la classe **LetterBox** (ovvero la cella nel modello di dominio) fosse interna al tentativo, in quanto ciò rispecchia il legame concettuale di composizione.
+
+Abbiamo scelto di memorizzare in **Wordle**, tramite attributi statici, le impostazioni di gioco, che vengono impostate dall'utente prima che decida di inziare una partita: alla creazione dell'oggetto partita (classe **WordleGame**) i valori impostati saranno copiati come suoi attributi di istanza e caratterizzeranno la partita.
+- Attualmente l'unica impostazione modificata dall'utente è la parola segreta
+- Altre impostazioni sono il numero massimo di tentativi e la lunghezza delle parole, per ora non modificabili
+
+### DIAGRAMMI USER STORY
+Nei seguenti diagrammi vengono omessi alcuni dettagli facilmente comprensibili dal codice in quanto appesantirebbero inutilmente la lettura; inoltre i metodi che costituiscono l'interfaccia fornita dalla classe controllo vengono sempre riportati in quanto riteniamo importante evidenziare tutti i metodi per la comunicazione tra la _User Interface_ e l'_API Wordle_
+
+_Nota: gli attributi e i metodi della classe parser vengono tutti utilizzati in ogni User story, per cui si presenta tale classe nella sua interezza in modo tale da non ripeterne i membri negli altri diagrammi delle classi._
+
+<p align="center">
+<img src="./img/Parser.svg" alt="Parser" width="200" />
+</p>
+
+- **Impostazione manuale parola segreta**: *Come paroliere voglio impostare una parola segreta manualmente*  
+
+<p align="center">
+  <img src="./img/CLS - Nuova parola.svg" alt="CLS - Nuova parola" width="800"/>
+</p>
+
+<p align="center">
+  <img src="./img/SEQ - Nuova parola.svg" alt="SEQ - Nuova parola" width="800"/>
+</p>
+
+
+- **Mostra parola segreta**: *Come paroliere voglio mostrare la parola segreta*
+
+    I diagrammi delle classi e di sequenza di questa user story sono molto simili a quelli della precedente, con variazioni opportune di metodi:
+    - _executePrintSecretWord_ al posto del metodo _executeSetSecretWord_
+    - _getSecretWord_ al posto di _setSecretWord_
+
+
+- **Comando help**: *Come giocatore voglio mostrare l'help con elenco comandi*
+
+    Anche in questo caso i diagrammi delle classi e di sequenza sono molto simili a quelli di **Impostazione manuale parola segreta**, con variazioni opportune di metodi:
+    - al posto della chiamata a _executeSetSecretWord_ vengono invocati direttamente i metodi _printDescription_ e _printHelp_ della classe **Printer**
+    - non vengono effettuate chiamate alla classe **Wordle**
+
+
+- **Inizio nuova partita**: *Come giocatore voglio iniziare una nuova partita*
+
+  La molteplicità 0..1 nel legame tra **Wordle** e **WordleGame** è giustificata dal fatto che all'inizio la partita non esiste ma viene creata nel corso dell'interazione
+
+<p align="center">
+  <img src="./img/CLS - Inizio nuova partita.svg" alt="CLS - Inizio nuova partita" width="800"/>
+</p>
+
+<p align="center">
+  <img src="./img/SEQ - Inizio nuova partita.svg" alt="SEQ - Inizio nuova partita" width="1000"/>
+</p>
+
+Diagramma di sequenza **printBoard**:
+
+<p align="center">
+  <img src="./img/printBoard.svg" alt="printBoard" width="800"/>
+</p>
+
+
+- **Abbandono partita**: *Come giocatore voglio abbandonare la partita*
+
+<p align="center">
+  <img src="./img/CLS - Abbandono partita.svg" alt="CLS Abbandono Partita" width="800"/>
+</p>
+
+<p align="center">
+  <img src="./img/SEQ - Abbandono partita.svg" alt="SEQ - Abbandono partita" width="900"/>
+</p>
+
+
+- **Chiusura gioco**: *Come giocatore voglio chiudere il gioco*
+
+    I diagrammi delle classi e di sequenza di questa user story sono molto simili a quelli della precedente, con variazioni opportune di metodi:
+    - _executeExitGame_ al posto del metodo _executeQuitGame_
+    - anche in questo caso ci sarà richiesta di conferma
+    - al posto della chiamata di _endGame_ vi sarà la chiusura dell'applicazione
+
+
+- **Tentativo parola segreta**: *Come giocatore voglio effettuare un tentativo per indovinare la parola segreta*
+
+<p align="center">
+  <img src="./img/CLS - Tentativo.svg" alt="CLS tentativo" width="1000"/>
+</p>
+
+<p align="center">
+  <img src="./img/SEQ - Tentativo.svg" alt="SEQ tentativo" width="1000"/>
+</p>
+
+Diagramma di sequenza **guess**: Alla creazione delle **LetterBox** vengono inserite le lettere che compongono la stringa _w_ e viene impostato il valore *NO_COLOR*
+
+<p align="center">
+  <img src="./img/guess.svg" alt="guess" width="1000"/>
+</p>
+
+La realizzazione dell'algoritmo per l'impostazione dei colori prevede l'utilizzo di un dizionario in quanto è necessario memorizzare delle coppie in cui la chiave sia una lettera presente nella parola segreta e il valore associato sia il numero di occorrenze in cui è presente. 
+
+In questo modo, a seguito del controllo posizionale che determina quali lettere saranno verdi, sarà stato decrementato il numero di occorrenze corrispondenti a queste.
+
+Adesso risulta semplice, scandendo le lettere rimanenti (non verdi) da sinistra verso destra, determinare se una lettera del tentativo dev'essere colorata in giallo. Entrambe le condizioni seguenti devono essere verificate affinché ciò succeda:
+- tale lettera dev'essere presente nel dizionario (ossia presente nella parola segreta)
+- il numero di occorrenze rimanenti dev'essere maggiore di 0 (altrimenti tutte le altre lettere uguali sono state già segnalate)
+
+Le lettere restanti sono, ovviamente, da colorare in grigio. 
+
+_nota: se nel tentativo sono presenti più lettere uguali che dovrebbero essere colorate di giallo perché rispettano le condizioni viste, verrà data precedenza a quelle più a sinistra (da notare che a ogni passo verrà decrementato il numero di occorrenze contenuto nel dizionario)._
