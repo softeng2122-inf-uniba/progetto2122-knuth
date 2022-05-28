@@ -72,7 +72,7 @@ public class Parser {
             if (tokenCommand.equalsIgnoreCase(Command.HELP.toString())) {
                 command = Command.HELP;
             }
-        } else {//CASO 3: tentativo
+        } else {   //CASO 3: tentativo
             command = Command.GUESS;
         }
         return command;

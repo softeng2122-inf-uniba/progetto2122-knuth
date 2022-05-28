@@ -89,8 +89,7 @@ public final class App {
             Wordle.startGame();
             consoleOutput.println("Hai iniziato la partita");
             consoleOutput.printBoard();
-        }
-        catch (WordleGameException | WordleSettingException e) {
+        } catch (WordleGameException | WordleSettingException e) {
             consoleOutput.println(e.getMessage());
         }
     }
@@ -118,7 +117,9 @@ public final class App {
         String answer;
         do {
             consoleOutput.println(
-                    "Sei sicuro di voler abbandonare la partita in corso? [si | no]");
+                    "Sei sicuro di voler abbandonare la partita in corso?"
+                            + " [si | no]");
+
             answer = keyboardInput.nextLine();
         } while (!answer.equalsIgnoreCase("si")
                 && !answer.equalsIgnoreCase("no"));
