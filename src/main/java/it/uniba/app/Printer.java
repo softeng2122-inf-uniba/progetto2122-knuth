@@ -39,7 +39,7 @@ public class Printer extends PrintWriter {
     public static final String RESET = "\u001b[0m";  // Text Reset
 
     Printer() {
-        super(System.out ,true);
+        super(System.out, true);
     }
 
     /**
