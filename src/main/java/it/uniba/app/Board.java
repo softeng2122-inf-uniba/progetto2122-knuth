@@ -11,10 +11,12 @@ public class Board {
     private final Guess[] guessArray;
     private final int wordLength;
     private int firstEmptyIndex;
+    private static final int setColumn = 5;
+    private static final int setRow = 6;
 
     //costruttore per wordle classico con parola da 5 lettere
     Board() {
-        this(5  , 6);
+        this(setColumn  , setRow);
     }  // molto probabilmente servirà una costante per questi argomenti
 
     //costruttore
