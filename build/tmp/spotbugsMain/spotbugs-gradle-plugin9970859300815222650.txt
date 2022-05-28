@@ -1,0 +1,15 @@
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\App$1.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\App.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\Board.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\Color.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\Command.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\Guess$LetterBox.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\Guess.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\Parser$1.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\Parser.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\Printer$1.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\Printer.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\Wordle.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\WordleGame.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\WordleGameException.class
+C:\Users\emata\progetto2122-knuth\build\classes\java\main\it\uniba\app\WordleSettingException.class

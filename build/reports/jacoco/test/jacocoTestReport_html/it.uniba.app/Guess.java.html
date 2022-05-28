@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Guess.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">wordle</a> &gt; <a href="index.source.html" class="el_package">it.uniba.app</a> &gt; <span class="el_source">Guess.java</span></div><h1>Guess.java</h1><pre class="source lang-java linenums">package it.uniba.app;
+
+/**
+ * {@literal &lt;&lt;Entity&gt;&gt;} &lt;br&gt;
+ * Classe che rappresenta un tentativo del giocatore.
+ * Ogni lettera del tentativo viene memorizzata in un oggetto di {@link LetterBox}.
+ */
+public class Guess
+{
+    private final LetterBox[] cellArray;
+
+    /**
+     * {@literal &lt;&lt;Entity&gt;&gt;} &lt;br&gt;
+     * Classe che rappresenta una singola cella di {@link Board} e incapsula lettera e colore.
+     */
+    public class LetterBox
+    {
+        private final Character letter;
+        private Color color;
+
+        LetterBox(char letter)
+        {
+<span class="nc" id="L23">            this(letter, Color.NO_COLOR);</span>
+<span class="nc" id="L24">        }</span>
+
+        LetterBox(char letter, Color color)
+<span class="nc" id="L27">        {</span>
+<span class="nc" id="L28">            this.letter = letter;</span>
+<span class="nc" id="L29">            this.color = color;</span>
+<span class="nc" id="L30">        }</span>
+
+        public Color getColor()
+        {
+<span class="nc" id="L34">            return color;</span>
+        }
+
+        public void setColor(Color color)
+        {
+<span class="nc" id="L39">            this.color = color;</span>
+<span class="nc" id="L40">        }</span>
+
+        public Character getLetter()
+        {
+<span class="nc" id="L44">            return letter;</span>
+        }
+    }
+
+    //costruttore di Guess con argomento il tentativo effettuato
+    Guess(String guessingWord)
+<span class="nc" id="L50">    {</span>
+<span class="nc" id="L51">        cellArray = new LetterBox[guessingWord.length()];</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        for (int i = 0; i &lt; guessingWord.length() ; i++)</span>
+        {
+<span class="nc" id="L54">            cellArray[i] = new LetterBox(guessingWord.charAt(i), Color.NO_COLOR);</span>
+        }
+<span class="nc" id="L56">    }</span>
+
+    public Color getColor(int index)
+    {
+<span class="nc" id="L60">        return cellArray[index].color;</span>
+    }
+
+    public void setColor(int index, Color color)
+    {
+<span class="nc" id="L65">        cellArray[index].color = color;</span>
+<span class="nc" id="L66">    }</span>
+
+    public Character getLetter(int index)
+    {
+<span class="nc" id="L70">        return cellArray[index].letter;</span>
+    }
+
+    public String getWord()
+    {
+<span class="nc" id="L75">        StringBuilder s = new StringBuilder(&quot;&quot;);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        for (LetterBox lb : cellArray)</span>
+<span class="nc" id="L77">            s.append(lb.getLetter());</span>
+<span class="nc" id="L78">        return s.toString();</span>
+    }
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

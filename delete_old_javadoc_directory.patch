@@ -1,0 +1,3960 @@
+From f2f35c0171ad72229242bbdb8352de850da72135 Mon Sep 17 00:00:00 2001
+From: Luigi Quaranta <luigi.quaranta@uniba.it>
+Date: Wed, 25 May 2022 11:41:52 +0200
+Subject: [PATCH 1/2] Delete old javadoc directory (`/docs/javadoc`)
+
+---
+ README.md                              |  12 +-
+ docs/javadoc/MainTest.html             | 275 ------------
+ docs/javadoc/allclasses-frame.html     |  20 -
+ docs/javadoc/allclasses-noframe.html   |  20 -
+ docs/javadoc/class-use/MainTest.html   | 124 ------
+ docs/javadoc/constant-values.html      | 124 ------
+ docs/javadoc/deprecated-list.html      | 124 ------
+ docs/javadoc/help-doc.html             | 229 ----------
+ docs/javadoc/index-files/index-1.html  | 141 ------
+ docs/javadoc/index-files/index-2.html  | 129 ------
+ docs/javadoc/index.html                |  74 ----
+ docs/javadoc/main/Main.html            | 278 ------------
+ docs/javadoc/main/class-use/Main.html  | 124 ------
+ docs/javadoc/main/package-frame.html   |  20 -
+ docs/javadoc/main/package-summary.html | 142 ------
+ docs/javadoc/main/package-tree.html    | 137 ------
+ docs/javadoc/main/package-use.html     | 124 ------
+ docs/javadoc/overview-frame.html       |  22 -
+ docs/javadoc/overview-summary.html     | 135 ------
+ docs/javadoc/overview-tree.html        | 138 ------
+ docs/javadoc/package-frame.html        |  20 -
+ docs/javadoc/package-list              |   2 -
+ docs/javadoc/package-summary.html      | 131 ------
+ docs/javadoc/package-tree.html         | 137 ------
+ docs/javadoc/package-use.html          | 124 ------
+ docs/javadoc/script.js                 |  30 --
+ docs/javadoc/stylesheet.css            | 574 -------------------------
+ 27 files changed, 5 insertions(+), 3405 deletions(-)
+ delete mode 100644 docs/javadoc/MainTest.html
+ delete mode 100644 docs/javadoc/allclasses-frame.html
+ delete mode 100644 docs/javadoc/allclasses-noframe.html
+ delete mode 100644 docs/javadoc/class-use/MainTest.html
+ delete mode 100644 docs/javadoc/constant-values.html
+ delete mode 100644 docs/javadoc/deprecated-list.html
+ delete mode 100644 docs/javadoc/help-doc.html
+ delete mode 100644 docs/javadoc/index-files/index-1.html
+ delete mode 100644 docs/javadoc/index-files/index-2.html
+ delete mode 100644 docs/javadoc/index.html
+ delete mode 100644 docs/javadoc/main/Main.html
+ delete mode 100644 docs/javadoc/main/class-use/Main.html
+ delete mode 100644 docs/javadoc/main/package-frame.html
+ delete mode 100644 docs/javadoc/main/package-summary.html
+ delete mode 100644 docs/javadoc/main/package-tree.html
+ delete mode 100644 docs/javadoc/main/package-use.html
+ delete mode 100644 docs/javadoc/overview-frame.html
+ delete mode 100644 docs/javadoc/overview-summary.html
+ delete mode 100644 docs/javadoc/overview-tree.html
+ delete mode 100644 docs/javadoc/package-frame.html
+ delete mode 100644 docs/javadoc/package-list
+ delete mode 100644 docs/javadoc/package-summary.html
+ delete mode 100644 docs/javadoc/package-tree.html
+ delete mode 100644 docs/javadoc/package-use.html
+ delete mode 100644 docs/javadoc/script.js
+ delete mode 100644 docs/javadoc/stylesheet.css
+
+diff --git a/README.md b/README.md
+index ede42f4..f5b7eee 100644
+--- a/README.md
++++ b/README.md
+@@ -17,8 +17,7 @@ La struttura della repository si presenta nel seguente modo:
+ |–– docs
+ |    |–– Assegnazione progetto.md
+ |    |–– Guida per lo studente.md
+-|    |–– img 
+-|    |–– javadoc 
++|    |–– img
+ |    |–– Report.md
+ |–– drawings
+ |–– gradle
+@@ -40,19 +39,18 @@ Nel seguito si dettagliano i ruoli dei diversi componenti:
+ - `.github/workflows/ingsw2122.yml`: dettaglia le direttive per assicurare la *continuous integration* attraverso l’uso di GitHub Actions;
+ - `build/`: ospita la sottocartella `reports/`, contenente gli output dei tool automatici di test e controllo di qualità;
+ - `config/`: ospita i file di configurazione. L’unica configurazione di base richiesta è quella per il tool checkstyle;
+-- `docs/`: ospita la documentazione di progetto, incluse le figure (nella sottocartella `img/`). 
+-<br>La sottocartella `javadoc/` conterrà la documentazione generata automaticamente per il codice Java. 
+-<br>Il file `Report.md` verrà usato per redigere la relazione finale del progetto. 
++- `docs/`: ospita la documentazione di progetto, incluse le figure (nella sottocartella `img/`).
++<br>Il file `Report.md` verrà usato per redigere la relazione finale del progetto.
+ <br>La cartella raccoglie inoltre:
+     - `Assegnazione progetto.md`: contenente la descrizione dettagliata del progetto assegnato;
+     - `Guida per lo studente.md`: contenente la descrizione di tutti i passi di configurazione necessari per l'attivazione del flusso di lavoro a supporto dello sviluppo del progetto;
+ - `gradle/`: ospita il `.jar` relativo al sistema di gestione delle dipendenze *Gradle*.
+ - `lib`: include eventuali librerie esterne utilizzate dal progetto.
+-- `res`: contiene risorse varie utilizzate dal sistema 
++- `res`: contiene risorse varie utilizzate dal sistema
+ - `src`: cartella principale del progetto, in cui scrivere tutto il codice dell’applicazione. In `main/` ci saranno i file sorgente e `test/` conterrà i test di unità previsti.
+ - `drawings/`: contiene tutti i diagrammi UML usati per descrivere il progetto.
+ - `.gitignore`: specifica tutti i file che devono essere esclusi dal sistema di controllo versione.
+-- `build.gradle`: esplicita le direttive e la configurazione di *Gradle*. 
++- `build.gradle`: esplicita le direttive e la configurazione di *Gradle*.
+ - `gradlew` e `gradlew.bat`: eseguibili di *Gradle*, rispettivamente dedicati a Unix e Windows.
+ - `settings.gradle`: file di configurazione di *Gradle*.
+ 
+diff --git a/docs/javadoc/MainTest.html b/docs/javadoc/MainTest.html
+deleted file mode 100644
+index 06c9f9c..0000000
+--- a/docs/javadoc/MainTest.html
++++ /dev/null
+@@ -1,275 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>MainTest</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="MainTest";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-var methods = {"i0":10};
+-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+-var altColor = "altColor";
+-var rowColor = "rowColor";
+-var tableTab = "tableTab";
+-var activeTableTab = "activeTableTab";
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li class="navBarCell1Rev">Class</li>
+-<li><a href="class-use/MainTest.html">Use</a></li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev&nbsp;Class</li>
+-<li>Next&nbsp;Class</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?MainTest.html" target="_top">Frames</a></li>
+-<li><a href="MainTest.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<div>
+-<ul class="subNavList">
+-<li>Summary:&nbsp;</li>
+-<li>Nested&nbsp;|&nbsp;</li>
+-<li>Field&nbsp;|&nbsp;</li>
+-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+-<li><a href="#method.summary">Method</a></li>
+-</ul>
+-<ul class="subNavList">
+-<li>Detail:&nbsp;</li>
+-<li>Field&nbsp;|&nbsp;</li>
+-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+-<li><a href="#method.detail">Method</a></li>
+-</ul>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<!-- ======== START OF CLASS DATA ======== -->
+-<div class="header">
+-<h2 title="Class MainTest" class="title">Class MainTest</h2>
+-</div>
+-<div class="contentContainer">
+-<ul class="inheritance">
+-<li>java.lang.Object</li>
+-<li>
+-<ul class="inheritance">
+-<li>MainTest</li>
+-</ul>
+-</li>
+-</ul>
+-<div class="description">
+-<ul class="blockList">
+-<li class="blockList">
+-<hr>
+-<br>
+-<pre>public class <span class="typeNameLabel">MainTest</span>
+-extends java.lang.Object</pre>
+-</li>
+-</ul>
+-</div>
+-<div class="summary">
+-<ul class="blockList">
+-<li class="blockList">
+-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+-<ul class="blockList">
+-<li class="blockList"><a name="constructor.summary">
+-<!--   -->
+-</a>
+-<h3>Constructor Summary</h3>
+-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+-<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+-<tr>
+-<th class="colOne" scope="col">Constructor and Description</th>
+-</tr>
+-<tr class="altColor">
+-<td class="colOne"><code><span class="memberNameLink"><a href="MainTest.html#MainTest--">MainTest</a></span>()</code>&nbsp;</td>
+-</tr>
+-</table>
+-</li>
+-</ul>
+-<!-- ========== METHOD SUMMARY =========== -->
+-<ul class="blockList">
+-<li class="blockList"><a name="method.summary">
+-<!--   -->
+-</a>
+-<h3>Method Summary</h3>
+-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+-<tr>
+-<th class="colFirst" scope="col">Modifier and Type</th>
+-<th class="colLast" scope="col">Method and Description</th>
+-</tr>
+-<tr id="i0" class="altColor">
+-<td class="colFirst"><code>void</code></td>
+-<td class="colLast"><code><span class="memberNameLink"><a href="MainTest.html#testMain--">testMain</a></span>()</code>&nbsp;</td>
+-</tr>
+-</table>
+-<ul class="blockList">
+-<li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
+-<!--   -->
+-</a>
+-<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+-<code>equals, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+-</ul>
+-</li>
+-</ul>
+-</li>
+-</ul>
+-</div>
+-<div class="details">
+-<ul class="blockList">
+-<li class="blockList">
+-<!-- ========= CONSTRUCTOR DETAIL ======== -->
+-<ul class="blockList">
+-<li class="blockList"><a name="constructor.detail">
+-<!--   -->
+-</a>
+-<h3>Constructor Detail</h3>
+-<a name="MainTest--">
+-<!--   -->
+-</a>
+-<ul class="blockListLast">
+-<li class="blockList">
+-<h4>MainTest</h4>
+-<pre>public&nbsp;MainTest()</pre>
+-</li>
+-</ul>
+-</li>
+-</ul>
+-<!-- ============ METHOD DETAIL ========== -->
+-<ul class="blockList">
+-<li class="blockList"><a name="method.detail">
+-<!--   -->
+-</a>
+-<h3>Method Detail</h3>
+-<a name="testMain--">
+-<!--   -->
+-</a>
+-<ul class="blockListLast">
+-<li class="blockList">
+-<h4>testMain</h4>
+-<pre>public&nbsp;void&nbsp;testMain()
+-              throws java.io.IOException</pre>
+-<dl>
+-<dt><span class="throwsLabel">Throws:</span></dt>
+-<dd><code>java.io.IOException</code></dd>
+-</dl>
+-</li>
+-</ul>
+-</li>
+-</ul>
+-</li>
+-</ul>
+-</div>
+-</div>
+-<!-- ========= END OF CLASS DATA ========= -->
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li class="navBarCell1Rev">Class</li>
+-<li><a href="class-use/MainTest.html">Use</a></li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev&nbsp;Class</li>
+-<li>Next&nbsp;Class</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?MainTest.html" target="_top">Frames</a></li>
+-<li><a href="MainTest.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<div>
+-<ul class="subNavList">
+-<li>Summary:&nbsp;</li>
+-<li>Nested&nbsp;|&nbsp;</li>
+-<li>Field&nbsp;|&nbsp;</li>
+-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+-<li><a href="#method.summary">Method</a></li>
+-</ul>
+-<ul class="subNavList">
+-<li>Detail:&nbsp;</li>
+-<li>Field&nbsp;|&nbsp;</li>
+-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+-<li><a href="#method.detail">Method</a></li>
+-</ul>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/allclasses-frame.html b/docs/javadoc/allclasses-frame.html
+deleted file mode 100644
+index 870e120..0000000
+--- a/docs/javadoc/allclasses-frame.html
++++ /dev/null
+@@ -1,20 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>All Classes</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<h1 class="bar">All&nbsp;Classes</h1>
+-<div class="indexContainer">
+-<ul>
+-<li><a href="main/Main.html" title="class in main" target="classFrame">Main</a></li>
+-<li><a href="MainTest.html" title="class in &lt;Unnamed&gt;" target="classFrame">MainTest</a></li>
+-</ul>
+-</div>
+-</body>
+-</html>
+diff --git a/docs/javadoc/allclasses-noframe.html b/docs/javadoc/allclasses-noframe.html
+deleted file mode 100644
+index 563950c..0000000
+--- a/docs/javadoc/allclasses-noframe.html
++++ /dev/null
+@@ -1,20 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>All Classes</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<h1 class="bar">All&nbsp;Classes</h1>
+-<div class="indexContainer">
+-<ul>
+-<li><a href="main/Main.html" title="class in main">Main</a></li>
+-<li><a href="MainTest.html" title="class in &lt;Unnamed&gt;">MainTest</a></li>
+-</ul>
+-</div>
+-</body>
+-</html>
+diff --git a/docs/javadoc/class-use/MainTest.html b/docs/javadoc/class-use/MainTest.html
+deleted file mode 100644
+index 5d9b0d3..0000000
+--- a/docs/javadoc/class-use/MainTest.html
++++ /dev/null
+@@ -1,124 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>Uses of Class MainTest</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+-<script type="text/javascript" src="../script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="Uses of Class MainTest";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li><a href="../package-summary.html">Package</a></li>
+-<li><a href="../MainTest.html" title="class in &lt;Unnamed&gt;">Class</a></li>
+-<li class="navBarCell1Rev">Use</li>
+-<li><a href="../overview-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../index-files/index-1.html">Index</a></li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?class-use/MainTest.html" target="_top">Frames</a></li>
+-<li><a href="MainTest.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h2 title="Uses of Class MainTest" class="title">Uses of Class<br>MainTest</h2>
+-</div>
+-<div class="classUseContainer">No usage of MainTest</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li><a href="../package-summary.html">Package</a></li>
+-<li><a href="../MainTest.html" title="class in &lt;Unnamed&gt;">Class</a></li>
+-<li class="navBarCell1Rev">Use</li>
+-<li><a href="../overview-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../index-files/index-1.html">Index</a></li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?class-use/MainTest.html" target="_top">Frames</a></li>
+-<li><a href="MainTest.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/constant-values.html b/docs/javadoc/constant-values.html
+deleted file mode 100644
+index 5a7b2f9..0000000
+--- a/docs/javadoc/constant-values.html
++++ /dev/null
+@@ -1,124 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>Constant Field Values</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="Constant Field Values";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="overview-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?constant-values.html" target="_top">Frames</a></li>
+-<li><a href="constant-values.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h1 title="Constant Field Values" class="title">Constant Field Values</h1>
+-<h2 title="Contents">Contents</h2>
+-</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="overview-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?constant-values.html" target="_top">Frames</a></li>
+-<li><a href="constant-values.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/deprecated-list.html b/docs/javadoc/deprecated-list.html
+deleted file mode 100644
+index 646ac35..0000000
+--- a/docs/javadoc/deprecated-list.html
++++ /dev/null
+@@ -1,124 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>Deprecated List</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="Deprecated List";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="overview-tree.html">Tree</a></li>
+-<li class="navBarCell1Rev">Deprecated</li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?deprecated-list.html" target="_top">Frames</a></li>
+-<li><a href="deprecated-list.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h1 title="Deprecated API" class="title">Deprecated API</h1>
+-<h2 title="Contents">Contents</h2>
+-</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="overview-tree.html">Tree</a></li>
+-<li class="navBarCell1Rev">Deprecated</li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?deprecated-list.html" target="_top">Frames</a></li>
+-<li><a href="deprecated-list.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/help-doc.html b/docs/javadoc/help-doc.html
+deleted file mode 100644
+index 37ebdb4..0000000
+--- a/docs/javadoc/help-doc.html
++++ /dev/null
+@@ -1,229 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>API Help</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="API Help";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="overview-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li class="navBarCell1Rev">Help</li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?help-doc.html" target="_top">Frames</a></li>
+-<li><a href="help-doc.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h1 class="title">How This API Document Is Organized</h1>
+-<div class="subTitle">This API (Application Programming Interface) document has pages corresponding to the items in the navigation bar, described as follows.</div>
+-</div>
+-<div class="contentContainer">
+-<ul class="blockList">
+-<li class="blockList">
+-<h2>Overview</h2>
+-<p>The <a href="overview-summary.html">Overview</a> page is the front page of this API document and provides a list of all packages with a summary for each.  This page can also contain an overall description of the set of packages.</p>
+-</li>
+-<li class="blockList">
+-<h2>Package</h2>
+-<p>Each package has a page that contains a list of its classes and interfaces, with a summary for each. This page can contain six categories:</p>
+-<ul>
+-<li>Interfaces (italic)</li>
+-<li>Classes</li>
+-<li>Enums</li>
+-<li>Exceptions</li>
+-<li>Errors</li>
+-<li>Annotation Types</li>
+-</ul>
+-</li>
+-<li class="blockList">
+-<h2>Class/Interface</h2>
+-<p>Each class, interface, nested class and nested interface has its own separate page. Each of these pages has three sections consisting of a class/interface description, summary tables, and detailed member descriptions:</p>
+-<ul>
+-<li>Class inheritance diagram</li>
+-<li>Direct Subclasses</li>
+-<li>All Known Subinterfaces</li>
+-<li>All Known Implementing Classes</li>
+-<li>Class/interface declaration</li>
+-<li>Class/interface description</li>
+-</ul>
+-<ul>
+-<li>Nested Class Summary</li>
+-<li>Field Summary</li>
+-<li>Constructor Summary</li>
+-<li>Method Summary</li>
+-</ul>
+-<ul>
+-<li>Field Detail</li>
+-<li>Constructor Detail</li>
+-<li>Method Detail</li>
+-</ul>
+-<p>Each summary entry contains the first sentence from the detailed description for that item. The summary entries are alphabetical, while the detailed descriptions are in the order they appear in the source code. This preserves the logical groupings established by the programmer.</p>
+-</li>
+-<li class="blockList">
+-<h2>Annotation Type</h2>
+-<p>Each annotation type has its own separate page with the following sections:</p>
+-<ul>
+-<li>Annotation Type declaration</li>
+-<li>Annotation Type description</li>
+-<li>Required Element Summary</li>
+-<li>Optional Element Summary</li>
+-<li>Element Detail</li>
+-</ul>
+-</li>
+-<li class="blockList">
+-<h2>Enum</h2>
+-<p>Each enum has its own separate page with the following sections:</p>
+-<ul>
+-<li>Enum declaration</li>
+-<li>Enum description</li>
+-<li>Enum Constant Summary</li>
+-<li>Enum Constant Detail</li>
+-</ul>
+-</li>
+-<li class="blockList">
+-<h2>Use</h2>
+-<p>Each documented package, class and interface has its own Use page.  This page describes what packages, classes, methods, constructors and fields use any part of the given class or package. Given a class or interface A, its Use page includes subclasses of A, fields declared as A, methods that return A, and methods and constructors with parameters of type A.  You can access this page by first going to the package, class or interface, then clicking on the "Use" link in the navigation bar.</p>
+-</li>
+-<li class="blockList">
+-<h2>Tree (Class Hierarchy)</h2>
+-<p>There is a <a href="overview-tree.html">Class Hierarchy</a> page for all packages, plus a hierarchy for each package. Each hierarchy page contains a list of classes and a list of interfaces. The classes are organized by inheritance structure starting with <code>java.lang.Object</code>. The interfaces do not inherit from <code>java.lang.Object</code>.</p>
+-<ul>
+-<li>When viewing the Overview page, clicking on "Tree" displays the hierarchy for all packages.</li>
+-<li>When viewing a particular package, class or interface page, clicking "Tree" displays the hierarchy for only that package.</li>
+-</ul>
+-</li>
+-<li class="blockList">
+-<h2>Deprecated API</h2>
+-<p>The <a href="deprecated-list.html">Deprecated API</a> page lists all of the API that have been deprecated. A deprecated API is not recommended for use, generally due to improvements, and a replacement API is usually given. Deprecated APIs may be removed in future implementations.</p>
+-</li>
+-<li class="blockList">
+-<h2>Index</h2>
+-<p>The <a href="index-files/index-1.html">Index</a> contains an alphabetic list of all classes, interfaces, constructors, methods, and fields.</p>
+-</li>
+-<li class="blockList">
+-<h2>Prev/Next</h2>
+-<p>These links take you to the next or previous class, interface, package, or related page.</p>
+-</li>
+-<li class="blockList">
+-<h2>Frames/No Frames</h2>
+-<p>These links show and hide the HTML frames.  All pages are available with or without frames.</p>
+-</li>
+-<li class="blockList">
+-<h2>All Classes</h2>
+-<p>The <a href="allclasses-noframe.html">All Classes</a> link shows all classes and interfaces except non-static nested types.</p>
+-</li>
+-<li class="blockList">
+-<h2>Serialized Form</h2>
+-<p>Each serializable or externalizable class has a description of its serialization fields and methods. This information is of interest to re-implementors, not to developers using the API. While there is no link in the navigation bar, you can get to this information by going to any serialized class and clicking "Serialized Form" in the "See also" section of the class description.</p>
+-</li>
+-<li class="blockList">
+-<h2>Constant Field Values</h2>
+-<p>The <a href="constant-values.html">Constant Field Values</a> page lists the static final fields and their values.</p>
+-</li>
+-</ul>
+-<span class="emphasizedPhrase">This help file applies to API documentation generated using the standard doclet.</span></div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="overview-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li class="navBarCell1Rev">Help</li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?help-doc.html" target="_top">Frames</a></li>
+-<li><a href="help-doc.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/index-files/index-1.html b/docs/javadoc/index-files/index-1.html
+deleted file mode 100644
+index 67e4381..0000000
+--- a/docs/javadoc/index-files/index-1.html
++++ /dev/null
+@@ -1,141 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>M-Index</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+-<script type="text/javascript" src="../script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="M-Index";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="../overview-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li class="navBarCell1Rev">Index</li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev Letter</li>
+-<li><a href="index-2.html">Next Letter</a></li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?index-files/index-1.html" target="_top">Frames</a></li>
+-<li><a href="index-1.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="contentContainer"><a href="index-1.html">M</a>&nbsp;<a href="index-2.html">T</a>&nbsp;<a name="I:M">
+-<!--   -->
+-</a>
+-<h2 class="title">M</h2>
+-<dl>
+-<dt><a href="../main/package-summary.html">main</a> - package main</dt>
+-<dd>&nbsp;</dd>
+-<dt><a href="../main/Main.html" title="class in main"><span class="typeNameLink">Main</span></a> - Class in <a href="../main/package-summary.html">main</a></dt>
+-<dd>&nbsp;</dd>
+-<dt><span class="memberNameLink"><a href="../main/Main.html#Main--">Main()</a></span> - Constructor for class main.<a href="../main/Main.html" title="class in main">Main</a></dt>
+-<dd>&nbsp;</dd>
+-<dt><span class="memberNameLink"><a href="../main/Main.html#main-java.lang.String:A-">main(String[])</a></span> - Static method in class main.<a href="../main/Main.html" title="class in main">Main</a></dt>
+-<dd>
+-<div class="block">This is the main entry of the application</div>
+-</dd>
+-<dt><a href="../MainTest.html" title="class in &lt;Unnamed&gt;"><span class="typeNameLink">MainTest</span></a> - Class in <a href="../package-summary.html">&lt;Unnamed&gt;</a></dt>
+-<dd>&nbsp;</dd>
+-<dt><span class="memberNameLink"><a href="../MainTest.html#MainTest--">MainTest()</a></span> - Constructor for class <a href="../MainTest.html" title="class in &lt;Unnamed&gt;">MainTest</a></dt>
+-<dd>&nbsp;</dd>
+-</dl>
+-<a href="index-1.html">M</a>&nbsp;<a href="index-2.html">T</a>&nbsp;</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="../overview-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li class="navBarCell1Rev">Index</li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev Letter</li>
+-<li><a href="index-2.html">Next Letter</a></li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?index-files/index-1.html" target="_top">Frames</a></li>
+-<li><a href="index-1.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/index-files/index-2.html b/docs/javadoc/index-files/index-2.html
+deleted file mode 100644
+index d924360..0000000
+--- a/docs/javadoc/index-files/index-2.html
++++ /dev/null
+@@ -1,129 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>T-Index</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+-<script type="text/javascript" src="../script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="T-Index";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="../overview-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li class="navBarCell1Rev">Index</li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li><a href="index-1.html">Prev Letter</a></li>
+-<li>Next Letter</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?index-files/index-2.html" target="_top">Frames</a></li>
+-<li><a href="index-2.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="contentContainer"><a href="index-1.html">M</a>&nbsp;<a href="index-2.html">T</a>&nbsp;<a name="I:T">
+-<!--   -->
+-</a>
+-<h2 class="title">T</h2>
+-<dl>
+-<dt><span class="memberNameLink"><a href="../MainTest.html#testMain--">testMain()</a></span> - Method in class <a href="../MainTest.html" title="class in &lt;Unnamed&gt;">MainTest</a></dt>
+-<dd>&nbsp;</dd>
+-</dl>
+-<a href="index-1.html">M</a>&nbsp;<a href="index-2.html">T</a>&nbsp;</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="../overview-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li class="navBarCell1Rev">Index</li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li><a href="index-1.html">Prev Letter</a></li>
+-<li>Next Letter</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?index-files/index-2.html" target="_top">Frames</a></li>
+-<li><a href="index-2.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/index.html b/docs/javadoc/index.html
+deleted file mode 100644
+index 490fcdb..0000000
+--- a/docs/javadoc/index.html
++++ /dev/null
+@@ -1,74 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>Generated Documentation (Untitled)</title>
+-<script type="text/javascript">
+-    targetPage = "" + window.location.search;
+-    if (targetPage != "" && targetPage != "undefined")
+-        targetPage = targetPage.substring(1);
+-    if (targetPage.indexOf(":") != -1 || (targetPage != "" && !validURL(targetPage)))
+-        targetPage = "undefined";
+-    function validURL(url) {
+-        try {
+-            url = decodeURIComponent(url);
+-        }
+-        catch (error) {
+-            return false;
+-        }
+-        var pos = url.indexOf(".html");
+-        if (pos == -1 || pos != url.length - 5)
+-            return false;
+-        var allowNumber = false;
+-        var allowSep = false;
+-        var seenDot = false;
+-        for (var i = 0; i < url.length - 5; i++) {
+-            var ch = url.charAt(i);
+-            if ('a' <= ch && ch <= 'z' ||
+-                    'A' <= ch && ch <= 'Z' ||
+-                    ch == '$' ||
+-                    ch == '_' ||
+-                    ch.charCodeAt(0) > 127) {
+-                allowNumber = true;
+-                allowSep = true;
+-            } else if ('0' <= ch && ch <= '9'
+-                    || ch == '-') {
+-                if (!allowNumber)
+-                     return false;
+-            } else if (ch == '/' || ch == '.') {
+-                if (!allowSep)
+-                    return false;
+-                allowNumber = false;
+-                allowSep = false;
+-                if (ch == '.')
+-                     seenDot = true;
+-                if (ch == '/' && seenDot)
+-                     return false;
+-            } else {
+-                return false;
+-            }
+-        }
+-        return true;
+-    }
+-    function loadFrames() {
+-        if (targetPage != "" && targetPage != "undefined")
+-             top.classFrame.location = top.targetPage;
+-    }
+-</script>
+-</head>
+-<frameset cols="20%,80%" title="Documentation frame" onload="top.loadFrames()">
+-<frameset rows="30%,70%" title="Left frames" onload="top.loadFrames()">
+-<frame src="overview-frame.html" name="packageListFrame" title="All Packages">
+-<frame src="allclasses-frame.html" name="packageFrame" title="All classes and interfaces (except non-static nested types)">
+-</frameset>
+-<frame src="overview-summary.html" name="classFrame" title="Package, class and interface descriptions" scrolling="yes">
+-<noframes>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<h2>Frame Alert</h2>
+-<p>This document is designed to be viewed using the frames feature. If you see this message, you are using a non-frame-capable web client. Link to <a href="overview-summary.html">Non-frame version</a>.</p>
+-</noframes>
+-</frameset>
+-</html>
+diff --git a/docs/javadoc/main/Main.html b/docs/javadoc/main/Main.html
+deleted file mode 100644
+index 7a65934..0000000
+--- a/docs/javadoc/main/Main.html
++++ /dev/null
+@@ -1,278 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>Main</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+-<script type="text/javascript" src="../script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="Main";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-var methods = {"i0":9};
+-var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
+-var altColor = "altColor";
+-var rowColor = "rowColor";
+-var tableTab = "tableTab";
+-var activeTableTab = "activeTableTab";
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li class="navBarCell1Rev">Class</li>
+-<li><a href="class-use/Main.html">Use</a></li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../index-files/index-1.html">Index</a></li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev&nbsp;Class</li>
+-<li>Next&nbsp;Class</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?main/Main.html" target="_top">Frames</a></li>
+-<li><a href="Main.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<div>
+-<ul class="subNavList">
+-<li>Summary:&nbsp;</li>
+-<li>Nested&nbsp;|&nbsp;</li>
+-<li>Field&nbsp;|&nbsp;</li>
+-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+-<li><a href="#method.summary">Method</a></li>
+-</ul>
+-<ul class="subNavList">
+-<li>Detail:&nbsp;</li>
+-<li>Field&nbsp;|&nbsp;</li>
+-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+-<li><a href="#method.detail">Method</a></li>
+-</ul>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<!-- ======== START OF CLASS DATA ======== -->
+-<div class="header">
+-<div class="subTitle">main</div>
+-<h2 title="Class Main" class="title">Class Main</h2>
+-</div>
+-<div class="contentContainer">
+-<ul class="inheritance">
+-<li>java.lang.Object</li>
+-<li>
+-<ul class="inheritance">
+-<li>main.Main</li>
+-</ul>
+-</li>
+-</ul>
+-<div class="description">
+-<ul class="blockList">
+-<li class="blockList">
+-<hr>
+-<br>
+-<pre>public class <span class="typeNameLabel">Main</span>
+-extends java.lang.Object</pre>
+-</li>
+-</ul>
+-</div>
+-<div class="summary">
+-<ul class="blockList">
+-<li class="blockList">
+-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+-<ul class="blockList">
+-<li class="blockList"><a name="constructor.summary">
+-<!--   -->
+-</a>
+-<h3>Constructor Summary</h3>
+-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+-<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+-<tr>
+-<th class="colOne" scope="col">Constructor and Description</th>
+-</tr>
+-<tr class="altColor">
+-<td class="colOne"><code><span class="memberNameLink"><a href="../main/Main.html#Main--">Main</a></span>()</code>&nbsp;</td>
+-</tr>
+-</table>
+-</li>
+-</ul>
+-<!-- ========== METHOD SUMMARY =========== -->
+-<ul class="blockList">
+-<li class="blockList"><a name="method.summary">
+-<!--   -->
+-</a>
+-<h3>Method Summary</h3>
+-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+-<tr>
+-<th class="colFirst" scope="col">Modifier and Type</th>
+-<th class="colLast" scope="col">Method and Description</th>
+-</tr>
+-<tr id="i0" class="altColor">
+-<td class="colFirst"><code>static void</code></td>
+-<td class="colLast"><code><span class="memberNameLink"><a href="../main/Main.html#main-java.lang.String:A-">main</a></span>(java.lang.String[]&nbsp;args)</code>
+-<div class="block">This is the main entry of the application</div>
+-</td>
+-</tr>
+-</table>
+-<ul class="blockList">
+-<li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
+-<!--   -->
+-</a>
+-<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+-<code>equals, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+-</ul>
+-</li>
+-</ul>
+-</li>
+-</ul>
+-</div>
+-<div class="details">
+-<ul class="blockList">
+-<li class="blockList">
+-<!-- ========= CONSTRUCTOR DETAIL ======== -->
+-<ul class="blockList">
+-<li class="blockList"><a name="constructor.detail">
+-<!--   -->
+-</a>
+-<h3>Constructor Detail</h3>
+-<a name="Main--">
+-<!--   -->
+-</a>
+-<ul class="blockListLast">
+-<li class="blockList">
+-<h4>Main</h4>
+-<pre>public&nbsp;Main()</pre>
+-</li>
+-</ul>
+-</li>
+-</ul>
+-<!-- ============ METHOD DETAIL ========== -->
+-<ul class="blockList">
+-<li class="blockList"><a name="method.detail">
+-<!--   -->
+-</a>
+-<h3>Method Detail</h3>
+-<a name="main-java.lang.String:A-">
+-<!--   -->
+-</a>
+-<ul class="blockListLast">
+-<li class="blockList">
+-<h4>main</h4>
+-<pre>public static&nbsp;void&nbsp;main(java.lang.String[]&nbsp;args)</pre>
+-<div class="block">This is the main entry of the application</div>
+-<dl>
+-<dt><span class="paramLabel">Parameters:</span></dt>
+-<dd><code>args</code> - </dd>
+-</dl>
+-</li>
+-</ul>
+-</li>
+-</ul>
+-</li>
+-</ul>
+-</div>
+-</div>
+-<!-- ========= END OF CLASS DATA ========= -->
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li class="navBarCell1Rev">Class</li>
+-<li><a href="class-use/Main.html">Use</a></li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../index-files/index-1.html">Index</a></li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev&nbsp;Class</li>
+-<li>Next&nbsp;Class</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?main/Main.html" target="_top">Frames</a></li>
+-<li><a href="Main.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<div>
+-<ul class="subNavList">
+-<li>Summary:&nbsp;</li>
+-<li>Nested&nbsp;|&nbsp;</li>
+-<li>Field&nbsp;|&nbsp;</li>
+-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+-<li><a href="#method.summary">Method</a></li>
+-</ul>
+-<ul class="subNavList">
+-<li>Detail:&nbsp;</li>
+-<li>Field&nbsp;|&nbsp;</li>
+-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+-<li><a href="#method.detail">Method</a></li>
+-</ul>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/main/class-use/Main.html b/docs/javadoc/main/class-use/Main.html
+deleted file mode 100644
+index 5e97062..0000000
+--- a/docs/javadoc/main/class-use/Main.html
++++ /dev/null
+@@ -1,124 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>Uses of Class main.Main</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="../../stylesheet.css" title="Style">
+-<script type="text/javascript" src="../../script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="Uses of Class main.Main";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../../overview-summary.html">Overview</a></li>
+-<li><a href="../package-summary.html">Package</a></li>
+-<li><a href="../../main/Main.html" title="class in main">Class</a></li>
+-<li class="navBarCell1Rev">Use</li>
+-<li><a href="../package-tree.html">Tree</a></li>
+-<li><a href="../../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../../index-files/index-1.html">Index</a></li>
+-<li><a href="../../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../../index.html?main/class-use/Main.html" target="_top">Frames</a></li>
+-<li><a href="Main.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="../../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h2 title="Uses of Class main.Main" class="title">Uses of Class<br>main.Main</h2>
+-</div>
+-<div class="classUseContainer">No usage of main.Main</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../../overview-summary.html">Overview</a></li>
+-<li><a href="../package-summary.html">Package</a></li>
+-<li><a href="../../main/Main.html" title="class in main">Class</a></li>
+-<li class="navBarCell1Rev">Use</li>
+-<li><a href="../package-tree.html">Tree</a></li>
+-<li><a href="../../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../../index-files/index-1.html">Index</a></li>
+-<li><a href="../../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../../index.html?main/class-use/Main.html" target="_top">Frames</a></li>
+-<li><a href="Main.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="../../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/main/package-frame.html b/docs/javadoc/main/package-frame.html
+deleted file mode 100644
+index f594ead..0000000
+--- a/docs/javadoc/main/package-frame.html
++++ /dev/null
+@@ -1,20 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>main</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+-<script type="text/javascript" src="../script.js"></script>
+-</head>
+-<body>
+-<h1 class="bar"><a href="../main/package-summary.html" target="classFrame">main</a></h1>
+-<div class="indexContainer">
+-<h2 title="Classes">Classes</h2>
+-<ul title="Classes">
+-<li><a href="Main.html" title="class in main" target="classFrame">Main</a></li>
+-</ul>
+-</div>
+-</body>
+-</html>
+diff --git a/docs/javadoc/main/package-summary.html b/docs/javadoc/main/package-summary.html
+deleted file mode 100644
+index c559906..0000000
+--- a/docs/javadoc/main/package-summary.html
++++ /dev/null
+@@ -1,142 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>main</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+-<script type="text/javascript" src="../script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="main";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li class="navBarCell1Rev">Package</li>
+-<li>Class</li>
+-<li><a href="package-use.html">Use</a></li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../index-files/index-1.html">Index</a></li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li><a href="../package-summary.html">Prev&nbsp;Package</a></li>
+-<li>Next&nbsp;Package</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?main/package-summary.html" target="_top">Frames</a></li>
+-<li><a href="package-summary.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h1 title="Package" class="title">Package&nbsp;main</h1>
+-</div>
+-<div class="contentContainer">
+-<ul class="blockList">
+-<li class="blockList">
+-<table class="typeSummary" border="0" cellpadding="3" cellspacing="0" summary="Class Summary table, listing classes, and an explanation">
+-<caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
+-<tr>
+-<th class="colFirst" scope="col">Class</th>
+-<th class="colLast" scope="col">Description</th>
+-</tr>
+-<tbody>
+-<tr class="altColor">
+-<td class="colFirst"><a href="../main/Main.html" title="class in main">Main</a></td>
+-<td class="colLast">&nbsp;</td>
+-</tr>
+-</tbody>
+-</table>
+-</li>
+-</ul>
+-</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li class="navBarCell1Rev">Package</li>
+-<li>Class</li>
+-<li><a href="package-use.html">Use</a></li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../index-files/index-1.html">Index</a></li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li><a href="../package-summary.html">Prev&nbsp;Package</a></li>
+-<li>Next&nbsp;Package</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?main/package-summary.html" target="_top">Frames</a></li>
+-<li><a href="package-summary.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/main/package-tree.html b/docs/javadoc/main/package-tree.html
+deleted file mode 100644
+index f7018df..0000000
+--- a/docs/javadoc/main/package-tree.html
++++ /dev/null
+@@ -1,137 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>main Class Hierarchy</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+-<script type="text/javascript" src="../script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="main Class Hierarchy";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li>Class</li>
+-<li>Use</li>
+-<li class="navBarCell1Rev">Tree</li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../index-files/index-1.html">Index</a></li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li><a href="../package-tree.html">Prev</a></li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?main/package-tree.html" target="_top">Frames</a></li>
+-<li><a href="package-tree.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h1 class="title">Hierarchy For Package main</h1>
+-<span class="packageHierarchyLabel">Package Hierarchies:</span>
+-<ul class="horizontal">
+-<li><a href="../overview-tree.html">All Packages</a></li>
+-</ul>
+-</div>
+-<div class="contentContainer">
+-<h2 title="Class Hierarchy">Class Hierarchy</h2>
+-<ul>
+-<li type="circle">java.lang.Object
+-<ul>
+-<li type="circle">main.<a href="../main/Main.html" title="class in main"><span class="typeNameLink">Main</span></a></li>
+-</ul>
+-</li>
+-</ul>
+-</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li>Class</li>
+-<li>Use</li>
+-<li class="navBarCell1Rev">Tree</li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../index-files/index-1.html">Index</a></li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li><a href="../package-tree.html">Prev</a></li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?main/package-tree.html" target="_top">Frames</a></li>
+-<li><a href="package-tree.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/main/package-use.html b/docs/javadoc/main/package-use.html
+deleted file mode 100644
+index 848f452..0000000
+--- a/docs/javadoc/main/package-use.html
++++ /dev/null
+@@ -1,124 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>Uses of Package main</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
+-<script type="text/javascript" src="../script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="Uses of Package main";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li>Class</li>
+-<li class="navBarCell1Rev">Use</li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../index-files/index-1.html">Index</a></li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?main/package-use.html" target="_top">Frames</a></li>
+-<li><a href="package-use.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h1 title="Uses of Package main" class="title">Uses of Package<br>main</h1>
+-</div>
+-<div class="contentContainer">No usage of main</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="../overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li>Class</li>
+-<li class="navBarCell1Rev">Use</li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="../deprecated-list.html">Deprecated</a></li>
+-<li><a href="../index-files/index-1.html">Index</a></li>
+-<li><a href="../help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="../index.html?main/package-use.html" target="_top">Frames</a></li>
+-<li><a href="package-use.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="../allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/overview-frame.html b/docs/javadoc/overview-frame.html
+deleted file mode 100644
+index 0d65330..0000000
+--- a/docs/javadoc/overview-frame.html
++++ /dev/null
+@@ -1,22 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>Overview List</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<div class="indexHeader"><span><a href="allclasses-frame.html" target="packageFrame">All&nbsp;Classes</a></span></div>
+-<div class="indexContainer">
+-<h2 title="Packages">Packages</h2>
+-<ul title="Packages">
+-<li><a href="package-frame.html" target="packageFrame">&lt;unnamed package&gt;</a></li>
+-<li><a href="main/package-frame.html" target="packageFrame">main</a></li>
+-</ul>
+-</div>
+-<p>&nbsp;</p>
+-</body>
+-</html>
+diff --git a/docs/javadoc/overview-summary.html b/docs/javadoc/overview-summary.html
+deleted file mode 100644
+index ee6ecce..0000000
+--- a/docs/javadoc/overview-summary.html
++++ /dev/null
+@@ -1,135 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>Overview</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="Overview";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li class="navBarCell1Rev">Overview</li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="overview-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?overview-summary.html" target="_top">Frames</a></li>
+-<li><a href="overview-summary.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="contentContainer">
+-<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Packages table, listing packages, and an explanation">
+-<caption><span>Packages</span><span class="tabEnd">&nbsp;</span></caption>
+-<tr>
+-<th class="colFirst" scope="col">Package</th>
+-<th class="colLast" scope="col">Description</th>
+-</tr>
+-<tbody>
+-<tr class="rowColor">
+-<td class="colFirst"><a href="main/package-summary.html">main</a></td>
+-<td class="colLast">&nbsp;</td>
+-</tr>
+-</tbody>
+-</table>
+-</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li class="navBarCell1Rev">Overview</li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li><a href="overview-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?overview-summary.html" target="_top">Frames</a></li>
+-<li><a href="overview-summary.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/overview-tree.html b/docs/javadoc/overview-tree.html
+deleted file mode 100644
+index 04ab813..0000000
+--- a/docs/javadoc/overview-tree.html
++++ /dev/null
+@@ -1,138 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>Class Hierarchy</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="Class Hierarchy";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li class="navBarCell1Rev">Tree</li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?overview-tree.html" target="_top">Frames</a></li>
+-<li><a href="overview-tree.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h1 class="title">Hierarchy For All Packages</h1>
+-<span class="packageHierarchyLabel">Package Hierarchies:</span>
+-<ul class="horizontal">
+-<li><a href="main/package-tree.html">main</a></li>
+-</ul>
+-</div>
+-<div class="contentContainer">
+-<h2 title="Class Hierarchy">Class Hierarchy</h2>
+-<ul>
+-<li type="circle">java.lang.Object
+-<ul>
+-<li type="circle">main.<a href="main/Main.html" title="class in main"><span class="typeNameLink">Main</span></a></li>
+-<li type="circle"><a href="MainTest.html" title="class in &lt;Unnamed&gt;"><span class="typeNameLink">MainTest</span></a></li>
+-</ul>
+-</li>
+-</ul>
+-</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li>Package</li>
+-<li>Class</li>
+-<li>Use</li>
+-<li class="navBarCell1Rev">Tree</li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?overview-tree.html" target="_top">Frames</a></li>
+-<li><a href="overview-tree.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/package-frame.html b/docs/javadoc/package-frame.html
+deleted file mode 100644
+index c9a7ec3..0000000
+--- a/docs/javadoc/package-frame.html
++++ /dev/null
+@@ -1,20 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>&lt;Unnamed&gt;</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<h1 class="bar"><a href="package-summary.html" target="classFrame">&lt;Unnamed&gt;</a></h1>
+-<div class="indexContainer">
+-<h2 title="Classes">Classes</h2>
+-<ul title="Classes">
+-<li><a href="MainTest.html" title="class in &lt;Unnamed&gt;" target="classFrame">MainTest</a></li>
+-</ul>
+-</div>
+-</body>
+-</html>
+diff --git a/docs/javadoc/package-list b/docs/javadoc/package-list
+deleted file mode 100644
+index 6dd513d..0000000
+--- a/docs/javadoc/package-list
++++ /dev/null
+@@ -1,2 +0,0 @@
+-
+-main
+diff --git a/docs/javadoc/package-summary.html b/docs/javadoc/package-summary.html
+deleted file mode 100644
+index 4743cf7..0000000
+--- a/docs/javadoc/package-summary.html
++++ /dev/null
+@@ -1,131 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li class="navBarCell1Rev">Package</li>
+-<li>Class</li>
+-<li><a href="package-use.html">Use</a></li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev&nbsp;Package</li>
+-<li><a href="main/package-summary.html">Next&nbsp;Package</a></li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?package-summary.html" target="_top">Frames</a></li>
+-<li><a href="package-summary.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h1 title="Package" class="title">Package&nbsp;&lt;Unnamed&gt;</h1>
+-</div>
+-<div class="contentContainer">
+-<ul class="blockList">
+-<li class="blockList">
+-<table class="typeSummary" border="0" cellpadding="3" cellspacing="0" summary="Class Summary table, listing classes, and an explanation">
+-<caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
+-<tr>
+-<th class="colFirst" scope="col">Class</th>
+-<th class="colLast" scope="col">Description</th>
+-</tr>
+-<tbody>
+-<tr class="altColor">
+-<td class="colFirst"><a href="MainTest.html" title="class in &lt;Unnamed&gt;">MainTest</a></td>
+-<td class="colLast">&nbsp;</td>
+-</tr>
+-</tbody>
+-</table>
+-</li>
+-</ul>
+-</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li class="navBarCell1Rev">Package</li>
+-<li>Class</li>
+-<li><a href="package-use.html">Use</a></li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev&nbsp;Package</li>
+-<li><a href="main/package-summary.html">Next&nbsp;Package</a></li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?package-summary.html" target="_top">Frames</a></li>
+-<li><a href="package-summary.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/package-tree.html b/docs/javadoc/package-tree.html
+deleted file mode 100644
+index af3b5ea..0000000
+--- a/docs/javadoc/package-tree.html
++++ /dev/null
+@@ -1,137 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title> Class Hierarchy</title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title=" Class Hierarchy";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li>Class</li>
+-<li>Use</li>
+-<li class="navBarCell1Rev">Tree</li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li><a href="main/package-tree.html">Next</a></li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?package-tree.html" target="_top">Frames</a></li>
+-<li><a href="package-tree.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h1 class="title">Hierarchy For Package &lt;Unnamed&gt;</h1>
+-<span class="packageHierarchyLabel">Package Hierarchies:</span>
+-<ul class="horizontal">
+-<li><a href="overview-tree.html">All Packages</a></li>
+-</ul>
+-</div>
+-<div class="contentContainer">
+-<h2 title="Class Hierarchy">Class Hierarchy</h2>
+-<ul>
+-<li type="circle">java.lang.Object
+-<ul>
+-<li type="circle"><a href="MainTest.html" title="class in &lt;Unnamed&gt;"><span class="typeNameLink">MainTest</span></a></li>
+-</ul>
+-</li>
+-</ul>
+-</div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li>Class</li>
+-<li>Use</li>
+-<li class="navBarCell1Rev">Tree</li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li><a href="main/package-tree.html">Next</a></li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?package-tree.html" target="_top">Frames</a></li>
+-<li><a href="package-tree.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/package-use.html b/docs/javadoc/package-use.html
+deleted file mode 100644
+index f757469..0000000
+--- a/docs/javadoc/package-use.html
++++ /dev/null
+@@ -1,124 +0,0 @@
+-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+-<!-- NewPage -->
+-<html lang="it">
+-<head>
+-<!-- Generated by javadoc (1.8.0_45) on Mon Feb 26 16:11:01 CET 2018 -->
+-<title>Uses of Package </title>
+-<meta name="date" content="2018-02-26">
+-<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+-<script type="text/javascript" src="script.js"></script>
+-</head>
+-<body>
+-<script type="text/javascript"><!--
+-    try {
+-        if (location.href.indexOf('is-external=true') == -1) {
+-            parent.document.title="Uses of Package ";
+-        }
+-    }
+-    catch(err) {
+-    }
+-//-->
+-</script>
+-<noscript>
+-<div>JavaScript is disabled on your browser.</div>
+-</noscript>
+-<!-- ========= START OF TOP NAVBAR ======= -->
+-<div class="topNav"><a name="navbar.top">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.top.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li>Class</li>
+-<li class="navBarCell1Rev">Use</li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?package-use.html" target="_top">Frames</a></li>
+-<li><a href="package-use.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_top">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_top");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.top">
+-<!--   -->
+-</a></div>
+-<!-- ========= END OF TOP NAVBAR ========= -->
+-<div class="header">
+-<h1 title="Uses of Package" class="title">Uses of Package<br></h1>
+-</div>
+-<div class="contentContainer">No usage of </div>
+-<!-- ======= START OF BOTTOM NAVBAR ====== -->
+-<div class="bottomNav"><a name="navbar.bottom">
+-<!--   -->
+-</a>
+-<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+-<a name="navbar.bottom.firstrow">
+-<!--   -->
+-</a>
+-<ul class="navList" title="Navigation">
+-<li><a href="overview-summary.html">Overview</a></li>
+-<li><a href="package-summary.html">Package</a></li>
+-<li>Class</li>
+-<li class="navBarCell1Rev">Use</li>
+-<li><a href="package-tree.html">Tree</a></li>
+-<li><a href="deprecated-list.html">Deprecated</a></li>
+-<li><a href="index-files/index-1.html">Index</a></li>
+-<li><a href="help-doc.html">Help</a></li>
+-</ul>
+-</div>
+-<div class="subNav">
+-<ul class="navList">
+-<li>Prev</li>
+-<li>Next</li>
+-</ul>
+-<ul class="navList">
+-<li><a href="index.html?package-use.html" target="_top">Frames</a></li>
+-<li><a href="package-use.html" target="_top">No&nbsp;Frames</a></li>
+-</ul>
+-<ul class="navList" id="allclasses_navbar_bottom">
+-<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+-</ul>
+-<div>
+-<script type="text/javascript"><!--
+-  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+-  if(window==top) {
+-    allClassesLink.style.display = "block";
+-  }
+-  else {
+-    allClassesLink.style.display = "none";
+-  }
+-  //-->
+-</script>
+-</div>
+-<a name="skip.navbar.bottom">
+-<!--   -->
+-</a></div>
+-<!-- ======== END OF BOTTOM NAVBAR ======= -->
+-</body>
+-</html>
+diff --git a/docs/javadoc/script.js b/docs/javadoc/script.js
+deleted file mode 100644
+index b346356..0000000
+--- a/docs/javadoc/script.js
++++ /dev/null
+@@ -1,30 +0,0 @@
+-function show(type)
+-{
+-    count = 0;
+-    for (var key in methods) {
+-        var row = document.getElementById(key);
+-        if ((methods[key] &  type) != 0) {
+-            row.style.display = '';
+-            row.className = (count++ % 2) ? rowColor : altColor;
+-        }
+-        else
+-            row.style.display = 'none';
+-    }
+-    updateTabs(type);
+-}
+-
+-function updateTabs(type)
+-{
+-    for (var value in tabs) {
+-        var sNode = document.getElementById(tabs[value][0]);
+-        var spanNode = sNode.firstChild;
+-        if (value == type) {
+-            sNode.className = activeTableTab;
+-            spanNode.innerHTML = tabs[value][1];
+-        }
+-        else {
+-            sNode.className = tableTab;
+-            spanNode.innerHTML = "<a href=\"javascript:show("+ value + ");\">" + tabs[value][1] + "</a>";
+-        }
+-    }
+-}
+diff --git a/docs/javadoc/stylesheet.css b/docs/javadoc/stylesheet.css
+deleted file mode 100644
+index cebb4fd..0000000
+--- a/docs/javadoc/stylesheet.css
++++ /dev/null
+@@ -1,574 +0,0 @@
+-/* Javadoc style sheet */
+-/*
+-Overall document style
+-*/
+-
+-@import url('resources/fonts/dejavu.css');
+-
+-body {
+-    background-color:#ffffff;
+-    color:#353833;
+-    font-family:'DejaVu Sans', Arial, Helvetica, sans-serif;
+-    font-size:14px;
+-    margin:0;
+-}
+-a:link, a:visited {
+-    text-decoration:none;
+-    color:#4A6782;
+-}
+-a:hover, a:focus {
+-    text-decoration:none;
+-    color:#bb7a2a;
+-}
+-a:active {
+-    text-decoration:none;
+-    color:#4A6782;
+-}
+-a[name] {
+-    color:#353833;
+-}
+-a[name]:hover {
+-    text-decoration:none;
+-    color:#353833;
+-}
+-pre {
+-    font-family:'DejaVu Sans Mono', monospace;
+-    font-size:14px;
+-}
+-h1 {
+-    font-size:20px;
+-}
+-h2 {
+-    font-size:18px;
+-}
+-h3 {
+-    font-size:16px;
+-    font-style:italic;
+-}
+-h4 {
+-    font-size:13px;
+-}
+-h5 {
+-    font-size:12px;
+-}
+-h6 {
+-    font-size:11px;
+-}
+-ul {
+-    list-style-type:disc;
+-}
+-code, tt {
+-    font-family:'DejaVu Sans Mono', monospace;
+-    font-size:14px;
+-    padding-top:4px;
+-    margin-top:8px;
+-    line-height:1.4em;
+-}
+-dt code {
+-    font-family:'DejaVu Sans Mono', monospace;
+-    font-size:14px;
+-    padding-top:4px;
+-}
+-table tr td dt code {
+-    font-family:'DejaVu Sans Mono', monospace;
+-    font-size:14px;
+-    vertical-align:top;
+-    padding-top:4px;
+-}
+-sup {
+-    font-size:8px;
+-}
+-/*
+-Document title and Copyright styles
+-*/
+-.clear {
+-    clear:both;
+-    height:0px;
+-    overflow:hidden;
+-}
+-.aboutLanguage {
+-    float:right;
+-    padding:0px 21px;
+-    font-size:11px;
+-    z-index:200;
+-    margin-top:-9px;
+-}
+-.legalCopy {
+-    margin-left:.5em;
+-}
+-.bar a, .bar a:link, .bar a:visited, .bar a:active {
+-    color:#FFFFFF;
+-    text-decoration:none;
+-}
+-.bar a:hover, .bar a:focus {
+-    color:#bb7a2a;
+-}
+-.tab {
+-    background-color:#0066FF;
+-    color:#ffffff;
+-    padding:8px;
+-    width:5em;
+-    font-weight:bold;
+-}
+-/*
+-Navigation bar styles
+-*/
+-.bar {
+-    background-color:#4D7A97;
+-    color:#FFFFFF;
+-    padding:.8em .5em .4em .8em;
+-    height:auto;/*height:1.8em;*/
+-    font-size:11px;
+-    margin:0;
+-}
+-.topNav {
+-    background-color:#4D7A97;
+-    color:#FFFFFF;
+-    float:left;
+-    padding:0;
+-    width:100%;
+-    clear:right;
+-    height:2.8em;
+-    padding-top:10px;
+-    overflow:hidden;
+-    font-size:12px; 
+-}
+-.bottomNav {
+-    margin-top:10px;
+-    background-color:#4D7A97;
+-    color:#FFFFFF;
+-    float:left;
+-    padding:0;
+-    width:100%;
+-    clear:right;
+-    height:2.8em;
+-    padding-top:10px;
+-    overflow:hidden;
+-    font-size:12px;
+-}
+-.subNav {
+-    background-color:#dee3e9;
+-    float:left;
+-    width:100%;
+-    overflow:hidden;
+-    font-size:12px;
+-}
+-.subNav div {
+-    clear:left;
+-    float:left;
+-    padding:0 0 5px 6px;
+-    text-transform:uppercase;
+-}
+-ul.navList, ul.subNavList {
+-    float:left;
+-    margin:0 25px 0 0;
+-    padding:0;
+-}
+-ul.navList li{
+-    list-style:none;
+-    float:left;
+-    padding: 5px 6px;
+-    text-transform:uppercase;
+-}
+-ul.subNavList li{
+-    list-style:none;
+-    float:left;
+-}
+-.topNav a:link, .topNav a:active, .topNav a:visited, .bottomNav a:link, .bottomNav a:active, .bottomNav a:visited {
+-    color:#FFFFFF;
+-    text-decoration:none;
+-    text-transform:uppercase;
+-}
+-.topNav a:hover, .bottomNav a:hover {
+-    text-decoration:none;
+-    color:#bb7a2a;
+-    text-transform:uppercase;
+-}
+-.navBarCell1Rev {
+-    background-color:#F8981D;
+-    color:#253441;
+-    margin: auto 5px;
+-}
+-.skipNav {
+-    position:absolute;
+-    top:auto;
+-    left:-9999px;
+-    overflow:hidden;
+-}
+-/*
+-Page header and footer styles
+-*/
+-.header, .footer {
+-    clear:both;
+-    margin:0 20px;
+-    padding:5px 0 0 0;
+-}
+-.indexHeader {
+-    margin:10px;
+-    position:relative;
+-}
+-.indexHeader span{
+-    margin-right:15px;
+-}
+-.indexHeader h1 {
+-    font-size:13px;
+-}
+-.title {
+-    color:#2c4557;
+-    margin:10px 0;
+-}
+-.subTitle {
+-    margin:5px 0 0 0;
+-}
+-.header ul {
+-    margin:0 0 15px 0;
+-    padding:0;
+-}
+-.footer ul {
+-    margin:20px 0 5px 0;
+-}
+-.header ul li, .footer ul li {
+-    list-style:none;
+-    font-size:13px;
+-}
+-/*
+-Heading styles
+-*/
+-div.details ul.blockList ul.blockList ul.blockList li.blockList h4, div.details ul.blockList ul.blockList ul.blockListLast li.blockList h4 {
+-    background-color:#dee3e9;
+-    border:1px solid #d0d9e0;
+-    margin:0 0 6px -8px;
+-    padding:7px 5px;
+-}
+-ul.blockList ul.blockList ul.blockList li.blockList h3 {
+-    background-color:#dee3e9;
+-    border:1px solid #d0d9e0;
+-    margin:0 0 6px -8px;
+-    padding:7px 5px;
+-}
+-ul.blockList ul.blockList li.blockList h3 {
+-    padding:0;
+-    margin:15px 0;
+-}
+-ul.blockList li.blockList h2 {
+-    padding:0px 0 20px 0;
+-}
+-/*
+-Page layout container styles
+-*/
+-.contentContainer, .sourceContainer, .classUseContainer, .serializedFormContainer, .constantValuesContainer {
+-    clear:both;
+-    padding:10px 20px;
+-    position:relative;
+-}
+-.indexContainer {
+-    margin:10px;
+-    position:relative;
+-    font-size:12px;
+-}
+-.indexContainer h2 {
+-    font-size:13px;
+-    padding:0 0 3px 0;
+-}
+-.indexContainer ul {
+-    margin:0;
+-    padding:0;
+-}
+-.indexContainer ul li {
+-    list-style:none;
+-    padding-top:2px;
+-}
+-.contentContainer .description dl dt, .contentContainer .details dl dt, .serializedFormContainer dl dt {
+-    font-size:12px;
+-    font-weight:bold;
+-    margin:10px 0 0 0;
+-    color:#4E4E4E;
+-}
+-.contentContainer .description dl dd, .contentContainer .details dl dd, .serializedFormContainer dl dd {
+-    margin:5px 0 10px 0px;
+-    font-size:14px;
+-    font-family:'DejaVu Sans Mono',monospace;
+-}
+-.serializedFormContainer dl.nameValue dt {
+-    margin-left:1px;
+-    font-size:1.1em;
+-    display:inline;
+-    font-weight:bold;
+-}
+-.serializedFormContainer dl.nameValue dd {
+-    margin:0 0 0 1px;
+-    font-size:1.1em;
+-    display:inline;
+-}
+-/*
+-List styles
+-*/
+-ul.horizontal li {
+-    display:inline;
+-    font-size:0.9em;
+-}
+-ul.inheritance {
+-    margin:0;
+-    padding:0;
+-}
+-ul.inheritance li {
+-    display:inline;
+-    list-style:none;
+-}
+-ul.inheritance li ul.inheritance {
+-    margin-left:15px;
+-    padding-left:15px;
+-    padding-top:1px;
+-}
+-ul.blockList, ul.blockListLast {
+-    margin:10px 0 10px 0;
+-    padding:0;
+-}
+-ul.blockList li.blockList, ul.blockListLast li.blockList {
+-    list-style:none;
+-    margin-bottom:15px;
+-    line-height:1.4;
+-}
+-ul.blockList ul.blockList li.blockList, ul.blockList ul.blockListLast li.blockList {
+-    padding:0px 20px 5px 10px;
+-    border:1px solid #ededed; 
+-    background-color:#f8f8f8;
+-}
+-ul.blockList ul.blockList ul.blockList li.blockList, ul.blockList ul.blockList ul.blockListLast li.blockList {
+-    padding:0 0 5px 8px;
+-    background-color:#ffffff;
+-    border:none;
+-}
+-ul.blockList ul.blockList ul.blockList ul.blockList li.blockList {
+-    margin-left:0;
+-    padding-left:0;
+-    padding-bottom:15px;
+-    border:none;
+-}
+-ul.blockList ul.blockList ul.blockList ul.blockList li.blockListLast {
+-    list-style:none;
+-    border-bottom:none;
+-    padding-bottom:0;
+-}
+-table tr td dl, table tr td dl dt, table tr td dl dd {
+-    margin-top:0;
+-    margin-bottom:1px;
+-}
+-/*
+-Table styles
+-*/
+-.overviewSummary, .memberSummary, .typeSummary, .useSummary, .constantsSummary, .deprecatedSummary {
+-    width:100%;
+-    border-left:1px solid #EEE; 
+-    border-right:1px solid #EEE; 
+-    border-bottom:1px solid #EEE; 
+-}
+-.overviewSummary, .memberSummary  {
+-    padding:0px;
+-}
+-.overviewSummary caption, .memberSummary caption, .typeSummary caption,
+-.useSummary caption, .constantsSummary caption, .deprecatedSummary caption {
+-    position:relative;
+-    text-align:left;
+-    background-repeat:no-repeat;
+-    color:#253441;
+-    font-weight:bold;
+-    clear:none;
+-    overflow:hidden;
+-    padding:0px;
+-    padding-top:10px;
+-    padding-left:1px;
+-    margin:0px;
+-    white-space:pre;
+-}
+-.overviewSummary caption a:link, .memberSummary caption a:link, .typeSummary caption a:link,
+-.useSummary caption a:link, .constantsSummary caption a:link, .deprecatedSummary caption a:link,
+-.overviewSummary caption a:hover, .memberSummary caption a:hover, .typeSummary caption a:hover,
+-.useSummary caption a:hover, .constantsSummary caption a:hover, .deprecatedSummary caption a:hover,
+-.overviewSummary caption a:active, .memberSummary caption a:active, .typeSummary caption a:active,
+-.useSummary caption a:active, .constantsSummary caption a:active, .deprecatedSummary caption a:active,
+-.overviewSummary caption a:visited, .memberSummary caption a:visited, .typeSummary caption a:visited,
+-.useSummary caption a:visited, .constantsSummary caption a:visited, .deprecatedSummary caption a:visited {
+-    color:#FFFFFF;
+-}
+-.overviewSummary caption span, .memberSummary caption span, .typeSummary caption span,
+-.useSummary caption span, .constantsSummary caption span, .deprecatedSummary caption span {
+-    white-space:nowrap;
+-    padding-top:5px;
+-    padding-left:12px;
+-    padding-right:12px;
+-    padding-bottom:7px;
+-    display:inline-block;
+-    float:left;
+-    background-color:#F8981D;
+-    border: none;
+-    height:16px;
+-}
+-.memberSummary caption span.activeTableTab span {
+-    white-space:nowrap;
+-    padding-top:5px;
+-    padding-left:12px;
+-    padding-right:12px;
+-    margin-right:3px;
+-    display:inline-block;
+-    float:left;
+-    background-color:#F8981D;
+-    height:16px;
+-}
+-.memberSummary caption span.tableTab span {
+-    white-space:nowrap;
+-    padding-top:5px;
+-    padding-left:12px;
+-    padding-right:12px;
+-    margin-right:3px;
+-    display:inline-block;
+-    float:left;
+-    background-color:#4D7A97;
+-    height:16px;
+-}
+-.memberSummary caption span.tableTab, .memberSummary caption span.activeTableTab {
+-    padding-top:0px;
+-    padding-left:0px;
+-    padding-right:0px;
+-    background-image:none;
+-    float:none;
+-    display:inline;
+-}
+-.overviewSummary .tabEnd, .memberSummary .tabEnd, .typeSummary .tabEnd,
+-.useSummary .tabEnd, .constantsSummary .tabEnd, .deprecatedSummary .tabEnd {
+-    display:none;
+-    width:5px;
+-    position:relative;
+-    float:left;
+-    background-color:#F8981D;
+-}
+-.memberSummary .activeTableTab .tabEnd {
+-    display:none;
+-    width:5px;
+-    margin-right:3px;
+-    position:relative; 
+-    float:left;
+-    background-color:#F8981D;
+-}
+-.memberSummary .tableTab .tabEnd {
+-    display:none;
+-    width:5px;
+-    margin-right:3px;
+-    position:relative;
+-    background-color:#4D7A97;
+-    float:left;
+-
+-}
+-.overviewSummary td, .memberSummary td, .typeSummary td,
+-.useSummary td, .constantsSummary td, .deprecatedSummary td {
+-    text-align:left;
+-    padding:0px 0px 12px 10px;
+-    width:100%;
+-}
+-th.colOne, th.colFirst, th.colLast, .useSummary th, .constantsSummary th,
+-td.colOne, td.colFirst, td.colLast, .useSummary td, .constantsSummary td{
+-    vertical-align:top;
+-    padding-right:0px;
+-    padding-top:8px;
+-    padding-bottom:3px;
+-}
+-th.colFirst, th.colLast, th.colOne, .constantsSummary th {
+-    background:#dee3e9;
+-    text-align:left;
+-    padding:8px 3px 3px 7px;
+-}
+-td.colFirst, th.colFirst {
+-    white-space:nowrap;
+-    font-size:13px;
+-}
+-td.colLast, th.colLast {
+-    font-size:13px;
+-}
+-td.colOne, th.colOne {
+-    font-size:13px;
+-}
+-.overviewSummary td.colFirst, .overviewSummary th.colFirst,
+-.overviewSummary td.colOne, .overviewSummary th.colOne,
+-.memberSummary td.colFirst, .memberSummary th.colFirst,
+-.memberSummary td.colOne, .memberSummary th.colOne,
+-.typeSummary td.colFirst{
+-    width:25%;
+-    vertical-align:top;
+-}
+-td.colOne a:link, td.colOne a:active, td.colOne a:visited, td.colOne a:hover, td.colFirst a:link, td.colFirst a:active, td.colFirst a:visited, td.colFirst a:hover, td.colLast a:link, td.colLast a:active, td.colLast a:visited, td.colLast a:hover, .constantValuesContainer td a:link, .constantValuesContainer td a:active, .constantValuesContainer td a:visited, .constantValuesContainer td a:hover {
+-    font-weight:bold;
+-}
+-.tableSubHeadingColor {
+-    background-color:#EEEEFF;
+-}
+-.altColor {
+-    background-color:#FFFFFF;
+-}
+-.rowColor {
+-    background-color:#EEEEEF;
+-}
+-/*
+-Content styles
+-*/
+-.description pre {
+-    margin-top:0;
+-}
+-.deprecatedContent {
+-    margin:0;
+-    padding:10px 0;
+-}
+-.docSummary {
+-    padding:0;
+-}
+-
+-ul.blockList ul.blockList ul.blockList li.blockList h3 {
+-    font-style:normal;
+-}
+-
+-div.block {
+-    font-size:14px;
+-    font-family:'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+-}
+-
+-td.colLast div {
+-    padding-top:0px;
+-}
+-
+-
+-td.colLast a {
+-    padding-bottom:3px;
+-}
+-/*
+-Formatting effect styles
+-*/
+-.sourceLineNo {
+-    color:green;
+-    padding:0 30px 0 0;
+-}
+-h1.hidden {
+-    visibility:hidden;
+-    overflow:hidden;
+-    font-size:10px;
+-}
+-.block {
+-    display:block;
+-    margin:3px 10px 2px 0px;
+-    color:#474747;
+-}
+-.deprecatedLabel, .descfrmTypeLabel, .memberNameLabel, .memberNameLink,
+-.overrideSpecifyLabel, .packageHierarchyLabel, .paramLabel, .returnLabel,
+-.seeLabel, .simpleTagLabel, .throwsLabel, .typeNameLabel, .typeNameLink {
+-    font-weight:bold;
+-}
+-.deprecationComment, .emphasizedPhrase, .interfaceName {
+-    font-style:italic;
+-}
+-
+-div.block div.block span.deprecationComment, div.block div.block span.emphasizedPhrase,
+-div.block div.block span.interfaceName {
+-    font-style:normal;
+-}
+-
+-div.contentContainer ul.blockList li.blockList h2{
+-    padding-bottom:0px;
+-}
+-- 
+2.32.1 (Apple Git-133)
+
+
+From 793ec94e91d2f85d70bc866939b6b562fd701b54 Mon Sep 17 00:00:00 2001
+From: Luigi Quaranta <luigi.quaranta@uniba.it>
+Date: Wed, 25 May 2022 11:58:34 +0200
+Subject: [PATCH 2/2] Update .gitignore
+
+---
+ .gitignore | 216 +++++++++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 192 insertions(+), 24 deletions(-)
+
+diff --git a/.gitignore b/.gitignore
+index 805ac88..16c38a9 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,3 +1,7 @@
++# Created by https://www.toptal.com/developers/gitignore/api/java,gradle,eclipse,visualstudiocode,intellij,macos,windows
++# Edit at https://www.toptal.com/developers/gitignore?templates=java,gradle,eclipse,visualstudiocode,intellij,macos,windows
++
++### Eclipse ###
+ .metadata
+ bin/
+ tmp/
+@@ -6,12 +10,9 @@ tmp/
+ *.swp
+ *~.nib
+ local.properties
+-
+-# Eclipse project file
+ .settings/
+-.classpath
+-.project
+ .loadpath
++.recommenders
+ 
+ # External tool builders
+ .externalToolBuilders/
+@@ -19,36 +20,55 @@ local.properties
+ # Locally stored "Eclipse launch configurations"
+ *.launch
+ 
++# PyDev specific (Python IDE for Eclipse)
++*.pydevproject
++
++# CDT-specific (C/C++ Development Tooling)
++.cproject
++
++# CDT- autotools
++.autotools
++
+ # Java annotation processor (APT)
+ .factorypath
+ 
++# PDT-specific (PHP Development Tools)
++.buildpath
++
+ # sbteclipse plugin
+ .target
+ 
++# Tern plugin
++.tern-project
++
++# TeXlipse plugin
++.texlipse
++
+ # STS (Spring Tool Suite)
+ .springBeans
+ 
+-# OS X
+-.DS_Store
++# Code Recommenders
++.recommenders/
+ 
+-# Package Files #
+-*.zip
+-*.tar.gz
+-*.rar
++# Annotation Processing
++.apt_generated/
++.apt_generated_test/
+ 
+-### Gradle ###
+-.gradle
+-/build/classes
+-/build/distributions
+-/build/jacoco
+-/build/libs
+-/build/docker
+-/build/scripts
+-#/build/test-results
++# Scala IDE specific (Scala & Java development for Eclipse)
++.cache-main
++.scala_dependencies
++.worksheet
++
++# Uncomment this line if you wish to ignore the project description file.
++# Typically, this file would be tracked if it contains build/dependency configurations:
++#.project
+ 
++### Eclipse Patch ###
++# Spring Boot Tooling
++.sts4-cache/
+ 
+ ### Intellij ###
+-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
++# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
+ # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+ 
+ # User-specific stuff
+@@ -58,6 +78,9 @@ local.properties
+ .idea/**/dictionaries
+ .idea/**/shelf
+ 
++# AWS User-specific
++.idea/**/aws.xml
++
+ # Generated files
+ .idea/**/contentModel.xml
+ 
+@@ -78,6 +101,9 @@ local.properties
+ # When using Gradle or Maven with auto-import, you should exclude module files,
+ # since they will be recreated, and may cause churn.  Uncomment if using
+ # auto-import.
++# .idea/artifacts
++# .idea/compiler.xml
++# .idea/jarRepositories.xml
+ # .idea/modules.xml
+ # .idea/*.iml
+ # .idea/modules
+@@ -105,6 +131,9 @@ atlassian-ide-plugin.xml
+ # Cursive Clojure plugin
+ .idea/replstate.xml
+ 
++# SonarLint plugin
++.idea/sonarlint/
++
+ # Crashlytics plugin (for Android Studio and IntelliJ)
+ com_crashlytics_export_strings.xml
+ crashlytics.properties
+@@ -126,18 +155,157 @@ fabric.properties
+ # *.ipr
+ 
+ # Sonarlint plugin
++# https://plugins.jetbrains.com/plugin/7973-sonarlint
+ .idea/**/sonarlint/
+ 
+ # SonarQube Plugin
++# https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
+ .idea/**/sonarIssues.xml
+ 
+ # Markdown Navigator plugin
++# https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced
+ .idea/**/markdown-navigator.xml
++.idea/**/markdown-navigator-enh.xml
+ .idea/**/markdown-navigator/
+ 
+-.idea/
++# Cache file creation bug
++# See https://youtrack.jetbrains.com/issue/JBR-2257
++.idea/$CACHE_FILE$
++
++# CodeStream plugin
++# https://plugins.jetbrains.com/plugin/12206-codestream
++.idea/codestream.xml
++
++# Azure Toolkit for IntelliJ plugin
++# https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
++.idea/**/azureSettings.xml
++
++### Java ###
++# Compiled class file
++*.class
++
++# Log file
++*.log
++
++# BlueJ files
++*.ctxt
++
++# Mobile Tools for Java (J2ME)
++.mtj.tmp/
++
++# Package Files #
++*.jar
++*.war
++*.nar
++*.ear
++*.zip
++*.tar.gz
++*.rar
++
++# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
++hs_err_pid*
++replay_pid*
++
++### macOS ###
++# General
++.DS_Store
++.AppleDouble
++.LSOverride
++
++# Icon must end with two \r
++Icon
++
++
++# Thumbnails
++._*
++
++# Files that might appear in the root of a volume
++.DocumentRevisions-V100
++.fseventsd
++.Spotlight-V100
++.TemporaryItems
++.Trashes
++.VolumeIcon.icns
++.com.apple.timemachine.donotpresent
++
++# Directories potentially created on remote AFP share
++.AppleDB
++.AppleDesktop
++Network Trash Folder
++Temporary Items
++.apdisk
++
++### macOS Patch ###
++# iCloud generated files
++*.icloud
++
++### VisualStudioCode ###
+ .vscode/
+-/build/
+ 
+-# Ignore Gradle build output directory
+-build
++# Local History for Visual Studio Code
++.history/
++
++# Built Visual Studio Code Extensions
++*.vsix
++
++### VisualStudioCode Patch ###
++# Ignore all local history of files
++.history
++.ionide
++
++# Support for Project snippet scope
++.vscode/*.code-snippets
++
++# Ignore code-workspaces
++*.code-workspace
++
++### Windows ###
++# Windows thumbnail cache files
++Thumbs.db
++Thumbs.db:encryptable
++ehthumbs.db
++ehthumbs_vista.db
++
++# Dump file
++*.stackdump
++
++# Folder config file
++[Dd]esktop.ini
++
++# Recycle Bin used on file shares
++$RECYCLE.BIN/
++
++# Windows Installer files
++*.cab
++*.msi
++*.msix
++*.msm
++*.msp
++
++# Windows shortcuts
++*.lnk
++
++### Gradle ###
++.gradle
++**/build/
++!src/**/build/
++
++# Ignore Gradle GUI config
++gradle-app.setting
++
++# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
++!gradle-wrapper.jar
++
++# Avoid ignore Gradle wrappper properties
++!gradle-wrapper.properties
++
++# Cache of project
++.gradletasknamecache
++
++# Eclipse Gradle plugin generated files
++# Eclipse Core
++.project
++# JDT-specific (Eclipse Java Development Tools)
++.classpath
++
++# End of https://www.toptal.com/developers/gitignore/api/java,gradle,eclipse,visualstudiocode,intellij,macos,windows
+\ No newline at end of file
+-- 
+2.32.1 (Apple Git-133)
+
