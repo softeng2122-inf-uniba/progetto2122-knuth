@@ -13,7 +13,8 @@ import java.util.Scanner;
  */
 public final class App {
 
-    static Scanner keyboardInput = new Scanner(new InputStreamReader(System.in));
+    static Scanner keyboardInput = new Scanner(
+            new InputStreamReader(System.in));
     static Printer consoleOutput = new Printer();
     static Parser parser = new Parser();
 
@@ -33,7 +34,8 @@ public final class App {
 
         // stampe iniziali
         consoleOutput.printDescription();
-        if (args.length > 0 && (args[0].equals("--help") || args[0].equals("-h"))) {
+        if (args.length > 0 && (args[0].equals("--help")
+                || args[0].equals("-h"))) {
             consoleOutput.printHelp();
         }
 
@@ -136,8 +138,11 @@ public final class App {
             Wordle.guess(guessWord);
             consoleOutput.printBoard();
             consoleOutput.printGuessResult();
-            if (Wordle.getNumRemainingGuesses() == 0 || Wordle.getGuessResult())
+
+            if (Wordle.getNumRemainingGuesses() == 0
+                    || Wordle.getGuessResult()) {
                 Wordle.endGame();
+            }
         } catch (WordleGameException | IllegalArgumentException e) {
             consoleOutput.println(e.getMessage());
         }
@@ -152,8 +157,9 @@ public final class App {
         } while (!answer.equalsIgnoreCase("si")
                 && !answer.equalsIgnoreCase("no"));
 
-        if (answer.equalsIgnoreCase("si"))
+        if (answer.equalsIgnoreCase("si")) {
             System.exit(0);
+        }
     }
 
     public static void executePrintSecretWord() {
@@ -167,12 +173,14 @@ public final class App {
 
     public static void checkEncoding() {
         String encoding = System.getProperty("file.encoding");
+
         if (!encoding.equalsIgnoreCase("UTF-8")
                 && !encoding.equalsIgnoreCase("UTF-16")) {
             consoleOutput.println(
                     "Codifica [" + encoding + "] non supportata");
             consoleOutput.println(
-                    "Alcuni caratteri potrebbero non essere visualizzati correttamente");
+                    "Alcuni caratteri potrebbero non essere "
+                            + "visualizzati correttamente");
         }
     }
 }

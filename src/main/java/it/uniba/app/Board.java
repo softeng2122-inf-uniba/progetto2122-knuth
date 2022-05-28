@@ -28,8 +28,7 @@ public class Board {
         this.firstEmptyIndex = 0;
     }
 
-    public Guess getGuess(int index)
-    {
+    public Guess getGuess(int index) {
         return guessArray[index];
     }
 
