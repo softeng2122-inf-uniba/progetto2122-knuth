@@ -11,6 +11,7 @@ public class Board {
     private final Guess[] guessArray;
     private final int wordLength;
     private int firstEmptyIndex;
+
     private static final int setColumn = 5;
     private static final int setRow = 6;
 

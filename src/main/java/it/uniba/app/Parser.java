@@ -3,7 +3,8 @@ package it.uniba.app;
 /**
  * {@literal <<Boundary>>} <br>
  * Classe per il parsing dell'input dell'utente. <p></p>
- * Estrae {@link Command} e relativi argomenti a partire dalle linee digitate.
+ * Estrae {@link Command} e relativi argomenti
+ * a partire dalle linee digitate.
  */
 public class Parser {
     private String input;

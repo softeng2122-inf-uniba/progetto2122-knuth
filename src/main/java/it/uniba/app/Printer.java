@@ -3,9 +3,10 @@ package it.uniba.app;
 import java.io.PrintWriter;
 /**
  * {@literal <<Boundary>>} <br>
- * Classe per la stampa dell'output da visualizzare sulla console. <p></p>
- * Utilizza codici ANSI per la visualizzazione dei colori e costanti UNICODE
- * nelle stampe di gioco.
+ * Classe per la stampa dell'output da visualizzare sulla console.
+ * <p></p>
+ * Utilizza codici ANSI per la visualizzazione dei colori
+ * e costanti UNICODE nelle stampe di gioco.
  */
 public class Printer extends PrintWriter {
     // angoli (L = left, R = right, U = up, D = down)

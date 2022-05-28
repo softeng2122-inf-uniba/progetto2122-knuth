@@ -46,6 +46,7 @@ public final class App {
         parser.feed(inputLine);
         Command command = parser.getCommand();
         String[] arguments = parser.getArgs();
+
         while (true) {
             switch (command) {
                 case GIOCA:
@@ -151,6 +152,7 @@ public final class App {
 
     public static void executeExitGame() {
         String answer;
+
         do {
             consoleOutput.println(
                     "Sei sicuro di voler uscire da Wordle? [si | no]");

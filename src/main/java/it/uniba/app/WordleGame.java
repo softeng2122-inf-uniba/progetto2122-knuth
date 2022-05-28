@@ -3,8 +3,8 @@ package it.uniba.app;
 /**
  * {@literal <<Entity>>} <br>
  * Classe che rappresenta una partita di Wordle.
- * Fornisce metodi per recuperare le impostazioni della partita,
- * nonché la matrice dei tentativi.
+ * Fornisce metodi per recuperare le impostazioni
+ * della partita, nonché la matrice dei tentativi.
  */
 public class WordleGame {
     private final String secretWord;

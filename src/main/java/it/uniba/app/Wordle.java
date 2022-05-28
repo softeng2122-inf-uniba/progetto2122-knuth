@@ -7,7 +7,8 @@ import java.util.HashMap;
 /**
  * {@literal <<Control>>} <br>
  * Classe che implementa la logica del gioco: opera su oggetti delle
- * classi di tipo Entity, coerentemente con le regole di Wordle. <p></p>
+ * classi di tipo Entity, coerentemente con le regole di Wordle.
+ * <p></p>
  * Fornisce una API (Application Programming Interface) indipendente
  * dallo strato di User Interface, il quale richiamerà i suoi servizi,
  * effettuando controlli sulla legalità delle chiamate.
@@ -98,6 +99,7 @@ public class Wordle {
 
         //Secondo step: setting delle lettere gialle e grigie
         Guess.LetterBox lb;
+
         for (int i = 0; i < guessWord.length(); i++) {
             if (newGuess.getColor(i) == Color.GREEN) {
                 continue;
