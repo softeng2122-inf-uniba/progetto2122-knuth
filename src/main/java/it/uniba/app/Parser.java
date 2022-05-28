@@ -25,8 +25,9 @@ public class Parser {
     }
 
     private String[] tokenizeInput() {
-        if (input.length() == 0)
+        if (input.length() == 0) {
             return null;
+        }
 
         String[] tokens;
         tokens = input.split("\\s+");
@@ -48,23 +49,29 @@ public class Parser {
             //salvo solo il comando, i valori di enum non contengono "/"
             String tokenCommand = tokens[0].substring(1);
 
-            if (tokenCommand.equalsIgnoreCase(Command.GIOCA.toString()))
+            if (tokenCommand.equalsIgnoreCase(Command.GIOCA.toString())) {
                 command = Command.GIOCA;
+            }
 
-            if (tokenCommand.equalsIgnoreCase(Command.NUOVA.toString()))
+            if (tokenCommand.equalsIgnoreCase(Command.NUOVA.toString())) {
                 command = Command.NUOVA;
+            }
 
-            if (tokenCommand.equalsIgnoreCase(Command.ABBANDONA.toString()))
+            if (tokenCommand.equalsIgnoreCase(Command.ABBANDONA.toString())) {
                 command = Command.ABBANDONA;
+            }
 
-            if (tokenCommand.equalsIgnoreCase(Command.ESCI.toString()))
+            if (tokenCommand.equalsIgnoreCase(Command.ESCI.toString())) {
                 command = Command.ESCI;
+            }
 
-            if (tokenCommand.equalsIgnoreCase(Command.MOSTRA.toString()))
+            if (tokenCommand.equalsIgnoreCase(Command.MOSTRA.toString())) {
                 command = Command.MOSTRA;
+            }
 
-            if (tokenCommand.equalsIgnoreCase(Command.HELP.toString()))
+            if (tokenCommand.equalsIgnoreCase(Command.HELP.toString())) {
                 command = Command.HELP;
+            }
         } else {//CASO 3: tentativo
             command = Command.GUESS;
         }
@@ -72,8 +79,9 @@ public class Parser {
     }
 
     private String[] extractArgs() {
-        if (tokens == null)
+        if (tokens == null) {
             return null;
+        }
 
         //se il primo token è un comando lo salti
         if (tokens[0].charAt(0) == '/') {
