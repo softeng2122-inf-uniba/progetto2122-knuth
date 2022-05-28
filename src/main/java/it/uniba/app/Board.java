@@ -16,13 +16,13 @@ public class Board {
 
     //costruttore per wordle classico con parola da 5 lettere
     Board() {
-        this(setColumn  , setRow);
+        this(setColumn, setRow);
     }  // molto probabilmente servirà una costante per questi argomenti
 
     //costruttore
     // riceve column lunghezza della matrice e row che permette
     // di avere tante righe quanti sono i tentativi
-    Board(int column , int row) {
+    Board(int column, int row) {
         this.guessArray = new Guess[row];
         this.wordLength = column;
         this.firstEmptyIndex = 0;
