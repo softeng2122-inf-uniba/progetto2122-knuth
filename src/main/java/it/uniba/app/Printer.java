@@ -180,7 +180,8 @@ public class Printer extends PrintWriter {
     }
 
     private void printWordleLogo() {
-        println(upperPart(6));
+        final int WORDLE_LENGTH = 6;
+        println(upperPart(WORDLE_LENGTH));
         print(VERTICAL_EDGE);
 
         print(coloredLetterSpace('W', Color.GREEN) + VERTICAL_EDGE);
@@ -190,7 +191,7 @@ public class Printer extends PrintWriter {
         print(coloredLetterSpace('L', Color.YELLOW) + VERTICAL_EDGE);
         println(coloredLetterSpace('E', Color.GREY) + VERTICAL_EDGE);
 
-        println(lowerPart(6));
+        println(lowerPart(WORDLE_LENGTH));
     }
 
     private String coloredLetterSpace(char c, Color color) {

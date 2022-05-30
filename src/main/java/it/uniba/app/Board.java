@@ -12,14 +12,6 @@ public class Board {
     private final int wordLength;
     private int firstEmptyIndex;
 
-    private static final int setColumn = 5;
-    private static final int setRow = 6;
-
-    //costruttore per wordle classico con parola da 5 lettere
-    Board() {
-        this(setColumn, setRow);
-    }  // molto probabilmente servirà una costante per questi argomenti
-
     //costruttore
     // riceve column lunghezza della matrice e row che permette
     // di avere tante righe quanti sono i tentativi

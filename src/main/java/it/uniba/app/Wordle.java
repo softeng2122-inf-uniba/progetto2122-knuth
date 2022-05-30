@@ -35,7 +35,7 @@ public class Wordle {
             throw new WordleSettingException("Parola segreta non impostata");
         }
 
-        currentGame = new WordleGame(secretWord);
+        currentGame = new WordleGame(secretWord, wordLength, nMaxGuesses);
     }
 
     /**

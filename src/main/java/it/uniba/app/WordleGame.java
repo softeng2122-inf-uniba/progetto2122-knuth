@@ -10,10 +10,6 @@ public class WordleGame {
     private final String secretWord;
     private final Board gameBoard;
 
-    //costruttore
-    WordleGame(String secretWord) {
-        this(secretWord, 5, 6);
-    }
 
     //costruttore con scelta parola e dimensioni del gioco
     WordleGame(String secretWord, int column, int row) {
