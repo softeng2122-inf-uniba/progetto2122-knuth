@@ -7,5 +7,29 @@ package it.uniba.app;
  */
 public enum Command
 {
-    INVALID, SPACE, GIOCA, NUOVA, ABBANDONA, GUESS, ESCI, MOSTRA, HELP
+    INVALID(),
+    SPACE(),
+    GIOCA(),
+    NUOVA(1),
+    ABBANDONA(),
+    GUESS(1),
+    ESCI(),
+    MOSTRA(),
+    HELP();
+
+    private final int numArgs;
+
+    Command() {
+        this(0);
+    }
+
+    Command(int numArgs) {
+        this.numArgs = numArgs;
+    }
+
+    public int getNumArgs() {
+        return this.numArgs;
+    }
+
+    // public abstract void execute();
 }
