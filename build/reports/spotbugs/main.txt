@@ -1,6 +1,0 @@
-H I Dm: Found reliance on default encoding in it.uniba.app.App.<static initializer for App>(): new java.io.InputStreamReader(InputStream)  At App.java:[line 15]
-M D SF: Switch statement found in it.uniba.app.App.main(String[]) where default case is missing  At App.java:[lines 45-70]
-M P SIC: Should it.uniba.app.Guess$LetterBox be a _static_ inner class?  At Guess.java:[lines 16-44]
-M V EI: it.uniba.app.Parser.getArgs() may expose internal representation by returning Parser.args  At Parser.java:[line 150]
-H I Dm: Found reliance on default encoding in new it.uniba.app.Printer(): new it.uniba.app.Printer(OutputStream, boolean)  At Printer.java:[line 42]
-M D SF: Switch statement found in it.uniba.app.Printer.coloredLetterSpace(char, Color) where default case is missing  At Printer.java:[lines 201-210]
