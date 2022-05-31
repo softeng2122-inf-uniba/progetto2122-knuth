@@ -1,5 +1,10 @@
 package it.uniba.app;
 
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * {@literal <<Boundary>>} <br>
  * Classe per il parsing dell'input dell'utente. <p></p>
@@ -8,9 +13,9 @@ package it.uniba.app;
 public class Parser
 {
     private String input;
+    private String[] tokens;
     private Command command;
     private String[] args;
-    private String[] tokens;
 
     public Parser()
     {
@@ -24,7 +29,13 @@ public class Parser
         this.input = inputLine.trim();
         tokens = tokenizeInput();
         this.command = extractCommand();
-        this.args = extractArgs();
+
+        try {
+            this.args = extractArgs();
+        } catch (InputMismatchException e) {
+
+        }
+
     }
 
     private String[] tokenizeInput()
@@ -84,70 +95,29 @@ public class Parser
         if (tokens == null)
             return null;
 
-        //se il primo token è un comando lo salti
-        if (tokens[0].charAt(0) == '/')
-        {
-            int numberArgsExpected;
+        List<String> tokensList = new LinkedList<>(Arrays.asList(tokens));
 
-            // imposta il numero di argomenti atteso
-            switch (command)
-            {
-                case INVALID:
-                case GIOCA:
-                case ABBANDONA:
-                case ESCI:
-                case MOSTRA:
-                case HELP:
-                    numberArgsExpected = 0;
-                    break;
-                case NUOVA:
-                    numberArgsExpected = 1;
-                    break;
-                default:
-                    numberArgsExpected = 0;
-            }
+        if(tokensList.size() == 0)
+            return null;
 
-            if (numberArgsExpected == 0)
-                return null;
-            else
-            {
-                // array di grandezza pari al numero massimo di argomenti del comando
-                String[] tempArgs = new String[numberArgsExpected];
-                int countArg = 0;
-
-                try
-                {
-                    //partendo dal token 1 (cioè escludendo quello contenente il comando)
-                    // inserisci in tempArgs
-                    for (int nToken = 1; nToken <= numberArgsExpected; nToken++)
-                    {
-                        tempArgs[countArg] = tokens[nToken];
-                        countArg++;
-                    }
-                    return tempArgs;
-                } // nel caso in cui leggi un numero minore di argomenti
-                catch (ArrayIndexOutOfBoundsException e)
-                {
-                    return tempArgs;
-                }
-            }
+        if(command != Command.GUESS) {
+            tokensList.remove(0);
         }
-        else //se è un tentativo considero solo il primo argomento
-        {
-            String[] tempArgs = new String[1];
-            tempArgs[0] = tokens[0];
-            return tempArgs;
-        }
+
+        tokensList = tokensList.subList(0, command.getNumArgs());
+
+        String[] argsArray = new String[command.getNumArgs()];
+        tokensList.toArray(argsArray);
+
+        return argsArray;
     }
 
-    public Command getCommand()
-    {
-        return this.command;
+    public Command getCommand() {
+        return command;
     }
 
-    public String[] getArgs()
-    {
-        return this.args;
+    public String[] getArgs() {
+        return args;
     }
 
 }
