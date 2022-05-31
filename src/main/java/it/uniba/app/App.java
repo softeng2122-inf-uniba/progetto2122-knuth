@@ -130,15 +130,8 @@ public final class App
 
         if (answer.equalsIgnoreCase("si"))
         {
-            try
-            {
-                consoleOutput.println("Hai abbandonato la partita");
-                Wordle.endGame();
-            }
-            catch (WordleGameException e)
-            {
-                consoleOutput.println(e.getMessage());
-            }
+            consoleOutput.println("Hai abbandonato la partita");
+            Wordle.endGame();
         }
     }
 
@@ -193,3 +186,4 @@ public final class App
         }
     }
 }
+
