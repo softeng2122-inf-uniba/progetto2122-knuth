@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Parser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">wordle</a> &gt; <a href="index.source.html" class="el_package">it.uniba.app</a> &gt; <span class="el_source">Parser.java</span></div><h1>Parser.java</h1><pre class="source lang-java linenums">package it.uniba.app;
+
+/**
+ * {@literal &lt;&lt;Boundary&gt;&gt;} &lt;br&gt;
+ * Classe per il parsing dell'input dell'utente. &lt;p&gt;&lt;/p&gt;
+ * Estrae {@link Command} e relativi argomenti a partire dalle linee digitate.
+ */
+public class Parser
+{
+    private String input;
+    private Command command;
+    private String[] args;
+    private String[] tokens;
+
+    public Parser()
+<span class="nc" id="L16">    {</span>
+<span class="nc" id="L17">        this.input = null;</span>
+<span class="nc" id="L18">        this.command = null;</span>
+<span class="nc" id="L19">        this.args = null;</span>
+<span class="nc" id="L20">    }</span>
+
+    public void feed(String inputLine)
+    {
+<span class="nc" id="L24">        this.input = inputLine.trim();</span>
+<span class="nc" id="L25">        tokens = tokenizeInput();</span>
+<span class="nc" id="L26">        this.command = extractCommand();</span>
+<span class="nc" id="L27">        this.args = extractArgs();</span>
+<span class="nc" id="L28">    }</span>
+
+    private String[] tokenizeInput()
+    {
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (input.length() == 0)</span>
+<span class="nc" id="L33">            return null;</span>
+
+        String[] tokens;
+<span class="nc" id="L36">        tokens = input.split(&quot;\\s+&quot;);</span>
+<span class="nc" id="L37">        return tokens;</span>
+    }
+
+    private Command extractCommand()
+    {
+<span class="nc" id="L42">        Command command = Command.INVALID;</span>
+
+        // CASO 1: solo spazi
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if (tokens == null)</span>
+        {
+<span class="nc" id="L47">            command = Command.SPACE;</span>
+<span class="nc" id="L48">            return command;</span>
+        }
+
+        // CASO 2: comando effettivo
+<span class="nc" id="L52">        char firstChar = tokens[0].charAt(0);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (firstChar == '/')</span>
+        {
+            //salvo solo il comando, i valori di enum non contengono &quot;/&quot;
+<span class="nc" id="L56">            String tokenCommand = tokens[0].substring(1);</span>
+
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            if (tokenCommand.equalsIgnoreCase(Command.GIOCA.toString()))</span>
+<span class="nc" id="L59">                command = Command.GIOCA;</span>
+
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            if (tokenCommand.equalsIgnoreCase(Command.NUOVA.toString()))</span>
+<span class="nc" id="L62">                command = Command.NUOVA;</span>
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (tokenCommand.equalsIgnoreCase(Command.ABBANDONA.toString()))</span>
+<span class="nc" id="L65">                command = Command.ABBANDONA;</span>
+
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if (tokenCommand.equalsIgnoreCase(Command.ESCI.toString()))</span>
+<span class="nc" id="L68">                command = Command.ESCI;</span>
+
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            if (tokenCommand.equalsIgnoreCase(Command.MOSTRA.toString()))</span>
+<span class="nc" id="L71">                command = Command.MOSTRA;</span>
+
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (tokenCommand.equalsIgnoreCase(Command.HELP.toString()))</span>
+<span class="nc" id="L74">                command = Command.HELP;</span>
+<span class="nc" id="L75">        }</span>
+        else //CASO 3: tentativo
+<span class="nc" id="L77">            command = Command.GUESS;</span>
+
+<span class="nc" id="L79">        return command;</span>
+    }
+
+    private String[] extractArgs()
+    {
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (tokens == null)</span>
+<span class="nc" id="L85">            return null;</span>
+
+        //se il primo token è un comando lo salti
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (tokens[0].charAt(0) == '/')</span>
+        {
+            int numberArgsExpected;
+
+            // imposta il numero di argomenti atteso
+<span class="nc bnc" id="L93" title="All 3 branches missed.">            switch (command)</span>
+            {
+                case INVALID:
+                case GIOCA:
+                case ABBANDONA:
+                case ESCI:
+                case MOSTRA:
+                case HELP:
+<span class="nc" id="L101">                    numberArgsExpected = 0;</span>
+<span class="nc" id="L102">                    break;</span>
+                case NUOVA:
+<span class="nc" id="L104">                    numberArgsExpected = 1;</span>
+<span class="nc" id="L105">                    break;</span>
+                default:
+<span class="nc" id="L107">                    numberArgsExpected = 0;</span>
+            }
+
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (numberArgsExpected == 0)</span>
+<span class="nc" id="L111">                return null;</span>
+            else
+            {
+                // array di grandezza pari al numero massimo di argomenti del comando
+<span class="nc" id="L115">                String[] tempArgs = new String[numberArgsExpected];</span>
+<span class="nc" id="L116">                int countArg = 0;</span>
+
+                try
+                {
+                    //partendo dal token 1 (cioè escludendo quello contenente il comando)
+                    // inserisci in tempArgs
+<span class="nc bnc" id="L122" title="All 2 branches missed.">                    for (int nToken = 1; nToken &lt;= numberArgsExpected; nToken++)</span>
+                    {
+<span class="nc" id="L124">                        tempArgs[countArg] = tokens[nToken];</span>
+<span class="nc" id="L125">                        countArg++;</span>
+                    }
+<span class="nc" id="L127">                    return tempArgs;</span>
+                } // nel caso in cui leggi un numero minore di argomenti
+<span class="nc" id="L129">                catch (ArrayIndexOutOfBoundsException e)</span>
+                {
+<span class="nc" id="L131">                    return tempArgs;</span>
+                }
+            }
+        }
+        else //se è un tentativo considero solo il primo argomento
+        {
+<span class="nc" id="L137">            String[] tempArgs = new String[1];</span>
+<span class="nc" id="L138">            tempArgs[0] = tokens[0];</span>
+<span class="nc" id="L139">            return tempArgs;</span>
+        }
+    }
+
+    public Command getCommand()
+    {
+<span class="nc" id="L145">        return this.command;</span>
+    }
+
+    public String[] getArgs()
+    {
+<span class="nc" id="L150">        return this.args;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

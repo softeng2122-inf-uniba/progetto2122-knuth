@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Board.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">wordle</a> &gt; <a href="index.source.html" class="el_package">it.uniba.app</a> &gt; <span class="el_source">Board.java</span></div><h1>Board.java</h1><pre class="source lang-java linenums">package it.uniba.app;
+
+/**
+ * {@literal &lt;&lt;Entity&gt;&gt;} &lt;br&gt;
+ * Classe che rappresenta la matrice dei tentativi di dimensioni 5 righe per 6 colonne che contiene i tentativi validi inseriti dall'utente. &lt;br&gt;
+ * Questa classe contiene metodi che forniscono informazioni sulla griglia e per l'inserimento di nuovi tentativi.
+ */
+public class Board
+{
+    private final Guess[] guessArray;
+    private final int wordLength;
+    private int firstEmptyIndex;
+
+    //costruttore per wordle classico con parola da 5 lettere
+    Board()
+    {
+<span class="nc" id="L17">        this(5 ,6);</span>
+<span class="nc" id="L18">    }  // molto probabilmente servirà una costante per questi argomenti</span>
+
+    //costruttore
+    // riceve column lunghezza della matrice e row che permette di avere tante righe quanti sono i tentativi
+    Board(int column, int row)
+<span class="nc" id="L23">    {</span>
+<span class="nc" id="L24">        this.guessArray = new Guess[row];</span>
+<span class="nc" id="L25">        this.wordLength = column;</span>
+<span class="nc" id="L26">        this.firstEmptyIndex = 0;</span>
+<span class="nc" id="L27">    }</span>
+
+    public Guess getGuess(int index)
+    {
+<span class="nc" id="L31">        return guessArray[index];</span>
+    }
+
+    //prende il guess con i colori settati e lo aggiunge alla prima riga libera
+    public void acceptNewGuess(Guess g)
+    {
+<span class="nc" id="L37">        guessArray[firstEmptyIndex] = g;</span>
+<span class="nc" id="L38">        firstEmptyIndex++;</span>
+<span class="nc" id="L39">    }</span>
+
+    public int getRowsNumber()
+    {
+<span class="nc" id="L43">        return guessArray.length;</span>
+    }
+
+    public int getWordLength()
+    {
+<span class="nc" id="L48">        return wordLength;</span>
+    }
+
+    public int getNumFilledRows()
+    {
+<span class="nc" id="L53">        return firstEmptyIndex;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
