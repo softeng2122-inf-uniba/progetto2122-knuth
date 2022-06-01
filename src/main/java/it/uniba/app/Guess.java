@@ -18,11 +18,11 @@ public class Guess {
         private final Character letter;
         private Color color;
 
-        LetterBox(char letter) {
+        LetterBox(final char letter) {
             this(letter, Color.NO_COLOR);
         }
 
-        LetterBox(char letter, Color color) {
+        LetterBox(final char letter, final Color color) {
             this.letter = letter;
             this.color = color;
         }
@@ -31,7 +31,7 @@ public class Guess {
             return color;
         }
 
-        public void setColor(Color color) {
+        public void setColor(final Color color) {
             this.color = color;
         }
 
@@ -50,15 +50,15 @@ public class Guess {
         }
     }
 
-    public Color getColor(int index) {
+    public Color getColor(final int index) {
         return cellArray[index].color;
     }
 
-    public void setColor(int index, Color color) {
+    public void setColor(final int index, final Color color) {
         cellArray[index].color = color;
     }
 
-    public Character getLetter(int index) {
+    public Character getLetter(final int index) {
         return cellArray[index].letter;
     }
 
@@ -68,8 +68,8 @@ public class Guess {
         for (LetterBox lb : cellArray) {
             s.append(lb.getLetter());
         }
+
         return s.toString();
     }
-
 }
 
