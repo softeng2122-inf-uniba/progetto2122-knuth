@@ -3,6 +3,7 @@ package it.uniba.app;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * {@literal <<Boundary>>} <br>
@@ -70,23 +71,29 @@ public class Parser
 
     private String[] extractArgs(Command command)
     {
+
         if (tokens == null)
             return null;
 
-        List<String> tokensList = new LinkedList<>(Arrays.asList(tokens));
+        List<String> argsList = new LinkedList<>(Arrays.asList(tokens));
 
-        if(tokensList.size() == 0)
+        if(argsList.size() == 0)
             return null;
 
         if(command != Command.GUESS) {
-            tokensList.remove(0);
+            argsList.remove(0);
         }
 
         int numArgsExpected = command.getNumArgs();
-        tokensList = tokensList.subList(0, numArgsExpected);
 
-        String[] argsArray = new String[numArgsExpected];
-        tokensList.toArray(argsArray);
+        if(argsList.size() > numArgsExpected) {
+            argsList = argsList.subList(0, numArgsExpected);
+        }
+
+        String[] argsArray = new String[argsList.size()];
+        for(int i = 0; i < argsList.size(); i++) {
+            argsArray[i] = argsList.get(i);
+        }
 
         return argsArray;
     }

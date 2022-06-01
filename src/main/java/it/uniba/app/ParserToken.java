@@ -1,9 +1,13 @@
 package it.uniba.app;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ParserToken
 {
-    private Command command;
-    private String[] args;
+    private final Command command;
+    private final String[] args;
     private int numMissingArgs;
 
     public ParserToken(Command command, String[] args) {
@@ -28,7 +32,14 @@ public class ParserToken
             numMissingArgs = 0;
         }
         else {
-            numMissingArgs = numArgsExpected - args.length;
+            int actualNum;
+            if(args == null) {
+                actualNum = 0;
+            }
+            else {
+                actualNum = args.length;
+            }
+            numMissingArgs = numArgsExpected - actualNum;
         }
     }
 
