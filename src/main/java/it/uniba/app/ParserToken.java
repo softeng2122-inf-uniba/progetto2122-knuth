@@ -1,9 +1,5 @@
 package it.uniba.app;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class ParserToken
 {
     private final Command command;
