@@ -66,7 +66,7 @@ public class Printer extends PrintWriter {
         println(lowerPart(columns));
     }
 
-    private String upperPart(int wordLength) {
+    private String upperPart(final int wordLength) {
         StringBuilder upperPart = new StringBuilder(L_U_ANGLE + ""
                 + HORIZONTAL_EDGE_X3);
 
@@ -79,7 +79,7 @@ public class Printer extends PrintWriter {
         return upperPart.toString();
     }
 
-    private String guessSlice(int row) {
+    private String guessSlice(final int row) {
         StringBuilder guessSlice = new StringBuilder(VERTICAL_EDGE + "");
         Color c;
         char l;
@@ -103,15 +103,16 @@ public class Printer extends PrintWriter {
                 case NO_COLOR:
                     background = "";
                     break;
+                default:  //possibili miglioramenti!!!
+                    throw new IllegalStateException("Colore non valido");
             }
             guessSlice.append(background + " " + l + " " + RESET)
                     .append(VERTICAL_EDGE);
         }
-
         return guessSlice.toString();
     }
 
-    private String separatorSlice(int wordLength) {
+    private String separatorSlice(final int wordLength) {
         StringBuilder separatorSlice = new StringBuilder(L_SEPARATOR + ""
                 + HORIZONTAL_EDGE_X3);
 
@@ -124,7 +125,7 @@ public class Printer extends PrintWriter {
         return separatorSlice.toString();
     }
 
-    private String lowerPart(int wordLength) {
+    private String lowerPart(final int wordLength) {
         StringBuilder lowerPart = new StringBuilder(L_D_ANGLE + ""
                 + HORIZONTAL_EDGE_X3);
 
@@ -180,8 +181,8 @@ public class Printer extends PrintWriter {
     }
 
     private void printWordleLogo() {
-        final int WORDLE_LENGTH = 6;
-        println(upperPart(WORDLE_LENGTH));
+        final int wordleLength = 6;
+        println(upperPart(wordleLength));
         print(VERTICAL_EDGE);
 
         print(coloredLetterSpace('W', Color.GREEN) + VERTICAL_EDGE);
@@ -191,11 +192,12 @@ public class Printer extends PrintWriter {
         print(coloredLetterSpace('L', Color.YELLOW) + VERTICAL_EDGE);
         println(coloredLetterSpace('E', Color.GREY) + VERTICAL_EDGE);
 
-        println(lowerPart(WORDLE_LENGTH));
+        println(lowerPart(wordleLength));
     }
 
-    private String coloredLetterSpace(char c, Color color) {
+    private String coloredLetterSpace(final char c, final Color color) {
         String background = "";
+
         switch (color) {
             case GREEN:
                 background = GREEN_BACKGROUND;
@@ -206,6 +208,8 @@ public class Printer extends PrintWriter {
             case GREY:
                 background = GREY_BACKGROUND;
                 break;
+            default:
+                background = "";
         }
         return (background + " " + c + " " + RESET);
     }
