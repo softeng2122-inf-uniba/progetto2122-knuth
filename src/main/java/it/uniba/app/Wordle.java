@@ -248,6 +248,9 @@ public class Wordle
      */
     public static void setSecretWord(String newWord) throws IllegalArgumentException, WordleGameException
     {
+        if (isGameRunning())
+            throw new WordleGameException(WordleGameException.Motivation.EXISTS_GAME);
+
         if (!newWord.matches("[a-zA-Z]+"))
             throw new IllegalArgumentException("Parola segreta non valida");
 
@@ -256,9 +259,6 @@ public class Wordle
 
         if (newWord.length() > wordLength)
             throw new IllegalArgumentException("Parola segreta troppo lunga");
-
-        if (isGameRunning())
-            throw new WordleGameException(WordleGameException.Motivation.EXISTS_GAME);
 
         secretWord = newWord.toUpperCase();
     }

@@ -2,6 +2,12 @@ package it.uniba.app;
 
 import java.util.Scanner;
 
+/**
+ * {@literal <<Boundary>>} <br>
+ * Il tipo enumerativo Command si ispira al design pattern omonimo.
+ * A ogni istanza di Command è associato il numero di argomenti atteso e l'implementazione
+ * corrispondente del metodo execute.
+ */
 public enum Command
 {
     INVALID(0) {
