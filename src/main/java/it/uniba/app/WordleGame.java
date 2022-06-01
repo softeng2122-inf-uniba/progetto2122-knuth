@@ -12,7 +12,9 @@ public class WordleGame {
 
 
     //costruttore con scelta parola e dimensioni del gioco
-    WordleGame(String secretWord, int numMaxGuesses, int wordLength) {
+    WordleGame(final String secretWord,
+               final  int numMaxGuesses, final int wordLength) {
+
         this.secretWord = secretWord;
         this.gameBoard = new Board(wordLength, numMaxGuesses);
     }
