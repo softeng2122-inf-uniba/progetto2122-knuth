@@ -9,7 +9,7 @@ package it.uniba.app;
  */
 public class WordleGameException extends RuntimeException
 {
-    private final Motivation motivation;
+    private Motivation motivation;
     public enum Motivation {
         EXISTS_GAME() {
             public String getMessage() {
@@ -38,7 +38,7 @@ public class WordleGameException extends RuntimeException
     }
 
     WordleGameException(Motivation motivation) {
-        super(motivation.getMessage());
+        this(motivation.getMessage());
         this.motivation = motivation;
     }
 }

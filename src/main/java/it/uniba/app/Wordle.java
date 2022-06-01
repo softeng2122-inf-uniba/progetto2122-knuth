@@ -32,7 +32,7 @@ public class Wordle
             throw new WordleGameException(WordleGameException.Motivation.EXISTS_GAME);
 
         if (secretWord == null)
-            throw new WordleSettingException("Parola segreta non impostata");
+            throw new WordleSettingException(WordleSettingException.Motivation.ABSENT_SECRET_WORD);
 
         currentGame = new WordleGame(secretWord, nMaxGuesses, wordLength);
     }
@@ -295,7 +295,7 @@ public class Wordle
     public static String getSecretWord() throws WordleSettingException
     {
         if (secretWord == null)
-            throw new WordleSettingException("Parola segreta non impostata");
+            throw new WordleSettingException(WordleSettingException.Motivation.ABSENT_SECRET_WORD);
 
         return secretWord;
     }
