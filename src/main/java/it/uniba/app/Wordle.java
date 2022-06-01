@@ -13,8 +13,10 @@ import java.util.HashMap;
  */
 public class Wordle
 {
-    private static String secretWord = null;
     private static WordleGame currentGame = null;
+
+    // impostazioni di gioco
+    private static String secretWord = null;
     private static int nMaxGuesses = 6;
     private static int wordLength = 5;
 
@@ -32,7 +34,7 @@ public class Wordle
         if (secretWord == null)
             throw new WordleSettingException("Parola segreta non impostata");
 
-        currentGame = new WordleGame(secretWord);
+        currentGame = new WordleGame(secretWord, nMaxGuesses, wordLength);
     }
 
     /**

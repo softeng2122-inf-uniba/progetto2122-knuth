@@ -41,8 +41,4 @@ public class WordleGameException extends RuntimeException
         super(motivation.getMessage());
         this.motivation = motivation;
     }
-
-    public Motivation getMotivation() {
-        return this.motivation;
-    }
 }
