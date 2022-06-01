@@ -1,5 +1,10 @@
 package it.uniba.app;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * {@literal <<Boundary>>} <br>
  * Classe per il parsing dell'input dell'utente. <p></p>
@@ -8,23 +13,23 @@ package it.uniba.app;
 public class Parser
 {
     private String input;
-    private Command command;
-    private String[] args;
     private String[] tokens;
+    private ParserToken parserToken;
 
     public Parser()
     {
-        this.input = null;
-        this.command = null;
-        this.args = null;
+        input = null;
+        tokens = null;
+        parserToken = null;
     }
 
     public void feed(String inputLine)
     {
         this.input = inputLine.trim();
         tokens = tokenizeInput();
-        this.command = extractCommand();
-        this.args = extractArgs();
+        Command command = extractCommand();
+        String[] args = extractArgs(command);
+        this.parserToken = new ParserToken(command, args);
     }
 
     private String[] tokenizeInput()
@@ -39,115 +44,61 @@ public class Parser
 
     private Command extractCommand()
     {
-        Command command = Command.INVALID;
-
         // CASO 1: solo spazi
-        if (tokens == null)
-        {
-            command = Command.SPACE;
-            return command;
+        if (tokens == null) {
+            return Command.SPACE;
         }
 
-        // CASO 2: comando effettivo
+        // CASO 2: tentativo
         char firstChar = tokens[0].charAt(0);
-        if (firstChar == '/')
+        if(firstChar != '/')
         {
-            //salvo solo il comando, i valori di enum non contengono "/"
+            return Command.GUESS;
+        } else { // CASO 3: altro comando valido
             String tokenCommand = tokens[0].substring(1);
 
-            if (tokenCommand.equalsIgnoreCase(Command.GIOCA.toString()))
-                command = Command.GIOCA;
-
-            if (tokenCommand.equalsIgnoreCase(Command.NUOVA.toString()))
-                command = Command.NUOVA;
-
-            if (tokenCommand.equalsIgnoreCase(Command.ABBANDONA.toString()))
-                command = Command.ABBANDONA;
-
-            if (tokenCommand.equalsIgnoreCase(Command.ESCI.toString()))
-                command = Command.ESCI;
-
-            if (tokenCommand.equalsIgnoreCase(Command.MOSTRA.toString()))
-                command = Command.MOSTRA;
-
-            if (tokenCommand.equalsIgnoreCase(Command.HELP.toString()))
-                command = Command.HELP;
+            for(Command c: Command.values()) {
+                if(tokenCommand.equalsIgnoreCase(c.toString()))
+                    return c;
+            }
+            //salvo solo il comando, i valori di enum non contengono "/"
         }
-        else //CASO 3: tentativo
-            command = Command.GUESS;
 
-        return command;
+        // CASO 4: comando invalido
+        return Command.INVALID;
+
     }
 
-    private String[] extractArgs()
+    private String[] extractArgs(Command command)
     {
+
         if (tokens == null)
             return null;
 
-        //se il primo token è un comando lo salti
-        if (tokens[0].charAt(0) == '/')
-        {
-            int numberArgsExpected;
+        List<String> argsList = new LinkedList<>(Arrays.asList(tokens));
 
-            // imposta il numero di argomenti atteso
-            switch (command)
-            {
-                case INVALID:
-                case GIOCA:
-                case ABBANDONA:
-                case ESCI:
-                case MOSTRA:
-                case HELP:
-                    numberArgsExpected = 0;
-                    break;
-                case NUOVA:
-                    numberArgsExpected = 1;
-                    break;
-                default:
-                    numberArgsExpected = 0;
-            }
+        if(argsList.size() == 0)
+            return null;
 
-            if (numberArgsExpected == 0)
-                return null;
-            else
-            {
-                // array di grandezza pari al numero massimo di argomenti del comando
-                String[] tempArgs = new String[numberArgsExpected];
-                int countArg = 0;
-
-                try
-                {
-                    //partendo dal token 1 (cioè escludendo quello contenente il comando)
-                    // inserisci in tempArgs
-                    for (int nToken = 1; nToken <= numberArgsExpected; nToken++)
-                    {
-                        tempArgs[countArg] = tokens[nToken];
-                        countArg++;
-                    }
-                    return tempArgs;
-                } // nel caso in cui leggi un numero minore di argomenti
-                catch (ArrayIndexOutOfBoundsException e)
-                {
-                    return tempArgs;
-                }
-            }
+        if(command != Command.GUESS) {
+            argsList.remove(0);
         }
-        else //se è un tentativo considero solo il primo argomento
-        {
-            String[] tempArgs = new String[1];
-            tempArgs[0] = tokens[0];
-            return tempArgs;
+
+        int numArgsExpected = command.getNumArgs();
+
+        if(argsList.size() > numArgsExpected) {
+            argsList = argsList.subList(0, numArgsExpected);
         }
+
+        String[] argsArray = new String[argsList.size()];
+        for(int i = 0; i < argsList.size(); i++) {
+            argsArray[i] = argsList.get(i);
+        }
+
+        return argsArray;
     }
 
-    public Command getCommand()
-    {
-        return this.command;
+    public ParserToken getParserToken() {
+        return parserToken;
     }
-
-    public String[] getArgs()
-    {
-        return this.args;
-    }
-
 }
