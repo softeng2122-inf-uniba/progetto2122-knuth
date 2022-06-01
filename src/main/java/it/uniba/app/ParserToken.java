@@ -1,10 +1,30 @@
 package it.uniba.app;
 
+import java.util.List;
+
 public class ParserToken
 {
     private final Command command;
     private final String[] args;
     private int numMissingArgs;
+    private List<Command> closeCommands = null;
+
+
+    public String[] getCloseCommandsStrings(){
+        if (closeCommands == null){
+            return null;
+        }
+        String[] closeCommandsStrings = new String[closeCommands.size()];
+
+        for (int i=0; i<closeCommands.size(); i++){
+            closeCommandsStrings[i] = closeCommands.get(i).toString();
+        }
+        return closeCommandsStrings;
+    }
+
+    public void setCloseCommands(List<Command> closeCommands) {
+        this.closeCommands = closeCommands;
+    }
 
     public ParserToken(Command command, String[] args) {
         this.command = command;
