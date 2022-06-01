@@ -41,19 +41,27 @@ public final class App
 
         // invia l'input al parser
         parser.feed(inputLine);
-        Command command = parser.getCommand();
-        String[] arguments = parser.getArgs();
+        ParserToken parserToken = parser.getParserToken();
+        Command command = parserToken.getCommand();
+        String[] arguments = parserToken.getArgs();
+
         while (true)
         {
             // esegui comando riconosciuto
-            command.execute(arguments);
+            if(parserToken.areMissingArgs()) {
+                System.out.println("Argomenti mancanti: " + parserToken.getNumMissingArgs());
+            }
+            else {
+                command.execute(arguments);
+            }
 
             System.out.print("Wordle> ");
             inputLine = keyboardInput.nextLine();
 
             parser.feed(inputLine);
-            command = parser.getCommand();
-            arguments = parser.getArgs();
+            parserToken = parser.getParserToken();
+            command = parserToken.getCommand();
+            arguments = parserToken.getArgs();
         }
     }
 

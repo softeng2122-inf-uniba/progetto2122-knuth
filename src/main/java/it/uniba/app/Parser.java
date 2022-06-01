@@ -1,7 +1,6 @@
 package it.uniba.app;
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,28 +13,22 @@ public class Parser
 {
     private String input;
     private String[] tokens;
-    private Command command;
-    private String[] args;
+    private ParserToken parserToken;
 
     public Parser()
     {
-        this.input = null;
-        this.command = null;
-        this.args = null;
+        input = null;
+        tokens = null;
+        parserToken = null;
     }
 
     public void feed(String inputLine)
     {
         this.input = inputLine.trim();
         tokens = tokenizeInput();
-        this.command = extractCommand();
-
-        try {
-            this.args = extractArgs();
-        } catch (InputMismatchException e) {
-
-        }
-
+        Command command = extractCommand();
+        String[] args = extractArgs(command);
+        this.parserToken = new ParserToken(command, args);
     }
 
     private String[] tokenizeInput()
@@ -75,7 +68,7 @@ public class Parser
 
     }
 
-    private String[] extractArgs()
+    private String[] extractArgs(Command command)
     {
         if (tokens == null)
             return null;
@@ -98,12 +91,7 @@ public class Parser
         return argsArray;
     }
 
-    public Command getCommand() {
-        return command;
+    public ParserToken getParserToken() {
+        return parserToken;
     }
-
-    public String[] getArgs() {
-        return args;
-    }
-
 }
