@@ -51,13 +51,13 @@ public final class App {
         Command command = parserToken.getCommand();
         String[] arguments = parserToken.getArgs();
 
-        while (true)
-        {
+        while (true) {
             // esegui comando riconosciuto
-            if(parserToken.areMissingArgs()) {
-                System.out.println("Argomenti mancanti: " + parserToken.getNumMissingArgs());
+            if (parserToken.areMissingArgs()) {
+                System.out.println("Argomenti mancanti: "
+                        + parserToken.getNumMissingArgs());
             } else {
-                if(command == Command.INVALID){
+                if (command == Command.INVALID) {
                     command.execute(parserToken.getCloseCommandsStrings());
                 } else {
                     command.execute(arguments);
