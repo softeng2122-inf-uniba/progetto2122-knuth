@@ -50,44 +50,29 @@ public class Parser
 
     private Command extractCommand()
     {
-        Command command = Command.INVALID;
-
         // CASO 1: solo spazi
-        if (tokens == null)
-        {
-            command = Command.SPACE;
-            return command;
+        if (tokens == null) {
+            return Command.SPACE;
         }
 
-        // CASO 2: comando effettivo
+        // CASO 2: tentativo
         char firstChar = tokens[0].charAt(0);
-        if (firstChar == '/')
+        if(firstChar != '/')
         {
-            //salvo solo il comando, i valori di enum non contengono "/"
+            return Command.GUESS;
+        } else { // CASO 3: altro comando valido
             String tokenCommand = tokens[0].substring(1);
 
-            if (tokenCommand.equalsIgnoreCase(Command.GIOCA.toString()))
-                command = Command.GIOCA;
-
-            if (tokenCommand.equalsIgnoreCase(Command.NUOVA.toString()))
-                command = Command.NUOVA;
-
-            if (tokenCommand.equalsIgnoreCase(Command.ABBANDONA.toString()))
-                command = Command.ABBANDONA;
-
-            if (tokenCommand.equalsIgnoreCase(Command.ESCI.toString()))
-                command = Command.ESCI;
-
-            if (tokenCommand.equalsIgnoreCase(Command.MOSTRA.toString()))
-                command = Command.MOSTRA;
-
-            if (tokenCommand.equalsIgnoreCase(Command.HELP.toString()))
-                command = Command.HELP;
+            for(Command c: Command.values()) {
+                if(tokenCommand.equalsIgnoreCase(c.toString()))
+                    return c;
+            }
+            //salvo solo il comando, i valori di enum non contengono "/"
         }
-        else //CASO 3: tentativo
-            command = Command.GUESS;
 
-        return command;
+        // CASO 4: comando invalido
+        return Command.INVALID;
+
     }
 
     private String[] extractArgs()
