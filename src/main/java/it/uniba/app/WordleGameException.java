@@ -9,8 +9,40 @@ package it.uniba.app;
  */
 public class WordleGameException extends RuntimeException
 {
-    WordleGameException (String message)
+    private final Motivation motivation;
+    public enum Motivation {
+        EXISTS_GAME() {
+            public String getMessage() {
+                return "Partita in corso";
+            }
+        },
+        NOT_EXISTS_GAME() {
+            public String getMessage() {
+                return "Partita inesistente";
+            }
+        },
+        NO_GUESSES_LEFT() {
+            public String getMessage() {
+                return "Massimo numero di tentativi raggiunto";
+            }
+        };
+
+        public abstract String getMessage();
+
+    }
+
+    WordleGameException(String message)
     {
         super(message);
+        this.motivation = null;
+    }
+
+    WordleGameException(Motivation motivation) {
+        super(motivation.getMessage());
+        this.motivation = motivation;
+    }
+
+    public Motivation getMotivation() {
+        return this.motivation;
     }
 }
