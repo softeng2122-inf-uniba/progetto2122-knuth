@@ -89,9 +89,10 @@ public class Parser
             tokensList.remove(0);
         }
 
-        tokensList = tokensList.subList(0, command.getNumArgs());
+        int numArgsExpected = command.getNumArgs();
+        tokensList = tokensList.subList(0, numArgsExpected);
 
-        String[] argsArray = new String[command.getNumArgs()];
+        String[] argsArray = new String[numArgsExpected];
         tokensList.toArray(argsArray);
 
         return argsArray;
