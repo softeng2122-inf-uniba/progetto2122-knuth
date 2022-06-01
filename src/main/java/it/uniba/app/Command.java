@@ -13,6 +13,10 @@ public enum Command
     SPACE(0) {
         public void execute(String[] args) {
         }
+
+        public String toString() {
+            return null;
+        }
     },
 
     GIOCA(0) {
