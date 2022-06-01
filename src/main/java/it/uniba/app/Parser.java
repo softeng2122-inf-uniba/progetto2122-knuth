@@ -1,9 +1,9 @@
 package it.uniba.app;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * {@literal <<Boundary>>} <br>
@@ -30,6 +30,12 @@ public class Parser
         Command command = extractCommand();
         String[] args = extractArgs(command);
         this.parserToken = new ParserToken(command, args);
+
+        //Riconoscimento comando simile
+        if(command==Command.INVALID) {
+            String wrongCommandToken = tokens[0].substring(1);
+            parserToken.setCloseCommands(getCloseCommands(wrongCommandToken));
+        }
     }
 
     private String[] tokenizeInput()
@@ -98,7 +104,55 @@ public class Parser
         return argsArray;
     }
 
+    private int editDistance( String S, String T ) {
+        int i, j;
+        S = S.toUpperCase();
+        T = T.toUpperCase();
+        final int n = S.length(), m = T.length();
+        int[][]l = new int[n+1][m+1];
+        for ( i=0; i<n+1; i++ ) {
+            for ( j=0; j<m+1; j++ ) {
+                if ( i==0 || j==0 ) {
+                    l[i][j] = Math.max(i, j);
+                } else {
+                    l[i][j] = min3(
+                            l[i-1][j] + 1,
+                            l[i][j-1] + 1,
+                            l[i-1][j-1] + (S.charAt(i-1) != T.charAt(j-1) ? 1 : 0) );
+                }
+            }
+        }
+        return l[n][m];
+    }
+
+    private int min3( int i, int j, int k )
+    {
+        return Math.min(Math.min(i,j), k);
+    }
+
+    private List<Command> getCloseCommands(String wrongCommandString){
+        List<Command> closeCommands = null;
+        int distance = 2;
+        int editDist;
+        for (Command comparedCommand : Command.values())
+        {
+            String comparedString = comparedCommand.toString();
+            if (comparedString == null) {
+                continue;
+            }
+            editDist = editDistance(comparedString, wrongCommandString);
+            if(editDist <= distance) {
+                if (closeCommands == null) {
+                    closeCommands = new ArrayList<>();
+                }
+                closeCommands.add(comparedCommand);
+            }
+        }
+        return closeCommands;
+    }
     public ParserToken getParserToken() {
         return parserToken;
     }
+
+
 }
