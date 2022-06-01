@@ -13,6 +13,20 @@ public enum Command
     INVALID(0) {
         public void execute(String[] args) {
             consoleOutput.println("Comando invalido");
+            if(args!=null) {
+                if (args.length == 1) {
+                    System.out.println("Il comando più simile è: ");
+                } else {
+                    System.out.println("I comandi più simili sono: ");
+                }
+                for (String closeCommandString : args) {
+                    System.out.println("\t\t" + closeCommandString);
+                }
+            }
+        }
+
+        public String toString() {
+            return null;
         }
     },
 

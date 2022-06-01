@@ -50,9 +50,12 @@ public final class App
             // esegui comando riconosciuto
             if(parserToken.areMissingArgs()) {
                 System.out.println("Argomenti mancanti: " + parserToken.getNumMissingArgs());
-            }
-            else {
-                command.execute(arguments);
+            } else {
+                if(command == Command.INVALID){
+                    command.execute(parserToken.getCloseCommandsStrings());
+                } else {
+                    command.execute(arguments);
+                }
             }
 
             System.out.print("Wordle> ");
