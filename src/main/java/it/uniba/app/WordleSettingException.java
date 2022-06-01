@@ -11,7 +11,26 @@ package it.uniba.app;
  *  impostato una parola segreta.
  */
 public class WordleSettingException extends RuntimeException {
-    WordleSettingException(String message) {
+    private Motivation motivation;
+    public enum Motivation {
+        ABSENT_SECRET_WORD() {
+            public String getMessage() {
+                return "Parola segreta non impostata";
+            }
+        };
+
+        public abstract String getMessage();
+    }
+
+    WordleSettingException(String message)
+    {
         super(message);
+        motivation = null;
+    }
+
+    WordleSettingException(Motivation motivation)
+    {
+        this(motivation.getMessage());
+        this.motivation = motivation;
     }
 }

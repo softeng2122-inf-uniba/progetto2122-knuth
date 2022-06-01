@@ -14,8 +14,10 @@ import java.util.HashMap;
  * effettuando controlli sulla legalità delle chiamate.
  */
 public class Wordle {
-    private static String secretWord = null;
     private static WordleGame currentGame = null;
+
+    // impostazioni di gioco
+    private static String secretWord = null;
     private static int nMaxGuesses = 6;
     private static int wordLength = 5;
 
@@ -25,17 +27,16 @@ public class Wordle {
      * @throws WordleGameException  se una partita è già in corso
      * @throws WordleSettingException se la parola segreta non è impostata
      */
-    public static void startGame() throws WordleGameException,
-            WordleSettingException {
+    public static void startGame() throws WordleGameException, WordleSettingException {
         if (isGameRunning()) {
-            throw new WordleGameException("Partita in corso");
+            throw new WordleGameException(WordleGameException.Motivation.EXISTS_GAME);
         }
 
         if (secretWord == null) {
-            throw new WordleSettingException("Parola segreta non impostata");
+            throw new WordleSettingException(WordleSettingException.Motivation.ABSENT_SECRET_WORD);
         }
 
-        currentGame = new WordleGame(secretWord, wordLength, nMaxGuesses);
+        currentGame = new WordleGame(secretWord, nMaxGuesses, wordLength);
     }
 
     /**
@@ -53,17 +54,15 @@ public class Wordle {
      * @throws IllegalArgumentException se {@code guessWord}
      * non soddisfa la lunghezza prevista o contiene caratteri non validi
      */
-    public static void guess(String guessWord) throws WordleGameException,
-            IllegalArgumentException {
+    public static void guess(String guessWord)
+            throws WordleGameException, IllegalArgumentException {
         if (!isGameRunning()) {
-            throw new WordleGameException("Partita inesistente");
+            throw new WordleGameException(WordleGameException.Motivation.NOT_EXISTS_GAME);
         }
 
         if (getNumRemainingGuesses() == 0) {
-            throw new WordleGameException(
-                    "Numero massimo di tentativi raggiunto");
+            throw new WordleGameException(WordleGameException.Motivation.NO_GUESSES_LEFT);
         }
-
         try {
             guessWordCheck(guessWord);
         } catch (IllegalArgumentException e) {
@@ -127,8 +126,8 @@ public class Wordle {
      * oppure se non sono stati effettuati tentativi nella partita corrente
      */
     public static boolean getGuessResult() {
-        if (!isGameRunning()) {
-            throw new WordleGameException("Partita inesistente");
+        if(!isGameRunning()) {
+            throw new WordleGameException(WordleGameException.Motivation.NOT_EXISTS_GAME);
         }
 
         Board currentBoard = currentGame.getGameBoard();
@@ -148,8 +147,8 @@ public class Wordle {
      * @throws WordleGameException  se nessuna partita è in corso
      */
     public static int getNumRemainingGuesses() {
-        if (!isGameRunning()) {
-            throw new WordleGameException("Partita inesistente");
+        if(!isGameRunning()) {
+            throw new WordleGameException(WordleGameException.Motivation.NOT_EXISTS_GAME);
         }
 
         return currentGame.getNumRemainingGuesses();
@@ -160,8 +159,8 @@ public class Wordle {
      * @throws WordleGameException  se nessuna partita è in corso
      */
     public static int getMaxGuesses() {
-        if (!isGameRunning()) {
-            throw new WordleGameException("Partita inesistente");
+        if(!isGameRunning()) {
+            throw new WordleGameException(WordleGameException.Motivation.NOT_EXISTS_GAME);
         }
 
         return currentGame.getMaxGuesses();
@@ -172,8 +171,8 @@ public class Wordle {
      * @throws WordleGameException  se nessuna partita è in corso
      */
     public static int getWordLength() {
-        if (!isGameRunning()) {
-            throw new WordleGameException("Partita inesistente");
+        if(!isGameRunning()) {
+            throw new WordleGameException(WordleGameException.Motivation.NOT_EXISTS_GAME);
         }
 
         return currentGame.getWordLength();
@@ -198,9 +197,9 @@ public class Wordle {
      * eccedono le dimensioni della matrice dei tentativi
      * oppure sono numeri negativi
      */
-    public static char getLetter(int row, int column) {
-        if (!isGameRunning()) {
-            throw new WordleGameException("Partita inesistente");
+    public static char getLetter(int row, int column){
+        if(!isGameRunning()) {
+            throw new WordleGameException(WordleGameException.Motivation.NOT_EXISTS_GAME);
         }
 
         Board currentBoard = currentGame.getGameBoard();
@@ -235,9 +234,9 @@ public class Wordle {
      * eccedono le dimensioni della matrice dei tentativi
      * oppure sono numeri negativi
      */
-    public static Color getColor(int row, int column) {
-        if (!isGameRunning()) {
-            throw new WordleGameException("Partita inesistente");
+    public static Color getColor(int row, int column){
+        if(!isGameRunning()) {
+            throw new WordleGameException(WordleGameException.Motivation.NOT_EXISTS_GAME);
         }
 
         Board currentBoard = currentGame.getGameBoard();
@@ -258,8 +257,8 @@ public class Wordle {
      * @throws WordleGameException se nessuna partita è in corso
      */
     public static void endGame() throws WordleGameException {
-        if (!isGameRunning()) {
-            throw new WordleGameException("Nessuna partita in corso");
+        if(!isGameRunning()) {
+            throw new WordleGameException(WordleGameException.Motivation.NOT_EXISTS_GAME);
         }
 
         currentGame = null;
@@ -272,8 +271,10 @@ public class Wordle {
      * la lunghezza prevista o contiene caratteri non validi
      * @throws WordleGameException  se una partita è già in corso
      */
-    public static void setSecretWord(String newWord) throws
-            IllegalArgumentException, WordleGameException {
+    public static void setSecretWord(String newWord) throws IllegalArgumentException, WordleGameException {
+        if (isGameRunning())
+            throw new WordleGameException(WordleGameException.Motivation.EXISTS_GAME);
+
         if (!newWord.matches("[a-zA-Z]+")) {
             throw new IllegalArgumentException("Parola segreta non valida");
         }
@@ -286,10 +287,6 @@ public class Wordle {
             throw new IllegalArgumentException("Parola segreta troppo lunga");
         }
 
-        if (isGameRunning()) {
-            throw new WordleGameException("Partita in corso");
-        }
-
         secretWord = newWord.toUpperCase();
     }
 
@@ -298,10 +295,10 @@ public class Wordle {
      */
     public static boolean isGameRunning() {
         return currentGame != null;
-    }
+        }
 
-    private static void guessWordCheck(String word) throws
-            IllegalArgumentException {
+
+    private static void guessWordCheck(String word) throws IllegalArgumentException {
         if (!word.matches("[a-zA-Z]+")) {
             throw new IllegalArgumentException("Tentativo non valido");
         }
@@ -329,7 +326,7 @@ public class Wordle {
      */
     public static String getSecretWord() throws WordleSettingException {
         if (secretWord == null) {
-            throw new WordleSettingException("Parola segreta non impostata");
+            throw new WordleSettingException(WordleSettingException.Motivation.ABSENT_SECRET_WORD);
         }
 
         return secretWord;
@@ -341,7 +338,7 @@ public class Wordle {
      */
     public static String getGameSecretWord() throws WordleGameException {
         if (!isGameRunning()) {
-            throw new WordleGameException("Partita inesistente");
+            throw new WordleGameException(WordleGameException.Motivation.NOT_EXISTS_GAME);
         }
 
         return currentGame.getSecretWord();

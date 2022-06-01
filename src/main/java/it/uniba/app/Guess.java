@@ -14,7 +14,7 @@ public class Guess {
      * Classe che rappresenta una singola cella di {@link Board}
      * e incapsula lettera e colore.
      */
-    public class LetterBox {
+    public static class LetterBox {
         private final Character letter;
         private Color color;
 
@@ -70,5 +70,6 @@ public class Guess {
         }
         return s.toString();
     }
+
 }
 
