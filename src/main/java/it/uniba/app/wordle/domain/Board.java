@@ -1,4 +1,6 @@
-package it.uniba.app;
+package it.uniba.app.wordle.domain;
+
+import it.uniba.app.wordle.domain.Guess;
 
 /**
  * {@literal <<Entity>>} <br>
@@ -7,7 +9,7 @@ package it.uniba.app;
  * Questa classe contiene metodi che forniscono informazioni sulla griglia e
  * per l'inserimento di nuovi tentativi.
  */
-public class Board {
+class Board {
     private final Guess[] guessArray;
     private final int wordLength;
     private int firstEmptyIndex;

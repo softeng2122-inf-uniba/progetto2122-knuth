@@ -1,4 +1,8 @@
-package it.uniba.app;
+package it.uniba.app.wordle.UI.CLI;
+
+import it.uniba.app.wordle.domain.Wordle;
+import it.uniba.app.wordle.domain.WordleGameException;
+import it.uniba.app.wordle.domain.WordleSettingException;
 
 import java.util.Scanner;
 

@@ -1,4 +1,7 @@
-package it.uniba.app;
+package it.uniba.app.wordle.UI.CLI;
+
+import it.uniba.app.wordle.domain.Color;
+import it.uniba.app.wordle.domain.Wordle;
 
 import java.io.PrintWriter;
 /**

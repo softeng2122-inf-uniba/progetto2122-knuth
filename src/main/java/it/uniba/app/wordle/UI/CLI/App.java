@@ -1,4 +1,4 @@
-package it.uniba.app;
+package it.uniba.app.wordle.UI.CLI;
 
 import java.io.InputStreamReader;
 import java.util.Scanner;

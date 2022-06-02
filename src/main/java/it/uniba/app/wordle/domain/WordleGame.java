@@ -1,4 +1,6 @@
-package it.uniba.app;
+package it.uniba.app.wordle.domain;
+
+import it.uniba.app.wordle.domain.Board;
 
 /**
  * {@literal <<Entity>>} <br>
@@ -6,7 +8,7 @@ package it.uniba.app;
  * Fornisce metodi per recuperare le impostazioni
  * della partita, nonché la matrice dei tentativi.
  */
-public class WordleGame {
+class WordleGame {
     private final String secretWord;
     private final Board gameBoard;
 

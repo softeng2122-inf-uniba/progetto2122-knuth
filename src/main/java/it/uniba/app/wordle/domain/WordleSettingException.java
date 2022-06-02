@@ -1,4 +1,4 @@
-package it.uniba.app;
+package it.uniba.app.wordle.domain;
 
 /**
  * {@literal <<NoECB>>} <br>

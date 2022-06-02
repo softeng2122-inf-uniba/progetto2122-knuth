@@ -1,4 +1,4 @@
-package it.uniba.app;
+package it.uniba.app.wordle.domain;
 
 /**
  * {@literal <<Entity>>} <br>
@@ -6,7 +6,7 @@ package it.uniba.app;
  * Ogni lettera del tentativo viene memorizzata in un
  * oggetto di {@link LetterBox}.
  */
-public class Guess {
+class Guess {
     private final LetterBox[] cellArray;
 
     /**
@@ -14,13 +14,9 @@ public class Guess {
      * Classe che rappresenta una singola cella di {@link Board}
      * e incapsula lettera e colore.
      */
-    public static class LetterBox {
+    static class LetterBox {
         private final Character letter;
         private Color color;
-
-        LetterBox(final char letter) {
-            this(letter, Color.NO_COLOR);
-        }
 
         LetterBox(final char letter, final Color color) {
             this.letter = letter;
