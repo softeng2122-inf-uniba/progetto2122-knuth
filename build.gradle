@@ -188,4 +188,4 @@ project.tasks.getByName('build').dependsOn fatJar
 * MAIN CLASS DECLARATION
 ************************/
 
-mainClassName = 'it.uniba.app/App'
+mainClassName = 'it.uniba.app.wordle.UI.CLI/App'

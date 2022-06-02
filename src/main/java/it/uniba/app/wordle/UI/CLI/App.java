@@ -1,5 +1,10 @@
 package it.uniba.app.wordle.UI.CLI;
 
+import it.uniba.app.wordle.domain.PlayerController;
+import it.uniba.app.wordle.domain.WordlePlayerController;
+import it.uniba.app.wordle.domain.WordleWordsmithController;
+import it.uniba.app.wordle.domain.WordsmithController;
+
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
@@ -13,9 +18,14 @@ import java.util.Scanner;
  */
 public final class App {
 
+    static PlayerController playerController = new WordlePlayerController();
+    static WordsmithController wordsmithController =
+                 new WordleWordsmithController(
+                    (WordlePlayerController) playerController);
+
     static Scanner keyboardInput = new Scanner(
             new InputStreamReader(System.in));
-    static Printer consoleOutput = new Printer();
+    static Printer consoleOutput = new Printer(playerController);
     static Parser parser = new Parser();
 
     /**
@@ -34,6 +44,8 @@ public final class App {
 
         // setta le stream di input e output della classe command
         Command.setStreams(keyboardInput, consoleOutput);
+
+        Command.setControllers(wordsmithController, playerController);
 
         // stampe iniziali
         consoleOutput.printDescription();
