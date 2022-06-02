@@ -1,8 +1,9 @@
 package it.uniba.app.wordle.UI.CLI;
 
-import it.uniba.app.wordle.domain.Wordle;
+import it.uniba.app.wordle.domain.PlayerController;
 import it.uniba.app.wordle.domain.WordleGameException;
 import it.uniba.app.wordle.domain.WordleSettingException;
+import it.uniba.app.wordle.domain.WordsmithController;
 
 import java.util.Scanner;
 
@@ -46,7 +47,7 @@ public enum Command {
     GIOCA(0) {
         public void execute(final String[] args) {
             try {
-                Wordle.startGame();
+                playerController.startGame();
                 consoleOutput.println("Hai iniziato la partita");
                 consoleOutput.printBoard();
             } catch (WordleGameException | WordleSettingException e) {
@@ -65,7 +66,7 @@ public enum Command {
             }
 
             try {
-                Wordle.setSecretWord(secretWord);
+                wordsmithController.setSecretWord(secretWord);
                 consoleOutput.println("OK");
             } catch (IllegalArgumentException | WordleGameException e) {
                 consoleOutput.println(e.getMessage());
@@ -75,7 +76,7 @@ public enum Command {
 
     ABBANDONA(0) {
         public void execute(final String[] args) {
-            if (!Wordle.isGameRunning()) {
+            if (!playerController.isGameRunning()) {
                 consoleOutput.println("Nessuna partita in corso");
                 return;
             }
@@ -90,7 +91,7 @@ public enum Command {
 
             if (answer.equalsIgnoreCase("si")) {
                 consoleOutput.println("Hai abbandonato la partita");
-                Wordle.endGame();
+                playerController.endGame();
             }
         }
     },
@@ -100,12 +101,12 @@ public enum Command {
             String guessWord = args[0];
 
             try {
-                Wordle.guess(guessWord);
+                playerController.guess(guessWord);
                 consoleOutput.printBoard();
                 consoleOutput.printGuessResult();
-                if (Wordle.getNumRemainingGuesses() == 0
-                        || Wordle.getGuessResult()) {
-                    Wordle.endGame();
+                if (playerController.getNumRemainingGuesses() == 0
+                        || playerController.getGuessResult()) {
+                    playerController.endGame();
                 }
             } catch (WordleGameException | IllegalArgumentException e) {
                 consoleOutput.println(e.getMessage());
@@ -135,7 +136,7 @@ public enum Command {
 
             try {
                 consoleOutput.format("Parola segreta: %s\n",
-                        Wordle.getSecretWord());
+                        wordsmithController.getSecretWord());
             } catch (WordleSettingException e) {
                 consoleOutput.println(e.getMessage());
             }
@@ -152,6 +153,8 @@ public enum Command {
     private final int numArgs;
     private static Scanner keyboardInput;
     private static Printer consoleOutput;
+    private static WordsmithController wordsmithController;
+    private static PlayerController playerController;
 
     Command(final int numArgs) {
         this.numArgs = numArgs;
@@ -166,6 +169,12 @@ public enum Command {
 
         Command.keyboardInput = keyboardInput;
         Command.consoleOutput = consoleOutput;
+    }
+
+    public static void setControllers(WordsmithController wordsmithController,
+                                     PlayerController playerController) {
+        Command.wordsmithController = wordsmithController;
+        Command.playerController = playerController;
     }
 
     public abstract void execute(String[] args);
