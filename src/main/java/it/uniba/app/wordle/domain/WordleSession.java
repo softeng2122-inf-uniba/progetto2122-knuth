@@ -19,10 +19,10 @@ package it.uniba.app.wordle.domain;
     private int nMaxGuesses;
     private int wordLength;
 
-    private final static int DEFAULT_MAX_GUESSES = 6;
-    private final static int DEFAULT_WORD_LENGTH = 5;
+    private static final int DEFAULT_MAX_GUESSES = 6;
+    private static final int DEFAULT_WORD_LENGTH = 5;
 
-    public WordleSession() {
+    WordleSession() {
         currentGame = null;
         secretWord = null;
         nMaxGuesses = DEFAULT_MAX_GUESSES;
@@ -33,7 +33,7 @@ package it.uniba.app.wordle.domain;
         return currentGame;
     }
 
-    public void setCurrentGame(WordleGame currentGame) {
+    public void setCurrentGame(final WordleGame currentGame) {
         this.currentGame = currentGame;
     }
 
@@ -41,7 +41,7 @@ package it.uniba.app.wordle.domain;
         return secretWord;
     }
 
-    public void setSecretWord(String secretWord) {
+    public void setSecretWord(final String secretWord) {
         this.secretWord = secretWord;
     }
 

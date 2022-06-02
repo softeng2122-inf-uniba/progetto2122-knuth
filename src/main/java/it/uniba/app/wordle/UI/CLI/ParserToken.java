@@ -1,7 +1,5 @@
 package it.uniba.app.wordle.UI.CLI;
 
-import it.uniba.app.wordle.UI.CLI.Command;
-
 import java.util.List;
 
 public class ParserToken {

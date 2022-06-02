@@ -1,7 +1,5 @@
 package it.uniba.app.wordle.domain;
 
-import it.uniba.app.wordle.domain.Guess;
-
 /**
  * {@literal <<Entity>>} <br>
  * Classe che rappresenta la matrice dei tentativi di dimensioni 5 righe per 6
