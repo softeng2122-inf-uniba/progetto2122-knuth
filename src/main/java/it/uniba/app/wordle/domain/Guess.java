@@ -1,4 +1,4 @@
-package it.uniba.app;
+package it.uniba.app.wordle.domain;
 
 /**
  * {@literal <<Entity>>} <br>
@@ -6,7 +6,7 @@ package it.uniba.app;
  * Ogni lettera del tentativo viene memorizzata in un
  * oggetto di {@link LetterBox}.
  */
-public class Guess {
+class Guess {
     private final LetterBox[] cellArray;
 
     /**

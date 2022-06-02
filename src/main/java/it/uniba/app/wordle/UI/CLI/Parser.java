@@ -1,4 +1,4 @@
-package it.uniba.app;
+package it.uniba.app.wordle.UI.CLI;
 
 import java.util.ArrayList;
 import java.util.Arrays;
