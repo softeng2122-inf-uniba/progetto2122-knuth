@@ -3,7 +3,7 @@ package it.uniba.app.wordle.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WordlePlayerController implements PlayerController {
+public final class WordlePlayerController implements PlayerController {
 
     private final WordleSession session;
 

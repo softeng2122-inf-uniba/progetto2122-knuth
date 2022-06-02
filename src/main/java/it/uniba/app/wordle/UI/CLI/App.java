@@ -18,15 +18,17 @@ import java.util.Scanner;
  */
 public final class App {
 
-    static PlayerController playerController = new WordlePlayerController();
-    static WordsmithController wordsmithController =
+    private static final PlayerController playerController =
+            new WordlePlayerController();
+
+    private static final WordsmithController wordsmithController =
                  new WordleWordsmithController(
                     (WordlePlayerController) playerController);
 
-    static Scanner keyboardInput = new Scanner(
+    private static final Scanner keyboardInput = new Scanner(
             new InputStreamReader(System.in));
-    static Printer consoleOutput = new Printer(playerController);
-    static Parser parser = new Parser();
+    private static final Printer consoleOutput = new Printer(playerController);
+    private static final Parser parser = new Parser();
 
     /**
      * Contiene il ciclo principale di gioco in cui a seconda del

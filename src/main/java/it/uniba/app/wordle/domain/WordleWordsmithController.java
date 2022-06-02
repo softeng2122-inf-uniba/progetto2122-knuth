@@ -1,6 +1,6 @@
 package it.uniba.app.wordle.domain;
 
-public class WordleWordsmithController implements WordsmithController {
+public final class WordleWordsmithController implements WordsmithController {
 
     private final WordleSession session;
 
