@@ -11,7 +11,7 @@ import java.util.List;
  * Estrae {@link Command} e relativi argomenti
  * a partire dalle linee digitate.
  */
-public class Parser {
+public final class Parser {
     private String input;
     private String[] tokens;
     private ParserToken parserToken;

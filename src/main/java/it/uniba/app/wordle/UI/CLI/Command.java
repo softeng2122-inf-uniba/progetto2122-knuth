@@ -171,8 +171,10 @@ public enum Command {
         Command.consoleOutput = consoleOutput;
     }
 
-    public static void setControllers(WordsmithController wordsmithController,
-                                     PlayerController playerController) {
+    public static void setControllers(
+                                final WordsmithController wordsmithController,
+                                final PlayerController playerController) {
+
         Command.wordsmithController = wordsmithController;
         Command.playerController = playerController;
     }

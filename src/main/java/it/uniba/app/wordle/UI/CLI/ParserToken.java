@@ -2,7 +2,7 @@ package it.uniba.app.wordle.UI.CLI;
 
 import java.util.List;
 
-public class ParserToken {
+public final class ParserToken {
 
     private final Command command;
     private final String[] args;

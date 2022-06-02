@@ -11,7 +11,7 @@ import java.io.PrintWriter;
  * Utilizza codici ANSI per la visualizzazione dei colori
  * e costanti UNICODE nelle stampe di gioco.
  */
-public class Printer extends PrintWriter {
+public final class Printer extends PrintWriter {
     // angoli (L = left, R = right, U = up, D = down)
     private static final char L_U_ANGLE = '\u2554';
     private static final char R_U_ANGLE = '\u2557';
