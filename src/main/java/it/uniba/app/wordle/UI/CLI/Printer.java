@@ -44,7 +44,7 @@ public class Printer extends PrintWriter {
 
     private final PlayerController playerController;
 
-    Printer(PlayerController playerController) {
+    Printer(final PlayerController playerController) {
         super(System.out, true);
         this.playerController = playerController;
     }
@@ -158,7 +158,8 @@ public class Printer extends PrintWriter {
         } else {
             if (remainingGuesses == 0) {
                 println("Hai raggiunto il numero massimo di tentativi");
-                println("La parola segreta è: " + playerController.getGameSecretWord());
+                println("La parola segreta è: "
+                        + playerController.getGameSecretWord());
             }
         }
     }

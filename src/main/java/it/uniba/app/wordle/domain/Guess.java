@@ -37,7 +37,7 @@ class Guess {
     }
 
     //costruttore di Guess con argomento il tentativo effettuato
-    Guess(String guessingWord) {
+    Guess(final String guessingWord) {
         cellArray = new LetterBox[guessingWord.length()];
 
         for (int i = 0; i < guessingWord.length(); i++) {
