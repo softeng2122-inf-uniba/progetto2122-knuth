@@ -3,17 +3,17 @@ package it.uniba.app;
 import java.util.Scanner;
 
 /**
- * {@literal <<Boundary>>} <br>
- * Il tipo enumerativo Command si ispira al design pattern omonimo.
- * A ogni istanza di Command è associato il numero di argomenti atteso e l'implementazione
- * corrispondente del metodo execute.
+ * {@literal <<NoECB>>} <br>
+ * Il tipo enumerativo Command contiene le costanti che rappresentano
+ * i comandi riconosciuti dal gioco.
+ * Le costanti INVALID e SPACE sono comandi fittizi per gestire
+ * eventuali errori di input e caratteri di spaziatura.
  */
-public enum Command
-{
+public enum Command {
     INVALID(0) {
-        public void execute(String[] args) {
+        public void execute(final String[] args) {
             consoleOutput.println("Comando invalido");
-            if(args!=null) {
+            if (args != null) {
                 if (args.length == 1) {
                     System.out.println("Il comando più simile è: ");
                 } else {
@@ -31,7 +31,7 @@ public enum Command
     },
 
     SPACE(0) {
-        public void execute(String[] args) {
+        public void execute(final String[] args) {
         }
 
         public String toString() {
@@ -40,59 +40,51 @@ public enum Command
     },
 
     GIOCA(0) {
-        public void execute(String[] args) {
-            try
-            {
+        public void execute(final String[] args) {
+            try {
                 Wordle.startGame();
                 consoleOutput.println("Hai iniziato la partita");
                 consoleOutput.printBoard();
-            }
-            catch (WordleGameException | WordleSettingException e)
-            {
+            } catch (WordleGameException | WordleSettingException e) {
                 consoleOutput.println(e.getMessage());
             }
         }
     },
 
     NUOVA(1) {
-        public void execute(String[] args) {
+        public void execute(final String[] args) {
 
             String secretWord = args[0];
-            if (secretWord == null)
-            {
+            if (secretWord == null) {
                 consoleOutput.printMissingArgs();
                 return;
             }
 
-            try
-            {
+            try {
                 Wordle.setSecretWord(secretWord);
                 consoleOutput.println("OK");
-            }
-            catch (IllegalArgumentException | WordleGameException e)
-            {
+            } catch (IllegalArgumentException | WordleGameException e) {
                 consoleOutput.println(e.getMessage());
             }
         }
     },
 
     ABBANDONA(0) {
-        public void execute(String[] args) {
-            if(!Wordle.isGameRunning())
-            {
+        public void execute(final String[] args) {
+            if (!Wordle.isGameRunning()) {
                 consoleOutput.println("Nessuna partita in corso");
                 return;
             }
 
             String answer;
-            do
-            {
-                consoleOutput.println("Sei sicuro di voler abbandonare la partita in corso? [si | no]");
+            do {
+                consoleOutput.println("Sei sicuro di voler abbandonare"
+                                      + "la partita in corso? [si | no]");
                 answer = keyboardInput.nextLine();
-            } while (!answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
+            } while (!answer.equalsIgnoreCase("si")
+                    && !answer.equalsIgnoreCase("no"));
 
-            if (answer.equalsIgnoreCase("si"))
-            {
+            if (answer.equalsIgnoreCase("si")) {
                 consoleOutput.println("Hai abbandonato la partita");
                 Wordle.endGame();
             }
@@ -100,52 +92,54 @@ public enum Command
     },
 
     GUESS(1) {
-        public void execute(String[] args) {
+        public void execute(final String[] args) {
             String guessWord = args[0];
-            try
-            {
+
+            try {
                 Wordle.guess(guessWord);
                 consoleOutput.printBoard();
                 consoleOutput.printGuessResult();
-                if(Wordle.getNumRemainingGuesses() == 0 || Wordle.getGuessResult())
+                if (Wordle.getNumRemainingGuesses() == 0
+                        || Wordle.getGuessResult()) {
                     Wordle.endGame();
-            }
-            catch (WordleGameException | IllegalArgumentException e)
-            {
+                }
+            } catch (WordleGameException | IllegalArgumentException e) {
                 consoleOutput.println(e.getMessage());
             }
         }
     },
 
     ESCI(0) {
-        public void execute(String[] args) {
+        public void execute(final String[] args) {
             String answer;
-            do
-            {
-                consoleOutput.println("Sei sicuro di voler uscire da Wordle? [si | no]");
-                answer = keyboardInput.nextLine();
-            } while (!answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
 
-            if (answer.equalsIgnoreCase("si"))
+            do {
+                consoleOutput.println("Sei sicuro di voler uscire da Wordle?"
+                                      + "[si | no]");
+                answer = keyboardInput.nextLine();
+            } while (!answer.equalsIgnoreCase("si")
+                    && !answer.equalsIgnoreCase("no"));
+
+            if (answer.equalsIgnoreCase("si")) {
                 System.exit(0);
+            }
         }
     },
 
     MOSTRA(0) {
-        public void execute(String[] args) {
-            try
-            {
-                consoleOutput.format("Parola segreta: %s\n", Wordle.getSecretWord());
-            }
-            catch (WordleSettingException e)
-            {
+        public void execute(final String[] args) {
+
+            try {
+                consoleOutput.format("Parola segreta: %s\n",
+                        Wordle.getSecretWord());
+            } catch (WordleSettingException e) {
                 consoleOutput.println(e.getMessage());
             }
         }
     },
 
     HELP(0) {
-        public void execute(String[] args) {
+        public void execute(final String[] args) {
             consoleOutput.printDescription();
             consoleOutput.printHelp();
         }
@@ -155,7 +149,7 @@ public enum Command
     private static Scanner keyboardInput;
     private static Printer consoleOutput;
 
-    Command(int numArgs) {
+    Command(final int numArgs) {
         this.numArgs = numArgs;
     }
 
@@ -163,9 +157,12 @@ public enum Command
         return this.numArgs;
     }
 
-    public static void setStreams(Scanner keyboardInput, Printer consoleOutput) {
+    public static void setStreams(final Scanner keyboardInput,
+                                  final Printer consoleOutput) {
+
         Command.keyboardInput = keyboardInput;
         Command.consoleOutput = consoleOutput;
     }
+
     public abstract void execute(String[] args);
 }
