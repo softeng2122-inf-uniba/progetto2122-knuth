@@ -8,7 +8,7 @@ public interface PlayerController {
      * @throws WordleGameException  se una partita è già in corso
      * @throws WordleSettingException se la parola segreta non è impostata
      */
-    public void startGame();
+    void startGame();
 
     /**
      * Effettua un tentativo e lo inserisce nella matrice dei tentativi
@@ -25,7 +25,7 @@ public interface PlayerController {
      * @throws IllegalArgumentException se {@code guessWord}
      * non soddisfa la lunghezza prevista o contiene caratteri non validi
      */
-    public void guess(String guessWord);
+    void guess(String guessWord);
 
     /**
      * Restituisce il risultato dell'ultimo tentativo effettuato.
@@ -33,25 +33,25 @@ public interface PlayerController {
      * @return true se il tentativo è vincente, false se non è vincente
      * oppure se non sono stati effettuati tentativi nella partita corrente
      */
-    public boolean getGuessResult();
+    boolean getGuessResult();
 
     /**
      * Restituisce il numero di tentativi rimanenti per la partita corrente.
      * @throws WordleGameException  se nessuna partita è in corso
      */
-    public int getNumRemainingGuesses();
+    int getNumRemainingGuesses();
 
     /**
      * Restituisce il numero totale di tentativi per la partita corrente.
      * @throws WordleGameException  se nessuna partita è in corso
      */
-    public int getMaxGuesses();
+    int getMaxGuesses();
 
     /**
      * Restituisce la lunghezza della parola segreta.
      * @throws WordleGameException  se nessuna partita è in corso
      */
-    public int getWordLength();
+    int getWordLength();
 
     /**
      * Restituisce la lettera contenuta in una casella della matrice
@@ -72,7 +72,7 @@ public interface PlayerController {
      * eccedono le dimensioni della matrice dei tentativi
      * oppure sono numeri negativi
      */
-    public char getLetter(final int row, final int column);
+    char getLetter(final int row, final int column);
 
     /**
      * Restituisce il colore di una casella della matrice dei tentativi
@@ -93,23 +93,23 @@ public interface PlayerController {
      * eccedono le dimensioni della matrice dei tentativi
      * oppure sono numeri negativi
      */
-    public Color getColor(final int row, final int column);
+    Color getColor(final int row, final int column);
 
     /**
      * Termina la partita in corso.
      * @throws WordleGameException se nessuna partita è in corso
      */
-    public void endGame();
+    void endGame();
 
     /**
      * @return true se è in corso una partita, false altrimenti
      */
-    public boolean isGameRunning();
+    boolean isGameRunning();
 
     /**
      * Restituisce la parola segreta per la partita corrente.
      * @throws WordleGameException  se nessuna partita è in corso
      */
-    public String getGameSecretWord();
+    String getGameSecretWord();
 
 }
