@@ -6,6 +6,8 @@ import it.uniba.app.wordle.domain.WordleWordsmithController;
 import it.uniba.app.wordle.domain.WordsmithController;
 
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
@@ -26,7 +28,7 @@ public final class App {
                     (WordlePlayerController) PLAYER_CONTROLLER);
 
     private static final Scanner KEYBOARD = new Scanner(
-            new InputStreamReader(System.in));
+            new InputStreamReader(System.in, getSystemEncoding()));
     private static final Printer CONSOLE = new Printer(PLAYER_CONTROLLER);
     private static final Parser PARSER = new Parser();
 
@@ -104,6 +106,19 @@ public final class App {
             CONSOLE.println(
                     "Alcuni caratteri potrebbero non essere "
                             + "visualizzati correttamente");
+        }
+    }
+
+    public static Charset getSystemEncoding() {
+        String encoding = System.getProperty("file.encoding");
+        if (encoding.equalsIgnoreCase("UTF-8")) {
+            return StandardCharsets.UTF_8;
+        }
+        else if (encoding.equalsIgnoreCase("UTF-16")) {
+            return StandardCharsets.UTF_16;
+        }
+        else {
+            throw new IllegalStateException("Codifica non supportata");
         }
     }
 }
