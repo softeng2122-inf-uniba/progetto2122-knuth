@@ -140,11 +140,11 @@ public final class Parser {
         int editDist;
 
         for (Command comparedCommand : Command.values()) {
-            String comparedString = comparedCommand.toString();
-            if (comparedString == null) {
+            if (comparedCommand == Command.INVALID
+                    || comparedCommand == Command.SPACE) {
                 continue;
             }
-
+            String comparedString = comparedCommand.toString();
             editDist = editDistance(comparedString, wrongCommandString);
 
             if (editDist <= distance) {

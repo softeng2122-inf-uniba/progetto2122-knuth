@@ -29,18 +29,10 @@ public enum Command {
                 }
             }
         }
-
-        public String toString() {
-            return null;
-        }
     },
 
     SPACE(0) {
         public void execute(final String[] args) {
-        }
-
-        public String toString() {
-            return null;
         }
     },
 
