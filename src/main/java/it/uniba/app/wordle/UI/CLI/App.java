@@ -6,6 +6,7 @@ import it.uniba.app.wordle.domain.WordleWordsmithController;
 import it.uniba.app.wordle.domain.WordsmithController;
 
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -29,7 +30,9 @@ public final class App {
 
     private static final Scanner KEYBOARD = new Scanner(
             new InputStreamReader(System.in, getSystemEncoding()));
-    private static final Printer CONSOLE = new Printer(PLAYER_CONTROLLER);
+    private static final Printer CONSOLE = new Printer(
+            new OutputStreamWriter(System.out, getSystemEncoding()),
+                                   PLAYER_CONTROLLER);
     private static final Parser PARSER = new Parser();
 
     //costruttore privato

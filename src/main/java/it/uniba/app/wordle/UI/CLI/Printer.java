@@ -3,6 +3,7 @@ package it.uniba.app.wordle.UI.CLI;
 import it.uniba.app.wordle.domain.Color;
 import it.uniba.app.wordle.domain.PlayerController;
 
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 /**
  * {@literal <<Boundary>>} <br>
@@ -44,8 +45,8 @@ public final class Printer extends PrintWriter {
 
     private final PlayerController playerController;
 
-    Printer(final PlayerController playerController) {
-        super(System.out, true);
+    Printer(OutputStreamWriter out, final PlayerController playerController) {
+        super(out, true);
         this.playerController = playerController;
     }
 
