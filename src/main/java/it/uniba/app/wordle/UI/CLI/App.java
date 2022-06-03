@@ -18,17 +18,23 @@ import java.util.Scanner;
  */
 public final class App {
 
-    private static final PlayerController playerController =
+    private static final PlayerController PLAYER_CONTROLLER =
             new WordlePlayerController();
 
-    private static final WordsmithController wordsmithController =
+    private static final WordsmithController WORDSMITH_CONTROLLER =
                  new WordleWordsmithController(
-                    (WordlePlayerController) playerController);
+                    (WordlePlayerController) PLAYER_CONTROLLER);
 
-    private static final Scanner keyboardInput = new Scanner(
+    private static final Scanner KEYBOARD = new Scanner(
             new InputStreamReader(System.in));
-    private static final Printer consoleOutput = new Printer(playerController);
-    private static final Parser parser = new Parser();
+    private static final Printer CONSOLE = new Printer(PLAYER_CONTROLLER);
+    private static final Parser PARSER = new Parser();
+
+    //costruttore privato
+    private App() {
+        //il costruttore privato fa si che questa
+        // classe non possa essere istanziata
+    }
 
     /**
      * Contiene il ciclo principale di gioco in cui a seconda del
@@ -45,23 +51,23 @@ public final class App {
         checkEncoding();
 
         // setta le stream di input e output della classe command
-        Command.setStreams(keyboardInput, consoleOutput);
+        Command.setStreams(KEYBOARD, CONSOLE);
 
-        Command.setControllers(wordsmithController, playerController);
+        Command.setControllers(WORDSMITH_CONTROLLER, PLAYER_CONTROLLER);
 
         // stampe iniziali
-        consoleOutput.printDescription();
+        CONSOLE.printDescription();
         if (args.length > 0 && (args[0].equals("--help")
                 || args[0].equals("-h"))) {
-            consoleOutput.printHelp();
+            CONSOLE.printHelp();
         }
 
         System.out.print("Wordle> ");
-        String inputLine = keyboardInput.nextLine();
+        String inputLine = KEYBOARD.nextLine();
 
         // invia l'input al parser
-        parser.feed(inputLine);
-        ParserToken parserToken = parser.getParserToken();
+        PARSER.feed(inputLine);
+        ParserToken parserToken = PARSER.getParserToken();
         Command command = parserToken.getCommand();
         String[] arguments = parserToken.getArgs();
 
@@ -79,10 +85,10 @@ public final class App {
             }
 
             System.out.print("Wordle> ");
-            inputLine = keyboardInput.nextLine();
+            inputLine = KEYBOARD.nextLine();
 
-            parser.feed(inputLine);
-            parserToken = parser.getParserToken();
+            PARSER.feed(inputLine);
+            parserToken = PARSER.getParserToken();
             command = parserToken.getCommand();
             arguments = parserToken.getArgs();
         }
@@ -93,9 +99,9 @@ public final class App {
 
         if (!encoding.equalsIgnoreCase("UTF-8")
                 && !encoding.equalsIgnoreCase("UTF-16")) {
-            consoleOutput.println(
+            CONSOLE.println(
                     "Codifica [" + encoding + "] non supportata");
-            consoleOutput.println(
+            CONSOLE.println(
                     "Alcuni caratteri potrebbero non essere "
                             + "visualizzati correttamente");
         }
