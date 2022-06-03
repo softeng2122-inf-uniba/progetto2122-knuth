@@ -6,10 +6,10 @@ import java.util.List;
 
 public final class ParserToken {
 
-    private final Command command;
+    private final App.Command command;
     private final String[] args;
     private int numMissingArgs;
-    private List<Command> closeCommands = null;
+    private List<App.Command> closeCommands = null;
 
 
     public String[] getCloseCommandsStrings() {
@@ -26,7 +26,7 @@ public final class ParserToken {
         return closeCommandsStrings;
     }
 
-    public void setCloseCommands(final List<Command> closeCommands) {
+    public void setCloseCommands(final List<App.Command> closeCommands) {
         if(closeCommands == null) {
             this.closeCommands = null;
         } else {
@@ -35,7 +35,7 @@ public final class ParserToken {
 
     }
 
-    public ParserToken(final Command command, final String[] args) {
+    public ParserToken(final App.Command command, final String[] args) {
         this.command = command;
         if(args == null || args.length == 0) {
             this.args = null;
@@ -46,7 +46,7 @@ public final class ParserToken {
         setNumMissingArgs();
     }
 
-    public Command getCommand() {
+    public App.Command getCommand() {
         return command;
     }
 

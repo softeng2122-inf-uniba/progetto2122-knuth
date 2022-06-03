@@ -1,9 +1,6 @@
 package it.uniba.app.wordle.UI.CLI;
 
-import it.uniba.app.wordle.domain.PlayerController;
-import it.uniba.app.wordle.domain.WordlePlayerController;
-import it.uniba.app.wordle.domain.WordleWordsmithController;
-import it.uniba.app.wordle.domain.WordsmithController;
+import it.uniba.app.wordle.domain.*;
 
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -35,6 +32,156 @@ public final class App {
                                    PLAYER_CONTROLLER);
     private static final Parser PARSER = new Parser();
 
+
+    /**
+     * {@literal <<NoECB>>} <br>
+     * Il tipo enumerativo Command contiene le costanti che rappresentano
+     * i comandi riconosciuti dal gioco.
+     * Le costanti INVALID e SPACE sono comandi fittizi per gestire
+     * eventuali errori di input e caratteri di spaziatura.
+     */
+    public enum Command {
+        INVALID(0) {
+            public void execute(final String[] args) {
+                CONSOLE.println("Comando invalido");
+                if (args != null) {
+                    if (args.length == 1) {
+                        System.out.println("Il comando più simile è: ");
+                    } else {
+                        System.out.println("I comandi più simili sono: ");
+                    }
+                    for (String closeCommandString : args) {
+                        System.out.println("\t\t" + closeCommandString);
+                    }
+                }
+            }
+        },
+
+        SPACE(0) {
+            public void execute(final String[] args) {
+            }
+        },
+
+        GIOCA(0) {
+            public void execute(final String[] args) {
+                try {
+                    PLAYER_CONTROLLER.startGame();
+                    CONSOLE.println("Hai iniziato la partita");
+                    CONSOLE.printBoard();
+                } catch (WordleGameException | WordleSettingException e) {
+                    CONSOLE.println(e.getMessage());
+                }
+            }
+        },
+
+        NUOVA(1) {
+            public void execute(final String[] args) {
+
+                String secretWord = args[0];
+                if (secretWord == null) {
+                    CONSOLE.printMissingArgs();
+                    return;
+                }
+
+                try {
+                    WORDSMITH_CONTROLLER.setSecretWord(secretWord);
+                    CONSOLE.println("OK");
+                } catch (IllegalArgumentException | WordleGameException e) {
+                    CONSOLE.println(e.getMessage());
+                }
+            }
+        },
+
+        ABBANDONA(0) {
+            public void execute(final String[] args) {
+                if (!PLAYER_CONTROLLER.isGameRunning()) {
+                    CONSOLE.println("Nessuna partita in corso");
+                    return;
+                }
+
+                String answer;
+                do {
+                    CONSOLE.println("Sei sicuro di voler abbandonare"
+                            + "la partita in corso? [si | no]");
+                    answer = KEYBOARD.nextLine();
+                } while (!answer.equalsIgnoreCase("si")
+                        && !answer.equalsIgnoreCase("no"));
+
+                if (answer.equalsIgnoreCase("si")) {
+                    CONSOLE.println("Hai abbandonato la partita");
+                    PLAYER_CONTROLLER.endGame();
+                }
+            }
+        },
+
+        GUESS(1) {
+            public void execute(final String[] args) {
+                String guessWord = args[0];
+
+                try {
+                    PLAYER_CONTROLLER.guess(guessWord);
+                    CONSOLE.printBoard();
+                    CONSOLE.printGuessResult();
+                    if (PLAYER_CONTROLLER.getNumRemainingGuesses() == 0
+                            || PLAYER_CONTROLLER.getGuessResult()) {
+                        PLAYER_CONTROLLER.endGame();
+                    }
+                } catch (WordleGameException | IllegalArgumentException e) {
+                    CONSOLE.println(e.getMessage());
+                }
+            }
+        },
+
+        ESCI(0) {
+            public void execute(final String[] args) {
+                String answer;
+
+                do {
+                    CONSOLE.println("Sei sicuro di voler uscire da Wordle?"
+                            + "[si | no]");
+                    answer = KEYBOARD.nextLine();
+                } while (!answer.equalsIgnoreCase("si")
+                        && !answer.equalsIgnoreCase("no"));
+
+                if (answer.equalsIgnoreCase("si")) {
+                    System.exit(0);
+                }
+            }
+        },
+
+        MOSTRA(0) {
+            public void execute(final String[] args) {
+
+                try {
+                    CONSOLE.format("Parola segreta: %s\n",
+                            WORDSMITH_CONTROLLER.getSecretWord());
+                } catch (WordleSettingException e) {
+                    CONSOLE.println(e.getMessage());
+                }
+            }
+        },
+
+        HELP(0) {
+            public void execute(final String[] args) {
+                CONSOLE.printDescription();
+                CONSOLE.printHelp();
+            }
+        };
+
+        private final int numArgs;
+
+        Command(final int numArgs) {
+            this.numArgs = numArgs;
+        }
+
+        public int getNumArgs() {
+            return this.numArgs;
+        }
+
+        public abstract void execute(String[] args);
+    }
+
+
     //costruttore privato
     private App() {
         //il costruttore privato fa si che questa
@@ -54,11 +201,6 @@ public final class App {
     public static void main(final String[] args) {
         //controlla codifica del terminale su cui l'app è eseguita
         checkEncoding();
-
-        // setta le stream di input e output della classe command
-        Command.setStreams(KEYBOARD, CONSOLE);
-
-        Command.setControllers(WORDSMITH_CONTROLLER, PLAYER_CONTROLLER);
 
         // stampe iniziali
         CONSOLE.printDescription();
@@ -121,7 +263,7 @@ public final class App {
             return StandardCharsets.UTF_16;
         }
         else {
-            throw new IllegalStateException("Codifica non supportata");
+            throw new IllegalStateException("Codifica non supportata: " + encoding);
         }
     }
 }
