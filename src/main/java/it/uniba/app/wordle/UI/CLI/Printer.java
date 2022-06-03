@@ -11,7 +11,7 @@ import java.io.PrintWriter;
  * Utilizza codici ANSI per la visualizzazione dei colori
  * e costanti UNICODE nelle stampe di gioco.
  */
-public class Printer extends PrintWriter {
+public final class Printer extends PrintWriter {
     // angoli (L = left, R = right, U = up, D = down)
     private static final char L_U_ANGLE = '\u2554';
     private static final char R_U_ANGLE = '\u2557';
@@ -44,7 +44,7 @@ public class Printer extends PrintWriter {
 
     private final PlayerController playerController;
 
-    Printer(PlayerController playerController) {
+    Printer(final PlayerController playerController) {
         super(System.out, true);
         this.playerController = playerController;
     }
@@ -158,7 +158,8 @@ public class Printer extends PrintWriter {
         } else {
             if (remainingGuesses == 0) {
                 println("Hai raggiunto il numero massimo di tentativi");
-                println("La parola segreta è: " + playerController.getGameSecretWord());
+                println("La parola segreta è: "
+                        + playerController.getGameSecretWord());
             }
         }
     }

@@ -72,7 +72,7 @@ public interface PlayerController {
      * eccedono le dimensioni della matrice dei tentativi
      * oppure sono numeri negativi
      */
-    char getLetter(final int row, final int column);
+    char getLetter(int row, int column);
 
     /**
      * Restituisce il colore di una casella della matrice dei tentativi
@@ -93,7 +93,7 @@ public interface PlayerController {
      * eccedono le dimensioni della matrice dei tentativi
      * oppure sono numeri negativi
      */
-    Color getColor(final int row, final int column);
+    Color getColor(int row, int column);
 
     /**
      * Termina la partita in corso.
@@ -111,5 +111,4 @@ public interface PlayerController {
      * @throws WordleGameException  se nessuna partita è in corso
      */
     String getGameSecretWord();
-
 }

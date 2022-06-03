@@ -1,7 +1,5 @@
 package it.uniba.app.wordle.domain;
 
-import it.uniba.app.wordle.domain.Board;
-
 /**
  * {@literal <<Entity>>} <br>
  * Classe che rappresenta una partita di Wordle.

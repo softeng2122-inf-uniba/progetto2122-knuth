@@ -11,7 +11,7 @@ import java.util.List;
  * Estrae {@link Command} e relativi argomenti
  * a partire dalle linee digitate.
  */
-public class Parser {
+public final class Parser {
     private String input;
     private String[] tokens;
     private ParserToken parserToken;
@@ -102,28 +102,30 @@ public class Parser {
         return argsArray;
     }
 
-    private int editDistance(String s, String t) {
-        int i, j;
-        s = s.toUpperCase();
-        t = t.toUpperCase();
+    private int editDistance(final String wrightString,
+                             final String stringToEvaluate) {
 
-        final int n = s.length(), m = t.length();
-        int[][]l = new int[n + 1][m + 1];
+        //copia dei parametri per evitare side-effects
+        String wright = wrightString.toUpperCase();
+        String stringToCheck = stringToEvaluate.toUpperCase();
 
-        for (i = 0; i < (n + 1); i++) {
-            for (j = 0; j < (m + 1); j++) {
+        int[][]l = new int[wright.length() + 1][stringToCheck.length() + 1];
+
+        for (int i = 0; i < (wright.length() + 1); i++) {
+            for (int j = 0; j < (stringToCheck.length() + 1); j++) {
+
                 if (i == 0 || j == 0) {
                     l[i][j] = Math.max(i, j);
                 } else {
                     l[i][j] = min3(
                             l[i - 1][j] + 1,
                             l[i][j - 1] + 1,
-                            l[i - 1][j - 1] + (s.charAt(i - 1)
-                                    != t.charAt(j - 1) ? 1 : 0));
+                            l[i - 1][j - 1] + (wright.charAt(i - 1)
+                                    != stringToCheck.charAt(j - 1) ? 1 : 0));
                 }
             }
         }
-        return l[n][m];
+        return l[wright.length()][stringToCheck.length()];
     }
 
     private int min3(final  int i, final int j, final int k) {

@@ -3,7 +3,7 @@ package it.uniba.app.wordle.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WordlePlayerController implements PlayerController {
+public final class WordlePlayerController implements PlayerController {
 
     private final WordleSession session;
 
@@ -52,7 +52,7 @@ public class WordlePlayerController implements PlayerController {
      * @throws IllegalArgumentException se {@code guessWord}
      * non soddisfa la lunghezza prevista o contiene caratteri non validi
      */
-    public void guess(String guessWord) {
+    public void guess(final String guessWord) {
 
         if (!isGameRunning()) {
             throw new WordleGameException(
@@ -71,9 +71,9 @@ public class WordlePlayerController implements PlayerController {
         }
 
         //Inizializzazione tentativo
-        guessWord = guessWord.toUpperCase();
+        String guessAttempt = guessWord.toUpperCase();
         String secretWord = session.getCurrentGame().getSecretWord();
-        Guess newGuess = new Guess(guessWord);
+        Guess newGuess = new Guess(guessAttempt);
         //Conterrà le coppie (lettera, numOccorrenze) della secret
         Map<Character, Integer> letterMap = new HashMap<>();
 
@@ -87,8 +87,8 @@ public class WordlePlayerController implements PlayerController {
         }
 
         //Primo step: setting delle lettere verdi
-        for (int i = 0; i < guessWord.length(); i++) {
-            char l = guessWord.charAt(i);
+        for (int i = 0; i < guessAttempt.length(); i++) {
+            char l = guessAttempt.charAt(i);
             if (l == secretWord.charAt(i)) {
                 newGuess.setColor(i, Color.GREEN);
 
@@ -100,12 +100,12 @@ public class WordlePlayerController implements PlayerController {
         //Secondo step: setting delle lettere gialle e grigie
         Guess.LetterBox lb;
 
-        for (int i = 0; i < guessWord.length(); i++) {
+        for (int i = 0; i < guessAttempt.length(); i++) {
             if (newGuess.getColor(i) == Color.GREEN) {
                 continue;
             }
 
-            char l = guessWord.charAt(i);
+            char l = guessAttempt.charAt(i);
             //test YELLOW
             if (letterMap.containsKey(l) && letterMap.get(l) > 0) {
                 newGuess.setColor(i, Color.YELLOW);
