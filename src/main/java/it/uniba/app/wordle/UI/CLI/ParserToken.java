@@ -1,5 +1,7 @@
 package it.uniba.app.wordle.UI.CLI;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public final class ParserToken {
@@ -25,12 +27,21 @@ public final class ParserToken {
     }
 
     public void setCloseCommands(final List<Command> closeCommands) {
-        this.closeCommands = closeCommands;
+        if(closeCommands == null) {
+            this.closeCommands = null;
+        } else {
+            this.closeCommands = Collections.unmodifiableList(closeCommands);
+        }
+
     }
 
     public ParserToken(final Command command, final String[] args) {
         this.command = command;
-        this.args = args;
+        if(args == null || args.length == 0) {
+            this.args = null;
+        } else {
+            this.args = Arrays.copyOf(args, args.length);
+        }
 
         setNumMissingArgs();
     }
@@ -40,7 +51,11 @@ public final class ParserToken {
     }
 
     public String[] getArgs() {
-        return args;
+        if(args == null) {
+            return null;
+        } else {
+            return Arrays.copyOf(args, args.length);
+        }
     }
 
     private void setNumMissingArgs() {
