@@ -2,6 +2,7 @@ package it.uniba.app.wordle.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public final class WordlePlayerController implements PlayerController {
 
@@ -53,6 +54,7 @@ public final class WordlePlayerController implements PlayerController {
      * non soddisfa la lunghezza prevista o contiene caratteri non validi
      */
     public void guess(final String guessWord) {
+        Objects.requireNonNull(guessWord);
 
         if (!isGameRunning()) {
             throw new WordleGameException(
@@ -63,12 +65,8 @@ public final class WordlePlayerController implements PlayerController {
             throw new WordleGameException(
                     WordleGameException.Motivation.NO_GUESSES_LEFT);
         }
+        guessWordCheck(guessWord);
 
-        try {
-            guessWordCheck(guessWord);
-        } catch (IllegalArgumentException e) {
-            throw e;
-        }
 
         //Inizializzazione tentativo
         String guessAttempt = guessWord.toUpperCase();
@@ -276,7 +274,6 @@ public final class WordlePlayerController implements PlayerController {
     public boolean isGameRunning() {
         return session.isGameRunning();
     }
-
 
     private void guessWordCheck(final String word) {
 

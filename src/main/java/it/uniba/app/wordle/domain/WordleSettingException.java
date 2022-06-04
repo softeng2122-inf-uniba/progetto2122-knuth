@@ -29,6 +29,7 @@ public class WordleSettingException extends RuntimeException {
         motivation = null;
     }
 
+    //TODO:requirenotnull
     WordleSettingException(final Motivation motivation) {
         this(motivation.getMessage());
         this.motivation = motivation;

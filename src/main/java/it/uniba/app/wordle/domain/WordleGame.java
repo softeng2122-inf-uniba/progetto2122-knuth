@@ -1,5 +1,7 @@
 package it.uniba.app.wordle.domain;
 
+import java.util.Objects;
+
 /**
  * {@literal <<Entity>>} <br>
  * Classe che rappresenta una partita di Wordle.
@@ -14,6 +16,7 @@ class WordleGame {
     //costruttore con scelta parola e dimensioni del gioco
     WordleGame(final String secretWord,
                final  int numMaxGuesses, final int wordLength) {
+        Objects.requireNonNull(secretWord);
 
         this.secretWord = secretWord;
         this.gameBoard = new Board(wordLength, numMaxGuesses);
