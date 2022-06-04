@@ -294,4 +294,6 @@ _nota: se nel tentativo sono presenti più lettere uguali che dovrebbero essere 
 
 Al termine dello sprint 1 è stato effettuato il meeting retrospettivo tramite videocoferenza su teams. E'stata utilizzata la whiteboard fornita dal software, perciò sono state raccolte le opiniomi di ognungo su ogni riga e organizzata mediante lo schema "arrabbiato, triste, felice" come è possibile vedere di seguito.
 
-
+<p align="center">
+  <img src="./img/report img/Whiteboard Retrospective.png" alt="Whiteboard Retrospective" width="1000"/>
+</p>
