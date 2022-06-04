@@ -1,5 +1,7 @@
 package it.uniba.app.wordle.domain;
 
+import java.util.Objects;
+
 /**
  * {@literal <<Entity>>} <br>
  * Classe che rappresenta la matrice dei tentativi di dimensioni 5 righe per 6
@@ -27,6 +29,8 @@ class Board {
 
     //prende il guess con i colori settati e lo aggiunge alla prima riga libera
     public void acceptNewGuess(final Guess g) {
+        Objects.requireNonNull(g);
+
         guessArray[firstEmptyIndex] = g;
         firstEmptyIndex++;
     }
