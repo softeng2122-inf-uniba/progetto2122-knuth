@@ -95,9 +95,6 @@ public final class WordlePlayerController implements PlayerController {
             }
         }
 
-        //Secondo step: setting delle lettere gialle e grigie
-        Guess.LetterBox lb;
-
         for (int i = 0; i < guessAttempt.length(); i++) {
             if (newGuess.getColor(i) == Color.GREEN) {
                 continue;

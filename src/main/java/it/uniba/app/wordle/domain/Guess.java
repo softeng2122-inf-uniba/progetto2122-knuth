@@ -16,7 +16,7 @@ class Guess {
      * Classe che rappresenta una singola cella di {@link Board}
      * e incapsula lettera e colore.
      */
-    static class LetterBox {
+    private static class LetterBox {
         private final Character letter;
         private Color color;
 
