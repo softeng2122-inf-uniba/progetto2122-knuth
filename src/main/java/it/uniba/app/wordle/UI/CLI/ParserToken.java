@@ -3,42 +3,45 @@ package it.uniba.app.wordle.UI.CLI;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public final class ParserToken {
 
     private final App.Command command;
     private final String[] args;
     private int numMissingArgs;
-    private List<App.Command> closeCommands = null;
+    private List<App.Command> closeCommands;
 
+    private static final List<App.Command> EMPTY_COMMAND_LIST = Collections.emptyList();
+    private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     public String[] getCloseCommandsStrings() {
-        if (closeCommands == null) {
-            return null;
+        if (closeCommands.isEmpty()) {
+            return EMPTY_STRING_ARRAY;
+        } else {
+            return closeCommands.stream()
+                    .map(App.Command::toString)
+                    .toArray(String[]::new);
         }
-
-        String[] closeCommandsStrings = new String[closeCommands.size()];
-
-        for (int i = 0; i < closeCommands.size(); i++) {
-            closeCommandsStrings[i] = closeCommands.get(i).toString();
-        }
-
-        return closeCommandsStrings;
     }
 
     public void setCloseCommands(final List<App.Command> closeCommands) {
-        if(closeCommands == null) {
-            this.closeCommands = null;
+        Objects.requireNonNull(closeCommands);
+
+        if(closeCommands.isEmpty()) {
+            this.closeCommands = EMPTY_COMMAND_LIST;
         } else {
             this.closeCommands = Collections.unmodifiableList(closeCommands);
         }
-
     }
 
     public ParserToken(final App.Command command, final String[] args) {
+        Objects.requireNonNull(command);
+        Objects.requireNonNull(args);
+
         this.command = command;
-        if(args == null || args.length == 0) {
-            this.args = null;
+        if (args.length == 0) {
+            this.args = EMPTY_STRING_ARRAY;
         } else {
             this.args = Arrays.copyOf(args, args.length);
         }
@@ -51,8 +54,8 @@ public final class ParserToken {
     }
 
     public String[] getArgs() {
-        if(args == null) {
-            return null;
+        if(args.length == 0) {
+            return args;        //immutabile, non è un problema restituirlo
         } else {
             return Arrays.copyOf(args, args.length);
         }
@@ -65,17 +68,12 @@ public final class ParserToken {
         if (numArgsExpected == 0) {
             numMissingArgs = 0;
         } else {
-            int actualNum;
-            if (args == null) {
-                actualNum = 0;
-            } else {
-                actualNum = args.length;
-            }
+            int actualNum = args.length;
             numMissingArgs = numArgsExpected - actualNum;
         }
     }
 
-    public boolean areMissingArgs() {
+    public boolean hasMissingArgs() {
         return numMissingArgs > 0;
     }
 

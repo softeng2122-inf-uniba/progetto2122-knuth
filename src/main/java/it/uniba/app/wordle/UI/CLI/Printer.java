@@ -90,8 +90,7 @@ public final class Printer extends PrintWriter {
         StringBuilder guessSlice = new StringBuilder(VERTICAL_EDGE + "");
         Color c;
         char l;
-        String background = "";
-        int wordLength;
+        String background;
 
         for (int i = 0; i < playerController.getWordLength(); i++) {
             l = playerController.getLetter(row, i);
@@ -143,10 +142,6 @@ public final class Printer extends PrintWriter {
         lowerPart.append(R_D_ANGLE);
 
         return lowerPart.toString();
-    }
-
-    public void printMissingArgs() {
-        println("Argomento/i mancante/i");
     }
 
     public void printGuessResult() {
@@ -204,7 +199,7 @@ public final class Printer extends PrintWriter {
     }
 
     private String coloredLetterSpace(final char c, final Color color) {
-        String background = "";
+        String background;
 
         switch (color) {
             case GREEN:

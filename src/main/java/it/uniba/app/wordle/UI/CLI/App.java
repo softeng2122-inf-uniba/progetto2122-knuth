@@ -78,10 +78,6 @@ public final class App {
             public void execute(final String[] args) {
 
                 String secretWord = args[0];
-                if (secretWord == null) {
-                    CONSOLE.printMissingArgs();
-                    return;
-                }
 
                 try {
                     WORDSMITH_CONTROLLER.setSecretWord(secretWord);
@@ -220,15 +216,14 @@ public final class App {
 
         while (true) {
             // esegui comando riconosciuto
-            if (parserToken.areMissingArgs()) {
+            if (parserToken.hasMissingArgs()) {
                 System.out.println("Argomenti mancanti: "
                         + parserToken.getNumMissingArgs());
             } else {
                 if (command == Command.INVALID) {
-                    command.execute(parserToken.getCloseCommandsStrings());
-                } else {
-                    command.execute(arguments);
+                    arguments = parserToken.getCloseCommandsStrings();
                 }
+                command.execute(arguments);
             }
 
             System.out.print("Wordle> ");
