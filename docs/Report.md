@@ -288,3 +288,10 @@ Adesso risulta semplice, scandendo le lettere rimanenti (non verdi) da sinistra 
 Le lettere restanti sono, ovviamente, da colorare in grigio. 
 
 _nota: se nel tentativo sono presenti più lettere uguali che dovrebbero essere colorate di giallo perché rispettano le condizioni viste, verrà data precedenza a quelle più a sinistra (da notare che a ogni passo verrà decrementato il numero di occorrenze contenuto nel dizionario)._
+
+## 9. Analisi retrospettiva
+### Sprint 1
+
+Al termine dello sprint 1 è stato effettuato il meeting retrospettivo tramite videocoferenza su teams. E'stata utilizzata la whiteboard fornita dal software, perciò sono state raccolte le opiniomi di ognungo su ogni riga e organizzata mediante lo schema "arrabbiato, triste, felice" come è possibile vedere di seguito.
+
+
