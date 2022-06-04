@@ -253,12 +253,11 @@ public final class App {
         String encoding = System.getProperty("file.encoding");
         if (encoding.equalsIgnoreCase("UTF-8")) {
             return StandardCharsets.UTF_8;
-        }
-        else if (encoding.equalsIgnoreCase("UTF-16")) {
+        } else if (encoding.equalsIgnoreCase("UTF-16")) {
             return StandardCharsets.UTF_16;
-        }
-        else {
-            throw new IllegalStateException("Codifica non supportata: " + encoding);
+        } else {
+            throw new IllegalStateException(
+                    "Codifica non supportata: " + encoding);
         }
     }
 }

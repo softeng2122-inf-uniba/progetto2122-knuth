@@ -15,7 +15,8 @@ public final class Parser {
     private String[] args;
     private List<App.Command> closeCommands;
 
-    private static final List<App.Command> EMPTY_COMMAND_LIST = Collections.emptyList();
+    private static final List<App.Command> EMPTY_COMMAND_LIST
+            = Collections.emptyList();
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
 
@@ -129,7 +130,8 @@ public final class Parser {
         return Math.min(Math.min(i, j), k);
     }
 
-    private List<App.Command> getCloseCommands(final String wrongCommandString) {
+    private List<App.Command> getCloseCommands(
+                    final String wrongCommandString) {
         Objects.requireNonNull(wrongCommandString);
 
         List<App.Command> closeCommands = EMPTY_COMMAND_LIST;
