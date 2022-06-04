@@ -11,7 +11,9 @@ import java.util.*;
 public final class Parser {
     private String input;
     private String[] tokens;
-    private ParserToken parserToken;
+    private App.Command command;
+    private String[] args;
+    private List<App.Command> closeCommands;
 
     private static final List<App.Command> EMPTY_COMMAND_LIST = Collections.emptyList();
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
@@ -19,8 +21,10 @@ public final class Parser {
 
     public Parser() {
         input = null;
-        tokens = null;
-        parserToken = null;
+        tokens = EMPTY_STRING_ARRAY;
+        command = null;
+        args = EMPTY_STRING_ARRAY;
+        closeCommands = EMPTY_COMMAND_LIST;
     }
 
     public void feed(final String inputLine) {
@@ -28,14 +32,13 @@ public final class Parser {
 
         this.input = inputLine.trim();
         tokens = tokenizeInput();
-        App.Command command = extractCommand();
-        String[] args = extractArgs(command);
-        this.parserToken = new ParserToken(command, args);
+        command = extractCommand();
+        args = extractArgs(command);
 
         //Riconoscimento comando simile
         if (command == App.Command.INVALID) {
             String wrongCommandToken = tokens[0].substring(1);
-            parserToken.setCloseCommands(getCloseCommands(wrongCommandToken));
+            closeCommands = getCloseCommands(wrongCommandToken);
         }
     }
 
@@ -152,6 +155,9 @@ public final class Parser {
     }
 
     public ParserToken getParserToken() {
-        return parserToken;
+        ParserToken temp = new ParserToken(command, args);
+        temp.setCloseCommands(closeCommands);
+
+        return temp;
     }
 }
