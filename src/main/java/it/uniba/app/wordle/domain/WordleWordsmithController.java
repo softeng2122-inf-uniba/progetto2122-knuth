@@ -1,5 +1,7 @@
 package it.uniba.app.wordle.domain;
 
+import java.util.Objects;
+
 public final class WordleWordsmithController implements WordsmithController {
 
     private final WordleSession session;
@@ -38,6 +40,7 @@ public final class WordleWordsmithController implements WordsmithController {
      * @throws WordleGameException  se una partita è già in corso
      */
     public void setSecretWord(final String newWord) {
+        Objects.requireNonNull(newWord);
 
         if (session.isGameRunning()) {
             throw new WordleGameException(

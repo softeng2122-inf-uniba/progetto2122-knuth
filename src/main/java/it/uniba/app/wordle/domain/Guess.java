@@ -1,5 +1,7 @@
 package it.uniba.app.wordle.domain;
 
+import java.util.Objects;
+
 /**
  * {@literal <<Entity>>} <br>
  * Classe che rappresenta un tentativo del giocatore.
@@ -19,6 +21,8 @@ class Guess {
         private Color color;
 
         LetterBox(final char letter, final Color color) {
+            Objects.requireNonNull(color);
+
             this.letter = letter;
             this.color = color;
         }
@@ -28,6 +32,8 @@ class Guess {
         }
 
         public void setColor(final Color color) {
+            Objects.requireNonNull(color);
+
             this.color = color;
         }
 
@@ -38,6 +44,8 @@ class Guess {
 
     //costruttore di Guess con argomento il tentativo effettuato
     Guess(final String guessingWord) {
+        Objects.requireNonNull(guessingWord);
+
         cellArray = new LetterBox[guessingWord.length()];
 
         for (int i = 0; i < guessingWord.length(); i++) {
@@ -47,11 +55,14 @@ class Guess {
     }
 
     public Color getColor(final int index) {
-        return cellArray[index].color;
+
+        return cellArray[index].getColor();
     }
 
     public void setColor(final int index, final Color color) {
-        cellArray[index].color = color;
+        Objects.requireNonNull(color);
+
+        cellArray[index].setColor(color);
     }
 
     public Character getLetter(final int index) {

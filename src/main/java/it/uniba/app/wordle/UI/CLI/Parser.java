@@ -1,45 +1,52 @@
 package it.uniba.app.wordle.UI.CLI;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * {@literal <<Boundary>>} <br>
  * Classe per il parsing dell'input dell'utente. <p></p>
- * Estrae {@link Command} e relativi argomenti
+ * Estrae {@link App.Command} e relativi argomenti
  * a partire dalle linee digitate.
  */
 public final class Parser {
     private String input;
     private String[] tokens;
-    private ParserToken parserToken;
+    private App.Command command;
+    private String[] args;
+    private List<App.Command> closeCommands;
+
+    private static final List<App.Command> EMPTY_COMMAND_LIST
+            = Collections.emptyList();
+    private static final String[] EMPTY_STRING_ARRAY = new String[0];
+
 
     public Parser() {
         input = null;
-        tokens = null;
-        parserToken = null;
+        tokens = EMPTY_STRING_ARRAY;
+        command = null;
+        args = EMPTY_STRING_ARRAY;
+        closeCommands = EMPTY_COMMAND_LIST;
     }
 
     public void feed(final String inputLine) {
+        Objects.requireNonNull(inputLine);
 
         this.input = inputLine.trim();
         tokens = tokenizeInput();
-        Command command = extractCommand();
-        String[] args = extractArgs(command);
-        this.parserToken = new ParserToken(command, args);
+        command = extractCommand();
+        args = extractArgs(command);
 
         //Riconoscimento comando simile
-        if (command == Command.INVALID) {
+        if (command == App.Command.INVALID) {
             String wrongCommandToken = tokens[0].substring(1);
-            parserToken.setCloseCommands(getCloseCommands(wrongCommandToken));
+            closeCommands = getCloseCommands(wrongCommandToken);
         }
     }
 
+    //un input "" ritorna un array con 0 elementi
     private String[] tokenizeInput() {
         if (input.length() == 0) {
-            return null;
+            return EMPTY_STRING_ARRAY;
         }
 
         String[] tokens;
@@ -47,44 +54,40 @@ public final class Parser {
         return tokens;
     }
 
-    private Command extractCommand() {
+    private App.Command extractCommand() {
 
         // CASO 1: solo spazi
-        if (tokens == null) {
-            return Command.SPACE;
+        if (tokens.length == 0) {
+            return App.Command.SPACE;
         }
 
         // CASO 2: tentativo
         char firstChar = tokens[0].charAt(0);
         if (firstChar != '/') {
-            return Command.GUESS;
-        } else { // CASO 3: altro comando valido
+            return App.Command.GUESS;
+        } else { // CASO 3: altro comando
             String tokenCommand = tokens[0].substring(1);
 
-            for (Command c: Command.values()) {
+            for (App.Command c: App.Command.values()) {
                 if (tokenCommand.equalsIgnoreCase(c.toString())) {
                     return c;
                 }
             }
+            // CASO 4: comando invalido
+            return App.Command.INVALID;
         }
-
-        // CASO 4: comando invalido
-        return Command.INVALID;
     }
 
-    private String[] extractArgs(final Command command) {
+    private String[] extractArgs(final App.Command command) {
+        Objects.requireNonNull(command);
 
-        if (tokens == null) {
-            return null;
+        if (tokens.length == 0) {
+            return EMPTY_STRING_ARRAY;
         }
 
         List<String> argsList = new LinkedList<>(Arrays.asList(tokens));
 
-        if (argsList.size() == 0) {
-            return null;
-        }
-
-        if (command != Command.GUESS) {
+        if (command != App.Command.GUESS) {
             argsList.remove(0);
         }
 
@@ -93,19 +96,13 @@ public final class Parser {
         if (argsList.size() > numArgsExpected) {
             argsList = argsList.subList(0, numArgsExpected);
         }
-
-        String[] argsArray = new String[argsList.size()];
-        for (int i = 0; i < argsList.size(); i++) {
-            argsArray[i] = argsList.get(i);
-        }
-
-        return argsArray;
+        //passo EMPTY_STRING_ARRAY per comunicarne il tipo
+        return argsList.toArray(EMPTY_STRING_ARRAY);
     }
 
     private int editDistance(final String wrightString,
                              final String stringToEvaluate) {
 
-        //copia dei parametri per evitare side-effects
         String wright = wrightString.toUpperCase();
         String stringToCheck = stringToEvaluate.toUpperCase();
 
@@ -133,32 +130,36 @@ public final class Parser {
         return Math.min(Math.min(i, j), k);
     }
 
-    private List<Command> getCloseCommands(final String wrongCommandString) {
+    private List<App.Command> getCloseCommands(
+                    final String wrongCommandString) {
+        Objects.requireNonNull(wrongCommandString);
 
-        List<Command> closeCommands = null;
+        List<App.Command> closeCommands = EMPTY_COMMAND_LIST;
         int distance = 2;
         int editDist;
 
-        for (Command comparedCommand : Command.values()) {
-            String comparedString = comparedCommand.toString();
-            if (comparedString == null) {
+        for (App.Command comparedCommand : App.Command.values()) {
+            if (comparedCommand == App.Command.INVALID
+                    || comparedCommand == App.Command.SPACE) {
                 continue;
             }
-
+            String comparedString = comparedCommand.toString();
             editDist = editDistance(comparedString, wrongCommandString);
 
             if (editDist <= distance) {
-                if (closeCommands == null) {
+                if (closeCommands.isEmpty()) {
                     closeCommands = new ArrayList<>();
                 }
                 closeCommands.add(comparedCommand);
             }
         }
-
         return closeCommands;
     }
 
     public ParserToken getParserToken() {
-        return parserToken;
+        ParserToken temp = new ParserToken(command, args);
+        temp.setCloseCommands(closeCommands);
+
+        return temp;
     }
 }

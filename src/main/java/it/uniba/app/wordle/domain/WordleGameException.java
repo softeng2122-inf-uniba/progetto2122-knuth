@@ -40,6 +40,7 @@ public class WordleGameException extends RuntimeException {
         this.motivation = null;
     }
 
+    //TODO:requirenotnull
     WordleGameException(final Motivation motivation) {
         this(motivation.getMessage());
         this.motivation = motivation;

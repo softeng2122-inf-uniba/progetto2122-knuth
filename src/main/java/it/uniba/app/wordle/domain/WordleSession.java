@@ -1,6 +1,8 @@
 package it.uniba.app.wordle.domain;
 
 
+import java.util.Objects;
+
 /**
  * {@literal <<Control>>} <br>
  * Classe che implementa la logica del gioco: opera su oggetti delle
@@ -42,6 +44,8 @@ package it.uniba.app.wordle.domain;
     }
 
     public void setSecretWord(final String secretWord) {
+        Objects.requireNonNull(secretWord);
+
         this.secretWord = secretWord;
     }
 
