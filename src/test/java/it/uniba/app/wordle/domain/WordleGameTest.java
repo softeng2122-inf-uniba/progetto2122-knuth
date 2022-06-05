@@ -12,18 +12,9 @@ class WordleGameTest {
 
     WordleGame wGame;
 
-    @Test
-    @DisplayName("è istanziato con new WordleGame"
-            + "(secretWord, numMaxGuesses, wordLength)")
-    void isInstantiatedWithNew() {
-        new WordleGame("PACCO",
-                        DEFAULT_MAX_GUESSES, DEFAULT_WORD_LENGTH);
-    }
-
     @Nested
-    @DisplayName("quando si instanzia con new"
-            + " e una stringa con 2 interi come parametri")
-    class createdWithParametersTest {
+    @DisplayName("quando è istanziato con new WordleGame(\"GIOCO\", 6, 5)")
+    class CorrectlyCreatedTest {
 
         @BeforeEach
         void createNewWordleGame() {
@@ -32,46 +23,47 @@ class WordleGameTest {
         }
 
         @Test
-        @DisplayName("restituisce la stringa \"GIOCO\"")
+        @DisplayName("ha come parola segreta \"GIOCO\"")
         void testGetSecretWord() {
             assertEquals("GIOCO", wGame.getSecretWord());
         }
 
         @Test
-        @DisplayName("contiene una Board di dimensioni 6 righe per 5 colonne")
-        void testGetGameBoard() {
-
-            assertAll(() -> assertEquals(wGame.getGameBoard(), wGame.getGameBoard()),
-                      () -> assertEquals(DEFAULT_MAX_GUESSES,
-                                         wGame.getGameBoard().getRowsNumber()),
-                      () -> assertEquals(DEFAULT_WORD_LENGTH,
-                                         wGame.getGameBoard().getWordLength()));
-        }
-
-        @Test
-        @DisplayName("restituisce numero massimo di tentativi 6")
-        void testgetMaxGuesses() {
+        @DisplayName("prevede un numero massimo di 6 tentativi")
+        void testGetMaxGuesses() {
             assertEquals(DEFAULT_MAX_GUESSES, wGame.getMaxGuesses());
         }
 
         @Test
-        @DisplayName("restituisce la lunghezza della parola segreta")
-        void testgetWordLength() {
+        @DisplayName("prevede parole lunghe 5 caratteri")
+        void testGetWordLength() {
             assertEquals(DEFAULT_WORD_LENGTH, wGame.getWordLength());
         }
 
         @Test
-        @DisplayName("ritorna numero di tentativi rimasti dopo aveni fatti 2")
-        void testgetNumRemainingGuesses() {
+        @DisplayName("crea una board di dimensioni adeguate")
+        void testGetGameBoard() {
+            assertAll(() -> assertEquals(wGame.getMaxGuesses(),
+                            wGame.getGameBoard().getRowsNumber()),
+                      () -> assertEquals(wGame.getWordLength(),
+                    wGame.getGameBoard().getWordLength()));
+        }
 
-            Guess testing1 = new Guess("cuoco");
-            wGame.getGameBoard().acceptNewGuess(testing1);
+        @Nested
+        @DisplayName("dopo aver effettuato due tentativi validi")
+        class AfterTwoGuessesTest {
+            @BeforeEach
+            void pushTwoGuesses() {
+                wGame.getGameBoard().acceptNewGuess(new Guess("CUOCO"));
+                wGame.getGameBoard().acceptNewGuess(new Guess("BIRRA"));
+            }
 
-            Guess testing2 = new Guess("birra");
-            wGame.getGameBoard().acceptNewGuess(testing2);
-
-            assertEquals(wGame.getMaxGuesses() - 2,
-                          wGame.getNumRemainingGuesses());
+            @Test
+            @DisplayName("rimangono 4 tentativi disponibili")
+            void testGetNumRemainingGuesses() {
+                assertEquals(wGame.getMaxGuesses() - 2,
+                        wGame.getNumRemainingGuesses());
+            }
         }
     }
 }
