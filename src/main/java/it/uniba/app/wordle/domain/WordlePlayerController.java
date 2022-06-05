@@ -34,7 +34,7 @@ public final class WordlePlayerController implements PlayerController {
         }
 
         session.setCurrentGame(new WordleGame(session.getSecretWord(),
-                                              session.getnMaxGuesses(),
+                                              session.getNMaxGuesses(),
                                               session.getWordLength()));
     }
 
