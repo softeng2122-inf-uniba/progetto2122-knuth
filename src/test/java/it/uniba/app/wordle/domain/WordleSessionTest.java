@@ -2,100 +2,85 @@ package it.uniba.app.wordle.domain;
 
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("Nuova sessione")
+@DisplayName("Una nuova sessione")
 class WordleSessionTest {
 
-    static WordleSession wordleSession;
+    WordleSession wordleSession;
 
-    @DisplayName("Istanziando wordleSession")
-    static class wordleSessionIstantiated {
+    @BeforeEach
+    void createNewWordleSession() {
+        wordleSession = new WordleSession();
+    }
+
+    @Test
+    @DisplayName("non ha alcuna partita in corso")
+    void testAbsentGame() {
+        assertAll(() -> assertFalse(wordleSession.isGameRunning()),
+                () -> assertNull(wordleSession.getCurrentGame()));
+    }
+
+    @Test
+    @DisplayName("non ha la parola segreta impostata")
+    void testSecretWordNull() {
+        assertAll(() -> assertFalse(wordleSession.hasSecretWord()),
+                () -> assertNull(wordleSession.getSecretWord()));
+    }
+
+    @Test
+    @DisplayName("di default prevede partite da 6 tentativi")
+    void testGetNMaxGuesses() {
+        assertEquals(6, wordleSession.getNMaxGuesses());
+    }
+
+    @Test
+    @DisplayName("di default prevede parole da 5 lettere")
+    void testGetWordLength() {
+        assertEquals(5, wordleSession.getWordLength());
+    }
+
+    @Nested
+    @DisplayName("scegliendo \"TESTA\" come parola segreta")
+    class AfterSettingSecretWordTest {
 
         @BeforeEach
-        void createNewWordleSession() {
-            wordleSession = new WordleSession();
+        void setSecretWord() {
+            wordleSession.setSecretWord("TESTA");
         }
 
         @Test
-        @DisplayName("currentGame è null")
-        void testCurrentGameNull() {
-            assertNull(wordleSession.getCurrentGame());
+        @DisplayName("viene impostata correttamente")
+        void testGetSecretWord() {
+            assertAll(() -> assertTrue(wordleSession.hasSecretWord()),
+                    () -> assertEquals("TESTA", wordleSession.getSecretWord()));
         }
-
-        // verificare che inserendo una nuova partita corrente questa corrisponde a quella che va ad avvalorare l'oggetto
-
-        @Test
-        @DisplayName("la parola segreta è null")
-        void testSecretWordNull() {
-            assertNull(wordleSession.getSecretWord());
-        }
-
-        // inserire la parola segreta: senza partita in corso non posso inserire una nuova parola segreta
-
-        @Test
-        @DisplayName("Il numero massimo di tentativi è 6")
-        void testGetnMaxGuesses() {
-            assertEquals(6, wordleSession.getnMaxGuesses());
-        }
-
-        @Test
-        @DisplayName("Il numero di lettere dei tentativi è 5")
-        void testgetWordLength() {
-            assertEquals(5, wordleSession.getWordLength());
-        }
-
-        @Test
-        @DisplayName("La parola segreta non è inserita")
-        void testHasNotSecretWord() {
-            assertFalse(wordleSession.hasSecretWord());
-        }
-
-        @Test
-        @DisplayName("Nessuna partita è in corso")
-        void testIsGameNotRunning() {
-            assertFalse(wordleSession.isGameRunning());
-        }
-
 
         @Nested
-        @DisplayName("Inserendo la partita corrente cg, con la parola segreta \"TESTA\"")
-        class AfterSettingCurrentGame {
+        @DisplayName("creando una nuova partita")
+        class AfterSettingCurrentGameTest {
 
-            WordleGame cg = new WordleGame("TESTA", 6, 5);
+            WordleGame cg;
 
             @BeforeEach
             void insertCurrentGame() {
+                cg = new WordleGame(wordleSession.getSecretWord(),
+                        wordleSession.getNMaxGuesses(),
+                        wordleSession.getWordLength());
                 wordleSession.setCurrentGame(cg);
-                wordleSession.setSecretWord(cg.getSecretWord());
             }
 
             @Test
-            @DisplayName("La partita corrente corrisponde a cg")
-            void testGetCurrentGame() {
-                assertSame(cg, wordleSession.getCurrentGame());
+            @DisplayName("è impostata come partita corrente")
+            void testCorrectGame() {
+                assertAll(() -> assertTrue(wordleSession.isGameRunning()),
+                        () -> assertSame(cg, wordleSession.getCurrentGame()));
             }
 
             @Test
-            @DisplayName("La paola corrente corrisponde a \"TESTA\"")
-            void testGetSecretWord() {
-                assertEquals(cg.getSecretWord(), wordleSession.getSecretWord());
-            }
-
-            @Test
-            @DisplayName("C'è una parola corrente")
-            void testhasSecretWord() {
-                assertTrue(wordleSession.hasSecretWord());
-            }
-
-            @Test
-            @DisplayName("C'è una partita in corso")
-            void testIsGameRunning() {
-                assertTrue(wordleSession.isGameRunning());
+            @DisplayName("la sua parola segreta è \"TESTA\"")
+            void testSameSecretWord() {
+                assertEquals("TESTA", cg.getSecretWord());
             }
         }
     }
