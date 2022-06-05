@@ -11,10 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @DisplayName("Una board")
 class BoardTest {
 
-    static Board board;
-
+    @Nested
     @DisplayName("quando è istanziata con new Board(5, 6)")
-    static class CorrectlyCreatedTest {
+    class CorrectlyCreatedTest {
+
+        Board board;
 
         @BeforeEach
         void createNewBoard() {
