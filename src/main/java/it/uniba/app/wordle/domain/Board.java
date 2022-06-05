@@ -18,6 +18,11 @@ class Board {
     // riceve column lunghezza della matrice e row che permette
     // di avere tante righe quanti sono i tentativi
     Board(final int column, final int row) {
+
+        if(column <= 0 || row <= 0) {
+            throw new IllegalArgumentException();
+        }
+
         this.guessArray = new Guess[row];
         this.wordLength = column;
         this.firstEmptyIndex = 0;
