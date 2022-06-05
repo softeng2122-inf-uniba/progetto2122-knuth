@@ -4,8 +4,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Un tentativo")
 class GuessTest {
@@ -28,34 +27,41 @@ class GuessTest {
         }
 
         @Test
-        @DisplayName("contiene \"PROVA\"")
+        @DisplayName("restituisce la stringa \"PROVA\"")
         void testGetWord(){
             assertEquals("PROVA", g.getWord());
         }
 
         @Test
-        @DisplayName("il tentativo inizia con 'P'")
+        @DisplayName("contiene i caratteri 'P', 'R', 'O', 'V', 'A'")
         void testGetLetter() {
-            assertEquals('P',g.getLetter(0));
+            assertAll(() -> assertEquals('P',g.getLetter(0)),
+                    () -> assertEquals('R',g.getLetter(1)),
+                    () -> assertEquals('O',g.getLetter(2)),
+                    () -> assertEquals('V',g.getLetter(3)),
+                    () -> assertEquals('A',g.getLetter(4)));
         }
 
-        @ParameterizedTest
+        @ParameterizedTest(name = "Indice: {0}")
         @ValueSource(ints = { -1, 5})
-        @DisplayName("lancia ArrayIndexOutOfBoundsException fuori dagli indici del tentativo")
+        @DisplayName("lancia ArrayIndexOutOfBoundsException con un indice invalido")
         void throwsExceptionWhenIndexOutOfBound(int i) {
             assertThrows(ArrayIndexOutOfBoundsException.class, () -> g.getLetter(i));
         }
 
-        @ParameterizedTest
-        @ValueSource(ints = { 0, 1, 2, 3, 4})
+        @Test
         @DisplayName("contiene lettere impostate a NO_COLOR")
-        void testGetColor(int i) {
-            assertEquals(Color.NO_COLOR, g.getColor(i));
+        void testGetColor() {
+            assertAll(() -> assertEquals(Color.NO_COLOR, g.getColor(0)),
+                    () -> assertEquals(Color.NO_COLOR, g.getColor(1)),
+                    () -> assertEquals(Color.NO_COLOR, g.getColor(2)),
+                    () -> assertEquals(Color.NO_COLOR, g.getColor(3)),
+                    () -> assertEquals(Color.NO_COLOR, g.getColor(4)));
         }
 
         @Nested
         @DisplayName("quando P è colorata di verde")
-        class AfterSetColorGreen {
+        class AfterSetColorGreenTest {
 
             @Test
             @DisplayName("risulta verde")
@@ -68,7 +74,7 @@ class GuessTest {
 
         @Nested
         @DisplayName("quando P è colorata di giallo")
-        class AfterSetColorYellow {
+        class AfterSetColorYellowTest {
 
             @Test
             @DisplayName("risulta gialla")
@@ -81,7 +87,7 @@ class GuessTest {
 
         @Nested
         @DisplayName("quando P è colorata di grigio")
-        class AfterSetColorGrey {
+        class AfterSetColorGreyTest {
 
             @Test
             @DisplayName("risulta grigia")
@@ -96,7 +102,7 @@ class GuessTest {
 
     @Nested
     @DisplayName("quando è istanziato con new Guess(null)")
-    class ConstructorTry {
+    class CreatedWithNullTest {
         @Test
         @DisplayName("lancia NullPointerException")
         void createNullGuess() {
