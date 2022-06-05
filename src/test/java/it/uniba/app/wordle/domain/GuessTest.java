@@ -44,9 +44,11 @@ class GuessTest {
 
         @ParameterizedTest(name = "Indice: {0}")
         @ValueSource(ints = { -1, 5})
-        @DisplayName("lancia ArrayIndexOutOfBoundsException con un indice invalido")
-        void throwsExceptionWhenIndexOutOfBound(int i) {
-            assertThrows(ArrayIndexOutOfBoundsException.class, () -> g.getLetter(i));
+        @DisplayName("lancia ArrayIndexOutOfBoundsException" +
+                " con un indice invalido")
+        void testThrowsExceptionWhenIndexOutOfBound(int i) {
+            assertThrows(ArrayIndexOutOfBoundsException.class,
+                    () -> g.getLetter(i));
         }
 
         @Test
@@ -100,15 +102,10 @@ class GuessTest {
 
     }
 
-    @Nested
-    @DisplayName("quando è istanziato con new Guess(null)")
-    class CreatedWithNullTest {
-        @Test
-        @DisplayName("lancia NullPointerException")
-        void createNullGuess() {
-            assertThrows(NullPointerException.class, () -> new Guess(null));
-        }
-
+    @Test
+    @DisplayName("lancia NullPointerException se istanziato con new Guess(null)")
+    void testCreateNullGuess() {
+        assertThrows(NullPointerException.class, () -> new Guess(null));
     }
 
 }
