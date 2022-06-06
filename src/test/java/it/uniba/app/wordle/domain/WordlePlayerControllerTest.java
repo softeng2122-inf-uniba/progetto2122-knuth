@@ -52,7 +52,7 @@ public class WordlePlayerControllerTest
         }
 
         @Test
-        @DisplayName("lancia WordleGameException se prova "
+        @DisplayName("lancia WordleGameException se si prova "
                 + "a effettuare un tentativo")
         void testThrowGameExceptionGuess() {
             assertThrows(WordleGameException.class,
@@ -216,7 +216,7 @@ public class WordlePlayerControllerTest
             }
 
             @Nested
-            @DisplayName("quando effetto un tentativo")
+            @DisplayName("quando viene effettuato un tentativo")
             public class PushingNewGuessTest {
 
                 @Test
@@ -228,7 +228,7 @@ public class WordlePlayerControllerTest
                 }
                 @Test
                 @DisplayName("lancia IllegalArgumentException se "
-                        + "la lunghezza della parola è minore di 5")
+                        + "la lunghezza del tentativo è minore di 5")
                 void testTooShortGuess() {
                     assertThrows(IllegalArgumentException.class,
                             () -> pc.guess("CIAO"));
@@ -236,7 +236,7 @@ public class WordlePlayerControllerTest
 
                 @Test
                 @DisplayName("lancia IllegalArgumentException se "
-                        + "la lunghezza della parola è maggiore di 5")
+                        + "la lunghezza del tentativo è maggiore di 5")
                 void testTooLongGuess() {
                     assertThrows(IllegalArgumentException.class,
                             () -> pc.guess("SCORPIONE"));
@@ -244,14 +244,14 @@ public class WordlePlayerControllerTest
 
                 @Test
                 @DisplayName("lancia IllegalArgumentException se "
-                        + "la lunghezza contiene caratteri non validi")
+                        + "il tentativo contiene caratteri non validi")
                 void testIllegalGuess() {
                     assertThrows(IllegalArgumentException.class,
                             () -> pc.guess(":-)"));
                 }
 
                 @Nested
-                @DisplayName("se inserisco \"PERNO\"")
+                @DisplayName("se viene inserito \"PERNO\"")
                 public class PushingValidGuessTest {
 
                     @BeforeEach
@@ -294,7 +294,7 @@ public class WordlePlayerControllerTest
                 }
 
                 @Nested
-                @DisplayName("se inserisco \"TRONO\"")
+                @DisplayName("se viene inserito \"TRONO\"")
                 public class PushingCorrectGuessTest {
                     @BeforeEach
                     void insertCorrectGuess() {
@@ -326,6 +326,13 @@ public class WordlePlayerControllerTest
                                 () -> assertEquals(Color.GREEN, pc.getColor(0, 3)),
                                 () -> assertEquals(Color.GREEN, pc.getColor(0, 4)));
                     }
+
+                    @Test
+                    @DisplayName("il numero di tentativi disponibili viene decrementato")
+                    void testGetNumRemainingGuesses() {
+                        assertEquals(pc.getMaxGuesses() - 1,
+                                pc.getNumRemainingGuesses());
+                    }
                 }
 
                 @Nested
@@ -343,7 +350,7 @@ public class WordlePlayerControllerTest
                     }
 
                     @Test
-                    @DisplayName("lancia WordleGameException se si prova"
+                    @DisplayName("lancia WordleGameException se si prova "
                             + "un ulteriore tentativo")
                     void testThrowGameExceptionGuess() {
                         assertThrows(WordleGameException.class,
