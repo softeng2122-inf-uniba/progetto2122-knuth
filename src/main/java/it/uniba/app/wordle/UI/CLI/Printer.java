@@ -221,7 +221,7 @@ public final class Printer extends PrintWriter {
         println("Il gioco accetta i seguenti comandi:");
         println(BOLD + "\t/gioca" + RESET + "\t\t\tinizia una nuova partita "
                 + "(la parola segreta deve essere impostata)");
-        println(BOLD + "\t/nuova <parola>" + RESET + "\timposta <parola> "
+        println(BOLD + "\t/nuova <par>" + RESET + "\timposta <par> "
                 + "come parola segreta");
         println(BOLD + "\t/mostra" + RESET + "\t\t\tvisualizza la parola "
                 + "segreta impostata");
