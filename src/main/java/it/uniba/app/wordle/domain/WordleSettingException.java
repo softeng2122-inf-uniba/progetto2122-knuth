@@ -1,5 +1,7 @@
 package it.uniba.app.wordle.domain;
 
+import java.util.Objects;
+
 /**
  * {@literal <<NoECB>>} <br>
  *  Eccezione lanciata in situazioni che richiedono particolari
@@ -25,13 +27,12 @@ public class WordleSettingException extends RuntimeException {
     }
 
     WordleSettingException(final String message) {
-        super(message);
+        super(Objects.requireNonNull(message));
         motivation = null;
     }
 
-    //TODO:requirenotnull
     WordleSettingException(final Motivation motivation) {
-        this(motivation.getMessage());
+        this(Objects.requireNonNull(motivation.getMessage()));
         this.motivation = motivation;
     }
 }
