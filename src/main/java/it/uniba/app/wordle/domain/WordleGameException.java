@@ -13,8 +13,6 @@ import java.util.Objects;
  */
 public class WordleGameException extends RuntimeException {
 
-    private Motivation motivation;
-
     public enum Motivation {
         EXISTS_GAME() {
             public String getMessage() {
@@ -39,11 +37,9 @@ public class WordleGameException extends RuntimeException {
 
     WordleGameException(final String message) {
         super(Objects.requireNonNull(message));
-        this.motivation = null;
     }
 
     WordleGameException(final Motivation motivation) {
         this(Objects.requireNonNull(motivation.getMessage()));
-        this.motivation = motivation;
     }
 }

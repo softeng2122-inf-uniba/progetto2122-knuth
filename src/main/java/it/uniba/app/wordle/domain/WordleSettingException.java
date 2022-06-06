@@ -14,8 +14,6 @@ import java.util.Objects;
  */
 public class WordleSettingException extends RuntimeException {
 
-    private Motivation motivation;
-
     public enum Motivation {
         ABSENT_SECRET_WORD() {
             public String getMessage() {
@@ -28,11 +26,9 @@ public class WordleSettingException extends RuntimeException {
 
     WordleSettingException(final String message) {
         super(Objects.requireNonNull(message));
-        motivation = null;
     }
 
     WordleSettingException(final Motivation motivation) {
         this(Objects.requireNonNull(motivation.getMessage()));
-        this.motivation = motivation;
     }
 }
