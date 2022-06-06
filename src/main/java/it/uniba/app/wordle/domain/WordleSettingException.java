@@ -25,7 +25,7 @@ public class WordleSettingException extends RuntimeException {
     }
 
     WordleSettingException(final String message) {
-        super(Objects.requireNonNull(message));
+        super(message);
     }
 
     WordleSettingException(final Motivation motivation) {
