@@ -34,7 +34,7 @@ public final class WordlePlayerController implements PlayerController {
         }
 
         session.setCurrentGame(new WordleGame(session.getSecretWord(),
-                                              session.getnMaxGuesses(),
+                                              session.getNMaxGuesses(),
                                               session.getWordLength()));
     }
 
@@ -94,9 +94,6 @@ public final class WordlePlayerController implements PlayerController {
                 letterMap.put(l, letterMap.get(l) - 1);
             }
         }
-
-        //Secondo step: setting delle lettere gialle e grigie
-        Guess.LetterBox lb;
 
         for (int i = 0; i < guessAttempt.length(); i++) {
             if (newGuess.getColor(i) == Color.GREEN) {

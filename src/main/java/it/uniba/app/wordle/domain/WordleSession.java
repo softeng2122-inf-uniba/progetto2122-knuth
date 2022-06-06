@@ -49,7 +49,7 @@ import java.util.Objects;
         this.secretWord = secretWord;
     }
 
-    public int getnMaxGuesses() {
+    public int getNMaxGuesses() {
         return nMaxGuesses;
     }
 
