@@ -18,12 +18,20 @@ public class WordleWordsmithControllerTest {
 
     @Nested
     @DisplayName("quando è istanziato con"
-            + " new WordleWordmismithController"
+            + " new WordleWordsmithController"
             + "(playerController)")
     class CorrectlyCreatedTest {
 
         @Test
-        @DisplayName("lancia WordleSettingException quando la parola non è impostata")
+        @DisplayName("lancia NullPointerException se si prova ad inserire " +
+                                                "null come parola segreta")
+        void testSetWordAsNull() {
+            assertThrows(NullPointerException.class, () -> wordsmithCtr.setSecretWord(null));
+        }
+
+        @Test
+        @DisplayName("lancia WordleSettingException se si richiede la "
+                                + "parola segreta quando non impostata")
         void testGetSecretWord() {
             assertThrows(WordleSettingException.class, () -> wordsmithCtr.getSecretWord());
         }
@@ -45,24 +53,25 @@ public class WordleWordsmithControllerTest {
         }
 
         @Test
-        @DisplayName("Lancia IllegalArgumentException "
-                + "se la parola ha lunghezza minore rispetto a quella prevista")
+        @DisplayName("lancia IllegalArgumentException "
+                + "se si prova ad inserire una parola segreta troppo corta")
         void testTooShortSecretWord() {
             assertThrows(IllegalArgumentException.class,
                     () -> wordsmithCtr.setSecretWord("PERA"));
         }
 
         @Test
-        @DisplayName("Lancia IllegalArgumentException "
-                + "se la parola ha lunghezza maggiore rispetto a quella prevista")
+        @DisplayName("lancia IllegalArgumentException "
+                + "se si prova ad inserire una parola segreta troppo lunga")
         void testTooLongSecretWord() {
             assertThrows(IllegalArgumentException.class,
                     () -> wordsmithCtr.setSecretWord("PEPERA"));
         }
 
         @Test
-        @DisplayName("Lancia IllegalArgumentException "
-                + "se la parola contiene caratteri non alfabetici")
+        @DisplayName("lancia IllegalArgumentException "
+                + "se si prova ad inserire una parola segreta contenente "
+                + "caratteri non alfabetici")
         void testInvalidSecretWord() {
             assertThrows(IllegalArgumentException.class,
                     () -> wordsmithCtr.setSecretWord("P/(++"));
@@ -79,7 +88,7 @@ public class WordleWordsmithControllerTest {
             }
 
             @Test
-            @DisplayName("Lancia WordleGameException "
+            @DisplayName("lancia WordleGameException "
                     + "se si prova ad impostare una nuova parola segreta")
             void testGameExceptionSetSecretWord() {
                 assertThrows(WordleGameException.class,
@@ -87,7 +96,7 @@ public class WordleWordsmithControllerTest {
             }
 
             @Test
-            @DisplayName("La parola segreta della partita"
+            @DisplayName("la parola segreta della partita"
                     + " corrisponde a quella del WordsmithController")
             void testSameSecretWord() {
                 assertEquals(wordsmithCtr.getSecretWord(),
