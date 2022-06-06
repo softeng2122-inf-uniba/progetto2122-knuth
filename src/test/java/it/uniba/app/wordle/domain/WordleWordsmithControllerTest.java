@@ -1,48 +1,98 @@
 package it.uniba.app.wordle.domain;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Un WordleWordsmithController")
-class WordleWordsmithControllerTest {
+public class WordleWordsmithControllerTest {
 
     WordleWordsmithController wordsmithCtr;
-    //private static final int DEFAULT_MAX_GUESSES = 6;
-    //private static final int DEFAULT_WORD_LENGTH = 5;
+    WordlePlayerController playerCtr;
+
+    @BeforeEach
+    void createNewWordleWordsmithController() {
+        playerCtr = new WordlePlayerController();
+        wordsmithCtr = new WordleWordsmithController(playerCtr);
+    }
 
     @Nested
     @DisplayName("quando è istanziato con"
-                            + " new WordleWordmismithController"
-                            + "(playerController)")
+            + " new WordleWordmismithController"
+            + "(playerController)")
     class CorrectlyCreatedTest {
 
-        @BeforeEach
-        void createNewWordleWordsmithController() {
-           /* WordleSession testingSession = new WordleSession();
-            WordleGame game = new WordleGame(
-                    "", DEFAULT_MAX_GUESSES, DEFAULT_WORD_LENGTH);
-
-            testingSession.setCurrentGame(game);
-            testingSession.setSecretWord("CORSA");
-            */
-            wordsmithCtr = new WordleWordsmithController(new WordlePlayerController());
-        }
-
         @Test
-        @DisplayName("lancia un'eccezione se la parola non è impostata")
-        void testgetSecretWord() {
+        @DisplayName("lancia WordleSettingException quando la parola non è impostata")
+        void testGetSecretWord() {
             assertThrows(WordleSettingException.class, () -> wordsmithCtr.getSecretWord());
         }
 
+        @Nested
+        @DisplayName("quando viene impostata la parola segreta \"TRONO\"")
+        class ValidSecretWordTest {
+
+            @BeforeEach
+            void setValidSecretWord() {
+                wordsmithCtr.setSecretWord("TRONO");
+            }
+
+            @Test
+            @DisplayName("la restituisce correttamente")
+            void testGetSecretWord() {
+                assertEquals("TRONO", wordsmithCtr.getSecretWord());
+            }
+        }
+
         @Test
-        @DisplayName("imposta la parola \"TORTA\"")
-        void testSetSecretWord() {
-            wordsmithCtr.setSecretWord("TORTA");
-            assertEquals("TORTA", wordsmithCtr.getSecretWord());
+        @DisplayName("Lancia IllegalArgumentException "
+                + "se la parola ha lunghezza minore rispetto a quella prevista")
+        void testTooShortSecretWord() {
+            assertThrows(IllegalArgumentException.class,
+                    () -> wordsmithCtr.setSecretWord("PERA"));
+        }
+
+        @Test
+        @DisplayName("Lancia IllegalArgumentException "
+                + "se la parola ha lunghezza maggiore rispetto a quella prevista")
+        void testTooLongSecretWord() {
+            assertThrows(IllegalArgumentException.class,
+                    () -> wordsmithCtr.setSecretWord("PEPERA"));
+        }
+
+        @Test
+        @DisplayName("Lancia IllegalArgumentException "
+                + "se la parola contiene caratteri non alfabetici")
+        void testInvalidSecretWord() {
+            assertThrows(IllegalArgumentException.class,
+                    () -> wordsmithCtr.setSecretWord("P/(++"));
+        }
+
+        @Nested
+        @DisplayName("quando una partita è già in corso")
+        class GameRunningTest {
+
+            @BeforeEach
+            void initGame() {
+                wordsmithCtr.setSecretWord("TAPPO");
+                playerCtr.startGame();
+            }
+
+            @Test
+            @DisplayName("Lancia WordleGameException "
+                    + "se si prova ad impostare una nuova parola segreta")
+            void testGameExceptionSetSecretWord() {
+                assertThrows(WordleGameException.class,
+                        () -> wordsmithCtr.setSecretWord("PANNA"));
+            }
+
+            @Test
+            @DisplayName("La parola segreta della partita"
+                    + " corrisponde a quella del WordsmithController")
+            void testSameSecretWord() {
+                assertEquals(wordsmithCtr.getSecretWord(),
+                        playerCtr.getGameSecretWord());
+            }
         }
     }
 }
