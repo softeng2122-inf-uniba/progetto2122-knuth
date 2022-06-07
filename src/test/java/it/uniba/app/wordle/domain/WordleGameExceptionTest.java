@@ -14,7 +14,7 @@ public class WordleGameExceptionTest {
             WordleGameException.NOT_EXISTS_GAME,
             WordleGameException.NO_GUESSES_LEFT,
             "Stringa di prova"})
-    @DisplayName("quando lanciata con {0} restituisce il messaggio corretto")
+    @DisplayName("restituisce il messaggio corretto")
     void testExceptionWithSpecialString(String message) {
         assertEquals(message, (new WordleGameException(message)).getMessage());
     }
