@@ -31,6 +31,7 @@ public final class App {
             new OutputStreamWriter(System.out, getSystemEncoding()),
                                    PLAYER_CONTROLLER);
     private static final Parser PARSER = new Parser();
+    private static boolean running = true;
 
 
     /**
@@ -140,7 +141,7 @@ public final class App {
                         && !answer.equalsIgnoreCase("no"));
 
                 if (answer.equalsIgnoreCase("si")) {
-                    System.exit(0);
+                    running = false;
                 }
             }
         },
@@ -205,16 +206,16 @@ public final class App {
             CONSOLE.printHelp();
         }
 
-        System.out.print("Wordle> ");
-        String inputLine = KEYBOARD.nextLine();
+        while (running) {
+            System.out.print("Wordle> ");
+            String inputLine = KEYBOARD.nextLine();
 
-        // invia l'input al parser
-        PARSER.feed(inputLine);
-        ParserToken parserToken = PARSER.getParserToken();
-        Command command = parserToken.getCommand();
-        String[] arguments = parserToken.getArgs();
+            // invia l'input al parser
+            PARSER.feed(inputLine);
+            ParserToken parserToken = PARSER.getParserToken();
+            Command command = parserToken.getCommand();
+            String[] arguments = parserToken.getArgs();
 
-        while (true) {
             // esegui comando riconosciuto
             if (parserToken.hasMissingArgs()) {
                 System.out.println("Argomenti mancanti: "
@@ -225,15 +226,9 @@ public final class App {
                 }
                 command.execute(arguments);
             }
-
-            System.out.print("Wordle> ");
-            inputLine = KEYBOARD.nextLine();
-
-            PARSER.feed(inputLine);
-            parserToken = PARSER.getParserToken();
-            command = parserToken.getCommand();
-            arguments = parserToken.getArgs();
         }
+
+        System.exit(0);
     }
 
     public static void checkEncoding() {
