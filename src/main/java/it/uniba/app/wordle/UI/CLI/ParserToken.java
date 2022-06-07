@@ -26,25 +26,27 @@ public final class ParserToken {
         }
     }
 
-    public void setCloseCommands(final List<App.Command> closeCommands) {
-        Objects.requireNonNull(closeCommands);
+    public void setCloseCommands(final List<App.Command> closeCommandsList) {
+        Objects.requireNonNull(closeCommandsList);
 
-        if(closeCommands.isEmpty()) {
+        if (closeCommandsList.isEmpty()) {
             this.closeCommands = EMPTY_COMMAND_LIST;
         } else {
-            this.closeCommands = Collections.unmodifiableList(closeCommands);
+            this.closeCommands
+                    = Collections.unmodifiableList(closeCommandsList);
         }
     }
 
-    public ParserToken(final App.Command command, final String[] args) {
-        Objects.requireNonNull(command);
-        Objects.requireNonNull(args);
+    public ParserToken(final App.Command extractedCommand,
+                       final String[] extractedArgs) {
+        Objects.requireNonNull(extractedCommand);
+        Objects.requireNonNull(extractedArgs);
 
-        this.command = command;
-        if (args.length == 0) {
+        this.command = extractedCommand;
+        if (extractedArgs.length == 0) {
             this.args = EMPTY_STRING_ARRAY;
         } else {
-            this.args = Arrays.copyOf(args, args.length);
+            this.args = Arrays.copyOf(extractedArgs, extractedArgs.length);
         }
 
         setNumMissingArgs();
@@ -55,7 +57,7 @@ public final class ParserToken {
     }
 
     public String[] getArgs() {
-        if(args.length == 0) {
+        if (args.length == 0) {
             //immutabile, non è un problema restituirlo
             return EMPTY_STRING_ARRAY;
         } else {

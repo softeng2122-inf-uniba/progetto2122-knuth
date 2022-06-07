@@ -1,8 +1,11 @@
 package it.uniba.app.wordle.UI.CLI;
 
-
-
-import it.uniba.app.wordle.domain.*;
+import it.uniba.app.wordle.domain.WordlePlayerController;
+import it.uniba.app.wordle.domain.PlayerController;
+import it.uniba.app.wordle.domain.WordleWordsmithController;
+import it.uniba.app.wordle.domain.WordsmithController;
+import it.uniba.app.wordle.domain.WordleGameException;
+import it.uniba.app.wordle.domain.WordleSettingException;
 
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -166,14 +169,14 @@ public final class App {
             }
         };
 
-        private final int numArgs;
+        private final int numArguments;
 
         Command(final int numArgs) {
-            this.numArgs = numArgs;
+            this.numArguments = numArgs;
         }
 
         public int getNumArgs() {
-            return this.numArgs;
+            return this.numArguments;
         }
 
         public abstract void execute(String[] args);

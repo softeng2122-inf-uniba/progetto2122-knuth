@@ -36,18 +36,18 @@ import java.util.Objects;
         return currentGame;
     }
 
-    public void setCurrentGame(final WordleGame currentGame) {
-        this.currentGame = currentGame;
+    public void setCurrentGame(final WordleGame game) {
+        this.currentGame = game;
     }
 
     public String getSecretWord() {
         return secretWord;
     }
 
-    public void setSecretWord(final String secretWord) {
-        Objects.requireNonNull(secretWord);
+    public void setSecretWord(final String gameSecretWord) {
+        Objects.requireNonNull(gameSecretWord);
 
-        this.secretWord = secretWord;
+        this.secretWord = gameSecretWord;
     }
 
     public int getNMaxGuesses() {
