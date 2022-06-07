@@ -28,24 +28,24 @@ class GuessTest {
 
         @Test
         @DisplayName("restituisce la stringa \"PROVA\"")
-        void testGetWord(){
+        void testGetWord() {
             assertEquals("PROVA", g.getWord());
         }
 
         @Test
         @DisplayName("contiene i caratteri 'P', 'R', 'O', 'V', 'A'")
         void testGetLetter() {
-            assertAll(() -> assertEquals('P',g.getLetter(0)),
-                    () -> assertEquals('R',g.getLetter(1)),
-                    () -> assertEquals('O',g.getLetter(2)),
-                    () -> assertEquals('V',g.getLetter(3)),
-                    () -> assertEquals('A',g.getLetter(4)));
+            assertAll(() -> assertEquals('P', g.getLetter(0)),
+                    () -> assertEquals('R', g.getLetter(1)),
+                    () -> assertEquals('O', g.getLetter(2)),
+                    () -> assertEquals('V', g.getLetter(3)),
+                    () -> assertEquals('A', g.getLetter(4)));
         }
 
         @ParameterizedTest(name = "Indice: {0}")
         @ValueSource(ints = { -1, 5})
-        @DisplayName("lancia ArrayIndexOutOfBoundsException" +
-                " con un indice invalido")
+        @DisplayName("lancia ArrayIndexOutOfBoundsException"
+                + " con un indice invalido")
         void testThrowsExceptionWhenIndexOutOfBound(int i) {
             assertThrows(ArrayIndexOutOfBoundsException.class,
                     () -> g.getLetter(i));
@@ -99,13 +99,14 @@ class GuessTest {
             }
 
         }
-
     }
 
     @Test
-    @DisplayName("lancia NullPointerException se istanziato con new Guess(null)")
+    @DisplayName("lancia NullPointerException "
+                 + "se istanziato con new Guess(null)")
     void testCreateNullGuess() {
-        assertThrows(NullPointerException.class, () -> new Guess(null));
+        assertThrows(NullPointerException.class,
+                () -> new Guess(null));
     }
 
 }

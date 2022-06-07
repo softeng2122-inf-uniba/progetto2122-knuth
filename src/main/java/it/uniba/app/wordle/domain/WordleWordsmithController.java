@@ -17,6 +17,7 @@ public final class WordleWordsmithController implements WordsmithController {
             throw new WordleSettingException(
                     WordleSettingException.ABSENT_SECRET_WORD);
         }
+
         return session.getSecretWord();
     }
 

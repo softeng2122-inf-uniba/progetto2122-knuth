@@ -44,9 +44,9 @@ class WordleGameTest {
         @DisplayName("crea una board di dimensioni adeguate")
         void testGetGameBoard() {
             assertAll(() -> assertEquals(wGame.getMaxGuesses(),
-                            wGame.getGameBoard().getRowsNumber()),
+                              wGame.getGameBoard().getRowsNumber()),
                       () -> assertEquals(wGame.getWordLength(),
-                    wGame.getGameBoard().getWordLength()));
+                              wGame.getGameBoard().getWordLength()));
         }
 
         @Nested
@@ -62,7 +62,7 @@ class WordleGameTest {
             @DisplayName("rimangono 4 tentativi disponibili")
             void testGetNumRemainingGuesses() {
                 assertEquals(wGame.getMaxGuesses() - 2,
-                        wGame.getNumRemainingGuesses());
+                                     wGame.getNumRemainingGuesses());
             }
         }
     }
