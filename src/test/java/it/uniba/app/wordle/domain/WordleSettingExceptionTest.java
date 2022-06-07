@@ -11,16 +11,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayName("Una WordleSettingExceptionTest")
 public class WordleSettingExceptionTest {
 
-    WordleSettingException wordSetE;
-
-    @BeforeEach
-    void createNewWordleSettingException() {
-        wordSetE = new WordleSettingException("stringa di prova");
-    }
-
     @ParameterizedTest
-    @ValueSource(strings = {WordleSettingException.ABSENT_SECRET_WORD})
-    @DisplayName("quando lanciata con {0} restituisce il messaggio corretto")
+    @ValueSource(strings = {WordleSettingException.ABSENT_SECRET_WORD,
+            "Stringa di prova"})
+    @DisplayName("restituisce il messaggio corretto")
     void testExceptionWithSpecialString(String message) {
         assertEquals(message, (new WordleSettingException(message)).getMessage());
     }
