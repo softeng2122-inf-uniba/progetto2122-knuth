@@ -14,21 +14,9 @@ import java.util.Objects;
  */
 public class WordleSettingException extends RuntimeException {
 
-    public enum Motivation {
-        ABSENT_SECRET_WORD() {
-            public String getMessage() {
-                return "Parola segreta non impostata";
-            }
-        };
-
-        public abstract String getMessage();
-    }
+    public static final String ABSENT_SECRET_WORD = "Parola segreta non impostata";
 
     WordleSettingException(final String message) {
         super(message);
-    }
-
-    WordleSettingException(final Motivation motivation) {
-        this(Objects.requireNonNull(motivation.getMessage()));
     }
 }

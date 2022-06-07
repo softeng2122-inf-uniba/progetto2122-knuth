@@ -13,33 +13,11 @@ import java.util.Objects;
  */
 public class WordleGameException extends RuntimeException {
 
-    public enum Motivation {
-        EXISTS_GAME() {
-            public String getMessage() {
-                return "Partita in corso";
-            }
-        },
-
-        NOT_EXISTS_GAME() {
-            public String getMessage() {
-                return "Partita inesistente";
-            }
-        },
-
-        NO_GUESSES_LEFT() {
-            public String getMessage() {
-                return "Massimo numero di tentativi raggiunto";
-            }
-        };
-
-        public abstract String getMessage();
-    }
+    public static final  String EXISTS_GAME = "Partita in corso";
+    public static final String NOT_EXISTS_GAME = "Partita inesistente";
+    public static final String NO_GUESSES_LEFT = "Massimo numero di tentativi raggiunto";
 
     WordleGameException(final String message) {
         super(Objects.requireNonNull(message));
-    }
-
-    WordleGameException(final Motivation motivation) {
-        this(Objects.requireNonNull(motivation.getMessage()));
     }
 }
