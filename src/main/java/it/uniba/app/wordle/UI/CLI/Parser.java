@@ -42,7 +42,7 @@ public final class Parser {
         }
     }
 
-    //un input "" ritorna un array con 0 elementi
+    //un input "" ritorna un array con zero elementi
     private String[] tokenizeInput() {
         if (input.length() == 0) {
             return EMPTY_STRING_ARRAY;

@@ -17,6 +17,8 @@ import java.util.Objects;
 
     // impostazioni di gioco
     private String secretWord;
+
+    // non final, si potrebbero far modificare dal giocatore in release future
     private int nMaxGuesses;
     private int wordLength;
 
