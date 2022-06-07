@@ -36,7 +36,7 @@ public final class App {
 
     /**
      * {@literal <<NoECB>>} <br>
-     * Il tipo enumerativo Command contiene le costanti che rappresentano
+     * L'enumerazione Command contiene le costanti che rappresentano
      * i comandi riconosciuti dal gioco.
      * Le costanti INVALID e SPACE sono comandi fittizi per gestire
      * eventuali errori di input e caratteri di spaziatura.
