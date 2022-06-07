@@ -2,7 +2,6 @@ package it.uniba.app.wordle.domain;
 
 
 import org.junit.jupiter.api.*;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -31,47 +30,14 @@ public class WordleGameExceptionTest {
         }
     }
 
-    @Nested
-    @DisplayName("quando lanciata con "
-                + "throw new WordleGameException(Motivation motivation)")
-    class CorrectlyCreatedWithMotivationTest {
-
-        @Test
-        @DisplayName("se motivation è EXISTS_GAME "
-                + "restituisce la stringa associata")
-        void testCorrectlyCreatedWithMotivationExistsGame() {
-            WordleGameException gameExp1 = new
-                             WordleGameException(
-                             WordleGameException.Motivation.EXISTS_GAME);
-            assertEquals("Partita in corso", gameExp1.getMessage());
-        }
-
-        @Test
-        @DisplayName("se motivation è NOT_EXISTS_GAME"
-                    + "restituisce la stringa associata")
-        void testCorrectlyCreatedWithMotivationNotExistsGame() {
-            WordleGameException gameExp2 = new
-                              WordleGameException(
-                                      WordleGameException
-                                              .Motivation.NOT_EXISTS_GAME);
-
-            assertEquals("Partita inesistente", gameExp2.getMessage());
-        }
-
-        @Test
-        @DisplayName("se motivation è NO_GUESSES_LEFT"
-                + "restituisce la stringa associata")
-        void testCorrectlyCreatedWithMotivationNoGuessesLeft() {
-            WordleGameException gameExp3 = new
-                    WordleGameException(
-                            WordleGameException
-                                    .Motivation.NO_GUESSES_LEFT);
-            assertEquals("Massimo numero di tentativi raggiunto",
-                             gameExp3.getMessage());
-        }
+    @ParameterizedTest
+    @ValueSource(strings = {WordleGameException.EXISTS_GAME,
+                            WordleGameException.NOT_EXISTS_GAME,
+                            WordleGameException.NO_GUESSES_LEFT})
+    @DisplayName("quando lanciata con {0} restituisce il messaggio corretto")
+    void testExceptionWithSpecialString(String message) {
+        assertEquals(message, (new WordleGameException(message)).getMessage());
     }
 
-
-
-    }
+}
 
