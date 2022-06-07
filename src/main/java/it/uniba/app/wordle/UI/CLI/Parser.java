@@ -161,9 +161,7 @@ public final class Parser {
     }
 
     public ParserToken getParserToken() {
-        ParserToken temp = new ParserToken(command, args);
-        temp.setCloseCommands(closeCommands);
 
-        return temp;
+        return new ParserToken(command, args, closeCommands);
     }
 }

@@ -26,7 +26,7 @@ public final class ParserToken {
         }
     }
 
-    public void setCloseCommands(final List<App.Command> closeCommandsList) {
+    private void setCloseCommands(final List<App.Command> closeCommandsList) {
         Objects.requireNonNull(closeCommandsList);
 
         if (closeCommandsList.isEmpty()) {
@@ -38,7 +38,8 @@ public final class ParserToken {
     }
 
     public ParserToken(final App.Command extractedCommand,
-                       final String[] extractedArgs) {
+                       final String[] extractedArgs,
+                       final List<App.Command> closeCommandsList) {
         Objects.requireNonNull(extractedCommand);
         Objects.requireNonNull(extractedArgs);
 
@@ -49,6 +50,7 @@ public final class ParserToken {
             this.args = Arrays.copyOf(extractedArgs, extractedArgs.length);
         }
 
+        setCloseCommands(closeCommandsList);
         setNumMissingArgs();
     }
 
