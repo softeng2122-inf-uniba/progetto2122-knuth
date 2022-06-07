@@ -55,7 +55,8 @@ public final class ParserToken {
 
     public String[] getArgs() {
         if(args.length == 0) {
-            return EMPTY_STRING_ARRAY;        //immutabile, non è un problema restituirlo
+            //immutabile, non è un problema restituirlo
+            return EMPTY_STRING_ARRAY;
         } else {
             return Arrays.copyOf(args, args.length);
         }

@@ -45,7 +45,7 @@ public final class Printer extends PrintWriter {
 
     private final PlayerController playerController;
 
-    Printer(OutputStreamWriter out, final PlayerController playerController) {
+    Printer(final OutputStreamWriter out, final PlayerController playerController) {
         super(out, true);
         this.playerController = playerController;
     }
