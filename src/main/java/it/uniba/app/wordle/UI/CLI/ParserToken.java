@@ -12,7 +12,8 @@ public final class ParserToken {
     private int numMissingArgs;
     private List<App.Command> closeCommands;
 
-    private static final List<App.Command> EMPTY_COMMAND_LIST = Collections.emptyList();
+    private static final List<App.Command> EMPTY_COMMAND_LIST
+                                          = Collections.emptyList();
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     public String[] getCloseCommandsStrings() {
