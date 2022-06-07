@@ -15,7 +15,8 @@ public class WordleGameException extends RuntimeException {
 
     public static final  String EXISTS_GAME = "Partita in corso";
     public static final String NOT_EXISTS_GAME = "Partita inesistente";
-    public static final String NO_GUESSES_LEFT = "Massimo numero di tentativi raggiunto";
+    public static final String NO_GUESSES_LEFT =
+                               "Massimo numero di tentativi raggiunto";
 
     WordleGameException(final String message) {
         super(Objects.requireNonNull(message));

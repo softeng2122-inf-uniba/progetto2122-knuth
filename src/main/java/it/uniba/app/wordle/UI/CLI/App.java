@@ -1,5 +1,7 @@
 package it.uniba.app.wordle.UI.CLI;
 
+
+
 import it.uniba.app.wordle.domain.*;
 
 import java.io.InputStreamReader;
@@ -19,20 +21,19 @@ import java.util.Scanner;
 public final class App {
 
     private static final PlayerController PLAYER_CONTROLLER =
-            new WordlePlayerController();
+                         new WordlePlayerController();
 
     private static final WordsmithController WORDSMITH_CONTROLLER =
-                 new WordleWordsmithController(
-                    (WordlePlayerController) PLAYER_CONTROLLER);
+                         new WordleWordsmithController(
+                         (WordlePlayerController) PLAYER_CONTROLLER);
 
     private static final Scanner KEYBOARD = new Scanner(
-            new InputStreamReader(System.in, getSystemEncoding()));
+                        new InputStreamReader(System.in, getSystemEncoding()));
     private static final Printer CONSOLE = new Printer(
-            new OutputStreamWriter(System.out, getSystemEncoding()),
+                       new OutputStreamWriter(System.out, getSystemEncoding()),
                                    PLAYER_CONTROLLER);
     private static final Parser PARSER = new Parser();
     private static boolean running = true;
-
 
     /**
      * {@literal <<NoECB>>} <br>

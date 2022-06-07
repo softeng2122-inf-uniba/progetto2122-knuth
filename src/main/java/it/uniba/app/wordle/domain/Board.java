@@ -19,7 +19,7 @@ class Board {
     // di avere tante righe quanti sono i tentativi
     Board(final int column, final int row) {
 
-        if(column <= 0 || row <= 0) {
+        if (column <= 0 || row <= 0) {
             throw new IllegalArgumentException();
         }
 

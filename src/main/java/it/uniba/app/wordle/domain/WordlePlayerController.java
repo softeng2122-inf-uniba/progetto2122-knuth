@@ -29,17 +29,17 @@ public final class WordlePlayerController implements PlayerController {
     public void startGame() {
         if (isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.EXISTS_GAME);
+                      WordleGameException.EXISTS_GAME);
         }
 
         if (!session.hasSecretWord()) {
             throw new WordleSettingException(
-                    WordleSettingException.ABSENT_SECRET_WORD);
+                      WordleSettingException.ABSENT_SECRET_WORD);
         }
 
         session.setCurrentGame(new WordleGame(session.getSecretWord(),
-                session.getNMaxGuesses(),
-                session.getWordLength()));
+                                              session.getNMaxGuesses(),
+                                              session.getWordLength()));
     }
 
     public int getMaxGuesses() {
@@ -144,14 +144,15 @@ public final class WordlePlayerController implements PlayerController {
         } else {
             String currentWord = currentBoard.getGuess(lastGuessIndex)
                     .getWord();
-            return currentWord.equals(session.getCurrentGame().getSecretWord());
+            return currentWord.equals(session.getCurrentGame()
+                                      .getSecretWord());
         }
     }
 
     public char getLetter(final int row, final int column) {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.NOT_EXISTS_GAME);
+                      WordleGameException.NOT_EXISTS_GAME);
         }
 
         Board currentBoard = session.getCurrentGame().getGameBoard();
@@ -225,5 +226,4 @@ public final class WordlePlayerController implements PlayerController {
         }
         return session.getCurrentGame().getSecretWord();
     }
-
 }

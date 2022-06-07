@@ -1,6 +1,5 @@
 package it.uniba.app.wordle.domain;
 
-
 import java.util.Objects;
 
 /**

@@ -18,14 +18,14 @@ class WordleSessionTest {
     @DisplayName("non ha alcuna partita in corso")
     void testAbsentGame() {
         assertAll(() -> assertFalse(wordleSession.isGameRunning()),
-                () -> assertNull(wordleSession.getCurrentGame()));
+                  () -> assertNull(wordleSession.getCurrentGame()));
     }
 
     @Test
     @DisplayName("non ha la parola segreta impostata")
     void testSecretWordNull() {
         assertAll(() -> assertFalse(wordleSession.hasSecretWord()),
-                () -> assertNull(wordleSession.getSecretWord()));
+                  () -> assertNull(wordleSession.getSecretWord()));
     }
 
     @Test
@@ -53,7 +53,8 @@ class WordleSessionTest {
         @DisplayName("viene impostata correttamente")
         void testGetSecretWord() {
             assertAll(() -> assertTrue(wordleSession.hasSecretWord()),
-                    () -> assertEquals("TESTA", wordleSession.getSecretWord()));
+                      () -> assertEquals("TESTA",
+                                         wordleSession.getSecretWord()));
         }
 
         @Nested
@@ -74,7 +75,7 @@ class WordleSessionTest {
             @DisplayName("è impostata come partita corrente")
             void testCorrectGame() {
                 assertAll(() -> assertTrue(wordleSession.isGameRunning()),
-                        () -> assertSame(cg, wordleSession.getCurrentGame()));
+                         () -> assertSame(cg, wordleSession.getCurrentGame()));
             }
 
             @Test
