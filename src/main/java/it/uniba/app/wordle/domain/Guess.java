@@ -70,7 +70,7 @@ class Guess {
     }
 
     public String getWord() {
-        StringBuilder s = new StringBuilder("");
+        StringBuilder s = new StringBuilder();
 
         for (LetterBox lb : cellArray) {
             s.append(lb.getLetter());
