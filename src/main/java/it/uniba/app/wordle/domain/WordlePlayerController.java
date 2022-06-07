@@ -29,12 +29,12 @@ public final class WordlePlayerController implements PlayerController {
     public void startGame() {
         if (isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.EXISTS_GAME);
+                    WordleGameException.EXISTS_GAME);
         }
 
         if (!session.hasSecretWord()) {
             throw new WordleSettingException(
-                    WordleSettingException.Motivation.ABSENT_SECRET_WORD);
+                    WordleSettingException.ABSENT_SECRET_WORD);
         }
 
         session.setCurrentGame(new WordleGame(session.getSecretWord(),
@@ -45,7 +45,7 @@ public final class WordlePlayerController implements PlayerController {
     public int getMaxGuesses() {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
 
         return session.getCurrentGame().getMaxGuesses();
@@ -54,7 +54,7 @@ public final class WordlePlayerController implements PlayerController {
     public int getNumRemainingGuesses() {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
 
         return session.getCurrentGame().getNumRemainingGuesses();
@@ -63,7 +63,7 @@ public final class WordlePlayerController implements PlayerController {
     public int getWordLength() {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
         return session.getCurrentGame().getWordLength();
     }
@@ -73,12 +73,12 @@ public final class WordlePlayerController implements PlayerController {
 
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
 
         if (getNumRemainingGuesses() == 0) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NO_GUESSES_LEFT);
+                    WordleGameException.NO_GUESSES_LEFT);
         }
         guessWordCheck(guessWord);
 
@@ -133,7 +133,7 @@ public final class WordlePlayerController implements PlayerController {
     public boolean getGuessResult() {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
 
         Board currentBoard = session.getCurrentGame().getGameBoard();
@@ -151,7 +151,7 @@ public final class WordlePlayerController implements PlayerController {
     public char getLetter(final int row, final int column) {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
 
         Board currentBoard = session.getCurrentGame().getGameBoard();
@@ -170,7 +170,7 @@ public final class WordlePlayerController implements PlayerController {
     public Color getColor(final int row, final int column) {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
 
         Board currentBoard = session.getCurrentGame().getGameBoard();
@@ -189,7 +189,7 @@ public final class WordlePlayerController implements PlayerController {
     public void endGame() {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
         session.setCurrentGame(null);
     }
@@ -221,7 +221,7 @@ public final class WordlePlayerController implements PlayerController {
     public String getGameSecretWord() {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
         return session.getCurrentGame().getSecretWord();
     }

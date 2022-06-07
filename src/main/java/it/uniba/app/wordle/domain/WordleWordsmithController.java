@@ -15,7 +15,7 @@ public final class WordleWordsmithController implements WordsmithController {
     public String getSecretWord() {
         if (!session.hasSecretWord()) {
             throw new WordleSettingException(
-                    WordleSettingException.Motivation.ABSENT_SECRET_WORD);
+                    WordleSettingException.ABSENT_SECRET_WORD);
         }
         return session.getSecretWord();
     }
@@ -25,7 +25,7 @@ public final class WordleWordsmithController implements WordsmithController {
 
         if (session.isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.EXISTS_GAME);
+                    WordleGameException.EXISTS_GAME);
         }
 
         if (!newWord.matches("[a-zA-Z]+")) {
