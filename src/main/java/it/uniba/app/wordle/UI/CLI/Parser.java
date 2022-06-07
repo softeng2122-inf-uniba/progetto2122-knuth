@@ -1,6 +1,11 @@
 package it.uniba.app.wordle.UI.CLI;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 /**
  * {@literal <<Boundary>>} <br>
@@ -48,9 +53,9 @@ public final class Parser {
             return EMPTY_STRING_ARRAY;
         }
 
-        String[] tokens;
-        tokens = input.split("\\s+");
-        return tokens;
+        String[] tempTokens;
+        tempTokens = input.split("\\s+");
+        return tempTokens;
     }
 
     private App.Command extractCommand() {
@@ -77,8 +82,8 @@ public final class Parser {
         }
     }
 
-    private String[] extractArgs(final App.Command command) {
-        Objects.requireNonNull(command);
+    private String[] extractArgs(final App.Command extractedCommand) {
+        Objects.requireNonNull(extractedCommand);
 
         if (tokens.length == 0) {
             return EMPTY_STRING_ARRAY;
@@ -86,11 +91,11 @@ public final class Parser {
 
         List<String> argsList = new LinkedList<>(Arrays.asList(tokens));
 
-        if (command != App.Command.GUESS) {
+        if (extractedCommand != App.Command.GUESS) {
             argsList.remove(0);
         }
 
-        int numArgsExpected = command.getNumArgs();
+        int numArgsExpected = extractedCommand.getNumArgs();
 
         if (argsList.size() > numArgsExpected) {
             argsList = argsList.subList(0, numArgsExpected);
@@ -133,7 +138,7 @@ public final class Parser {
                     final String wrongCommandString) {
         Objects.requireNonNull(wrongCommandString);
 
-        List<App.Command> closeCommands = EMPTY_COMMAND_LIST;
+        List<App.Command> tempCloseCommands = EMPTY_COMMAND_LIST;
         int distance = 2;
         int editDist;
 
@@ -146,13 +151,13 @@ public final class Parser {
             editDist = editDistance(comparedString, wrongCommandString);
 
             if (editDist <= distance) {
-                if (closeCommands.isEmpty()) {
-                    closeCommands = new ArrayList<>();
+                if (tempCloseCommands.isEmpty()) {
+                    tempCloseCommands = new ArrayList<>();
                 }
-                closeCommands.add(comparedCommand);
+                tempCloseCommands.add(comparedCommand);
             }
         }
-        return closeCommands;
+        return tempCloseCommands;
     }
 
     public ParserToken getParserToken() {
