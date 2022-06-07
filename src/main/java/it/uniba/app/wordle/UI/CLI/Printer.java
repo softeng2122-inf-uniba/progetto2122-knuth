@@ -2,9 +2,9 @@ package it.uniba.app.wordle.UI.CLI;
 
 import it.uniba.app.wordle.domain.Color;
 import it.uniba.app.wordle.domain.PlayerController;
-
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+
 /**
  * {@literal <<Boundary>>} <br>
  * Classe per la stampa dell'output da visualizzare sulla console.

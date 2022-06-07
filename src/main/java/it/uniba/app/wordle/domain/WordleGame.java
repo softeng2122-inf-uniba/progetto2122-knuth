@@ -12,7 +12,6 @@ class WordleGame {
     private final String secretWord;
     private final Board gameBoard;
 
-
     //costruttore con scelta parola e dimensioni del gioco
     WordleGame(final String secretWord,
                final  int numMaxGuesses, final int wordLength) {
