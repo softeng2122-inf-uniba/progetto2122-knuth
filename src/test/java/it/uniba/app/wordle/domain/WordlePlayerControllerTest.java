@@ -178,21 +178,32 @@ public class WordlePlayerControllerTest {
 
             @Test
             @DisplayName("lancia ArrayIndexOutOfBoundsException se prova "
-                    + "a leggere fuori dai bordi della board")
-            void outOfBoundsCellTest() {
+                    + "a leggere la lettera fuori dai bordi della board")
+            void outOfBoundsGetLetterTest() {
                 assertAll(
                         () -> assertThrows(IllegalArgumentException.class,
                                 () -> pc.getLetter(-1, 1)),
                         () -> assertThrows(IllegalArgumentException.class,
                                 () -> pc.getLetter(2, -1)),
                         () -> assertThrows(IllegalArgumentException.class,
-                                () -> pc.getLetter(7, 8)),
+                                () -> pc.getLetter(1, 8)),
+                        () -> assertThrows(IllegalArgumentException.class,
+                                () -> pc.getLetter(7, 1)));
+            }
+
+            @Test
+            @DisplayName("lancia ArrayIndexOutOfBoundsException se prova "
+                    + "a leggere il colore fuori dai bordi della board")
+            void outOfBoundsGetColorTest() {
+                assertAll(
                         () -> assertThrows(IllegalArgumentException.class,
                                 () -> pc.getColor(-1, 1)),
                         () -> assertThrows(IllegalArgumentException.class,
                                 () -> pc.getColor(2, -1)),
                         () -> assertThrows(IllegalArgumentException.class,
-                                () -> pc.getColor(7, 8)));
+                                () -> pc.getColor(1, 8)),
+                        () -> assertThrows(IllegalArgumentException.class,
+                                () -> pc.getColor(7, 1)));
             }
 
             @Nested
@@ -347,7 +358,7 @@ public class WordlePlayerControllerTest {
                         pc.guess("FRANA");
                         pc.guess("NUOVA");
                         pc.guess("PROVA");
-                        pc.guess("AIUTO");
+                        pc.guess("OZONO");
                         pc.guess("EBETE");
                         pc.guess("BREVE");
                     }
