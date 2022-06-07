@@ -1,5 +1,7 @@
 package it.uniba.app.wordle.domain;
 
+import java.util.Objects;
+
 /**
  * {@literal <<NoECB>>} <br>
  *  Eccezione lanciata in situazioni che richiedono particolari
@@ -12,26 +14,9 @@ package it.uniba.app.wordle.domain;
  */
 public class WordleSettingException extends RuntimeException {
 
-    private Motivation motivation;
-
-    public enum Motivation {
-        ABSENT_SECRET_WORD() {
-            public String getMessage() {
-                return "Parola segreta non impostata";
-            }
-        };
-
-        public abstract String getMessage();
-    }
+    public static final String ABSENT_SECRET_WORD = "Parola segreta non impostata";
 
     WordleSettingException(final String message) {
         super(message);
-        motivation = null;
-    }
-
-    //TODO:requirenotnull
-    WordleSettingException(final Motivation motivation) {
-        this(motivation.getMessage());
-        this.motivation = motivation;
     }
 }

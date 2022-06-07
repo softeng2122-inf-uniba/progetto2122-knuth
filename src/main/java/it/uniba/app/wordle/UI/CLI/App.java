@@ -44,7 +44,7 @@ public final class App {
         INVALID(0) {
             public void execute(final String[] args) {
                 CONSOLE.println("Comando invalido");
-                if (args != null) {
+                if (args.length != 0) {
                     if (args.length == 1) {
                         System.out.println("Il comando più simile è: ");
                     } else {
@@ -97,7 +97,7 @@ public final class App {
 
                 String answer;
                 do {
-                    CONSOLE.println("Sei sicuro di voler abbandonare"
+                    CONSOLE.println("Sei sicuro di voler abbandonare "
                             + "la partita in corso? [si | no]");
                     answer = KEYBOARD.nextLine();
                 } while (!answer.equalsIgnoreCase("si")
@@ -133,7 +133,7 @@ public final class App {
                 String answer;
 
                 do {
-                    CONSOLE.println("Sei sicuro di voler uscire da Wordle?"
+                    CONSOLE.println("Sei sicuro di voler uscire da Wordle? "
                             + "[si | no]");
                     answer = KEYBOARD.nextLine();
                 } while (!answer.equalsIgnoreCase("si")

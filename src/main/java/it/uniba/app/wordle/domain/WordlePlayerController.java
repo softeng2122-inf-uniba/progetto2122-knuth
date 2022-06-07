@@ -12,58 +12,73 @@ public final class WordlePlayerController implements PlayerController {
         session = new WordleSession();
     }
 
+    /**
+     * Utilizzato per la comunicazione tra controller, non fa parte dell'API
+     * ma serve al WordleWordsmithController
+     *
+     * @return la sessione creata da this
+     */
     WordleSession getSession() {
         return session;
     }
 
-    /**
-     * Inizia una nuova partita a Wordle.
-     *
-     * @throws WordleGameException  se una partita è già in corso
-     * @throws WordleSettingException se la parola segreta non è impostata
-     */
+    public boolean isGameRunning() {
+        return session.isGameRunning();
+    }
+
     public void startGame() {
         if (isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.EXISTS_GAME);
+                    WordleGameException.EXISTS_GAME);
         }
 
         if (!session.hasSecretWord()) {
             throw new WordleSettingException(
-                    WordleSettingException.Motivation.ABSENT_SECRET_WORD);
+                    WordleSettingException.ABSENT_SECRET_WORD);
         }
 
         session.setCurrentGame(new WordleGame(session.getSecretWord(),
-                                              session.getNMaxGuesses(),
-                                              session.getWordLength()));
+                session.getNMaxGuesses(),
+                session.getWordLength()));
     }
 
-    /**
-     * Effettua un tentativo e lo inserisce nella matrice dei tentativi
-     * della partita corrente.<br>
-     * Per ogni lettera della parola inserita colora lo sfondo
-     * (della casella corrispondente) di verde se la lettera è nella
-     * parola segreta e nel posto giusto, di giallo se la lettera è
-     * nella parola segreta ma nel posto sbagliato e di grigio se la
-     * lettera non è nella parola segreta.
-     *
-     * @param guessWord stringa contenente la parola inserita dal giocatore
-     * @throws WordleGameException  se nessuna partita è in corso
-     * o se è stato già raggiunto il numero massimo di tentativi
-     * @throws IllegalArgumentException se {@code guessWord}
-     * non soddisfa la lunghezza prevista o contiene caratteri non validi
-     */
+    public int getMaxGuesses() {
+        if (!isGameRunning()) {
+            throw new WordleGameException(
+                    WordleGameException.NOT_EXISTS_GAME);
+        }
+
+        return session.getCurrentGame().getMaxGuesses();
+    }
+
+    public int getNumRemainingGuesses() {
+        if (!isGameRunning()) {
+            throw new WordleGameException(
+                    WordleGameException.NOT_EXISTS_GAME);
+        }
+
+        return session.getCurrentGame().getNumRemainingGuesses();
+    }
+
+    public int getWordLength() {
+        if (!isGameRunning()) {
+            throw new WordleGameException(
+                    WordleGameException.NOT_EXISTS_GAME);
+        }
+        return session.getCurrentGame().getWordLength();
+    }
+
     public void guess(final String guessWord) {
         Objects.requireNonNull(guessWord);
 
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
 
         if (getNumRemainingGuesses() == 0) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NO_GUESSES_LEFT);
+                    WordleGameException.NO_GUESSES_LEFT);
         }
         guessWordCheck(guessWord);
 
@@ -115,16 +130,10 @@ public final class WordlePlayerController implements PlayerController {
         gameBoard.acceptNewGuess(newGuess);
     }
 
-    /**
-     * Restituisce il risultato dell'ultimo tentativo effettuato.
-     * @throws WordleGameException  se nessuna partita è in corso
-     * @return true se il tentativo è vincente, false se non è vincente
-     * oppure se non sono stati effettuati tentativi nella partita corrente
-     */
     public boolean getGuessResult() {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
 
         Board currentBoard = session.getCurrentGame().getGameBoard();
@@ -139,67 +148,10 @@ public final class WordlePlayerController implements PlayerController {
         }
     }
 
-    /**
-     * Restituisce il numero di tentativi rimanenti per la partita corrente.
-     * @throws WordleGameException  se nessuna partita è in corso
-     */
-    public int getNumRemainingGuesses() {
-        if (!isGameRunning()) {
-            throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
-        }
-
-        return session.getCurrentGame().getNumRemainingGuesses();
-    }
-
-    /**
-     * Restituisce il numero totale di tentativi per la partita corrente.
-     * @throws WordleGameException  se nessuna partita è in corso
-     */
-    public int getMaxGuesses() {
-        if (!isGameRunning()) {
-            throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
-        }
-
-        return session.getCurrentGame().getMaxGuesses();
-    }
-
-    /**
-     * Restituisce la lunghezza della parola segreta.
-     * @throws WordleGameException  se nessuna partita è in corso
-     */
-    public int getWordLength() {
-        if (!isGameRunning()) {
-            throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
-        }
-        return session.getCurrentGame().getWordLength();
-    }
-
-    /**
-     * Restituisce la lettera contenuta in una casella della matrice
-     * dei tentativi della partita corrente.
-     * @param row   il valore 0 indica la prima riga, il valore
-     *              i-esimo indica la riga i+1, il valore massimo
-     *              corrisponde al numero di righe della matrice
-     *              dei tentativi - 1
-     * @param column    il valore 0 indica la prima colonna, il valore
-     *                 i-esimo indica la colonna i+1, il valore massimo
-     *                 corrisponde al numero di colonne della matrice
-     *                 dei tentativi - 1
-     * @return  la lettera nella casella alla riga {@code row}
-     * e alla colonna {@code column} se il tentativo corrispondente
-     * alla riga {@code row} è stato effettuato, ' ' altrimenti
-     * @throws WordleGameException   se nessuna partita è in corso
-     * @throws  IllegalArgumentException se {@code row} o {@code column}
-     * eccedono le dimensioni della matrice dei tentativi
-     * oppure sono numeri negativi
-     */
     public char getLetter(final int row, final int column) {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
 
         Board currentBoard = session.getCurrentGame().getGameBoard();
@@ -215,29 +167,10 @@ public final class WordlePlayerController implements PlayerController {
         }
     }
 
-    /**
-     * Restituisce il colore di una casella della matrice dei tentativi
-     * della partita corrente.
-     * @param row   il valore 0 indica la prima riga, il valore i-esimo
-     *             indica la riga i+1, il valore massimo corrisponde al
-     *             numero di righe della matrice dei tentativi - 1
-     * @param column    il valore 0 indica la prima colonna, il valore
-     *                 i-esimo indica la colonna i+1, il valore massimo
-     *                 corrisponde al numero di colonne della matrice
-     *                 dei tentativi - 1
-     * @return  il colore della casella alla riga {@code row}
-     * e alla colonna {@code column} se il tentativo
-     * corrispondente alla riga {@code row} è stato effettuato,
-     * {@code NO_COLOR} altrimenti
-     * @throws WordleGameException   se nessuna partita è in corso
-     * @throws  IllegalArgumentException se {@code row} o {@code column}
-     * eccedono le dimensioni della matrice dei tentativi
-     * oppure sono numeri negativi
-     */
     public Color getColor(final int row, final int column) {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
 
         Board currentBoard = session.getCurrentGame().getGameBoard();
@@ -253,25 +186,23 @@ public final class WordlePlayerController implements PlayerController {
         }
     }
 
-    /**
-     * Termina la partita in corso.
-     * @throws WordleGameException se nessuna partita è in corso
-     */
     public void endGame() {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
         session.setCurrentGame(null);
     }
 
     /**
-     * @return true se è in corso una partita, false altrimenti
+     * Controllo sulla parola inserita, che dev'essere
+     * della lunghezza appropriata e deve contenere solo
+     * lettere (non altri tipi di caratteri)
+     *
+     * @param word parola da controllare
+     * @throws IllegalArgumentException se una delle condizioni
+     * specificate non è verificata
      */
-    public boolean isGameRunning() {
-        return session.isGameRunning();
-    }
-
     private void guessWordCheck(final String word) {
 
         if (!word.matches("[a-zA-Z]+")) {
@@ -279,7 +210,7 @@ public final class WordlePlayerController implements PlayerController {
         }
 
         if (word.length() < session.getWordLength()) {
-            throw new IllegalArgumentException("Tentantivo incompleto");
+            throw new IllegalArgumentException("Tentativo incompleto");
         }
 
         if (word.length() > session.getWordLength()) {
@@ -287,14 +218,10 @@ public final class WordlePlayerController implements PlayerController {
         }
     }
 
-    /**
-     * Restituisce la parola segreta per la partita corrente.
-     * @throws WordleGameException  se nessuna partita è in corso
-     */
     public String getGameSecretWord() {
         if (!isGameRunning()) {
             throw new WordleGameException(
-                    WordleGameException.Motivation.NOT_EXISTS_GAME);
+                    WordleGameException.NOT_EXISTS_GAME);
         }
         return session.getCurrentGame().getSecretWord();
     }
