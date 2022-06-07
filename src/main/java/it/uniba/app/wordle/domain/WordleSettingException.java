@@ -12,7 +12,8 @@ package it.uniba.app.wordle.domain;
  */
 public class WordleSettingException extends RuntimeException {
 
-    public static final String ABSENT_SECRET_WORD = "Parola segreta non impostata";
+    public static final String ABSENT_SECRET_WORD
+            = "Parola segreta non impostata";
 
     WordleSettingException(final String message) {
         super(message);
