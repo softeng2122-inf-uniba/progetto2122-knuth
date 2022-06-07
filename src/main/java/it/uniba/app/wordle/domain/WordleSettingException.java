@@ -1,7 +1,5 @@
 package it.uniba.app.wordle.domain;
 
-import java.util.Objects;
-
 /**
  * {@literal <<NoECB>>} <br>
  *  Eccezione lanciata in situazioni che richiedono particolari

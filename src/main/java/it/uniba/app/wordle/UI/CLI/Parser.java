@@ -16,9 +16,8 @@ public final class Parser {
     private List<App.Command> closeCommands;
 
     private static final List<App.Command> EMPTY_COMMAND_LIST
-            = Collections.emptyList();
+                                    = Collections.emptyList();
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
-
 
     public Parser() {
         input = null;

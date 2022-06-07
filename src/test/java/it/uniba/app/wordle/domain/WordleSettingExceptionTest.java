@@ -16,6 +16,7 @@ public class WordleSettingExceptionTest {
             "Stringa di prova"})
     @DisplayName("restituisce il messaggio corretto")
     void testExceptionWithSpecialString(String message) {
-        assertEquals(message, (new WordleSettingException(message)).getMessage());
+        assertEquals(message, (new WordleSettingException(message))
+                                                     .getMessage());
     }
 }

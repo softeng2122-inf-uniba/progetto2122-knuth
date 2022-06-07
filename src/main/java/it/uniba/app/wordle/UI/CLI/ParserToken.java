@@ -12,7 +12,8 @@ public final class ParserToken {
     private int numMissingArgs;
     private List<App.Command> closeCommands;
 
-    private static final List<App.Command> EMPTY_COMMAND_LIST = Collections.emptyList();
+    private static final List<App.Command> EMPTY_COMMAND_LIST
+                                          = Collections.emptyList();
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     public String[] getCloseCommandsStrings() {
@@ -55,7 +56,8 @@ public final class ParserToken {
 
     public String[] getArgs() {
         if(args.length == 0) {
-            return EMPTY_STRING_ARRAY;        //immutabile, non è un problema restituirlo
+            //immutabile, non è un problema restituirlo
+            return EMPTY_STRING_ARRAY;
         } else {
             return Arrays.copyOf(args, args.length);
         }

@@ -2,9 +2,9 @@ package it.uniba.app.wordle.UI.CLI;
 
 import it.uniba.app.wordle.domain.Color;
 import it.uniba.app.wordle.domain.PlayerController;
-
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+
 /**
  * {@literal <<Boundary>>} <br>
  * Classe per la stampa dell'output da visualizzare sulla console.
@@ -45,7 +45,7 @@ public final class Printer extends PrintWriter {
 
     private final PlayerController playerController;
 
-    Printer(OutputStreamWriter out, final PlayerController playerController) {
+    Printer(final OutputStreamWriter out, final PlayerController playerController) {
         super(out, true);
         this.playerController = playerController;
     }
