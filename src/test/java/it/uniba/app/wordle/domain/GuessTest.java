@@ -1,25 +1,27 @@
 package it.uniba.app.wordle.domain;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 @DisplayName("Un tentativo")
 class GuessTest {
 
-    Guess g;
-
-    @Test
-    @DisplayName("è istanziato con new Guess(guessingWord)")
-    void isInstantiatedWithNew() {
-        new Guess("PROVA");
-    }
+    private Guess g;
 
     @Nested
     @DisplayName("quando si instanzia con new e una stringa come parametro")
-    class createdWithPROVA {
+    class CorrectlyCreatedTest {
+
+        private static final int DEFAULT_LENGTH = 5;
 
         @BeforeEach
         void createNewGuess() {
@@ -43,10 +45,10 @@ class GuessTest {
         }
 
         @ParameterizedTest(name = "Indice: {0}")
-        @ValueSource(ints = { -1, 5})
+        @ValueSource(ints = { -1, DEFAULT_LENGTH})
         @DisplayName("lancia ArrayIndexOutOfBoundsException"
                 + " con un indice invalido")
-        void testThrowsExceptionWhenIndexOutOfBound(int i) {
+        void testThrowsExceptionWhenIndexOutOfBound(final int i) {
             assertThrows(ArrayIndexOutOfBoundsException.class,
                     () -> g.getLetter(i));
         }
