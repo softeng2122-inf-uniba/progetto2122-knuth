@@ -5,12 +5,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DisplayName("Un WordlePlayerController")
-public class WordlePlayerControllerTest {
+class WordlePlayerControllerTest {
 
-    WordlePlayerController pc;
+    private WordlePlayerController pc;
 
     @BeforeEach
     void createController() {
@@ -19,7 +24,7 @@ public class WordlePlayerControllerTest {
 
     @Nested
     @DisplayName("quando non ha partite in corso")
-    public class NoGameRunningTest {
+    class NoGameRunningTest {
 
         @Test
         @DisplayName("nessuna partita è in corso")
@@ -113,9 +118,9 @@ public class WordlePlayerControllerTest {
         @Nested
         @DisplayName("quando viene impostata la parola segreta \"TRONO\" "
                      + "e viene iniziata la partita")
-        public class GameStartedTest {
+        class GameStartedTest {
 
-            WordleWordsmithController wc;
+            private WordleWordsmithController wc;
             private static final int DEFAULT_MAX_GUESSES = 6;
             private static final int DEFAULT_WORD_LENGTH = 5;
 
@@ -182,13 +187,13 @@ public class WordlePlayerControllerTest {
             void outOfBoundsGetLetterTest() {
                 assertAll(
                         () -> assertThrows(IllegalArgumentException.class,
-                                () -> pc.getLetter(-1, 1)),
+                                () -> pc.getLetter(-1, 0)),
                         () -> assertThrows(IllegalArgumentException.class,
-                                () -> pc.getLetter(2, -1)),
+                                () -> pc.getLetter(0, -1)),
                         () -> assertThrows(IllegalArgumentException.class,
-                                () -> pc.getLetter(1, 8)),
+                                () -> pc.getLetter(0, DEFAULT_WORD_LENGTH)),
                         () -> assertThrows(IllegalArgumentException.class,
-                                () -> pc.getLetter(7, 1)));
+                                () -> pc.getLetter(DEFAULT_MAX_GUESSES, 0)));
             }
 
             @Test
@@ -197,13 +202,13 @@ public class WordlePlayerControllerTest {
             void outOfBoundsGetColorTest() {
                 assertAll(
                         () -> assertThrows(IllegalArgumentException.class,
-                                () -> pc.getColor(-1, 1)),
+                                () -> pc.getColor(-1, 0)),
                         () -> assertThrows(IllegalArgumentException.class,
-                                () -> pc.getColor(2, -1)),
+                                () -> pc.getColor(0, -1)),
                         () -> assertThrows(IllegalArgumentException.class,
-                                () -> pc.getColor(1, 8)),
+                                () -> pc.getColor(0, DEFAULT_WORD_LENGTH)),
                         () -> assertThrows(IllegalArgumentException.class,
-                                () -> pc.getColor(7, 1)));
+                                () -> pc.getColor(DEFAULT_MAX_GUESSES, 0)));
             }
 
             @Nested
@@ -263,7 +268,7 @@ public class WordlePlayerControllerTest {
 
                 @Nested
                 @DisplayName("se viene inserito \"PERNO\"")
-                public class PushingValidGuessTest {
+                class PushingValidGuessTest {
 
                     @BeforeEach
                     void insertValidGuess() {
@@ -289,11 +294,16 @@ public class WordlePlayerControllerTest {
                     @Test
                     @DisplayName("i colori calcolati sono corretti")
                     void testGetColor() {
-                        assertAll(() -> assertEquals(Color.GREY, pc.getColor(0, 0)),
-                                () -> assertEquals(Color.GREY, pc.getColor(0, 1)),
-                                () -> assertEquals(Color.YELLOW, pc.getColor(0, 2)),
-                                () -> assertEquals(Color.GREEN, pc.getColor(0, 3)),
-                                () -> assertEquals(Color.GREEN, pc.getColor(0, 4)));
+                        assertAll(() -> assertEquals(Color.GREY,
+                                        pc.getColor(0, 0)),
+                                () -> assertEquals(Color.GREY,
+                                        pc.getColor(0, 1)),
+                                () -> assertEquals(Color.YELLOW,
+                                        pc.getColor(0, 2)),
+                                () -> assertEquals(Color.GREEN,
+                                        pc.getColor(0, 3)),
+                                () -> assertEquals(Color.GREEN,
+                                        pc.getColor(0, 4)));
                     }
 
                     @Test
@@ -307,7 +317,7 @@ public class WordlePlayerControllerTest {
 
                 @Nested
                 @DisplayName("se viene inserito \"TRONO\"")
-                public class PushingCorrectGuessTest {
+                class PushingCorrectGuessTest {
 
                     @BeforeEach
                     void insertCorrectGuess() {
@@ -333,11 +343,16 @@ public class WordlePlayerControllerTest {
                     @Test
                     @DisplayName("tutte le lettere sono verdi")
                     void testGetColor() {
-                        assertAll(() -> assertEquals(Color.GREEN, pc.getColor(0, 0)),
-                                () -> assertEquals(Color.GREEN, pc.getColor(0, 1)),
-                                () -> assertEquals(Color.GREEN, pc.getColor(0, 2)),
-                                () -> assertEquals(Color.GREEN, pc.getColor(0, 3)),
-                                () -> assertEquals(Color.GREEN, pc.getColor(0, 4)));
+                        assertAll(() -> assertEquals(Color.GREEN,
+                                        pc.getColor(0, 0)),
+                                () -> assertEquals(Color.GREEN,
+                                        pc.getColor(0, 1)),
+                                () -> assertEquals(Color.GREEN,
+                                        pc.getColor(0, 2)),
+                                () -> assertEquals(Color.GREEN,
+                                        pc.getColor(0, 3)),
+                                () -> assertEquals(Color.GREEN,
+                                        pc.getColor(0, 4)));
                     }
 
                     @Test
@@ -351,7 +366,7 @@ public class WordlePlayerControllerTest {
 
                 @Nested
                 @DisplayName("quando terminano i tentativi disponibili")
-                public class NoGuessesLeftTest {
+                class NoGuessesLeftTest {
 
                     @BeforeEach
                     void fillBoard() {
