@@ -1,8 +1,11 @@
 package it.uniba.app.wordle.domain;
 
-import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DisplayName("Un WordleGame")
 class WordleGameTest {
@@ -10,7 +13,7 @@ class WordleGameTest {
     private static final int DEFAULT_MAX_GUESSES = 6;
     private static final int DEFAULT_WORD_LENGTH = 5;
 
-    WordleGame wGame;
+    private WordleGame wGame;
 
     @Nested
     @DisplayName("quando è istanziato con new WordleGame(\"GIOCO\", 6, 5)")
