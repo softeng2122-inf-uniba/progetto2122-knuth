@@ -10,16 +10,17 @@ import java.util.Objects;
  * per l'inserimento di nuovi tentativi.
  */
 class Board {
+    /** Array che contiene i tentativi secondo ordine d'inserimento. */
     private final Guess[] guessArray;
+    /** Numero di lettere delle parole che costituiscono i tentativi. */
     private final int wordLength;
+    /** Indice del primo elemento vuoto di {@code guessArray}. */
     private int firstEmptyIndex;
 
-    //costruttore
-    // riceve column lunghezza della matrice e row che permette
-    // di avere tante righe quanti sono i tentativi
-    Board(final int column, final int row) {
+    // row -> numero di tentativi, column -> numero di lettere
+    Board(final int row, final int column) {
 
-        if (column <= 0 || row <= 0) {
+        if (row <= 0 || column <= 0) {
             throw new IllegalArgumentException();
         }
 
@@ -28,29 +29,34 @@ class Board {
         this.firstEmptyIndex = 0;
     }
 
-    public Guess getGuess(final int index) {
+    Guess getGuess(final int index) {
         return guessArray[index];
     }
 
-    //prende il guess con i colori settati e lo aggiunge alla prima riga libera
-    public void acceptNewGuess(final Guess g) {
+    /**
+     * Aggiunge un tentativo alla prima riga libera della board.
+     *
+     * @param g tentativo da inserire
+     * @throws NullPointerException se g è {@code null}
+     */
+    void acceptNewGuess(final Guess g) {
         Objects.requireNonNull(g);
 
         guessArray[firstEmptyIndex] = g;
         firstEmptyIndex++;
     }
 
-    public int getRowsNumber() {
+    int getRowsNumber() {
 
         return guessArray.length;
     }
 
-    public int getWordLength() {
+    int getWordLength() {
 
         return wordLength;
     }
 
-    public int getNumFilledRows() {
+    int getNumFilledRows() {
 
         return firstEmptyIndex;
     }
