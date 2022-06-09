@@ -211,21 +211,18 @@ _Nota: gli attributi e i metodi della classe parser vengono tutti utilizzati in 
 
 - **Mostra parola segreta**: *Come paroliere voglio mostrare la parola segreta*
 
-    I diagrammi delle classi e di sequenza di questa user story sono molto simili a quelli della precedente, con variazioni opportune di metodi:
-    - _executePrintSecretWord_ al posto del metodo _executeSetSecretWord_
-    - _getSecretWord_ al posto di _setSecretWord_
-
-
+    I diagrammi delle classi e di sequenza di questa user story sono molto simili a quelli della precedente, con variazioni opportune del metodo get e del metodo di stampa
+    
 - **Comando help**: *Come giocatore voglio mostrare l'help con elenco comandi*
 
-    Anche in questo caso i diagrammi delle classi e di sequenza sono molto simili a quelli di **Impostazione manuale parola segreta**, con variazioni opportune di metodi:
-    - al posto della chiamata a _executeSetSecretWord_ vengono invocati direttamente i metodi _printDescription_ e _printHelp_ della classe **Printer**
-    - non vengono effettuate chiamate alla classe **Wordle**
+    Anche in questo caso i diagrammi delle classi e di sequenza sono molto simili a quelli di **Impostazione manuale parola segreta**, con variazioni opportune dei metodi:
+    - _printDescription_ e _printHelp_ della classe **WordlePrinter** al posto di _executeSetSecretWord_
+    - non vengono effettuate chiamate alla classe **WordlePlayerController** o **WordleWordsmithController**
 
 
 - **Inizio nuova partita**: *Come giocatore voglio iniziare una nuova partita*
 
-  La molteplicità 0..1 nel legame tra **Wordle** e **WordleGame** è giustificata dal fatto che all'inizio la partita non esiste ma viene creata nel corso dell'interazione
+  La molteplicità 0..1 nel legame tra **WordlePlayerController** e **WordleGame** è giustificata dal fatto che all'inizio la partita non esiste ma viene creata nel corso dell'interazione
 
 <p align="center">
   <img src="../drawings/CLS - Inizio nuova partita.svg" alt="CLS - Inizio nuova partita" width="800"/>
@@ -255,11 +252,9 @@ Diagramma di sequenza **printBoard**:
 
 - **Chiusura gioco**: *Come giocatore voglio chiudere il gioco*
 
-    I diagrammi delle classi e di sequenza di questa user story sono molto simili a quelli della precedente, con variazioni opportune di metodi:
-    - _executeExitGame_ al posto del metodo _executeQuitGame_
+    I diagrammi delle classi e di sequenza di questa user story sono molto simili a quelli della precedente, con variazioni opportune dei metodi:
+    - impostazione attributo running a false al posto del metodo _endGame_
     - anche in questo caso ci sarà richiesta di conferma
-    - al posto della chiamata di _endGame_ vi sarà la chiusura dell'applicazione
-
 
 - **Tentativo parola segreta**: *Come giocatore voglio effettuare un tentativo per indovinare la parola segreta*
 
