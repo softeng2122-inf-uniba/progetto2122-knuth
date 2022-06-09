@@ -14,38 +14,55 @@ import java.io.PrintWriter;
  */
 public final class WordlePrinter extends PrintWriter {
     // angoli (L = left, R = right, U = up, D = down)
+    /** Angolo in alto a sinistra. */
     private static final char L_U_ANGLE = '\u2554';
+    /** Angolo in alto a destra. */
     private static final char R_U_ANGLE = '\u2557';
+    /** Angolo in basso a sinistra. */
     private static final char L_D_ANGLE = '\u255A';
+    /** Angolo in basso a destra. */
     private static final char R_D_ANGLE = '\u255D';
 
     // separatori
+    /** Separatore sinistro. */
     private static final char L_SEPARATOR = '\u2560';
+    /** Separatore destro. */
     private static final char R_SEPARATOR = '\u2563';
+    /** Separatore superiore. */
     private static final char U_SEPARATOR = '\u2566';
+    /** Separatore inferiore. */
     private static final char D_SEPARATOR = '\u2569';
+    /** Separatore a croce. */
     private static final char CROSS = '\u256c';
 
     // spigoli
+    /** Spigolo verticale. */
     private static final char VERTICAL_EDGE = '\u2551';
+    /** Spigolo orizzontale. */
     private static final char HORIZONTAL_EDGE = '\u2550';
 
     // unioni
+    /** Stringa formata da tre spigoli orizzontali. */
     private static final String HORIZONTAL_EDGE_X3 = HORIZONTAL_EDGE + ""
             + HORIZONTAL_EDGE + HORIZONTAL_EDGE;
 
-    //backgrounds
+    //backgrounds e grassetto
+    /** Sfondo grigio. */
     private static final String GREY_BACKGROUND = "\u001b[30;47m"; //GREY
+    /** Sfondo verde. */
     private static final String GREEN_BACKGROUND = "\u001b[30;42m";  // GREEN
+    /** Sfondo yellow. */
     private static final String YELLOW_BACKGROUND = "\u001b[30;43m"; // YELLOW
-    // bold
+    /** Grassetto. */
     private static final String BOLD = "\u001b[1m";
-    // reset
+    /** Reset (sfondo e grassetto). */
     private static final String RESET = "\u001b[0m";  // Text Reset
 
+    /** Controller per recuperare le informazioni sulla partita. */
     private final PlayerController playerController;
 
-    WordlePrinter(final OutputStreamWriter out, final PlayerController controller) {
+    WordlePrinter(final OutputStreamWriter out,
+                  final PlayerController controller) {
         super(out, true);
         this.playerController = controller;
     }
@@ -144,6 +161,10 @@ public final class WordlePrinter extends PrintWriter {
         return lowerPart.toString();
     }
 
+    /**
+     * Stampa un avviso in caso di parola segreta indovinata
+     * o esaurimento di tentativi disponibili.
+     */
     public void printGuessResult() {
         int maxGuesses = playerController.getMaxGuesses();
         int remainingGuesses = playerController.getNumRemainingGuesses();
@@ -160,6 +181,9 @@ public final class WordlePrinter extends PrintWriter {
         }
     }
 
+    /**
+     * Stampa una breve descrizione del gioco Wordle.
+     */
     public void printDescription() {
         printWordleLogo();
 
@@ -217,6 +241,10 @@ public final class WordlePrinter extends PrintWriter {
         return (background + " " + c + " " + RESET);
     }
 
+    /**
+     * Stampa l'elenco dei comandi disponibili seguiti
+     * da una loro breve descrizione.
+     */
     public void printHelp() {
         println("Il gioco accetta i seguenti comandi:");
         println(BOLD + "\t/gioca" + RESET + "\t\t\tinizia una nuova partita "
