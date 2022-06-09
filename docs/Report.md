@@ -176,21 +176,21 @@ Si è considerata la griglia di gioco come una matrice di tentativi a dimensione
 ## 5. OO design
 Nella modellazione delle classi abbiamo mantenuto una costante attenzione sullla suddivisione dei ruoli **entity**, **control** e **boundary**.
 
-- Le classi boundary, che costituiscono la parte dell'applicazione adibita alla *User Interface*, comunicano solo tra di loro e con la classe di controllo **Wordle**. 
+- Le classi boundary, che costituiscono la parte dell'applicazione adibita alla *User Interface*, comunicano solo tra di loro e con le classi di controllo che implementano le interfacce di **PlayerController** o **WordSmithController**. 
 
-- La classe **Wordle** permette di gestire interamente le partite del gioco: fornisce un'API composta da metodi che
+- Le classi **PlayerController** e **WordSmithController** permettono di gestire interamente le partite del gioco: forniscono un'API composta da metodi che:
   - sono indipendenti dalla particolare UI implementata
   - racchiudono tutte le interazioni con le classi di tipo entity non esponendole all'esterno
   - controllano tutte le condizioni di integrità per la corretta esecuzione delle partite.
 
 - Le classi entity ricalcano le classi concettuali individuate nel modello di dominio: abbiamo ritenuto opportuno che la classe **LetterBox** (ovvero la cella nel modello di dominio) fosse interna al tentativo, in quanto ciò rispecchia il legame concettuale di composizione.
 
-Abbiamo scelto di memorizzare in **Wordle**, tramite attributi statici, le impostazioni di gioco, che vengono impostate dall'utente prima che decida di inziare una partita: alla creazione dell'oggetto partita (classe **WordleGame**) i valori impostati saranno copiati come suoi attributi di istanza e caratterizzeranno la partita.
+Abbiamo scelto di memorizzare in **WordleSession**, tramite attributi di classe, le impostazioni di gioco, che vengono impostate dall'utente prima che decida di inziare una partita: alla creazione dell'oggetto partita (classe **WordleGame**) i valori impostati saranno copiati come suoi attributi di istanza e caratterizzeranno la partita.
 - Attualmente l'unica impostazione modificata dall'utente è la parola segreta
 - Altre impostazioni sono il numero massimo di tentativi e la lunghezza delle parole, per ora non modificabili
 
 ### DIAGRAMMI USER STORY
-Nei seguenti diagrammi vengono omessi alcuni dettagli facilmente comprensibili dal codice in quanto appesantirebbero inutilmente la lettura; inoltre i metodi che costituiscono l'interfaccia fornita dalla classe controllo vengono sempre riportati in quanto riteniamo importante evidenziare tutti i metodi per la comunicazione tra la _User Interface_ e l'_API Wordle_
+Nei seguenti diagrammi vengono omessi alcuni dettagli facilmente comprensibili dal codice in quanto appesantirebbero inutilmente la lettura; inoltre i metodi che costituiscono l'interfaccia fornita dalla classe controllo vengono sempre riportati in quanto riteniamo importante evidenziare tutti i metodi per la comunicazione tra la _User Interface_ e l'_API PlayerController_ o l'_API WordSmithController_
 
 _Nota: gli attributi e i metodi della classe parser vengono tutti utilizzati in ogni User story, per cui si presenta tale classe nella sua interezza in modo tale da non ripeterne i membri negli altri diagrammi delle classi._
 
@@ -292,7 +292,7 @@ _nota: se nel tentativo sono presenti più lettere uguali che dovrebbero essere 
 
 ### Pattern design
 
-Per migliorare la qualità di ciò che era già stato fatto precedentemente si è deciso di applicare i design pattern laddove possibile cosi da attuare soluzioni collaudate a problemi ricorrenti. In particolare è stato deciso di attuare il pattern "*COMMAND*", alla classe Command.java. L'applicazione di questo pattern ha permesso di evitare di accoppiare l'invocatore di una richiesta (ovvero la classe App) con la richiesta. Quindi è stata incapsulata la richiesta in un istanza di Command così che questa possa essere utilizzata come un qualsiasi oggetto e inoltre può essere accessibile anche in un secondo momento.
+Per migliorare la qualità di ciò che era già stato fatto precedentemente si è deciso di applicare i design pattern laddove possibile cosi da attuare soluzioni collaudate a problemi ricorrenti. In particolare è stato deciso di attuare il pattern "*COMMAND*", alla classe App.Command.java. L'applicazione di questo pattern ha permesso di evitare di accoppiare l'invocatore di una richiesta (ovvero la classe App) con la richiesta. Quindi è stata incapsulata la richiesta in un istanza di Command così che questa possa essere utilizzata come un qualsiasi oggetto e inoltre può essere accessibile anche in un secondo momento.
 
 ### Analisi delle scelte effettuate in adesione all'OO design
 
@@ -300,17 +300,17 @@ Durante la progettazione e la stesura del codice del progetto si è voluta tener
 
 - **Information hiding**: tutti gli attributi delle classi sono stati resi privati ed accessibili solo attraverso opportune operazioni di get e set, così da soddisfare il principio dell'incapsulamento dei dati. 
 
-- **Alta coesione**: ogni classe presenta un'alta resposabilità e si occupa solo delle operazione ad essa competenti, un esempio ben visibile è l'utilizzo della classe Printer per gestire le stampe a schermo. Oltre che nella classe Printer, questo principio è stato applicato anche a tutte le altre classi, basti notare la distinzione tra WordlePlayerController e WordleSmithController, o anche nell'incapsulamento dei metodi per il controllo dei comandi inseriti in due classi distinte, ovvero ParserToken che si occupa di tokenizzare il comando inserito e Parser che invece avrà la responsabilità di decifrare l'input inserito dall'utente
+- **Alta coesione**: ogni classe presenta un'alta resposabilità e si occupa solo delle operazioni ad essa competenti, un esempio ben visibile è l'utilizzo della classe WordlePrinter per gestire le stampe a schermo. Oltre che nella classe WordlePrinter, questo principio è stato applicato anche a tutte le altre classi, basti notare la distinzione tra WordlePlayerController e WordleWordsmithController, o anche nell'incapsulamento dei metodi per il controllo dei comandi inseriti in due classi distinte, ovvero ParserToken che si occupa di tokenizzare il comando inserito e Parser che invece avrà la responsabilità di decifrare l'input inserito dall'utente.
 
 - **Basso accoppiamento**: effettuare un cambiamento in una classe non impatterà sulle altre. Anche la presenza di questo principio può essere constatata tra le classi Parser e ParserToken infatti se cambiamo l'algoritmo che trova gli allias in ParserToken, questo non impatterà sul funzionamento di Parser.
 
-- **Presentazione separata**: la parte di presentazione e la logica di dominio devono essere tenute separate. Nel nostro progetto infatti è stato deciso di utilizzare le classi WordlePlayerController e WordleSmithController come API.
+- **Presentazione separata**: la parte di presentazione e la logica di dominio devono essere tenute separate. Nel nostro progetto infatti è stato deciso di utilizzare le classi PlayerController e WordsmithController come API.
 
 Inoltre sono stati applicati i principi **SOLID**:
 
 - **Single responsability**: ogni classe presenta una singola responsabilità. Come citato precedentemente l'applicazione presenta un alta coesione perciò le responsabilità delle classi sono tenute separate.
 
-- **Open/Closed**: per ottenere questo principo SOLID è stato deciso di implementare le classi WordlePlayerController e WordleSmithController mediante le loro interfaccie così da rendere possibile in futuro nuove implementazioni di queste interfaccie nel caso venga deciso di implementare nuove modalità all'interno del gioco Wordle.
+- **Open/Closed**: e' stato deciso di utilizzare le interfacce WordsmithController e PlayerController per facilitare l'adattamento del codice ad aggiornamenti futuri come ad esempio player di tipi diversi.
 
 *I principi non menzionati non sono stati attuati perchè non presenti casi di applicazione*
 
