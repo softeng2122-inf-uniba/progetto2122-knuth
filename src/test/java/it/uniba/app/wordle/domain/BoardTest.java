@@ -21,7 +21,7 @@ class BoardTest {
 
         @BeforeEach
         void createNewBoard() {
-            board = new Board(DEFAULT_COLUMN, DEFAULT_ROW);
+            board = new Board(DEFAULT_ROW, DEFAULT_COLUMN);
         }
 
         @Test
