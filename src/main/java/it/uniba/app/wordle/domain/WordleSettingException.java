@@ -5,13 +5,13 @@ package it.uniba.app.wordle.domain;
  *  Eccezione lanciata in situazioni che richiedono particolari
  *  precondizioni sulle impostazioni di gioco, nelle quali esse
  *  non sono rispettate.
- *  <p></p>
  *
- *  Esempio: Precondizione per iniziare una partita è l'aver
- *  impostato una parola segreta.
+ *  <p>Esempio: Precondizione per iniziare una partita è l'aver
+ *  impostato una parola segreta.</p>
  */
 public class WordleSettingException extends RuntimeException {
 
+    /** Messaggio per denotare la mancanza della parola segreta. */
     public static final String ABSENT_SECRET_WORD
             = "Parola segreta non impostata";
 
