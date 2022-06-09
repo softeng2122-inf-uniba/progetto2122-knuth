@@ -309,6 +309,33 @@ Inoltre sono stati applicati i principi **SOLID**:
 
 *I principi non menzionati non sono stati attuati perchè non presenti casi di applicazione*
 
+## 8. Processo di sviluppo e di organizzazione del lavoro
+
+In generale il processo di sviluppo del software, nel team Knuth, ha seguito, personalizzandolo, il workflow stabilito dal framework Scrum affine ai principi dello sviluppo Agile.
+
+Nello specifico, in seguito all'assegnazione di ogni Sprint:
+
+- Il team, autogestendosi, ha stabilito il corrispondente Sprint Goal selezionando gli elementi del Product Backlog per lo sprint e tenendolo a mente per tutta la durata dello sprint stesso. 
+- Il team ha deciso come organizzare nel tempo le funzionalità richieste andando a costruire una Scrum Board digitale che riportasse lo stato, durante lo sviluppo, degli elementi selezionati al punto precedente.
+- Il team, grazie ad una leadership condivisa, ha assegnato ad ogni membro, ritenuto comunemente più idoneo, lo sviluppo della funzionalità richiesta.
+
+Fondamentali, durante il processo di sviluppo, sono stati i Daily Scrum Meeting,  organizzati a inizio giornata, o eccezionalmente spostati in orari compatibili con gli impegni universitari. Hanno permesso al team di ottimizzare la collaborazione tra i membri e l'organizzazione del lavoro nel tempo a disposizione. Tali meeting sono stati importanti per tenere traccia del lavoro individuale e dell'eventuale insorgere di difficoltà, da condividere e risolvere con il team.
+
+Il team ha dato la dovuta importanza ad ogni Sprint Review:
+
+- garantendone la partecipazione di ogni membro, preferibilmente di persona quando possibile, altrimenti in modalità telematica
+- traendo spunti di miglioramento per lo sprint successivo.
+
+Successivamente ad ogni Sprint Review si è organizzata una Sprint Retrospective che il team ha utilizzato come occasione per:
+- discutere e applicare eventuali consigli derivanti dalla review
+- fare considerazioni sulle modalità di lavoro applicate nello sprint appena concluso proponendo idee di miglioramento ed evidenziando aspetti già funzionali
+- avere consapevolezza dell'umore dei vari membri e capire come mantenerlo alto
+- prendere coscienza dei tempi del team e organizzarli in maniera efficiente, ottimizzando i carichi di lavoro. 
+
+Oltre a quanto detto, per quanto concerne l'organizzazione del lavoro e i tools utilizzati:
+
+- si è fatto uso di strumenti sia fisici, quali lavagne, fogli di carta e post-it, sia digitali, quali GitHub, Trello e Teams i quali ci hanno permesso di rendere più agevole il lavoro svolto e di attenuare il disagio derivante dalla mancaza di una sede fisica in cui lavorare
+- per uniformare il lavoro di squadra si è adottata la convenzione di utilizzare IntelliJ come IDE per la scrittura del codice, Visual Studio Code per la creazione di documentazione in formato markdown, StarUML per la creazione di diagrammi e git CLI per il controllo di versione.
 
 
 ## 9. Analisi retrospettiva
