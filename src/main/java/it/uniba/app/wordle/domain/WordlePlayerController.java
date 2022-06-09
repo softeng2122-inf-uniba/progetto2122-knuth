@@ -22,10 +22,12 @@ public final class WordlePlayerController implements PlayerController {
         return session;
     }
 
+    @Override
     public boolean isGameRunning() {
         return session.isGameRunning();
     }
 
+    @Override
     public void startGame() {
         if (isGameRunning()) {
             throw new WordleGameException(
@@ -42,6 +44,7 @@ public final class WordlePlayerController implements PlayerController {
                                               session.getWordLength()));
     }
 
+    @Override
     public int getMaxGuesses() {
         if (!isGameRunning()) {
             throw new WordleGameException(
@@ -51,6 +54,7 @@ public final class WordlePlayerController implements PlayerController {
         return session.getCurrentGame().getMaxGuesses();
     }
 
+    @Override
     public int getNumRemainingGuesses() {
         if (!isGameRunning()) {
             throw new WordleGameException(
@@ -60,6 +64,7 @@ public final class WordlePlayerController implements PlayerController {
         return session.getCurrentGame().getNumRemainingGuesses();
     }
 
+    @Override
     public int getWordLength() {
         if (!isGameRunning()) {
             throw new WordleGameException(
@@ -68,6 +73,7 @@ public final class WordlePlayerController implements PlayerController {
         return session.getCurrentGame().getWordLength();
     }
 
+    @Override
     public void guess(final String guessWord) {
         Objects.requireNonNull(guessWord);
 
@@ -130,6 +136,7 @@ public final class WordlePlayerController implements PlayerController {
         gameBoard.acceptNewGuess(newGuess);
     }
 
+    @Override
     public boolean getGuessResult() {
         if (!isGameRunning()) {
             throw new WordleGameException(
@@ -149,6 +156,7 @@ public final class WordlePlayerController implements PlayerController {
         }
     }
 
+    @Override
     public char getLetter(final int row, final int column) {
         if (!isGameRunning()) {
             throw new WordleGameException(
@@ -168,6 +176,7 @@ public final class WordlePlayerController implements PlayerController {
         }
     }
 
+    @Override
     public Color getColor(final int row, final int column) {
         if (!isGameRunning()) {
             throw new WordleGameException(
@@ -187,6 +196,7 @@ public final class WordlePlayerController implements PlayerController {
         }
     }
 
+    @Override
     public void endGame() {
         if (!isGameRunning()) {
             throw new WordleGameException(
@@ -219,6 +229,7 @@ public final class WordlePlayerController implements PlayerController {
         }
     }
 
+    @Override
     public String getGameSecretWord() {
         if (!isGameRunning()) {
             throw new WordleGameException(
