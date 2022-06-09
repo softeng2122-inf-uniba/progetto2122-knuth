@@ -2,18 +2,18 @@ package it.uniba.app.wordle.UI.CLI;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public final class ParserToken {
 
     private final App.Command command;
     private final String[] args;
     private int numMissingArgs;
-    private List<App.Command> closeCommands;
+    private Set<App.Command> closeCommands;
 
-    private static final List<App.Command> EMPTY_COMMAND_LIST
-                                          = Collections.emptyList();
+    private static final Set<App.Command> EMPTY_COMMAND_SET
+                                          = Collections.emptySet();
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     public String[] getCloseCommandsStrings() {
@@ -26,20 +26,20 @@ public final class ParserToken {
         }
     }
 
-    private void setCloseCommands(final List<App.Command> closeCommandsList) {
-        Objects.requireNonNull(closeCommandsList);
+    private void setCloseCommands(final Set<App.Command> closeCommandsSet) {
+        Objects.requireNonNull(closeCommandsSet);
 
-        if (closeCommandsList.isEmpty()) {
-            this.closeCommands = EMPTY_COMMAND_LIST;
+        if (closeCommandsSet.isEmpty()) {
+            this.closeCommands = EMPTY_COMMAND_SET;
         } else {
             this.closeCommands
-                    = Collections.unmodifiableList(closeCommandsList);
+                    = Collections.unmodifiableSet(closeCommandsSet);
         }
     }
 
     public ParserToken(final App.Command extractedCommand,
                        final String[] extractedArgs,
-                       final List<App.Command> closeCommandsList) {
+                       final Set<App.Command> closeCommandsSet) {
         Objects.requireNonNull(extractedCommand);
         Objects.requireNonNull(extractedArgs);
 
@@ -50,7 +50,7 @@ public final class ParserToken {
             this.args = Arrays.copyOf(extractedArgs, extractedArgs.length);
         }
 
-        setCloseCommands(closeCommandsList);
+        setCloseCommands(closeCommandsSet);
         setNumMissingArgs();
     }
 

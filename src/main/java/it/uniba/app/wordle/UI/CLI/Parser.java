@@ -1,11 +1,12 @@
 package it.uniba.app.wordle.UI.CLI;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * {@literal <<Boundary>>} <br>
@@ -18,10 +19,10 @@ public final class Parser {
     private String[] tokens;
     private App.Command command;
     private String[] args;
-    private List<App.Command> closeCommands;
+    private Set<App.Command> closeCommands;
 
-    private static final List<App.Command> EMPTY_COMMAND_LIST
-                                    = Collections.emptyList();
+    private static final Set<App.Command> EMPTY_COMMAND_SET
+                                    = Collections.emptySet();
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     public Parser() {
@@ -29,7 +30,7 @@ public final class Parser {
         tokens = EMPTY_STRING_ARRAY;
         command = null;
         args = EMPTY_STRING_ARRAY;
-        closeCommands = EMPTY_COMMAND_LIST;
+        closeCommands = EMPTY_COMMAND_SET;
     }
 
     public void feed(final String inputLine) {
@@ -134,11 +135,11 @@ public final class Parser {
         return Math.min(Math.min(i, j), k);
     }
 
-    private List<App.Command> getCloseCommands(
+    private Set<App.Command> getCloseCommands(
                     final String wrongCommandString) {
         Objects.requireNonNull(wrongCommandString);
 
-        List<App.Command> tempCloseCommands = EMPTY_COMMAND_LIST;
+        Set<App.Command> tempCloseCommands = EMPTY_COMMAND_SET;
         int distance = 2;
         int editDist;
 
@@ -152,7 +153,7 @@ public final class Parser {
 
             if (editDist <= distance) {
                 if (tempCloseCommands.isEmpty()) {
-                    tempCloseCommands = new ArrayList<>();
+                    tempCloseCommands = new HashSet<>();
                 }
                 tempCloseCommands.add(comparedCommand);
             }
