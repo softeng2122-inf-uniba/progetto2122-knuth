@@ -17,28 +17,28 @@ class Guess {
      * e incapsula lettera e colore.
      */
     private static class LetterBox {
-        private final Character letter;
-        private Color color;
+        private final Character containedLetter;
+        private Color boxColor;
 
         LetterBox(final char letter, final Color color) {
             Objects.requireNonNull(color);
 
-            this.letter = letter;
-            this.color = color;
+            this.containedLetter = letter;
+            this.boxColor = color;
         }
 
         public Color getColor() {
-            return color;
+            return boxColor;
         }
 
         public void setColor(final Color color) {
             Objects.requireNonNull(color);
 
-            this.color = color;
+            this.boxColor = color;
         }
 
         public Character getLetter() {
-            return letter;
+            return containedLetter;
         }
     }
 
@@ -66,11 +66,12 @@ class Guess {
     }
 
     public Character getLetter(final int index) {
-        return cellArray[index].letter;
+
+        return cellArray[index].getLetter();
     }
 
     public String getWord() {
-        StringBuilder s = new StringBuilder("");
+        StringBuilder s = new StringBuilder();
 
         for (LetterBox lb : cellArray) {
             s.append(lb.getLetter());

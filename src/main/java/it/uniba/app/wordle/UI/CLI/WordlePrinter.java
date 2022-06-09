@@ -12,7 +12,7 @@ import java.io.PrintWriter;
  * Utilizza codici ANSI per la visualizzazione dei colori
  * e costanti UNICODE nelle stampe di gioco.
  */
-public final class Printer extends PrintWriter {
+public final class WordlePrinter extends PrintWriter {
     // angoli (L = left, R = right, U = up, D = down)
     private static final char L_U_ANGLE = '\u2554';
     private static final char R_U_ANGLE = '\u2557';
@@ -35,19 +35,19 @@ public final class Printer extends PrintWriter {
             + HORIZONTAL_EDGE + HORIZONTAL_EDGE;
 
     //backgrounds
-    public static final String GREY_BACKGROUND = "\u001b[30;47m"; //GREY
-    public static final String GREEN_BACKGROUND = "\u001b[30;42m";  // GREEN
-    public static final String YELLOW_BACKGROUND = "\u001b[30;43m"; // YELLOW
+    private static final String GREY_BACKGROUND = "\u001b[30;47m"; //GREY
+    private static final String GREEN_BACKGROUND = "\u001b[30;42m";  // GREEN
+    private static final String YELLOW_BACKGROUND = "\u001b[30;43m"; // YELLOW
     // bold
-    public static final String BOLD = "\u001b[1m";
+    private static final String BOLD = "\u001b[1m";
     // reset
-    public static final String RESET = "\u001b[0m";  // Text Reset
+    private static final String RESET = "\u001b[0m";  // Text Reset
 
     private final PlayerController playerController;
 
-    Printer(final OutputStreamWriter out, final PlayerController playerController) {
+    WordlePrinter(final OutputStreamWriter out, final PlayerController controller) {
         super(out, true);
-        this.playerController = playerController;
+        this.playerController = controller;
     }
 
     /**

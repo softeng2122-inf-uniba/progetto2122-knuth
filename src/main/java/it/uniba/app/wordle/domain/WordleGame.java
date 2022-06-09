@@ -13,11 +13,11 @@ class WordleGame {
     private final Board gameBoard;
 
     //costruttore con scelta parola e dimensioni del gioco
-    WordleGame(final String secretWord,
+    WordleGame(final String gameSecretWord,
                final  int numMaxGuesses, final int wordLength) {
-        Objects.requireNonNull(secretWord);
+        Objects.requireNonNull(gameSecretWord);
 
-        this.secretWord = secretWord;
+        this.secretWord = gameSecretWord;
         this.gameBoard = new Board(wordLength, numMaxGuesses);
     }
 

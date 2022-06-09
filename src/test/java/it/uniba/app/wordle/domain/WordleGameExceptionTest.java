@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("Un WordleGameExceptionTest")
-public class WordleGameExceptionTest {
+class WordleGameExceptionTest {
 
     @ParameterizedTest
     @ValueSource(strings = {WordleGameException.EXISTS_GAME,
@@ -14,7 +14,7 @@ public class WordleGameExceptionTest {
                             WordleGameException.NO_GUESSES_LEFT,
                             "Stringa di prova"})
     @DisplayName("restituisce il messaggio corretto")
-    void testExceptionWithSpecialString(String message) {
+    void testExceptionWithSpecialString(final String message) {
         assertEquals(message, (new WordleGameException(message)).getMessage());
     }
 }
