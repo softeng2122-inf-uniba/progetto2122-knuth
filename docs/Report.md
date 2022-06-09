@@ -318,8 +318,8 @@ L'applicazione consente di giocare a Wordle da linea di comando.
 ## descrizione funzionale dell'applicazione
 
 Questa versione del gioco consente di:
-- ricoprire il ruolo di paroliere: come paroliere, si può inserire una nuova parola segreta e mostrarla a video durante il gioco.
-- ricoprire il ruolo di giocatore: come giocatore, si può iniziare una nuova partita, effettuare i tentativi allo scopo di indovinare la parola segreta e abbandonare una partita in corso.
+- Ricoprire il ruolo di paroliere: come paroliere, si può inserire una nuova parola segreta e mostrarla a video durante il gioco.
+- Ricoprire il ruolo di giocatore: come giocatore, si può iniziare una nuova partita, effettuare i tentativi allo scopo di indovinare la parola segreta e abbandonare una partita in corso.
 
 ## guida ai comandi
 
@@ -488,8 +488,6 @@ Oltre a quanto detto, per quanto concerne l'organizzazione del lavoro e i tools 
 
 - si è fatto uso di strumenti sia fisici, quali lavagne, fogli di carta e post-it, sia digitali, quali GitHub, Trello e Teams i quali ci hanno permesso di rendere più agevole il lavoro svolto e di attenuare il disagio derivante dalla mancaza di una sede fisica in cui lavorare
 - per uniformare il lavoro di squadra si è adottata la convenzione di utilizzare IntelliJ come IDE per la scrittura del codice, Visual Studio Code per la creazione di documentazione in formato markdown, StarUML per la creazione di diagrammi e git CLI per il controllo di versione.
-
-<
 
 ## 9. Analisi retrospettiva
 ### Sprint 1
