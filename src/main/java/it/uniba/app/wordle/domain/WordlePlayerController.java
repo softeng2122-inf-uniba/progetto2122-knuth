@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * {@literal <<Control>>}<br>
+ * Implementazione di {@link PlayerController}, crea e gestisce
+ * una sola sessione di gioco come giocatore.
+ */
 public final class WordlePlayerController implements PlayerController {
 
     /** Sessione di gioco su cui agire. */
@@ -220,7 +225,7 @@ public final class WordlePlayerController implements PlayerController {
     /**
      * Controllo sulla parola inserita, che dev'essere
      * della lunghezza appropriata e deve contenere solo
-     * lettere (non altri tipi di caratteri).
+     * caratteri alfabetici.
      *
      * @param word parola da controllare
      * @throws IllegalArgumentException se una delle condizioni

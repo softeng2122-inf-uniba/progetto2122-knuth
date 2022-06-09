@@ -1,9 +1,19 @@
 package it.uniba.app.wordle.domain;
 
+/**
+ * {@literal <<Control>>}<br>
+ * Controllore che permette di realizzare le funzionalità adibite al giocatore.
+ *
+ * <p>Col complemento di {@link WordsmithController}, fornisce
+ * un'<i>Application Programming Interface</i> per gestire interamente
+ * una sessione di gioco senza esporre le classi che costituiscono
+ * il modello dei dati del gioco Wordle.</p>
+ */
 public interface PlayerController {
 
     /**
-     * Controlla se nella sessione collegata a this è in corso una partita.
+     * Controlla se nella sessione collegata a questo PlayerController
+     * è in corso una partita.
      *
      * @return true se è in corso una partita, false altrimenti
      */
@@ -13,7 +23,8 @@ public interface PlayerController {
      * Inizia una nuova partita a Wordle.
      *
      * @throws WordleGameException se una partita è già in corso
-     * @throws WordleSettingException se la parola segreta non è impostata
+     * @throws WordleSettingException se la parola segreta non è stata
+     * impostata
      */
     void startGame();
 
@@ -56,13 +67,14 @@ public interface PlayerController {
      * @throws WordleGameException se nessuna partita è in corso
      * o se è stato già raggiunto il numero massimo di tentativi
      * @throws IllegalArgumentException se {@code guessWord}
-     * non soddisfa la lunghezza prevista o contiene caratteri non validi
+     * non soddisfa la lunghezza prevista o contiene caratteri non alfabetici
      * @throws NullPointerException se {@code guessWord} è null
      */
     void guess(String guessWord);
 
     /**
-     * Restituisce il risultato dell'ultimo tentativo effettuato.
+     * Restituisce il risultato dell'ultimo tentativo effettuato nella
+     * partita corrente.
      *
      * @throws WordleGameException se nessuna partita è in corso
      * @return true se il tentativo è vincente, false se non è vincente
@@ -84,7 +96,7 @@ public interface PlayerController {
      *                 dei tentativi - 1
      * @return  la lettera nella casella alla riga {@code row}
      * e alla colonna {@code column} se il tentativo corrispondente
-     * alla riga {@code row} è stato effettuato, ' ' altrimenti
+     * alla riga {@code row} è stato effettuato, ' ' (spazio) altrimenti
      * @throws WordleGameException se nessuna partita è in corso
      * @throws  IllegalArgumentException se {@code row} o {@code column}
      * eccedono le dimensioni della matrice dei tentativi
@@ -122,7 +134,7 @@ public interface PlayerController {
      * i tentativi disponibili. Questo consente al programmatore di
      * effettuare ulteriori azioni (es. salvataggio dati partita)
      * prima di perdere definitivamente le informazioni associate
-     * alla partita conclusa. </p>
+     * alla partita conclusa.</p>
      *
      * @throws WordleGameException se nessuna partita è in corso
      */

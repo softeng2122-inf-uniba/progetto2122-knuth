@@ -5,8 +5,8 @@ import java.util.Objects;
 /**
  * {@literal <<NoECB>>} <br>
  * Eccezione lanciata in situazioni che richiedono
- * come precondizione l'esistenza o la non esistenza
- * della partita, nelle quali essa non è rispettata.
+ * precondizioni legate allo stato della partita corrente
+ * o alla sua esistenza.
  *
  * <p>Esempio: Precondizione per effettuare un tentativo
  * è l'aver iniziato una partita.</p>

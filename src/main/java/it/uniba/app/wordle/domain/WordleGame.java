@@ -5,9 +5,6 @@ import java.util.Objects;
 /**
  * {@literal <<Entity>>} <br>
  * Classe che rappresenta una partita di Wordle.
- *
- * Fornisce metodi per recuperare le impostazioni
- * della partita, nonché la matrice dei tentativi.
  */
 class WordleGame {
     /** Parola segreta della partita. */
@@ -21,6 +18,7 @@ class WordleGame {
      * @param gameSecretWord parola segreta
      * @param numMaxGuesses tentativi massimi
      * @param wordLength numero di lettere
+     * @throws NullPointerException se {@code gameSecretWord} è null
      */
     WordleGame(final String gameSecretWord,
                final int numMaxGuesses,

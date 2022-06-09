@@ -3,11 +3,10 @@ package it.uniba.app.wordle.domain;
 import java.util.Objects;
 
 /**
- * {@literal <<Entity>>} <br>
- * Classe che rappresenta la matrice dei tentativi di dimensioni 5 righe per 6
- * colonne che contiene i tentativi validi inseriti dall'utente. <br>
- * Questa classe contiene metodi che forniscono informazioni sulla griglia e
- * per l'inserimento di nuovi tentativi.
+ * {@literal <<Entity>>}<br>
+ * Classe che rappresenta la matrice dei tentativi di una partita, la quale
+ * contiene i tentativi validi inseriti dall'utente segnando i colori
+ * di ogni lettera.
  */
 class Board {
     /** Array che contiene i tentativi secondo ordine d'inserimento. */

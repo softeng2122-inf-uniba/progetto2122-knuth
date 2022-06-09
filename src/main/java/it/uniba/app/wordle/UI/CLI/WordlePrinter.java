@@ -7,10 +7,11 @@ import java.io.PrintWriter;
 
 /**
  * {@literal <<Boundary>>} <br>
- * Classe per la stampa dell'output da visualizzare sulla console.
- * <p></p>
- * Utilizza codici ANSI per la visualizzazione dei colori
- * e costanti UNICODE nelle stampe di gioco.
+ * Classe per effettuare la stampa dell'output da visualizzare
+ * sulla console.
+ *
+ * <p>Utilizza codici ANSI per la visualizzazione dei colori
+ * e costanti UNICODE nelle stampe di gioco.</p>
  */
 public final class WordlePrinter extends PrintWriter {
     // angoli (L = left, R = right, U = up, D = down)
@@ -69,8 +70,7 @@ public final class WordlePrinter extends PrintWriter {
 
     /**
      * Stampa la matrice dei tentativi per la partita in corso,
-     * impostando il colore delle caselle in base al risultato
-     * di ogni tentativo.
+     * impostando l'opportuno colore di sfondo delle caselle.
      */
     public void printBoard() {
         int rows = playerController.getMaxGuesses();
@@ -90,6 +90,7 @@ public final class WordlePrinter extends PrintWriter {
         println(lowerPart(columns));
     }
 
+    // riga di bordo superiore della board
     private String upperPart(final int wordLength) {
         StringBuilder upperPart = new StringBuilder(L_U_ANGLE + ""
                 + HORIZONTAL_EDGE_X3);
@@ -103,6 +104,7 @@ public final class WordlePrinter extends PrintWriter {
         return upperPart.toString();
     }
 
+    // riga intermedia della board contenente le celle colorate con le lettere
     private String guessSlice(final int row) {
         StringBuilder guessSlice = new StringBuilder(VERTICAL_EDGE + "");
         Color c;
@@ -123,11 +125,8 @@ public final class WordlePrinter extends PrintWriter {
                 case GREY:
                     background = GREY_BACKGROUND;
                     break;
-                case NO_COLOR:
+                default:  // NO_COLOR
                     background = "";
-                    break;
-                default:  //possibili miglioramenti!!!
-                    throw new IllegalStateException("Colore non valido");
             }
             guessSlice.append(background + " " + l + " " + RESET)
                     .append(VERTICAL_EDGE);
@@ -135,6 +134,7 @@ public final class WordlePrinter extends PrintWriter {
         return guessSlice.toString();
     }
 
+    // riga intermedia di separazione tra tentativi
     private String separatorSlice(final int wordLength) {
         StringBuilder separatorSlice = new StringBuilder(L_SEPARATOR + ""
                 + HORIZONTAL_EDGE_X3);
@@ -148,6 +148,7 @@ public final class WordlePrinter extends PrintWriter {
         return separatorSlice.toString();
     }
 
+    // riga di bordo inferiore della board
     private String lowerPart(final int wordLength) {
         StringBuilder lowerPart = new StringBuilder(L_D_ANGLE + ""
                 + HORIZONTAL_EDGE_X3);

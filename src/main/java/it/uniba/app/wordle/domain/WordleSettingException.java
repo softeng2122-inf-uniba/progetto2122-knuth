@@ -3,8 +3,7 @@ package it.uniba.app.wordle.domain;
 /**
  * {@literal <<NoECB>>} <br>
  *  Eccezione lanciata in situazioni che richiedono particolari
- *  precondizioni sulle impostazioni di gioco, nelle quali esse
- *  non sono rispettate.
+ *  precondizioni sulle impostazioni di gioco non rispettate.
  *
  *  <p>Esempio: Precondizione per iniziare una partita è l'aver
  *  impostato una parola segreta.</p>

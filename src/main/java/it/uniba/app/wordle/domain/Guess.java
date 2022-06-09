@@ -4,9 +4,8 @@ import java.util.Objects;
 
 /**
  * {@literal <<Entity>>} <br>
- * Classe che rappresenta un tentativo del giocatore.
- * Ogni lettera del tentativo viene memorizzata in un
- * oggetto di {@link LetterBox}.
+ * Classe che rappresenta un tentativo effettuato dal giocatore, le cui lettere
+ * sono memorizzate in un oggetto di {@link LetterBox}.
  */
 class Guess {
     /** Contiene in ordine le lettere colorate che costituiscono la parola. */
@@ -50,6 +49,7 @@ class Guess {
      * e le colora con {@code Color.NO_COLOR}.
      *
      * @param guessingWord parola che costituisce il tentativo
+     * @throws NullPointerException se {@code guessingWord} è null
      */
     Guess(final String guessingWord) {
         Objects.requireNonNull(guessingWord);

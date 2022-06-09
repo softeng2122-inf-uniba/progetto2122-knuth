@@ -4,15 +4,15 @@ import java.util.Objects;
 
 /**
  * {@literal <<Entity>>} <br>
- * Classe che rappresenta una sessione di gioco: in ogni momento può
+ * Classe che rappresenta una sessione di gioco, in cui in ogni momento può
  * essere in corso una sola partita o nessuna.
  *
- * <p>Contiene le impostazioni di gioco, utilizzate nella creazione delle
- * nuove partite.</p>
+ * <p>Contiene anche le impostazioni di gioco, utilizzate quando si crea una
+ * nuova partita.</p>
  */
 class WordleSession {
 
-    /** Partita in corso (eventualmente {@code null}). */
+    /** Partita corrente (eventualmente {@code null}). */
     private WordleGame currentGame;
     /** Parola segreta impostata (inizialmente {@code null}). */
     private String secretWord;
