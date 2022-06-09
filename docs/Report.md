@@ -296,6 +296,23 @@ Per migliorare la qualità di ciò che era già stato fatto precedentemente si �
 
 ### Analisi delle scelte effettuate in adesione all'OO design
 
+Durante la progettazione e la stesura del codice del progetto si è voluta tenere una particolare attenzione ai principi dell'OO design. Di seguito viene riportata una lista dei principi applicati con eventuali esempi:
+
+- **Information hiding**: tutti gli attributi delle classi sono stati resi privati ed accessibili solo attraverso opportune operazioni di get e set, così da soddisfare il principio dell'incapsulamento dei dati. 
+
+- **Alta coesione**: ogni classe presenta un'alta resposabilità e si occupa solo delle operazione ad essa competenti, un esempio ben visibile è l'utilizzo della classe Printer per gestire le stampe a schermo. Oltre che nella classe Printer, questo principio è stato applicato anche a tutte le altre classi, basti notare la distinzione tra WordlePlayerController e WordleSmithController, o anche nell'incapsulamento dei metodi per il controllo dei comandi inseriti in due classi distinte, ovvero ParserToken che si occupa di tokenizzare il comando inserito e Parser che invece avrà la responsabilità di decifrare l'input inserito dall'utente
+
+- **Basso accoppiamento**: effettuare un cambiamento in una classe non impatterà sulle altre. Anche la presenza di questo principio può essere constatata tra le classi Parser e ParserToken infatti se cambiamo l'algoritmo che trova gli allias in ParserToken, questo non impatterà sul funzionamento di Parser.
+
+- **Presentazione separata**: la parte di presentazione e la logica di dominio devono essere tenute separate. Nel nostro progetto infatti è stato deciso di utilizzare le classi WordlePlayerController e WordleSmithController come API.
+
+Inoltre sono stati applicati i principi **SOLID**:
+
+- **Single responsability**: ogni classe presenta una singola responsabilità. Come citato precedentemente l'applicazione presenta un alta coesione perciò le responsabilità delle classi sono tenute separate.
+
+- **Open/Closed**: per ottenere questo principo SOLID è stato deciso di implementare le classi WordlePlayerController e WordleSmithController mediante le loro interfaccie così da rendere possibile in futuro nuove implementazioni di queste interfaccie nel caso venga deciso di implementare nuove modalità all'interno del gioco Wordle.
+
+*I principi non menzionati non sono stati attuati perchè non presenti casi di applicazione*
 
 
 
