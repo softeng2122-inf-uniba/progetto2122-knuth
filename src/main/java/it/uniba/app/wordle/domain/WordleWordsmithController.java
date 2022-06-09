@@ -4,8 +4,16 @@ import java.util.Objects;
 
 public final class WordleWordsmithController implements WordsmithController {
 
+    /** Sessione di gioco su cui agire. */
     private final WordleSession session;
 
+    /**
+     * Crea un controller che permette di eseguire i compiti del paroliere.
+     *
+     * @param playerController controller del giocatore a cui dev'essere
+     *                         collegato per poter agire sulla stessa
+     *                         sessione di gioco
+     */
     public WordleWordsmithController(
             final WordlePlayerController playerController) {
 
