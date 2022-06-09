@@ -309,7 +309,157 @@ Inoltre sono stati applicati i principi **SOLID**:
 
 *I principi non menzionati non sono stati attuati perchè non presenti casi di applicazione*
 
+## 7. MANUALE UTENTE
 
+## scopo dell'applicazione
+
+L'applicazione consente di giocare a Wordle da linea di comando.
+
+## descrizione funzionale dell'applicazione
+
+Questa versione del gioco consente di:
+- ricoprire il ruolo di paroliere: come paroliere, si può inserire una nuova parola segreta e mostrarla a video durante il gioco.
+- ricoprire il ruolo di giocatore: come giocatore, si può iniziare una nuova partita, effettuare i tentativi allo scopo di indovinare la parola segreta e abbandonare una partita in corso.
+
+## guida ai comandi
+
+Per interagire con l'applicazione si utilizzano i seguenti comandi:
+- /help
+- /gioca
+- /nuova \<parola>
+- /mostra
+- /abbandona
+- /esci
+
+ad ognuno di questi comandi è associata la funzionalità che consente di interagire con il gioco a seconda dei casi a seguito elencati.
+
+1. ### stampa dei comandi
+
+Tramite il comando /help, l'applicazione stampa la descrizione del gioco seguita dai comandi associati ad una breve descrizione.
+
+Nel caso di lancio dell'applicazione con flag --help o -h, la descrizione del gioco è seguita dalla stampa dei comandi ad inizio partita.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/comandHelp.png" alt="comandHelp" width="1000"/>
+</p>
+
+- ## paroliere
+
+2. ### inserimento di una parola segreta
+
+Tramite il comando /nuova \<parola>, specificando una parola composta da 5 caratteri alfabetici (limitati alle 26 lettere dell'alfabeto), si imposta la parola segreta in modo tale che le successive richieste di inizio partita avranno come parola segreta tale parola.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/comandoNuovaTrenoOk.png" alt="comandoNuovaTrenoOk" width="1000"/>
+</p>
+
+La parola segreta impostata rimane la stessa fin quando non viene rieseguito il comando /nuova da parte del paroliere.
+
+Nel caso di inserimento di una parola segreta contenente caratteri non compresi tra quelli ammessi, l'applicazione notifica l'errore e non consente di impostare la parola segreta inserita
+
+<p align="center">
+  <img src="./img/report img/guida utente img/NuovaNonValida.png" alt="NuovaNonValida" width="1000"/>
+</p>
+
+Nel caso di inserimento di una parola segreta troppo corta o troppo lunga, l'applicazione notifica l'errore e non consente di impostare la parola segreta inserita.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/NuovaLunghezzaInvalida.png" alt="NuovaLunghezzaInvalida" width="1000"/>
+</p>
+
+3. ### stampa parola segreta
+
+Tramite il comando /mostra, in qualsiasi momento del gioco è possibile visualizzare la parola segreta attualmente impostata.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/comandoMostra.png" alt="comandoMostra" width="1000"/>
+</p>
+
+Nel caso in cui si esegue il comando /mostra in assenza di una parola segreta impostata, l'applicazione, tramite messaggio, informa dell'assenza di una parola segreta.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/MostraSenzaParolaImpostata.png" alt="MostraSenzaParolaImpostata" width="1000"/>
+</p>
+
+- ## giocatore
+
+4. ### inizio partita
+
+Tramite il comando /gioca, è possibile iniziare una nuova partita, mostrando la griglia delle lettere vuota.
+
+Nel caso in cui si esegue il comando /gioca in assenza di una parola segreta impostata, l'applicazione, tramite messaggio, informa dell'assenza di una parola segreta, che comporta l'impossibilità di iniziare una nuova partita, e di conseguenza non viene stampata la griglia delle lettere.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/comandoGioca.png" alt="comandoGioca" width="1000"/>
+</p>
+
+5. ### svolgimento di una partita
+
+L'inserimento di un nuovo tentativo non è vincolato a nessun comando e richiede il semplice inserimento del tentativo, composto da 5 caratteri alfabetici.
+
+Ogni partita prevede un limite di tentativi possibili pari a 6.
+A seguito dell'inserimento di un tentativo valido, viene aggiornata e stampata la griglia delle lettere. Ad ogni lettera del tentativo viene associato un colore:
+- verde, nel caso in cui la parola segreta della partita contiene tale lettera e in tale posizione
+- giallo, nel caso in cui la parola segreta della partita contiene tale lettera ma non in tale posizione
+- grigio, nel caso in cui la parola segreta non contiene tale lettera
+
+Nel caso in cui il tentativo inserito non corrisponde alla parola segreta e non è terminato il numero di tentativi disponibili, l'applicazione, una volta stampata la griglia con l'esito del confronto, rimane in attesa di un nuovo tentativo
+
+<p align="center">
+  <img src="./img/report img/guida utente img/tentativi.png" alt="tentativi" width="150"/>
+</p>
+
+Nel caso in cui il tentativo inserito non corrisponde alla parola segreta e il numero di tentativi disponibili è terminato, l'applicazione, una volta stampata la griglia con l'esito del confronto, stampa il messaggio di avviso di terminazione di tentativi disponibili e stampa la parola segreta.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/parolaNonTrovata.png" alt="parolaNonTrovata" width="300"/>
+</p>
+
+Nel caso in cui prima del termine dei tentativi disponibili viene inserito un tentativo corrispondente alla parola segreta, l'applicazione notifica l'individuazione della parola segreta e restituisce anche il numero di tentativi effettuati per indovinarla
+
+<p align="center">
+  <img src="./img/report img/guida utente img/parolaSegretaTrovata.png" alt="parolaSegretaTrovata" width="200"/>
+</p>
+
+Nel caso di inserimento di un tentativo contenente caratteri non compresi tra quelli ammessi, l'applicazione notifica l'errore e non consente di impostare la parola segreta inserita
+
+Nel caso di inserimento di un tentativo troppo corto o troppo lungo, l'applicazione notifica l'errore e non consente di impostare la parola segreta inserita.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/tentativiNonValidi.png" alt="tentativiNonValidi" width="200"/>
+</p>
+
+6. ### chiusura di una partita in corso
+
+Tramite il comando /abbandona, si può abbandonare una partita in corso.
+
+Nel caso in cui si inserisce il comando /abbandona durante una partita, l'applicazione stampa un messaggio di richiesta di conferma dell'abbandono. Nello specifico, si richiede dell'inserimento della stringa "si" nel caso in cui si voglia confermare l'abbandono della partita, l'inserimento della stringa "no" altrimenti. L'applicazione si mette in attesa fin quando non si inserisce una delle due precedenti stringhe.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/comandoAbbandona.png" alt="comandoAbbandona" width="1000"/>
+</p>
+
+Nel caso in cui si inserisce il comando quando non c'è nessuna partita in corso, l'applicazione notifica l'assenza di una partita in corso.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/AbbandonaInvalido.png" alt="AbbandonaInvalido" width="1000"/>
+</p>
+
+7. ### chiusura dell'applicazione
+
+Tramite il comando /esci, si può chiudere l'applicazione in ogni momento della partita.
+
+In caso di inserimento di tale comando, l'applicazione stampa un messaggio di richiesta di conferma della chiusura. Nello specifico, si richiede dell'inserimento della stringa "si" nel caso in cui si voglia confermare la chiusura del gioco, l'inserimento della stringa "no" altrimenti. L'applicazione si mette in attesa fin quando non si inserisce una delle due precedenti stringhe.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/comandoEsci.png" alt="comandoEsci" width="400"/>
+</p>
+
+Infine l'applicazione è capace di riconoscere comandi inseriti che differiscono per qualche lettera dal comando inserito, per cui nel qual caso l'utente inserisca un comando errato, ma simile ad un comando fornito dal gioco, l'applicazione fornisce una lista dei comandi più simili.
+
+<p align="center">
+  <img src="./img/report img/guida utente img/comandiSimili.png" alt="comandiSimili" width="1000"/>
+</p>
 
 ## 9. Analisi retrospettiva
 ### Sprint 1
