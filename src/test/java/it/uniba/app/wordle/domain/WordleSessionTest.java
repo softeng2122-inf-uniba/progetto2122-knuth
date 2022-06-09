@@ -1,13 +1,23 @@
 package it.uniba.app.wordle.domain;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 @DisplayName("Una nuova sessione")
 class WordleSessionTest {
 
-    WordleSession wordleSession;
+    private WordleSession wordleSession;
+    private static final int DEFAULT_MAX_GUESSES = 6;
+    private static final int DEFAULT_WORD_LENGTH = 5;
 
     @BeforeEach
     void createNewWordleSession() {
@@ -31,13 +41,13 @@ class WordleSessionTest {
     @Test
     @DisplayName("di default prevede partite da 6 tentativi")
     void testGetNMaxGuesses() {
-        assertEquals(6, wordleSession.getNMaxGuesses());
+        assertEquals(DEFAULT_MAX_GUESSES, wordleSession.getNMaxGuesses());
     }
 
     @Test
     @DisplayName("di default prevede parole da 5 lettere")
     void testGetWordLength() {
-        assertEquals(5, wordleSession.getWordLength());
+        assertEquals(DEFAULT_WORD_LENGTH, wordleSession.getWordLength());
     }
 
     @Nested
@@ -61,7 +71,7 @@ class WordleSessionTest {
         @DisplayName("creando una nuova partita")
         class AfterSettingCurrentGameTest {
 
-            WordleGame cg;
+            private WordleGame cg;
 
             @BeforeEach
             void insertCurrentGame() {

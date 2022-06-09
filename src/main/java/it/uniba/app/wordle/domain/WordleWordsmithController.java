@@ -12,6 +12,7 @@ public final class WordleWordsmithController implements WordsmithController {
         session = playerController.getSession();
     }
 
+    @Override
     public String getSecretWord() {
         if (!session.hasSecretWord()) {
             throw new WordleSettingException(
@@ -21,6 +22,7 @@ public final class WordleWordsmithController implements WordsmithController {
         return session.getSecretWord();
     }
 
+    @Override
     public void setSecretWord(final String newWord) {
         Objects.requireNonNull(newWord);
 

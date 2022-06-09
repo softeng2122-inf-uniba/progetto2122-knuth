@@ -11,27 +11,29 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @DisplayName("Una board")
 class BoardTest {
 
+    private Board board;
+    private static final int DEFAULT_COLUMN = 5;
+    private static final int DEFAULT_ROW = 6;
+
     @Nested
     @DisplayName("quando è istanziata con new Board(5, 6)")
     class CorrectlyCreatedTest {
 
-        Board board;
-
         @BeforeEach
         void createNewBoard() {
-            board = new Board(5, 6);
+            board = new Board(DEFAULT_COLUMN, DEFAULT_ROW);
         }
 
         @Test
         @DisplayName("contiene 6 righe")
         public void testGetRowsNumber() {
-            assertEquals(6, board.getRowsNumber());
+            assertEquals(DEFAULT_ROW, board.getRowsNumber());
         }
 
         @Test
         @DisplayName("contiene 5 colonne")
         public void testGetWordLength() {
-            assertEquals(5, board.getWordLength());
+            assertEquals(DEFAULT_COLUMN, board.getWordLength());
         }
 
         @Test
@@ -44,7 +46,7 @@ class BoardTest {
         @DisplayName("dopo l'inserimento del tentativo \"PROVA\"")
         class PushAGuessTest {
 
-            Guess guess;
+            private Guess guess;
             @BeforeEach
             void pushAGuess() {
                 guess = new Guess("PROVA");
@@ -78,8 +80,8 @@ class BoardTest {
                 }
 
                 @Test
-                @DisplayName("lancia ArrayIndexOutOfBoundsException " +
-                        "provando un ulteriore tentativo")
+                @DisplayName("lancia ArrayIndexOutOfBoundsException "
+                        + "provando un ulteriore tentativo")
                 void testGuessOverflow() {
                     assertThrows(ArrayIndexOutOfBoundsException.class,
                             () -> board.acceptNewGuess(new Guess("GATTO")));
@@ -97,7 +99,8 @@ class BoardTest {
             @Test
             @DisplayName("lancia NullPointerException")
             void testAcceptNullGuess() {
-                assertThrows(NullPointerException.class, () -> board.acceptNewGuess(null));
+                assertThrows(NullPointerException.class,
+                        () -> board.acceptNewGuess(null));
             }
 
         }
@@ -105,21 +108,27 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("lancia IllegalArgumentException se istanziata con new Board(-3, 6)")
+    @DisplayName("lancia IllegalArgumentException "
+            + "se istanziata con new Board(-1, 6)")
     void testInvalidFirstIndexBoard() {
-        assertThrows(IllegalArgumentException.class, () -> new Board(-3, 6));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Board(-1, DEFAULT_ROW));
     }
 
     @Test
-    @DisplayName("lancia NegativeArraySizeException se istanziata con new Board(5, -3)")
+    @DisplayName("lancia IllegalArgumentException "
+            + "se istanziata con new Board(5, -1)")
     void testInvalidSecondIndexBoard() {
-        assertThrows(IllegalArgumentException.class, () -> new Board(5, -3));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Board(DEFAULT_COLUMN, -1));
     }
 
     @Test
-    @DisplayName("quando è istanziata con new Board(0, 0) accetta il fesso")
+    @DisplayName("lancia IllegalArgumentException "
+            + "se istanziata con new Board(0, 0)")
     void testInvalidIndexBoard() {
-        assertThrows(IllegalArgumentException.class, () -> new Board(0, 0));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Board(0, 0));
     }
 
 }

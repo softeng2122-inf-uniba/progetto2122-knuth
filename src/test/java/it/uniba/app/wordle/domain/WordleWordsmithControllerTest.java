@@ -1,14 +1,18 @@
 package it.uniba.app.wordle.domain;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Un WordleWordsmithController")
-public class WordleWordsmithControllerTest {
+class WordleWordsmithControllerTest {
 
-    WordleWordsmithController wordsmithCtr;
-    WordlePlayerController playerCtr;
+    private WordleWordsmithController wordsmithCtr;
+    private WordlePlayerController playerCtr;
 
     @BeforeEach
     void createNewWordleWordsmithController() {

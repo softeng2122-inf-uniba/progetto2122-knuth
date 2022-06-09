@@ -1,6 +1,12 @@
 package it.uniba.app.wordle.UI.CLI;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Arrays;
+import java.util.Set;
 
 /**
  * {@literal <<Boundary>>} <br>
@@ -13,10 +19,10 @@ public final class Parser {
     private String[] tokens;
     private App.Command command;
     private String[] args;
-    private List<App.Command> closeCommands;
+    private Set<App.Command> closeCommands;
 
-    private static final List<App.Command> EMPTY_COMMAND_LIST
-                                    = Collections.emptyList();
+    private static final Set<App.Command> EMPTY_COMMAND_SET
+                                    = Collections.emptySet();
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     public Parser() {
@@ -24,7 +30,7 @@ public final class Parser {
         tokens = EMPTY_STRING_ARRAY;
         command = null;
         args = EMPTY_STRING_ARRAY;
-        closeCommands = EMPTY_COMMAND_LIST;
+        closeCommands = EMPTY_COMMAND_SET;
     }
 
     public void feed(final String inputLine) {
@@ -42,15 +48,15 @@ public final class Parser {
         }
     }
 
-    //un input "" ritorna un array con 0 elementi
+    //un input "" ritorna un array con zero elementi
     private String[] tokenizeInput() {
         if (input.length() == 0) {
             return EMPTY_STRING_ARRAY;
         }
 
-        String[] tokens;
-        tokens = input.split("\\s+");
-        return tokens;
+        String[] tempTokens;
+        tempTokens = input.split("\\s+");
+        return tempTokens;
     }
 
     private App.Command extractCommand() {
@@ -77,8 +83,8 @@ public final class Parser {
         }
     }
 
-    private String[] extractArgs(final App.Command command) {
-        Objects.requireNonNull(command);
+    private String[] extractArgs(final App.Command extractedCommand) {
+        Objects.requireNonNull(extractedCommand);
 
         if (tokens.length == 0) {
             return EMPTY_STRING_ARRAY;
@@ -86,11 +92,11 @@ public final class Parser {
 
         List<String> argsList = new LinkedList<>(Arrays.asList(tokens));
 
-        if (command != App.Command.GUESS) {
+        if (extractedCommand != App.Command.GUESS) {
             argsList.remove(0);
         }
 
-        int numArgsExpected = command.getNumArgs();
+        int numArgsExpected = extractedCommand.getNumArgs();
 
         if (argsList.size() > numArgsExpected) {
             argsList = argsList.subList(0, numArgsExpected);
@@ -129,11 +135,11 @@ public final class Parser {
         return Math.min(Math.min(i, j), k);
     }
 
-    private List<App.Command> getCloseCommands(
+    private Set<App.Command> getCloseCommands(
                     final String wrongCommandString) {
         Objects.requireNonNull(wrongCommandString);
 
-        List<App.Command> closeCommands = EMPTY_COMMAND_LIST;
+        Set<App.Command> tempCloseCommands = EMPTY_COMMAND_SET;
         int distance = 2;
         int editDist;
 
@@ -146,19 +152,17 @@ public final class Parser {
             editDist = editDistance(comparedString, wrongCommandString);
 
             if (editDist <= distance) {
-                if (closeCommands.isEmpty()) {
-                    closeCommands = new ArrayList<>();
+                if (tempCloseCommands.isEmpty()) {
+                    tempCloseCommands = new HashSet<>();
                 }
-                closeCommands.add(comparedCommand);
+                tempCloseCommands.add(comparedCommand);
             }
         }
-        return closeCommands;
+        return tempCloseCommands;
     }
 
     public ParserToken getParserToken() {
-        ParserToken temp = new ParserToken(command, args);
-        temp.setCloseCommands(closeCommands);
 
-        return temp;
+        return new ParserToken(command, args, closeCommands);
     }
 }

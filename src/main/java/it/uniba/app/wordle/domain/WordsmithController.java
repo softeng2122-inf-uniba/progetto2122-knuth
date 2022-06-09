@@ -11,7 +11,7 @@ public interface WordsmithController {
      * partita già iniziata).<br>
      * La scelta di tenere separati i due metodi è stata presa in quanto il
      * nostro team ritiene che favorisca la modificabilità del codice.
-     * @throws WordleSettingException  se la parola segreta non è stata
+     * @throws WordleSettingException se la parola segreta non è stata
      * impostata
      */
     String getSecretWord();
@@ -21,7 +21,7 @@ public interface WordsmithController {
      * @param newWord   parola segreta da impostare
      * @throws IllegalArgumentException se {@code newWord} non soddisfa
      * la lunghezza prevista o contiene caratteri non validi
-     * @throws WordleGameException  se una partita è già in corso
+     * @throws WordleGameException se una partita è già in corso
      */
     void setSecretWord(String newWord);
 }
