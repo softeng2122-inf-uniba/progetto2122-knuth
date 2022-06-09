@@ -16,11 +16,13 @@ import java.util.Scanner;
 
 /**
  * {@literal <<Boundary>>} <br>
- * Classe principale dell'applicazione. <p></p>
- * Contiene il main e i metodi specifici per l'esecuzione dei comandi
- * inseriti dall'utente.
- * Utilizza {@link Parser} per processare l'input e {@link WordlePrinter} per
- * visualizzare l'output.
+ * Classe principale dell'applicazione.
+ *
+ * <p>Contiene il main e i comandi che realizzano le funzionalità descritte
+ * nelle user story.</p>
+ *
+ * <p>Utilizza un oggetto {@link Parser} per processare l'input e
+ * un oggetto {@link WordlePrinter} per visualizzare l'output.</p>
  */
 public final class App {
 

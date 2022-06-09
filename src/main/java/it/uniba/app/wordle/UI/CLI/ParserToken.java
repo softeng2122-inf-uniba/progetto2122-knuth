@@ -5,6 +5,11 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * {@literal <<Boundary>>} <br>
+ * Classe che rappresenta l'output di un Parser e incapsula il comando, gli argomenti
+ * e l'eventuale insieme di comandi simili.
+ */
 public final class ParserToken {
 
     /** Comando contenuto. */
@@ -34,8 +39,8 @@ public final class ParserToken {
      * modificare dalla stringa inserita per arrivare a quella prevista)
      * è minore o uguale a 2.</p>
      *
-     * @return un array di stringhe contenente le rappresentazioni sotto forma
-     * di stringhe dei comandi simili a quello inserito, eventualmente vuoto
+     * @return un array contenente le rappresentazioni sotto forma
+     * di stringa dei comandi simili a quello inserito, eventualmente vuoto
      */
     public String[] getCloseCommandsStrings() {
         if (closeCommands.isEmpty()) {
@@ -59,10 +64,10 @@ public final class ParserToken {
     }
 
     /**
-     * Crea un ParserToken che incapsula il comando ricavato dal parser,
-     * assieme agli argomenti inseriti e all'insieme dei comandi simili.
+     * Crea un ParserToken che incapsula un comando, gli argomenti
+     * e l'insieme dei comandi simili.
      *
-     * @param extractedCommand comando ricavato
+     * @param extractedCommand comando
      * @param extractedArgs argomenti ricevuti
      * @param closeCommandsSet insieme di comandi simili (eventualmente vuoto)
      */

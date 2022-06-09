@@ -10,9 +10,10 @@ import java.util.Set;
 
 /**
  * {@literal <<Boundary>>} <br>
- * Classe per il parsing dell'input dell'utente. <p></p>
- * Estrae {@link App.Command} e relativi argomenti
- * a partire dalle linee digitate.
+ * Classe per il parsing dell'input dell'utente.
+ *
+ * <p>Estrae {@link App.Command} e relativi argomenti
+ * a partire dalle linee digitate.</p>
  */
 public final class Parser {
 
@@ -49,7 +50,7 @@ public final class Parser {
      * Elabora l'input fornito per riconoscere il comando inserito e
      * suddividere eventuali argomenti.
      *
-     * @param inputLine linea di testo inserito da elaborare
+     * @param inputLine linea di testo inserita da elaborare
      */
     public void feed(final String inputLine) {
         Objects.requireNonNull(inputLine);
@@ -67,6 +68,13 @@ public final class Parser {
     }
 
     //un input "" ritorna un array con zero elementi
+
+    /**
+     * Restituisce un array di token (eventualmente vuoto),
+     * ossia le sottostringhe di {@code input} separate da spazi.
+     *
+     * @return array di token
+     */
     private String[] tokenizeInput() {
         if (input.length() == 0) {
             return EMPTY_STRING_ARRAY;
@@ -180,10 +188,10 @@ public final class Parser {
     }
 
     /**
-     * Restituisce il risultato dell'elaborazione sottoforma di
-     * {@link ParserToken}.
+     * Restituisce il risultato dell'elaborazione dell'input
+     * sotto forma di {@link ParserToken}.
      *
-     * @return token risultato dell'elaborazione
+     * @return ParserToken risultato dell'elaborazione
      */
     public ParserToken getParserToken() {
 
