@@ -232,24 +232,24 @@ _Nota: gli attributi e i metodi della classe parser vengono tutti utilizzati in 
 </p>
 
 <p align="center">
-  <img src="../drawings/SEQ - Inizio nuova partita.svg" alt="SEQ - Inizio nuova partita" width="1000"/>
+  <img src="../drawings/SEQ - inizio nuova partita.svg" alt="SEQ - inizio nuova partita" width="1000"/>
 </p>
 
 Diagramma di sequenza **printBoard**:
 
 <p align="center">
-  <img src="../drawings/printBoard.svg" alt="printBoard" width="800"/>
+  <img src="../drawings/SEQ - printBoard.svg" alt="SEQ - printBoard" width="800"/>
 </p>
 
 
 - **Abbandono partita**: *Come giocatore voglio abbandonare la partita*
 
 <p align="center">
-  <img src="../drawings/CLS - Abbandono partita.svg" alt="CLS Abbandono Partita" width="800"/>
+  <img src="../drawings/CLS - abbandona partita.svg" alt="CLS - abbandona partita" width="800"/>
 </p>
 
 <p align="center">
-  <img src="../drawings/SEQ - Abbandono partita.svg" alt="SEQ - Abbandono partita" width="900"/>
+  <img src="../drawings/SEQ - abbandona partita.svg" alt="SEQ - abbandona partita" width="900"/>
 </p>
 
 
@@ -274,7 +274,7 @@ Diagramma di sequenza **printBoard**:
 Diagramma di sequenza **guess**: Alla creazione delle **LetterBox** vengono inserite le lettere che compongono la stringa _w_ e viene impostato il valore *NO_COLOR*
 
 <p align="center">
-  <img src="../drawings/guess.svg" alt="guess" width="1000"/>
+  <img src="../drawings/SEQ - guess.svg" alt="SEQ - guess" width="1000"/>
 </p>
 
 La realizzazione dell'algoritmo per l'impostazione dei colori prevede l'utilizzo di un dizionario in quanto è necessario memorizzare delle coppie in cui la chiave sia una lettera presente nella parola segreta e il valore associato sia il numero di occorrenze in cui è presente. 
