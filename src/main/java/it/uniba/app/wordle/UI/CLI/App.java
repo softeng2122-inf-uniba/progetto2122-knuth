@@ -316,7 +316,7 @@ public final class App {
                     new OutputStreamWriter(System.out, encoding),
                     PLAYER_CONTROLLER);
 
-        } catch(UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             System.out.println(e.getMessage());
             System.exit(-1);
         }
@@ -363,7 +363,8 @@ public final class App {
      * @throws UnsupportedEncodingException se l'encoding del sistema è diverso
      * da UTF-8 e da UTF-16
      */
-    public static Charset getSystemEncoding() throws UnsupportedEncodingException {
+    public static Charset getSystemEncoding()
+            throws UnsupportedEncodingException {
         String encoding = System.getProperty("file.encoding");
         if (encoding.equalsIgnoreCase("UTF-8")) {
             return StandardCharsets.UTF_8;
