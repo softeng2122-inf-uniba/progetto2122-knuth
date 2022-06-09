@@ -176,21 +176,21 @@ Si è considerata la griglia di gioco come una matrice di tentativi a dimensione
 ## 5. OO design
 Nella modellazione delle classi abbiamo mantenuto una costante attenzione sullla suddivisione dei ruoli **entity**, **control** e **boundary**.
 
-- Le classi boundary, che costituiscono la parte dell'applicazione adibita alla *User Interface*, comunicano solo tra di loro e con la classe di controllo **Wordle**. 
+- Le classi boundary, che costituiscono la parte dell'applicazione adibita alla *User Interface*, comunicano solo tra di loro e con le classi di controllo che implementano le interfacce di **PlayerController** o **WordSmithController**. 
 
-- La classe **Wordle** permette di gestire interamente le partite del gioco: fornisce un'API composta da metodi che
+- Le classi **PlayerController** e **WordSmithController** permettono di gestire interamente le partite del gioco: forniscono un'API composta da metodi che:
   - sono indipendenti dalla particolare UI implementata
   - racchiudono tutte le interazioni con le classi di tipo entity non esponendole all'esterno
   - controllano tutte le condizioni di integrità per la corretta esecuzione delle partite.
 
 - Le classi entity ricalcano le classi concettuali individuate nel modello di dominio: abbiamo ritenuto opportuno che la classe **LetterBox** (ovvero la cella nel modello di dominio) fosse interna al tentativo, in quanto ciò rispecchia il legame concettuale di composizione.
 
-Abbiamo scelto di memorizzare in **Wordle**, tramite attributi statici, le impostazioni di gioco, che vengono impostate dall'utente prima che decida di inziare una partita: alla creazione dell'oggetto partita (classe **WordleGame**) i valori impostati saranno copiati come suoi attributi di istanza e caratterizzeranno la partita.
+Abbiamo scelto di memorizzare in **WordleSession**, tramite attributi di classe, le impostazioni di gioco, che vengono impostate dall'utente prima che decida di inziare una partita: alla creazione dell'oggetto partita (classe **WordleGame**) i valori impostati saranno copiati come suoi attributi di istanza e caratterizzeranno la partita.
 - Attualmente l'unica impostazione modificata dall'utente è la parola segreta
 - Altre impostazioni sono il numero massimo di tentativi e la lunghezza delle parole, per ora non modificabili
 
 ### DIAGRAMMI USER STORY
-Nei seguenti diagrammi vengono omessi alcuni dettagli facilmente comprensibili dal codice in quanto appesantirebbero inutilmente la lettura; inoltre i metodi che costituiscono l'interfaccia fornita dalla classe controllo vengono sempre riportati in quanto riteniamo importante evidenziare tutti i metodi per la comunicazione tra la _User Interface_ e l'_API Wordle_
+Nei seguenti diagrammi vengono omessi alcuni dettagli facilmente comprensibili dal codice in quanto appesantirebbero inutilmente la lettura; inoltre i metodi che costituiscono l'interfaccia fornita dalla classe controllo vengono sempre riportati in quanto riteniamo importante evidenziare tutti i metodi per la comunicazione tra la _User Interface_ e l'_API PlayerController_ o l'_API WordSmithController_
 
 _Nota: gli attributi e i metodi della classe parser vengono tutti utilizzati in ogni User story, per cui si presenta tale classe nella sua interezza in modo tale da non ripeterne i membri negli altri diagrammi delle classi._
 
@@ -211,55 +211,50 @@ _Nota: gli attributi e i metodi della classe parser vengono tutti utilizzati in 
 
 - **Mostra parola segreta**: *Come paroliere voglio mostrare la parola segreta*
 
-    I diagrammi delle classi e di sequenza di questa user story sono molto simili a quelli della precedente, con variazioni opportune di metodi:
-    - _executePrintSecretWord_ al posto del metodo _executeSetSecretWord_
-    - _getSecretWord_ al posto di _setSecretWord_
-
-
+    I diagrammi delle classi e di sequenza di questa user story sono molto simili a quelli della precedente, con variazioni opportune del metodo get e del metodo di stampa
+    
 - **Comando help**: *Come giocatore voglio mostrare l'help con elenco comandi*
 
-    Anche in questo caso i diagrammi delle classi e di sequenza sono molto simili a quelli di **Impostazione manuale parola segreta**, con variazioni opportune di metodi:
-    - al posto della chiamata a _executeSetSecretWord_ vengono invocati direttamente i metodi _printDescription_ e _printHelp_ della classe **Printer**
-    - non vengono effettuate chiamate alla classe **Wordle**
+    Anche in questo caso i diagrammi delle classi e di sequenza sono molto simili a quelli di **Impostazione manuale parola segreta**, con variazioni opportune dei metodi:
+    - _printDescription_ e _printHelp_ della classe **WordlePrinter** al posto di _executeSetSecretWord_
+    - non vengono effettuate chiamate alla classe **WordlePlayerController** o **WordleWordsmithController**
 
 
 - **Inizio nuova partita**: *Come giocatore voglio iniziare una nuova partita*
 
-  La molteplicità 0..1 nel legame tra **Wordle** e **WordleGame** è giustificata dal fatto che all'inizio la partita non esiste ma viene creata nel corso dell'interazione
+  La molteplicità 0..1 nel legame tra **WordlePlayerController** e **WordleGame** è giustificata dal fatto che all'inizio la partita non esiste ma viene creata nel corso dell'interazione
 
 <p align="center">
   <img src="../drawings/CLS - Inizio nuova partita.svg" alt="CLS - Inizio nuova partita" width="800"/>
 </p>
 
 <p align="center">
-  <img src="../drawings/SEQ - Inizio nuova partita.svg" alt="SEQ - Inizio nuova partita" width="1000"/>
+  <img src="../drawings/SEQ - inizio nuova partita.svg" alt="SEQ - inizio nuova partita" width="1000"/>
 </p>
 
 Diagramma di sequenza **printBoard**:
 
 <p align="center">
-  <img src="../drawings/printBoard.svg" alt="printBoard" width="800"/>
+  <img src="../drawings/SEQ - printBoard.svg" alt="SEQ - printBoard" width="800"/>
 </p>
 
 
 - **Abbandono partita**: *Come giocatore voglio abbandonare la partita*
 
 <p align="center">
-  <img src="../drawings/CLS - Abbandono partita.svg" alt="CLS Abbandono Partita" width="800"/>
+  <img src="../drawings/CLS - abbandona partita.svg" alt="CLS - abbandona partita" width="800"/>
 </p>
 
 <p align="center">
-  <img src="../drawings/SEQ - Abbandono partita.svg" alt="SEQ - Abbandono partita" width="900"/>
+  <img src="../drawings/SEQ - abbandona partita.svg" alt="SEQ - abbandona partita" width="900"/>
 </p>
 
 
 - **Chiusura gioco**: *Come giocatore voglio chiudere il gioco*
 
-    I diagrammi delle classi e di sequenza di questa user story sono molto simili a quelli della precedente, con variazioni opportune di metodi:
-    - _executeExitGame_ al posto del metodo _executeQuitGame_
+    I diagrammi delle classi e di sequenza di questa user story sono molto simili a quelli della precedente, con variazioni opportune dei metodi:
+    - impostazione attributo running a false al posto del metodo _endGame_
     - anche in questo caso ci sarà richiesta di conferma
-    - al posto della chiamata di _endGame_ vi sarà la chiusura dell'applicazione
-
 
 - **Tentativo parola segreta**: *Come giocatore voglio effettuare un tentativo per indovinare la parola segreta*
 
@@ -274,7 +269,7 @@ Diagramma di sequenza **printBoard**:
 Diagramma di sequenza **guess**: Alla creazione delle **LetterBox** vengono inserite le lettere che compongono la stringa _w_ e viene impostato il valore *NO_COLOR*
 
 <p align="center">
-  <img src="../drawings/guess.svg" alt="guess" width="1000"/>
+  <img src="../drawings/SEQ - guess.svg" alt="SEQ - guess" width="1000"/>
 </p>
 
 La realizzazione dell'algoritmo per l'impostazione dei colori prevede l'utilizzo di un dizionario in quanto è necessario memorizzare delle coppie in cui la chiave sia una lettera presente nella parola segreta e il valore associato sia il numero di occorrenze in cui è presente. 
@@ -288,3 +283,39 @@ Adesso risulta semplice, scandendo le lettere rimanenti (non verdi) da sinistra 
 Le lettere restanti sono, ovviamente, da colorare in grigio. 
 
 _nota: se nel tentativo sono presenti più lettere uguali che dovrebbero essere colorate di giallo perché rispettano le condizioni viste, verrà data precedenza a quelle più a sinistra (da notare che a ogni passo verrà decrementato il numero di occorrenze contenuto nel dizionario)._
+
+
+### Pattern design
+
+Per migliorare la qualità di ciò che era già stato fatto precedentemente si è deciso di applicare i design pattern laddove possibile cosi da attuare soluzioni collaudate a problemi ricorrenti. In particolare è stato deciso di attuare il pattern "*COMMAND*", alla classe App.Command.java. L'applicazione di questo pattern ha permesso di evitare di accoppiare l'invocatore di una richiesta (ovvero la classe App) con la richiesta. Quindi è stata incapsulata la richiesta in un istanza di Command così che questa possa essere utilizzata come un qualsiasi oggetto e inoltre può essere accessibile anche in un secondo momento.
+
+### Analisi delle scelte effettuate in adesione all'OO design
+
+Durante la progettazione e la stesura del codice del progetto si è voluta tenere una particolare attenzione ai principi dell'OO design. Di seguito viene riportata una lista dei principi applicati con eventuali esempi:
+
+- **Information hiding**: tutti gli attributi delle classi sono stati resi privati ed accessibili solo attraverso opportune operazioni di get e set, così da soddisfare il principio dell'incapsulamento dei dati. 
+
+- **Alta coesione**: ogni classe presenta un'alta resposabilità e si occupa solo delle operazioni ad essa competenti, un esempio ben visibile è l'utilizzo della classe WordlePrinter per gestire le stampe a schermo. Oltre che nella classe WordlePrinter, questo principio è stato applicato anche a tutte le altre classi, basti notare la distinzione tra WordlePlayerController e WordleWordsmithController, o anche nell'incapsulamento dei metodi per il controllo dei comandi inseriti in due classi distinte, ovvero ParserToken che si occupa di tokenizzare il comando inserito e Parser che invece avrà la responsabilità di decifrare l'input inserito dall'utente.
+
+- **Basso accoppiamento**: effettuare un cambiamento in una classe non impatterà sulle altre. Anche la presenza di questo principio può essere constatata tra le classi Parser e ParserToken infatti se cambiamo l'algoritmo che trova gli allias in ParserToken, questo non impatterà sul funzionamento di Parser.
+
+- **Presentazione separata**: la parte di presentazione e la logica di dominio devono essere tenute separate. Nel nostro progetto infatti è stato deciso di utilizzare le classi PlayerController e WordsmithController come API.
+
+Inoltre sono stati applicati i principi **SOLID**:
+
+- **Single responsability**: ogni classe presenta una singola responsabilità. Come citato precedentemente l'applicazione presenta un alta coesione perciò le responsabilità delle classi sono tenute separate.
+
+- **Open/Closed**: e' stato deciso di utilizzare le interfacce WordsmithController e PlayerController per facilitare l'adattamento del codice ad aggiornamenti futuri come ad esempio player di tipi diversi.
+
+*I principi non menzionati non sono stati attuati perchè non presenti casi di applicazione*
+
+
+
+## 9. Analisi retrospettiva
+### Sprint 1
+
+Al termine dello sprint 1 è stato effettuato il meeting retrospettivo tramite videocoferenza su teams. E'stata utilizzata la whiteboard fornita dal software, perciò su ogni riga sono state raccolte le opinioni di ciasun membro del team e organizzata mediante lo schema "arrabbiato, triste, felice" come è possibile vedere di seguito.
+
+<p align="center">
+  <img src="./img/report img/Whiteboard Retrospective.png" alt="Whiteboard Retrospective" width="1000"/>
+</p>
