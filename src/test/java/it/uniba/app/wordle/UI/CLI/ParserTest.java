@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ParserTest {
 
     Parser parser;
+    private final String[] EMPTY_ARRAY = new String[0];
 
     @BeforeEach
     void initParser() {
@@ -37,13 +38,16 @@ public class ParserTest {
     }
 
     @Nested
-    @DisplayName("Quando è correttamente inserito un comando "
+    @DisplayName("quando è correttamente inserito un comando "
             + "che non richiede argomenti")
     class CorrectNoArgumentsCommandsTest {
 
+        private final String parameterProvider = "it.uniba.app.wordle.UI.CLI."
+                + "ParserTest#correctNoArgumentsCommandsParameterProvider";
+
         @ParameterizedTest
-        @MethodSource("it.uniba.app.wordle.UI.CLI.ParserTest#correctNoArgumentsCommandsParameterProvider")
-        @DisplayName("Il parser restituisce il comando corretto")
+        @MethodSource(parameterProvider)
+        @DisplayName("restituisce il comando corretto")
         void testCorrectCommand(App.Command command, String input) {
             parser.feed(input);
             ParserToken pt = parser.getParserToken();
@@ -52,36 +56,36 @@ public class ParserTest {
         }
 
         @ParameterizedTest
-        @MethodSource("it.uniba.app.wordle.UI.CLI.ParserTest#correctNoArgumentsCommandsParameterProvider")
-        @DisplayName("Il parser restituisce un array vuoto di argomenti")
+        @MethodSource(parameterProvider)
+        @DisplayName("restituisce un array vuoto di argomenti")
         void testCorrectArgs(App.Command command, String input) {
             parser.feed(input);
             ParserToken pt = parser.getParserToken();
-            final String[] EMPTY_ARRAY = new String[0];
 
             assertArrayEquals(EMPTY_ARRAY, pt.getArgs());
         }
 
         @ParameterizedTest
-        @MethodSource("it.uniba.app.wordle.UI.CLI.ParserTest#correctNoArgumentsCommandsParameterProvider")
-        @DisplayName("Il parser restituisce un array vuoto di comandi simili")
+        @MethodSource(parameterProvider)
+        @DisplayName("restituisce un array vuoto di comandi simili")
         void testNoCloseCommands(App.Command command, String input) {
             parser.feed(input);
             ParserToken pt = parser.getParserToken();
-            final String[] EMPTY_ARRAY = new String[0];
 
             assertArrayEquals(EMPTY_ARRAY, pt.getCloseCommandsStrings());
         }
 
         @ParameterizedTest
-        @MethodSource("it.uniba.app.wordle.UI.CLI.ParserTest#correctNoArgumentsCommandsParameterProvider")
-        @DisplayName("Non ha argomenti mancanti")
+        @MethodSource(parameterProvider)
+        @DisplayName("non segnala argomenti mancanti")
         void testNoMissingArgs(App.Command command, String input) {
             parser.feed(input);
             ParserToken pt = parser.getParserToken();
 
-            assertFalse(pt.hasMissingArgs());
-            assertEquals(0, pt.getNumMissingArgs());
+            assertAll(
+                    () -> assertFalse(pt.hasMissingArgs()),
+                    () -> assertEquals(0, pt.getNumMissingArgs()));
+
         }
 
         /*
@@ -91,7 +95,6 @@ public class ParserTest {
         void feedTest(App.Command command, String input) {
             parser.feed(input);
             ParserToken pt = parser.getParserToken();
-            final String[] EMPTY_ARRAY = new String[0];
 
             assertAll(
                     () -> assertEquals(command, pt.getCommand()),
@@ -106,20 +109,93 @@ public class ParserTest {
 
     }
 
+    @Nested
+    @DisplayName("quando viene inserito un tentativo")
+    class GuessTest {
+
+
+        /*
+        @ParameterizedTest
+        @ValueSource(strings = {"prova", "Prova", "Treno", "Wf:", "t/"})
+        @DisplayName("riconosce che non è stato inserito un comando ma un tentativo")
+        void guessTest(String input) {
+            parser.feed(input);
+            ParserToken pt = parser.getParserToken();
+
+            assertAll(
+                    () -> assertEquals(App.Command.GUESS, pt.getCommand()),
+                    () -> assertEquals(App.Command.GUESS.getNumArgs(),
+                            pt.getArgs().length + pt.getNumMissingArgs()),
+                    () -> assertEquals(1, pt.getArgs().length),
+                    () -> assertEquals(input, pt.getArgs()[0]));
+                    () -> assertArrayEquals(EMPTY_ARRAY,
+                            pt.getCloseCommandsStrings()),
+                    () -> assertFalse(pt.hasMissingArgs()),
+                    () -> assertEquals(0, pt.getNumMissingArgs())
+            );
+        }
+
+         */
+
+        @ParameterizedTest
+        @ValueSource(strings = {"prova", "Prova", "Treno", "Wf:", "t/"})
+        @DisplayName("restituisce il comando corretto")
+        void testCorrectCommand(String input) {
+            parser.feed(input);
+            ParserToken pt = parser.getParserToken();
+
+            assertEquals(App.Command.GUESS, pt.getCommand());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"prova", "Prova", "Treno", "Wf:", "t/"})
+        @DisplayName("restituisce un array di argomenti"
+                    + " contenente solo la parola")
+        void testCorrectArgs(String input) {
+            parser.feed(input);
+            ParserToken pt = parser.getParserToken();
+
+            assertAll(
+                    () -> assertEquals(1, pt.getArgs().length),
+                    () -> assertEquals(input, pt.getArgs()[0]));
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"prova", "Prova", "Treno", "Wf:", "t/"})
+        @DisplayName("restituisce un array vuoto di comandi simili")
+        void testNoCloseCommands(String input) {
+            parser.feed(input);
+            ParserToken pt = parser.getParserToken();
+
+            assertArrayEquals(EMPTY_ARRAY, pt.getCloseCommandsStrings());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {"prova", "Prova", "Treno", "Wf:", "t/"})
+        @DisplayName("non segnala argomenti mancanti")
+        void testNoMissingArgs(String input) {
+            parser.feed(input);
+            ParserToken pt = parser.getParserToken();
+
+            assertAll(
+                    () -> assertFalse(pt.hasMissingArgs()),
+                    () -> assertEquals(0, pt.getNumMissingArgs()));
+        }
+    }
+
+
+
+    /*
     @ParameterizedTest
-    @ValueSource(strings = {"prova", "Prova", "Treno", "Wf:", "t/"})
-    @DisplayName("riconosce che non è stato inserito un comando ma un tentativo")
-    void guessTest(String input) {
+    @ValueSource(strings = {"", " ", "\t", "\n", "\t \t \t"})
+    @DisplayName("riconosce i caratteri di spaziatura come comandi SPACE")
+    void spaceTest(String input) {
         parser.feed(input);
         ParserToken pt = parser.getParserToken();
-        final String[] EMPTY_ARRAY = new String[0];
 
         assertAll(
-                () -> assertEquals(App.Command.GUESS, pt.getCommand()),
-                () -> assertEquals(App.Command.GUESS.getNumArgs(),
-                             pt.getArgs().length + pt.getNumMissingArgs()),
-                () -> assertEquals(1, pt.getArgs().length),
-                () -> assertEquals(input, pt.getArgs()[0]),
+                () -> assertEquals(App.Command.SPACE, pt.getCommand()),
+                () -> assertEquals(0, pt.getArgs().length),
                 () -> assertArrayEquals(EMPTY_ARRAY,
                                    pt.getCloseCommandsStrings()),
                 () -> assertFalse(pt.hasMissingArgs()),
@@ -127,26 +203,16 @@ public class ParserTest {
         );
     }
 
-
+     */
 
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "\t", "\n", "\t \t \t"})
-    @DisplayName("riconosce gli escape character come comandi SPACE")
+    @DisplayName("riconosce i caratteri di spaziatura come comandi SPACE")
     void spaceTest(String input) {
         parser.feed(input);
         ParserToken pt = parser.getParserToken();
-        final String[] EMPTY_ARRAY = new String[0];
 
-        assertAll(
-                () -> assertEquals(App.Command.SPACE, pt.getCommand()),
-                () -> assertEquals(App.Command.SPACE.getNumArgs(),
-                             pt.getArgs().length + pt.getNumMissingArgs()),
-                () -> assertEquals(0, pt.getArgs().length),
-                () -> assertArrayEquals(EMPTY_ARRAY,
-                                   pt.getCloseCommandsStrings()),
-                () -> assertFalse(pt.hasMissingArgs()),
-                () -> assertEquals(0, pt.getNumMissingArgs())
-        );
+        assertEquals(App.Command.SPACE, pt.getCommand());
     }
 
     @ParameterizedTest
@@ -155,27 +221,17 @@ public class ParserTest {
     void invalidTest(String input) {
         parser.feed(input);
         ParserToken pt = parser.getParserToken();
-        final String[] EMPTY_ARRAY = new String[0];
 
-        assertAll(
-                () -> assertEquals(App.Command.INVALID, pt.getCommand()),
-                () -> assertEquals(App.Command.INVALID.getNumArgs(),
-                             pt.getArgs().length + pt.getNumMissingArgs()),
-                () -> assertEquals(0, pt.getArgs().length),
-                () -> assertArrayEquals(EMPTY_ARRAY,
-                                   pt.getCloseCommandsStrings()),
-                () -> assertFalse(pt.hasMissingArgs()),
-                () -> assertEquals(0, pt.getNumMissingArgs())
-        );
+        assertEquals(App.Command.INVALID, pt.getCommand());
     }
 
+    /*
     @Test
     @DisplayName("permette di riconoscere l'inserimento di una parola"
                  + "segreta con /nuova treno ove treno è la parola segreta")
     void nuovaTest() {
         parser.feed("/nuova treno");
         ParserToken pt = parser.getParserToken();
-        final String[] EMPTY_ARRAY = new String[0];
 
         assertAll(
                 () -> assertEquals(App.Command.NUOVA, pt.getCommand()),
@@ -190,18 +246,53 @@ public class ParserTest {
         );
     }
 
+     */
+
+    @Nested
+    @DisplayName("al comando \"/nuova treno\"")
+    class NuovaCorrectTest {
+
+        private ParserToken pt;
+
+        @BeforeEach
+        void setup() {
+            parser.feed("/nuova treno");
+            pt = parser.getParserToken();
+        }
+
+        @Test
+        @DisplayName("restituisce il comando corretto")
+        void testCorrectCommand() {
+            assertEquals(App.Command.NUOVA, pt.getCommand());
+        }
+
+        @Test
+        @DisplayName("restituisce un array di argomenti contenente solo \"treno\"")
+        void testCorrectArgs() {
+            assertAll(
+                    () -> assertEquals(1, pt.getArgs().length),
+                    () -> assertEquals("treno", pt.getArgs()[0]));
+        }
+
+        @Test
+        @DisplayName("non segnala argomenti mancanti")
+        void NoMissingArgs() {
+            assertAll(
+                    () -> assertFalse(pt.hasMissingArgs()),
+                    () -> assertEquals(0, pt.getNumMissingArgs()));
+        }
+
+    }
+    /*
     @Test
     @DisplayName("permette di riconoscere l'inserimento del comando"
                  + "/nuova senza argomenti")
     void nuovaMissingArgTest() {
         parser.feed("/nuova ");
         ParserToken pt = parser.getParserToken();
-        final String[] EMPTY_ARRAY = new String[0];
 
         assertAll(
                 () -> assertEquals(App.Command.NUOVA, pt.getCommand()),
-                () -> assertEquals(App.Command.NUOVA.getNumArgs(),
-                             pt.getArgs().length + pt.getNumMissingArgs()),
                 () -> assertEquals(0, pt.getArgs().length),
                 () -> assertArrayEquals(EMPTY_ARRAY,
                                    pt.getCloseCommandsStrings()),
@@ -210,6 +301,49 @@ public class ParserTest {
         );
     }
 
+     */
+
+    @Nested
+    @DisplayName("al comando \"/nuova\" (senza argomenti)")
+    class NuovaMissingArgsTest {
+
+        private ParserToken pt;
+
+        @BeforeEach
+        void setup() {
+            parser.feed("/nuova ");
+            pt = parser.getParserToken();
+        }
+
+        @Test
+        @DisplayName("restituisce il comando corretto")
+        void testCorrectCommand() {
+            assertEquals(App.Command.NUOVA, pt.getCommand());
+        }
+
+        @Test
+        @DisplayName("restituisce un array vuoto di argomenti")
+        void testCorrectArgs() {
+            assertEquals(0, pt.getArgs().length);
+        }
+
+        @Test
+        @DisplayName("restituisce un array vuoto di comandi simili")
+        void testNoCloseCommands() {
+
+            assertArrayEquals(EMPTY_ARRAY, pt.getCloseCommandsStrings());
+        }
+
+        @Test
+        @DisplayName("segnala un argomento mancante")
+        void OneMissingArg() {
+
+            assertAll(
+                    () -> assertTrue(pt.hasMissingArgs()),
+                    () -> assertEquals(1, pt.getNumMissingArgs()));
+        }
+
+    }
 
     // test altri metodi
     private static Stream<Arguments> closeCommandParameterProvider() {
@@ -232,7 +366,6 @@ public class ParserTest {
     void closeCommandTest(String[] expectedCloseCommands, String input) {
         parser.feed(input);
         ParserToken pt = parser.getParserToken();
-        final String[] EMPTY_ARRAY = new String[0];
 
         assertAll(
                 () -> assertEquals(App.Command.INVALID, pt.getCommand()),
@@ -245,8 +378,8 @@ public class ParserTest {
 
     private static Stream<Arguments> closeCommand2ParameterProvider() {
         return Stream.of(
-                Arguments.of(new String[] {App.Command.HELP.toString(),
-                        App.Command.ESCI.toString()}, "/eli"));
+                Arguments.of(new String[] {App.Command.ESCI.toString(),
+                         App.Command.HELP.toString()}, "/eli"));
     }
 
     @ParameterizedTest
@@ -255,7 +388,6 @@ public class ParserTest {
     void closeCommand2Test(String[] expectedCloseCommands, String input) {
         parser.feed(input);
         ParserToken pt = parser.getParserToken();
-        final String[] EMPTY_ARRAY = new String[0];
 
         assertAll(
                 () -> assertEquals(App.Command.INVALID, pt.getCommand()),
@@ -267,12 +399,11 @@ public class ParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"/help nuova cosa  si", "/abbandona la partita   ",
-                            "/esci  dalla   partita", "/nuova input parola",
-                            "tento in ",
+    @ValueSource(strings = {"/help nuova cosa si", "/abbandona la partita ",
+                            "/nuova input parola", "tento in ",
                             "/elp aiuto"})
     @DisplayName("ignora eventuali argomenti in eccesso rispetto "
-                 + "al numero di argometi attesi dal comando")
+                 + "al numero di argomenti attesi dal comando")
     void excessiveArgsTest(String input) {
         parser.feed(input);
         ParserToken pt = parser.getParserToken();
