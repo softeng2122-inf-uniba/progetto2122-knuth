@@ -9,6 +9,7 @@ import it.uniba.app.wordle.domain.WordleSettingException;
 
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -30,11 +31,8 @@ public final class App {
                          new WordleWordsmithController(
                          (WordlePlayerController) PLAYER_CONTROLLER);
 
-    private static final Scanner KEYBOARD = new Scanner(
-                        new InputStreamReader(System.in, getSystemEncoding()));
-    private static final Printer CONSOLE = new Printer(
-                       new OutputStreamWriter(System.out, getSystemEncoding()),
-                                   PLAYER_CONTROLLER);
+    private static Scanner keyboard;
+    private static Printer console;
     private static final Parser PARSER = new Parser();
     private static boolean running = true;
 
@@ -48,7 +46,7 @@ public final class App {
     public enum Command {
         INVALID(0) {
             public void execute(final String[] args) {
-                CONSOLE.println("Comando invalido");
+                console.println("Comando invalido");
                 if (args.length != 0) {
                     if (args.length == 1) {
                         System.out.println("Il comando più simile è: ");
@@ -71,10 +69,10 @@ public final class App {
             public void execute(final String[] args) {
                 try {
                     PLAYER_CONTROLLER.startGame();
-                    CONSOLE.println("Hai iniziato la partita");
-                    CONSOLE.printBoard();
+                    console.println("Hai iniziato la partita");
+                    console.printBoard();
                 } catch (WordleGameException | WordleSettingException e) {
-                    CONSOLE.println(e.getMessage());
+                    console.println(e.getMessage());
                 }
             }
         },
@@ -86,9 +84,9 @@ public final class App {
 
                 try {
                     WORDSMITH_CONTROLLER.setSecretWord(secretWord);
-                    CONSOLE.println("OK");
+                    console.println("OK");
                 } catch (IllegalArgumentException | WordleGameException e) {
-                    CONSOLE.println(e.getMessage());
+                    console.println(e.getMessage());
                 }
             }
         },
@@ -96,20 +94,20 @@ public final class App {
         ABBANDONA(0) {
             public void execute(final String[] args) {
                 if (!PLAYER_CONTROLLER.isGameRunning()) {
-                    CONSOLE.println("Nessuna partita in corso");
+                    console.println("Nessuna partita in corso");
                     return;
                 }
 
                 String answer;
                 do {
-                    CONSOLE.println("Sei sicuro di voler abbandonare "
+                    console.println("Sei sicuro di voler abbandonare "
                             + "la partita in corso? [si | no]");
-                    answer = KEYBOARD.nextLine();
+                    answer = keyboard.nextLine();
                 } while (!answer.equalsIgnoreCase("si")
                         && !answer.equalsIgnoreCase("no"));
 
                 if (answer.equalsIgnoreCase("si")) {
-                    CONSOLE.println("Hai abbandonato la partita");
+                    console.println("Hai abbandonato la partita");
                     PLAYER_CONTROLLER.endGame();
                 }
             }
@@ -121,14 +119,14 @@ public final class App {
 
                 try {
                     PLAYER_CONTROLLER.guess(guessWord);
-                    CONSOLE.printBoard();
-                    CONSOLE.printGuessResult();
+                    console.printBoard();
+                    console.printGuessResult();
                     if (PLAYER_CONTROLLER.getNumRemainingGuesses() == 0
                             || PLAYER_CONTROLLER.getGuessResult()) {
                         PLAYER_CONTROLLER.endGame();
                     }
                 } catch (WordleGameException | IllegalArgumentException e) {
-                    CONSOLE.println(e.getMessage());
+                    console.println(e.getMessage());
                 }
             }
         },
@@ -138,9 +136,9 @@ public final class App {
                 String answer;
 
                 do {
-                    CONSOLE.println("Sei sicuro di voler uscire da Wordle? "
+                    console.println("Sei sicuro di voler uscire da Wordle? "
                             + "[si | no]");
-                    answer = KEYBOARD.nextLine();
+                    answer = keyboard.nextLine();
                 } while (!answer.equalsIgnoreCase("si")
                         && !answer.equalsIgnoreCase("no"));
 
@@ -154,18 +152,18 @@ public final class App {
             public void execute(final String[] args) {
 
                 try {
-                    CONSOLE.format("Parola segreta: %s\n",
+                    console.format("Parola segreta: %s\n",
                             WORDSMITH_CONTROLLER.getSecretWord());
                 } catch (WordleSettingException e) {
-                    CONSOLE.println(e.getMessage());
+                    console.println(e.getMessage());
                 }
             }
         },
 
         HELP(0) {
             public void execute(final String[] args) {
-                CONSOLE.printDescription();
-                CONSOLE.printHelp();
+                console.printDescription();
+                console.printHelp();
             }
         };
 
@@ -201,18 +199,28 @@ public final class App {
      */
     public static void main(final String[] args) {
         //controlla codifica del terminale su cui l'app è eseguita
-        checkEncoding();
+        try {
+            Charset encoding = getSystemEncoding();
+            keyboard = new Scanner(
+                    new InputStreamReader(System.in, encoding));
+            console = new Printer(
+                    new OutputStreamWriter(System.out, encoding),
+                    PLAYER_CONTROLLER);
+        } catch(UnsupportedEncodingException e) {
+            System.out.println(e.getMessage());
+            System.exit(-1);
+        }
 
         // stampe iniziali
-        CONSOLE.printDescription();
+        console.printDescription();
         if (args.length > 0 && (args[0].equals("--help")
                 || args[0].equals("-h"))) {
-            CONSOLE.printHelp();
+            console.printHelp();
         }
 
         while (running) {
             System.out.print("Wordle> ");
-            String inputLine = KEYBOARD.nextLine();
+            String inputLine = keyboard.nextLine();
 
             // invia l'input al parser
             PARSER.feed(inputLine);
@@ -235,28 +243,16 @@ public final class App {
         System.exit(0);
     }
 
-    public static void checkEncoding() {
-        String encoding = System.getProperty("file.encoding");
-
-        if (!encoding.equalsIgnoreCase("UTF-8")
-                && !encoding.equalsIgnoreCase("UTF-16")) {
-            CONSOLE.println(
-                    "Codifica [" + encoding + "] non supportata");
-            CONSOLE.println(
-                    "Alcuni caratteri potrebbero non essere "
-                            + "visualizzati correttamente");
-        }
-    }
-
-    public static Charset getSystemEncoding() {
+    public static Charset getSystemEncoding() throws UnsupportedEncodingException {
         String encoding = System.getProperty("file.encoding");
         if (encoding.equalsIgnoreCase("UTF-8")) {
             return StandardCharsets.UTF_8;
         } else if (encoding.equalsIgnoreCase("UTF-16")) {
             return StandardCharsets.UTF_16;
         } else {
-            throw new IllegalStateException(
-                    "Codifica non supportata: " + encoding);
+            throw new UnsupportedEncodingException("Codifica "
+                    + "[" + encoding + "] non supportata");
         }
     }
+
 }
