@@ -15,16 +15,28 @@ import java.util.Set;
  * a partire dalle linee digitate.
  */
 public final class Parser {
+
+    /** Input inserito dall'utente. */
     private String input;
+    /** Array contenente i token in cui viene diviso l'input
+     * in base agli spazi inseriti. */
     private String[] tokens;
+    /** Comando estratto dall'input. */
     private App.Command command;
+    /** Argomenti estratti dall'input. */
     private String[] args;
+    /** Insieme di comandi simili a quello inserito (eventualmente vuoto). */
     private Set<App.Command> closeCommands;
 
+    /** Insieme vuoto di comandi (immutabile). */
     private static final Set<App.Command> EMPTY_COMMAND_SET
                                     = Collections.emptySet();
+    /** Array vuoto di stringhe, restituito all'occorrenza (immutabile). */
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
+    /**
+     * Crea Parser inizialmente vuoto.
+     */
     public Parser() {
         input = null;
         tokens = EMPTY_STRING_ARRAY;
@@ -33,6 +45,12 @@ public final class Parser {
         closeCommands = EMPTY_COMMAND_SET;
     }
 
+    /**
+     * Elabora l'input fornito per riconoscere il comando inserito e
+     * suddividere eventuali argomenti.
+     *
+     * @param inputLine linea di testo inserito da elaborare
+     */
     public void feed(final String inputLine) {
         Objects.requireNonNull(inputLine);
 
@@ -161,6 +179,12 @@ public final class Parser {
         return tempCloseCommands;
     }
 
+    /**
+     * Restituisce il risultato dell'elaborazione sottoforma di
+     * {@link ParserToken}.
+     *
+     * @return token risultato dell'elaborazione
+     */
     public ParserToken getParserToken() {
 
         return new ParserToken(command, args, closeCommands);
