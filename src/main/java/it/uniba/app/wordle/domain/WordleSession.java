@@ -3,28 +3,36 @@ package it.uniba.app.wordle.domain;
 import java.util.Objects;
 
 /**
- * {@literal <<Control>>} <br>
- * Classe che implementa la logica del gioco: opera su oggetti delle
- * classi di tipo Entity, coerentemente con le regole di Wordle.
- * <p></p>
- * Fornisce una API (Application Programming Interface) indipendente
- * dallo strato di User Interface, il quale richiamerà i suoi servizi,
- * effettuando controlli sulla legalità delle chiamate.
+ * {@literal <<Entity>>} <br>
+ * Classe che rappresenta una sessione di gioco: in ogni momento può
+ * essere in corso una sola partita o nessuna.
+ *
+ * <p>Contiene le impostazioni di gioco, utilizzate nella creazione delle
+ * nuove partite.</p>
  */
- class WordleSession {
+class WordleSession {
 
+    /** Partita in corso (eventualmente {@code null}). */
     private WordleGame currentGame;
-
-    // impostazioni di gioco
+    /** Parola segreta impostata (inizialmente {@code null}). */
     private String secretWord;
 
-    // non final, si potrebbero far modificare dal giocatore in release future
-    private int nMaxGuesses;
-    private int wordLength;
+    // in release future saranno modificabili dal giocatore
+    // quindi sarà eliminato il modificatore final
+    /** Numero di tentativi per le partite. */
+    private final int nMaxGuesses;
+    /** Numero di lettere dei tentativi per le partite. */
+    private final int wordLength;
 
+    /** Impostazione di default per il numero di tentativi. */
     private static final int DEFAULT_MAX_GUESSES = 6;
+    /** Impostazione di default per il numero di lettere. */
     private static final int DEFAULT_WORD_LENGTH = 5;
 
+    /**
+     * Crea una sessione di gioco inizializzando le impostazioni
+     * per la creazione delle partite con i valori di default.
+     */
     WordleSession() {
         currentGame = null;
         secretWord = null;
@@ -32,37 +40,44 @@ import java.util.Objects;
         wordLength = DEFAULT_WORD_LENGTH;
     }
 
-    public WordleGame getCurrentGame() {
+    WordleGame getCurrentGame() {
         return currentGame;
     }
 
-    public void setCurrentGame(final WordleGame game) {
+    /**
+     * Imposta la partita da giocare o la elimina.
+     *
+     * @param game partita da giocare, {@code null} se si vuole
+     *             eliminare la partita in corso
+     */
+    void setCurrentGame(final WordleGame game) {
         this.currentGame = game;
     }
 
-    public String getSecretWord() {
+    String getSecretWord() {
         return secretWord;
     }
 
-    public void setSecretWord(final String gameSecretWord) {
+    void setSecretWord(final String gameSecretWord) {
         Objects.requireNonNull(gameSecretWord);
 
         this.secretWord = gameSecretWord;
     }
 
-    public int getNMaxGuesses() {
+    int getNMaxGuesses() {
         return nMaxGuesses;
     }
 
-    public int getWordLength() {
+    int getWordLength() {
         return wordLength;
     }
 
-    public boolean hasSecretWord() {
+    boolean hasSecretWord() {
         return secretWord != null;
     }
 
-    public boolean isGameRunning() {
+    boolean isGameRunning() {
         return currentGame != null;
     }
+
 }
