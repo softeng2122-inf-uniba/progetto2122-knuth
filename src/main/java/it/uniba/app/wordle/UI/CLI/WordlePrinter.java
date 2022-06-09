@@ -12,7 +12,7 @@ import java.io.PrintWriter;
  * Utilizza codici ANSI per la visualizzazione dei colori
  * e costanti UNICODE nelle stampe di gioco.
  */
-public final class Printer extends PrintWriter {
+public final class WordlePrinter extends PrintWriter {
     // angoli (L = left, R = right, U = up, D = down)
     private static final char L_U_ANGLE = '\u2554';
     private static final char R_U_ANGLE = '\u2557';
@@ -45,7 +45,7 @@ public final class Printer extends PrintWriter {
 
     private final PlayerController playerController;
 
-    Printer(final OutputStreamWriter out, final PlayerController controller) {
+    WordlePrinter(final OutputStreamWriter out, final PlayerController controller) {
         super(out, true);
         this.playerController = controller;
     }

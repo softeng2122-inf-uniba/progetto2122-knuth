@@ -19,7 +19,7 @@ import java.util.Scanner;
  * Classe principale dell'applicazione. <p></p>
  * Contiene il main e i metodi specifici per l'esecuzione dei comandi
  * inseriti dall'utente.
- * Utilizza {@link Parser} per processare l'input e {@link Printer} per
+ * Utilizza {@link Parser} per processare l'input e {@link WordlePrinter} per
  * visualizzare l'output.
  */
 public final class App {
@@ -32,7 +32,7 @@ public final class App {
                          (WordlePlayerController) PLAYER_CONTROLLER);
 
     private static Scanner keyboard;
-    private static Printer console;
+    private static WordlePrinter console;
     private static final Parser PARSER = new Parser();
     private static boolean running = true;
 
@@ -203,7 +203,7 @@ public final class App {
             Charset encoding = getSystemEncoding();
             keyboard = new Scanner(
                     new InputStreamReader(System.in, encoding));
-            console = new Printer(
+            console = new WordlePrinter(
                     new OutputStreamWriter(System.out, encoding),
                     PLAYER_CONTROLLER);
         } catch(UnsupportedEncodingException e) {
