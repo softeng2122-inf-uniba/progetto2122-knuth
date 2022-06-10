@@ -350,7 +350,7 @@ p align="center">
 Tramite il comando /nuova \<parola>, specificando una parola composta da 5 caratteri alfabetici (limitati alle 26 lettere dell'alfabeto), si imposta la parola segreta in modo tale che le successive richieste di inizio partita avranno come parola segreta tale parola.
 
 <p align="center">
-  <img src="./img/report img/guida utente img/comandoNuovaTrenoOk.png" alt="comandoNuovaTrenoOk" width="1000"/>
+  <img src="./img/report img/guida utente img/comandoNuovaTrenoOk.png" alt="comandoNuovaTrenoOk" width="500"/>
 </p>
 
 La parola segreta impostata rimane la stessa fin quando non viene rieseguito il comando /nuova da parte del paroliere.
@@ -358,13 +358,13 @@ La parola segreta impostata rimane la stessa fin quando non viene rieseguito il 
 Nel caso di inserimento di una parola segreta contenente caratteri non compresi tra quelli ammessi, l'applicazione notifica l'errore e non consente di impostare la parola segreta inserita
 
 <p align="center">
-  <img src="./img/report img/guida utente img/NuovaNonValida.png" alt="NuovaNonValida" width="1000"/>
+  <img src="./img/report img/guida utente img/NuovaNonValida.png" alt="NuovaNonValida" width="500"/>
 </p>
 
 Nel caso di inserimento di una parola segreta troppo corta o troppo lunga, l'applicazione notifica l'errore e non consente di impostare la parola segreta inserita.
 
 <p align="center">
-  <img src="./img/report img/guida utente img/NuovaLunghezzaInvalida.png" alt="NuovaLunghezzaInvalida" width="1000"/>
+  <img src="./img/report img/guida utente img/NuovaLunghezzaInvalida.png" alt="NuovaLunghezzaInvalida" width="500"/>
 </p>
 
 3. ### stampa parola segreta
@@ -372,13 +372,13 @@ Nel caso di inserimento di una parola segreta troppo corta o troppo lunga, l'app
 Tramite il comando /mostra, in qualsiasi momento del gioco è possibile visualizzare la parola segreta attualmente impostata.
 
 <p align="center">
-  <img src="./img/report img/guida utente img/comandoMostra.png" alt="comandoMostra" width="1000"/>
+  <img src="./img/report img/guida utente img/comandoMostra.png" alt="comandoMostra" width="500"/>
 </p>
 
 Nel caso in cui si esegue il comando /mostra in assenza di una parola segreta impostata, l'applicazione, tramite messaggio, informa dell'assenza di una parola segreta.
 
 <p align="center">
-  <img src="./img/report img/guida utente img/MostraSenzaParolaImpostata.png" alt="MostraSenzaParolaImpostata" width="1000"/>
+  <img src="./img/report img/guida utente img/MostraSenzaParolaImpostata.png" alt="MostraSenzaParolaImpostata" width="500"/>
 </p>
 
 - ## giocatore
@@ -390,7 +390,7 @@ Tramite il comando /gioca, è possibile iniziare una nuova partita, mostrando la
 Nel caso in cui si esegue il comando /gioca in assenza di una parola segreta impostata, l'applicazione, tramite messaggio, informa dell'assenza di una parola segreta, che comporta l'impossibilità di iniziare una nuova partita, e di conseguenza non viene stampata la griglia delle lettere.
 
 <p align="center">
-  <img src="./img/report img/guida utente img/comandoGioca.png" alt="comandoGioca" width="1000"/>
+  <img src="./img/report img/guida utente img/comandoGioca.png" alt="comandoGioca" width="300"/>
 </p>
 
 5. ### svolgimento di una partita
@@ -458,8 +458,8 @@ In caso di inserimento di tale comando, l'applicazione stampa un messaggio di ri
 Infine l'applicazione è capace di riconoscere comandi inseriti che differiscono per qualche lettera dal comando inserito, per cui nel qual caso l'utente inserisca un comando errato, ma simile ad un comando fornito dal gioco, l'applicazione fornisce una lista dei comandi più simili.
 
 <p align="center">
-  <img src="./img/report img/guida utente img/comandiSimili.png" alt="comandiSimili" width="1000"/>
-</p>
+  <img src="./img/report img/guida utente img/comandiSimili.png" alt="comandiSimili" width="500"/>
+</p><khy>
 
 ## 8. Processo di sviluppo e di organizzazione del lavoro
 
