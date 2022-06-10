@@ -67,12 +67,12 @@ public final class App {
                 console.println("Comando invalido");
                 if (args.length != 0) {
                     if (args.length == 1) {
-                        System.out.println("Il comando più simile è: ");
+                        console.println("Il comando più simile è: ");
                     } else {
-                        System.out.println("I comandi più simili sono: ");
+                        console.println("I comandi più simili sono: ");
                     }
                     for (String closeCommandString : args) {
-                        System.out.println("\t\t" + closeCommandString);
+                        console.println("\t\t" + closeCommandString);
                     }
                 }
             }
@@ -332,7 +332,7 @@ public final class App {
         }
 
         while (running) {
-            System.out.print("Wordle> ");
+            console.print("Wordle> ");
             String inputLine = keyboard.nextLine();
 
             // invia l'input al parser
@@ -343,7 +343,7 @@ public final class App {
 
             // esegui comando riconosciuto
             if (parserToken.hasMissingArgs()) {
-                System.out.println("Argomenti mancanti: "
+                console.println("Argomenti mancanti: "
                         + parserToken.getNumMissingArgs());
             } else {
                 if (command == Command.INVALID) {
