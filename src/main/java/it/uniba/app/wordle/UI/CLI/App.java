@@ -43,16 +43,26 @@ public final class App {
     private static boolean running = true;
 
     /**
-     * {@literal <<NoECB>>} <br>
+     * {@literal <<Boundary>>} <br>
      * L'enumerazione Command contiene le costanti che rappresentano
-     * i comandi riconosciuti dal gioco.
-     * Le costanti INVALID e SPACE sono comandi fittizi per gestire
-     * eventuali errori di input e caratteri di spaziatura.
+     * i comandi riconosciuti dal {@link Parser}.
+     *
+     * <p>Se vengono forniti più argomenti rispetto a quelli che il
+     * comando si aspetta allora vengono semplicemente ignorati.
+     * La gestione sugli argomenti mancanti viene invece effettuata
+     * all'interno del main, per non avverrà alcuna chiamata a
+     * {@link Command#execute(String[])} in questo caso.</p>
+     *
+     * <p>Le costanti {@link Command#INVALID} e {@link Command#SPACE}
+     * sono comandi fittizi per gestire eventuali errori di input
+     * e caratteri di spaziatura.</p>
      */
     public enum Command {
         /**
          * Comando invalido, ovvero un qualsiasi comando inesistente
          * che l'utente ha provato a inserire.
+         *
+         * <p>Utilizza zero argomenti</p>
          */
         INVALID(0) {
             /**
@@ -81,12 +91,12 @@ public final class App {
         /**
          * Comando associato all'inserimento di soli spazi da parte
          * dell'utente.
+         *
+         * <p>Utilizza zero argomenti</p>
          */
         SPACE(0) {
             /**
              * Non effettua alcun'azione.
-             *
-             * @param args risulterà in un array sempre vuoto
              */
             public void execute(final String[] args) {
             }
@@ -94,12 +104,13 @@ public final class App {
 
         /**
          * Comando {@literal /gioca}.
+         *
+         * <p>Non si aspetta nessun argomento</p>
          */
         GIOCA(0) {
             /**
-             * Prova a iniziare una nuova partita.
-             *
-             * @param args argomenti forniti al comando
+             * Prova a iniziare una nuova partita e stampa
+             * l'esito dell'esecuzione.
              */
             public void execute(final String[] args) {
                 try {
@@ -114,12 +125,13 @@ public final class App {
 
         /**
          * Comando {@literal /nuova <parola>}.
+         *
+         * <p>Si aspetta un solo argomento</p>
          */
         NUOVA(1) {
             /**
-             * Prova a impostare la parola segreta della sessione di gioco.
-             *
-             * @param args argomenti forniti al comando
+             * Prova a impostare la parola segreta della sessione di gioco
+             * e stampa l'esito dell'esecuzione.
              */
             public void execute(final String[] args) {
 
@@ -136,15 +148,16 @@ public final class App {
 
         /**
          * Comando {@literal /abbandona}.
+         *
+         * <p>Non si aspetta nessun argomento</p>
          */
         ABBANDONA(0) {
             /**
-             * Prova ad abbandonare la partita in corso.
+             * Prova ad abbandonare la partita in corso
+             * e stampa l'esito dell'esecuzione.
              *
              * <p>Se una partita è effettivamente in corso chiede
              * conferma dell'azione.</p>
-             *
-             * @param args argomenti forniti al comando
              */
             public void execute(final String[] args) {
                 if (!PLAYER_CONTROLLER.isGameRunning()) {
@@ -169,15 +182,15 @@ public final class App {
 
         /**
          * Comando che rappresenta il tentativo effettuato dal giocatore.
+         *
+         * <p>Utilizza un solo argomento, ovvero il tentativo stesso</p>
          */
         GUESS(1) {
             /**
              * Prova ad effettuare un tentativo.
              *
-             * <p>Se va a buon fine stampa la board di gioco,
+             * <p>Se va a buon fine stampa la board di gioco aggiornata,
              * altrimenti stampa l'errore occorso.</p>
-             *
-             * @param args argomenti forniti al comando
              */
             public void execute(final String[] args) {
                 String guessWord = args[0];
@@ -198,6 +211,8 @@ public final class App {
 
         /**
          * Comando {@literal /esci}.
+         *
+         * <p>Non si aspetta nessun argomento</p>
          */
         ESCI(0) {
             /**
@@ -205,8 +220,6 @@ public final class App {
              *
              * <p>Chiede conferma dell'azione, in seguito imposta
              * il flag {@link App#running} a false.</p>
-             *
-             * @param args argomenti forniti al comando
              */
             public void execute(final String[] args) {
                 String answer;
@@ -226,6 +239,8 @@ public final class App {
 
         /**
          * Comando {@literal /mostra}.
+         *
+         * <p>Non si aspetta nessun argomento</p>
          */
         MOSTRA(0) {
             /**
@@ -233,8 +248,6 @@ public final class App {
              *
              * <p>Se la parola segreta non è stata ancora
              * impostata mostra invece un messaggio di errore.</p>
-             *
-             * @param args argomenti forniti al comando
              */
             public void execute(final String[] args) {
 
@@ -249,13 +262,13 @@ public final class App {
 
         /**
          * Comando {@literal /help}.
+         *
+         * <p>Non si aspetta nessun argomento</p>
          */
         HELP(0) {
             /**
              * Mostra una breve descrizione del gioco, seguita dall'elenco
              * dei comandi disponibili.
-             *
-             * @param args argomenti forniti al comando
              */
             public void execute(final String[] args) {
                 console.printDescription();
@@ -282,8 +295,7 @@ public final class App {
         /**
          * Esecuzione del comando individuato.
          *
-         * @param args argomenti forniti al comando, per i comandi che
-         *             non richiedono argomenti esso sarà vuoto
+         * @param args array di argomenti forniti al comando
          */
         public abstract void execute(String[] args);
     }
@@ -377,5 +389,4 @@ public final class App {
                             + "[" + encoding + "] non supportata");
         }
     }
-
 }
