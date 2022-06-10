@@ -128,7 +128,9 @@ class WordlePlayerControllerTest {
 
             @BeforeEach
             void initGame() {
-                WordleWordsmithController wc = new WordleWordsmithController(pc);
+                WordleWordsmithController wc =
+                        new WordleWordsmithController(pc);
+
                 wc.setSecretWord("TRONO");
                 pc.startGame();
             }
