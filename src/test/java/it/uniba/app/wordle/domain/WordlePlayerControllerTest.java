@@ -121,8 +121,6 @@ class WordlePlayerControllerTest {
                      + "e viene iniziata la partita")
         class GameStartedTest {
 
-            /** Controller per il paroliere per effettuare i test. */
-            private WordleWordsmithController wc;
             /** Valore di default per il numero massimo di tentativi. */
             private static final int DEFAULT_MAX_GUESSES = 6;
             /** Valore di default per la lunghezza dei tentativi. */
@@ -130,7 +128,7 @@ class WordlePlayerControllerTest {
 
             @BeforeEach
             void initGame() {
-                wc = new WordleWordsmithController(pc);
+                WordleWordsmithController wc = new WordleWordsmithController(pc);
                 wc.setSecretWord("TRONO");
                 pc.startGame();
             }
