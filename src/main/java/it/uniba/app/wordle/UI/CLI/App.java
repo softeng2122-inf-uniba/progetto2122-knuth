@@ -360,7 +360,7 @@ public final class App {
         }
 
         while (running) {
-            console.print("Wordle> ");
+            console.printf("Wordle> ");
             String inputLine = keyboard.nextLine();
 
             // invia l'input al parser
