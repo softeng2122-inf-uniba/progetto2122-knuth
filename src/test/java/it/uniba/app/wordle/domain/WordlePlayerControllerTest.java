@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @DisplayName("Un WordlePlayerController")
 class WordlePlayerControllerTest {
 
+    /** Controller per effettuare i test. */
     private WordlePlayerController pc;
 
     @BeforeEach
@@ -120,8 +121,11 @@ class WordlePlayerControllerTest {
                      + "e viene iniziata la partita")
         class GameStartedTest {
 
+            /** Controller per il paroliere per effettuare i test. */
             private WordleWordsmithController wc;
+            /** Valore di default per il numero massimo di tentativi. */
             private static final int DEFAULT_MAX_GUESSES = 6;
+            /** Valore di default per la lunghezza dei tentativi. */
             private static final int DEFAULT_WORD_LENGTH = 5;
 
             @BeforeEach

@@ -15,12 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @DisplayName("Un tentativo")
 class GuessTest {
 
+    /** Tentativo per effettuare i test. */
     private Guess g;
 
     @Nested
     @DisplayName("quando si instanzia con new e una stringa come parametro")
     class CorrectlyCreatedTest {
 
+        /** Valore di default per il numero di lettere. */
         private static final int DEFAULT_LENGTH = 5;
 
         @BeforeEach
