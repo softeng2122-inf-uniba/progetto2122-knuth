@@ -42,23 +42,32 @@ class AppTest {
     private static final String[] EMPTY_ARRAY_STRING = new String[0];
 
 
-    static ByteArrayOutputStream newOutputStream() throws IllegalAccessException {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        appConsole.set(null, new WordlePrinter(new OutputStreamWriter(outContent),
+    static ByteArrayOutputStream newOutputStream()
+                                        throws IllegalAccessException {
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        appConsole.set(null, new WordlePrinter(
+                new OutputStreamWriter(out),
                 (WordlePlayerController) appPlayerController.get(null)));
 
-        return outContent;
+        return out;
     }
 
-    static void redirectInputStream(final String input) throws IllegalAccessException {
-        ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
-        appKeyboard.set(null, new Scanner(inContent));
+    static void redirectInputStream(final String input)
+                                        throws IllegalAccessException {
+
+        ByteArrayInputStream in =
+                new ByteArrayInputStream(input.getBytes());
+
+        appKeyboard.set(null, new Scanner(in));
 
     }
 
 
     @BeforeAll
-    public static void setup() throws NoSuchFieldException, IllegalAccessException {
+    public static void setup()
+            throws NoSuchFieldException, IllegalAccessException {
 
         // Utilizza reflection per rendere accessibili gli attributi privati
         appPlayerController = App.class.getDeclaredField("PLAYER_CONTROLLER");
@@ -119,7 +128,8 @@ class AppTest {
                 // per verificare che sia correttamente gestito
                 redirectInputStream("forse\nsi\n");
 
-                assertDoesNotThrow(() -> App.Command.ABBANDONA.execute(EMPTY_ARRAY_STRING));
+                assertDoesNotThrow(() -> App.Command.ABBANDONA
+                                            .execute(EMPTY_ARRAY_STRING));
             }
 
             @Test
@@ -144,7 +154,7 @@ class AppTest {
             @ValueSource(strings = {"CIAO", "PAROLA", "L£TT0"})
             @DisplayName("non lancia eccezioni se viene inserito un tentativo "
                         + "non valido")
-            void testInvalidGuess(String arg) {
+            void testInvalidGuess(final String arg) {
                 assertDoesNotThrow(
                         () -> App.Command.GUESS
                                 .execute(new String[]{arg}));
@@ -154,13 +164,15 @@ class AppTest {
             @DisplayName("non lancia eccezioni se viene inserito un tentativo "
                         + "quando sono terminati i tentativi disponibili")
             void testFillBoard() {
-                String[] args = {"NUOVO", "EBETE", "BREVE", "SCAFO", "PALLA", "LETTO"};
+                String[] args = {"NUOVO", "EBETE", "BREVE",
+                                 "SCAFO", "PALLA", "LETTO"};
 
-                for(String arg : args) {
+                for (String arg : args) {
                     App.Command.GUESS.execute(new String[]{arg});
                 }
 
-                assertDoesNotThrow(() -> App.Command.GUESS.execute(new String[]{"TRENO"}));
+                assertDoesNotThrow(() -> App.Command.GUESS
+                                            .execute(new String[]{"TRENO"}));
             }
         }
     }
@@ -182,7 +194,7 @@ class AppTest {
     @MethodSource("commandProvider")
     @DisplayName("non lancia eccezioni all'esecuzione di un comando "
                 + "che non richiede interazioni")
-    void testNoInteractionCommand(App.Command command) {
+    void testNoInteractionCommand(final App.Command command) {
         assertDoesNotThrow(() -> command.execute(EMPTY_ARRAY_STRING));
     }
 
@@ -205,7 +217,7 @@ class AppTest {
     @Test
     @DisplayName("non lancia eccezioni al comando \"ESCI\" e imposta "
             + "il flag \"running\" a false")
-    void testEsci() throws IllegalAccessException{
+    void testEsci() throws IllegalAccessException {
         redirectInputStream("forse\nsi\n");
 
         assertAll(
@@ -218,8 +230,10 @@ class AppTest {
     @DisplayName("non lancia eccezioni se un comando invalido ha "
             + "comandi simili")
     void testInvalidWithArgs() {
-        assertDoesNotThrow(() -> App.Command.INVALID.execute(new String[]{"ESCI"}));
-        assertDoesNotThrow(() -> App.Command.INVALID.execute(new String[]{"ESCI", "HELP"}));
+        assertDoesNotThrow(() -> App.Command.INVALID
+                                    .execute(new String[]{"ESCI"}));
+        assertDoesNotThrow(() -> App.Command.INVALID.
+                                    execute(new String[]{"ESCI", "HELP"}));
     }
 
 
