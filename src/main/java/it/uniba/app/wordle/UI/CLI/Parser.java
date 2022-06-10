@@ -31,7 +31,7 @@ public final class Parser {
 
     /** Insieme vuoto di comandi (immutabile). */
     private static final Set<App.Command> EMPTY_COMMAND_SET
-                                    = Collections.emptySet();
+            = Collections.emptySet();
     /** Array vuoto di stringhe, restituito all'occorrenza (immutabile). */
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
@@ -67,11 +67,9 @@ public final class Parser {
         }
     }
 
-    //un input "" ritorna un array con zero elementi
-
     /**
      * Restituisce un array di token (eventualmente vuoto),
-     * ossia le sottostringhe di {@code input} separate da spazi.
+     * ossia le sottostringhe di {@link Parser#input} separate da spazi.
      *
      * @return array di token
      */
@@ -85,6 +83,20 @@ public final class Parser {
         return tempTokens;
     }
 
+    /**
+     * Estrae il comando contenuto in {@link Parser#tokens}.
+     *
+     * <p>Se {@link Parser#tokens} è vuoto,
+     * il comando estratto è {@link App.Command#SPACE}</p>
+     *
+     * <p>Se {@link Parser#tokens} contiene un comando non riconosciuto,
+     * il comando estratto è {@link App.Command#INVALID}</p>
+     *
+     * <p>Se il primo token non inizia con '/',
+     * il comando estratto è {@link App.Command#GUESS}</p>
+     *
+     * @return il comando estratto
+     */
     private App.Command extractCommand() {
 
         // CASO 1: solo spazi
@@ -109,6 +121,16 @@ public final class Parser {
         }
     }
 
+    /**
+     * Estrae gli argomenti inseriti dall'utente presenti
+     * in {@link Parser#tokens}.
+     *
+     * <p>Se il numero di argomenti inseriti è maggiore rispetto al
+     * numero di argomenti attesi, quelli in eccesso vengono ignorati.</p>
+     *
+     * @param extractedCommand comando estratto da {@link Parser#extractCommand()}
+     * @return un array di argomenti (eventualmente vuoto)
+     */
     private String[] extractArgs(final App.Command extractedCommand) {
         Objects.requireNonNull(extractedCommand);
 
@@ -131,16 +153,32 @@ public final class Parser {
         return argsList.toArray(EMPTY_STRING_ARRAY);
     }
 
-    private int editDistance(final String wrightString,
-                             final String stringToEvaluate) {
+    /**
+     * Calcola la distanza di edit tra le stringhe passate in argomento.
+     *
+     * <p> La distanza di edit è uguale al minimo numero di caratteri che
+     * devono essere cancellati, inseriti o sostituiti per passare da una
+     * stringa ad un'altra.</p>
+     *
+     * <p>Questa operazione è commutativa</p>
+     *
+     * <p>Per approfondire il funzionamento dell'algoritmo
+     * consultare <a href="https://rb.gy/hncbga">questa pagina</a>
+     *
+     * @param first prima stringa da confrontare
+     * @param second seconda stringa da confrontare
+     * @return la distanza di edit tra {@code first} e {@code second}
+     */
+    private int editDistance(final String first,
+                             final String second) {
 
-        String wright = wrightString.toUpperCase();
-        String stringToCheck = stringToEvaluate.toUpperCase();
+        String upperFirst = first.toUpperCase();
+        String upperSecond = second.toUpperCase();
 
-        int[][]l = new int[wright.length() + 1][stringToCheck.length() + 1];
+        int[][]l = new int[upperFirst.length() + 1][upperSecond.length() + 1];
 
-        for (int i = 0; i < (wright.length() + 1); i++) {
-            for (int j = 0; j < (stringToCheck.length() + 1); j++) {
+        for (int i = 0; i < (upperFirst.length() + 1); i++) {
+            for (int j = 0; j < (upperSecond.length() + 1); j++) {
 
                 if (i == 0 || j == 0) {
                     l[i][j] = Math.max(i, j);
@@ -148,12 +186,12 @@ public final class Parser {
                     l[i][j] = min3(
                             l[i - 1][j] + 1,
                             l[i][j - 1] + 1,
-                            l[i - 1][j - 1] + (wright.charAt(i - 1)
-                                    != stringToCheck.charAt(j - 1) ? 1 : 0));
+                            l[i - 1][j - 1] + (upperFirst.charAt(i - 1)
+                                    != upperSecond.charAt(j - 1) ? 1 : 0));
                 }
             }
         }
-        return l[wright.length()][stringToCheck.length()];
+        return l[upperFirst.length()][upperSecond.length()];
     }
 
     private int min3(final  int i, final int j, final int k) {
@@ -161,8 +199,17 @@ public final class Parser {
         return Math.min(Math.min(i, j), k);
     }
 
+    /**
+     * Crea l'insieme dei comandi simili alla stringa inserita come parametro
+     *
+     * <p>Per comando simile si intende un comando la cui rappresentazione
+     * sotto forma di stringa abbia una edit distance minore o uguale a 2
+     * se confrontata al {@code wrongCommandString}.</p>
+     * @param wrongCommandString stringa da confrontare
+     * @return un insieme di comandi simili a {@code wrongCommandString}
+     */
     private Set<App.Command> getCloseCommands(
-                    final String wrongCommandString) {
+            final String wrongCommandString) {
         Objects.requireNonNull(wrongCommandString);
 
         Set<App.Command> tempCloseCommands = EMPTY_COMMAND_SET;
