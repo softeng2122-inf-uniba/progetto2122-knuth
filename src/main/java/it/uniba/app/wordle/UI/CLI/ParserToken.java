@@ -7,8 +7,8 @@ import java.util.Set;
 
 /**
  * {@literal <<Boundary>>} <br>
- * Classe che rappresenta l'output di un Parser e incapsula il comando, gli argomenti
- * e l'eventuale insieme di comandi simili.
+ * Classe che rappresenta l'output di un Parser e incapsula il comando,
+ * gli argomenti e l'eventuale insieme di comandi simili.
  */
 public final class ParserToken {
 

@@ -97,6 +97,8 @@ public final class App {
         SPACE(0) {
             /**
              * Non effettua alcun'azione.
+             *
+             * @param args array di argomenti forniti al comando
              */
             public void execute(final String[] args) {
             }
@@ -111,6 +113,8 @@ public final class App {
             /**
              * Prova a iniziare una nuova partita e stampa
              * l'esito dell'esecuzione.
+             *
+             * @param args array di argomenti forniti al comando
              */
             public void execute(final String[] args) {
                 try {
@@ -132,6 +136,8 @@ public final class App {
             /**
              * Prova a impostare la parola segreta della sessione di gioco
              * e stampa l'esito dell'esecuzione.
+             *
+             * @param args array di argomenti forniti al comando
              */
             public void execute(final String[] args) {
 
@@ -158,6 +164,8 @@ public final class App {
              *
              * <p>Se una partita è effettivamente in corso chiede
              * conferma dell'azione.</p>
+             *
+             * @param args array di argomenti forniti al comando
              */
             public void execute(final String[] args) {
                 if (!PLAYER_CONTROLLER.isGameRunning()) {
@@ -191,6 +199,8 @@ public final class App {
              *
              * <p>Se va a buon fine stampa la board di gioco aggiornata,
              * altrimenti stampa l'errore occorso.</p>
+             *
+             * @param args array di argomenti forniti al comando
              */
             public void execute(final String[] args) {
                 String guessWord = args[0];
@@ -220,6 +230,8 @@ public final class App {
              *
              * <p>Chiede conferma dell'azione, in seguito imposta
              * il flag {@link App#running} a false.</p>
+             *
+             * @param args array di argomenti forniti al comando
              */
             public void execute(final String[] args) {
                 String answer;
@@ -248,6 +260,8 @@ public final class App {
              *
              * <p>Se la parola segreta non è stata ancora
              * impostata mostra invece un messaggio di errore.</p>
+             *
+             * @param args array di argomenti forniti al comando
              */
             public void execute(final String[] args) {
 
@@ -269,6 +283,8 @@ public final class App {
             /**
              * Mostra una breve descrizione del gioco, seguita dall'elenco
              * dei comandi disponibili.
+             *
+             * @param args array di argomenti forniti al comando
              */
             public void execute(final String[] args) {
                 console.printDescription();

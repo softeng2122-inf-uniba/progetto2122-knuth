@@ -128,7 +128,8 @@ public final class Parser {
      * <p>Se il numero di argomenti inseriti è maggiore rispetto al
      * numero di argomenti attesi, quelli in eccesso vengono ignorati.</p>
      *
-     * @param extractedCommand comando estratto da {@link Parser#extractCommand()}
+     * @param extractedCommand comando estratto da
+     *                         {@link Parser#extractCommand()}
      * @return un array di argomenti (eventualmente vuoto)
      */
     private String[] extractArgs(final App.Command extractedCommand) {
