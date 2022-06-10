@@ -1,13 +1,10 @@
 package it.uniba.app.wordle.UI.CLI;
 
-import com.sun.tools.jdeprscan.scan.Scan;
 import it.uniba.app.wordle.domain.WordlePlayerController;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,9 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
@@ -26,127 +21,138 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-@DisplayName("eseguo AppTest")
+@DisplayName("La classe App")
 class AppTest {
 
-    static Field appPlayerController;
-    static Field appWordsmithController;
-    static Field appKeyboard;
-    static Field appConsole;
-    static Field appRunning;
-    private static ByteArrayOutputStream outContent;
-    private final PrintStream originalOut = System.out;
-    private ByteArrayInputStream inContent;
-    private final InputStream originalIn = System.in;
+    // attributi privati e statici di App a cui serve accedere
+    private static Field appPlayerController;
+    private static Field appKeyboard;
+    private static Field appConsole;
+    private static Field appRunning;
 
-    private final String[] EMPTY_ARRAY_STRING = new String[0];
+    // stream di output
+    private static ByteArrayOutputStream outContent;
+
+    private static final String[] EMPTY_ARRAY_STRING = new String[0];
+
+
+    static ByteArrayOutputStream newOutputStream() throws IllegalAccessException {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        appConsole.set(null, new WordlePrinter(new OutputStreamWriter(outContent),
+                (WordlePlayerController) appPlayerController.get(null)));
+
+        return outContent;
+    }
+
+    static void redirectInputStream(final String input) throws IllegalAccessException {
+        ByteArrayInputStream inContent = new ByteArrayInputStream(input.getBytes());
+        appKeyboard.set(null, new Scanner(inContent));
+
+    }
 
 
     @BeforeAll
     public static void setup() throws NoSuchFieldException, IllegalAccessException {
-        outContent = new ByteArrayOutputStream();
-        // System.setOut(new PrintStream(outContent));
 
-
+        // Utilizza reflection per rendere accessibili gli attributi privati
         appPlayerController = App.class.getDeclaredField("PLAYER_CONTROLLER");
         appPlayerController.setAccessible(true);
 
-        appWordsmithController = App.class.getDeclaredField("WORDSMITH_CONTROLLER");
-        appWordsmithController.setAccessible(true);
-
         appKeyboard = App.class.getDeclaredField("keyboard");
         appKeyboard.setAccessible(true);
+
         appConsole = App.class.getDeclaredField("console");
         appConsole.setAccessible(true);
 
         appRunning = App.class.getDeclaredField("running");
         appRunning.setAccessible(true);
 
-        outContent = new ByteArrayOutputStream();
-        appConsole.set(null, new WordlePrinter(new OutputStreamWriter(outContent),
-                (WordlePlayerController) appPlayerController.get(null)));
+        // inizializza l'outContent come stream di output
+        outContent = newOutputStream();
 
-        //inContent = new ByteArrayInputStream();
-        // appKeyboard.set(null, new Scanner(new InputStreamReader(inContent)));
-        //appConsole.set(null, new WordlePrinter(new OutputStreamWriter(outContent),
-        //                (WordlePlayerController) appPlayerController.get(null)));
     }
-
-
-    @Test
-    @DisplayName("/help non lancia eccezioni")
-    void testHelp() {
-        assertDoesNotThrow(() -> App.Command.HELP.execute(EMPTY_ARRAY_STRING));
-    }
-
 
     @Nested
-    @DisplayName("quando si imposta la parola segreta TRENO")
+    @DisplayName("quando viene impostata la parola segreta TRENO")
     class SecretWordSetTest {
-        @BeforeEach
-        void setupSecretWord() throws IllegalAccessException {
-            String[] args = {"TRENO"};
-            //App.Command.NUOVA.execute(args);
-            // String string = "/nuova treno";
-            App.Command.NUOVA.execute(args);
-        }
 
+        @BeforeEach
+        void setupSecretWord() {
+            App.Command.NUOVA.execute(new String[]{"TRENO"});
+        }
 
         @Test
-        @DisplayName("effettuo tentativo non corretto")
-        void testGuess() {
-            String[] args = {"TRAMA"};
-            assertDoesNotThrow(() -> App.Command.GUESS.execute(args));
+        @DisplayName("la stampa correttamente a seguito "
+                    + "del comando \"MOSTRA\"")
+        void testMostra() throws IllegalAccessException {
+
+            // serve ignorare l'output accumulato nel BeforeEach
+            // quindi viene creato un nuovo outputStream e
+            // si legge il suo contenuto
+            outContent = newOutputStream();
+
+            App.Command.MOSTRA.execute(EMPTY_ARRAY_STRING);
+            String outputLine = outContent.toString().trim();
+            assertEquals("Parola segreta: TRENO", outputLine);
         }
+
 
         @Nested
         @DisplayName("quando si avvia la partita")
         class StartGameTest {
+
             @BeforeEach
             void startGame() {
                 App.Command.GIOCA.execute(EMPTY_ARRAY_STRING);
             }
             @Test
-            @DisplayName("test abbandona")
-            void testMain() throws IllegalAccessException{
-                // outContent = new ByteArrayOutputStream();
-                // System.setOut(new PrintStream(outContent));
-                String s = "si\n";
-                inContent = new ByteArrayInputStream(s.getBytes());
-                System.setIn(inContent);
+            @DisplayName("non lancia eccezioni al comando \"ABBANDONA\"")
+            void testAbbandona() throws IllegalAccessException {
 
-                appKeyboard.set(null, new Scanner(inContent));
+                // prima di confermare scrivo un input non previsto
+                // per verificare che sia correttamente gestito
+                redirectInputStream("forse\nsi\n");
 
                 assertDoesNotThrow(() -> App.Command.ABBANDONA.execute(EMPTY_ARRAY_STRING));
             }
 
             @Test
-            @DisplayName("effettuo un tentativo non corretto")
-            void testGuess() {
-                String[] args = {"TERNA"};
-                assertDoesNotThrow(() -> App.Command.GUESS.execute(args));
+            @DisplayName("non lancia eccezioni se viene inserito un tentativo "
+                        + "valido")
+            void testValidGuess() {
+                assertDoesNotThrow(
+                        () -> App.Command.GUESS
+                                .execute(new String[]{"TERNA"}));
             }
 
             @Test
-            @DisplayName("effettuo un tentativo corretto")
+            @DisplayName("non lancia eccezioni se viene indovinata la parola "
+                        + "segreta")
             void testCorrectGuess() {
-                String[] args = {"TRENO"};
-                assertDoesNotThrow(() -> App.Command.GUESS.execute(args));
+                assertDoesNotThrow(
+                        () -> App.Command.GUESS
+                                .execute(new String[]{"TRENO"}));
             }
 
             @ParameterizedTest
             @ValueSource(strings = {"CIAO", "PAROLA", "L£TT0"})
-            @DisplayName("effettuo un tentativo invalido non lancia ecc")
+            @DisplayName("non lancia eccezioni se viene inserito un tentativo "
+                        + "non valido")
             void testInvalidGuess(String arg) {
-                String[] args = {arg};
-
-                assertDoesNotThrow(() -> App.Command.GUESS.execute(args));
+                assertDoesNotThrow(
+                        () -> App.Command.GUESS
+                                .execute(new String[]{arg}));
             }
 
             @Test
-            @DisplayName("se riempio la board poi non vado più avanti")
+            @DisplayName("non lancia eccezioni se viene inserito un tentativo "
+                        + "quando sono terminati i tentativi disponibili")
             void testFillBoard() {
                 String[] args = {"NUOVO", "EBETE", "BREVE", "SCAFO", "PALLA", "LETTO"};
 
@@ -157,23 +163,9 @@ class AppTest {
                 assertDoesNotThrow(() -> App.Command.GUESS.execute(new String[]{"TRENO"}));
             }
         }
-
-
-        @Test
-        @Order(2)
-        @DisplayName("ritrova la parola segreta con \"MOSTRA\"")
-        void testMostra() throws IllegalAccessException {
-            outContent = new ByteArrayOutputStream();
-            appConsole.set(null, new WordlePrinter(new OutputStreamWriter(outContent),
-                    (WordlePlayerController) appPlayerController.get(null)));
-
-            App.Command.MOSTRA.execute(EMPTY_ARRAY_STRING);
-            String outputLine = outContent.toString().trim();
-            assertEquals("Parola segreta: TRENO", outputLine);
-        }
-
     }
 
+    // comandi che non richiedono argomenti né interazioni da parte dell'utente
     static Stream<Arguments> commandProvider() {
         return Stream.of(
                 Arguments.of(App.Command.SPACE),
@@ -181,19 +173,59 @@ class AppTest {
                 Arguments.of(App.Command.HELP),
                 Arguments.of(App.Command.MOSTRA),
                 Arguments.of(App.Command.GIOCA),
+                // non richiede interazione in quanto non è attiva la partita
                 Arguments.of(App.Command.ABBANDONA));
+
     }
 
     @ParameterizedTest
     @MethodSource("commandProvider")
-    @DisplayName("l'esecuzione di un comando non lancia eccezioni")
-    void testGiocaNoWord(App.Command command) {
+    @DisplayName("non lancia eccezioni all'esecuzione di un comando "
+                + "che non richiede interazioni")
+    void testNoInteractionCommand(App.Command command) {
         assertDoesNotThrow(() -> command.execute(EMPTY_ARRAY_STRING));
+    }
+
+    @Test
+    @DisplayName("non lancia eccezioni al comando \"MOSTRA\" "
+                + "se non è stata impostata la parola segreta")
+    void testNuovaAbsentSecretWord() {
+        assertDoesNotThrow(() -> App.Command.MOSTRA
+                                    .execute(EMPTY_ARRAY_STRING));
+    }
+
+    @Test
+    @DisplayName("non lancia eccezioni se viene inserito un tentativo "
+            + "ma non è stata impostata la parola segreta")
+    void testGuessAbsentSecretWord() {
+        assertDoesNotThrow(() -> App.Command.GUESS
+                                    .execute(new String[]{"PROVA"}));
+    }
+
+    @Test
+    @DisplayName("non lancia eccezioni al comando \"ESCI\" e imposta "
+            + "il flag \"running\" a false")
+    void testEsci() throws IllegalAccessException{
+        redirectInputStream("forse\nsi\n");
+
+        assertAll(
+                () -> assertDoesNotThrow(() -> App.Command.ESCI
+                        .execute(EMPTY_ARRAY_STRING)),
+                () -> assertFalse((boolean) appRunning.get(null)));
+    }
+
+    @Test
+    @DisplayName("non lancia eccezioni se un comando invalido ha "
+            + "comandi simili")
+    void testInvalidWithArgs() {
+        assertDoesNotThrow(() -> App.Command.INVALID.execute(new String[]{"ESCI"}));
+        assertDoesNotThrow(() -> App.Command.INVALID.execute(new String[]{"ESCI", "HELP"}));
     }
 
 
     @Test
-    @DisplayName("encooding test")
+    @DisplayName("non lancia eccezioni e restituisce il Charset UTF-8 "
+            + "se tale è la codifica del sistema")
     void testEncodingUTF8() {
         System.setProperty("file.encoding", "UTF-8");
         Charset encoding = StandardCharsets.UTF_8;
@@ -205,7 +237,8 @@ class AppTest {
     }
 
     @Test
-    @DisplayName("encooding test")
+    @DisplayName("non lancia eccezioni e restituisce il Charset UTF-16 "
+                + "se tale è la codifica del sistema")
     void testEncodingUTF16() {
         System.setProperty("file.encoding", "UTF-16");
         Charset encoding = StandardCharsets.UTF_16;
@@ -217,47 +250,14 @@ class AppTest {
     }
 
     @Test
-    @DisplayName("encooding test")
-    void testEncodingInvalid() {
+    @DisplayName("lancia UnsupportedEncodingException se la codifica "
+            + "del sistema è diversa da UTF-8 e UTF-16")
+    void testInvalidEncoding() {
+        // esempio: utilizziamo US-ASCII
         System.setProperty("file.encoding", "US-ASCII");
 
-        assertThrows(UnsupportedEncodingException.class, App::getSystemEncoding);
+        assertThrows(UnsupportedEncodingException.class,
+                                App::getSystemEncoding);
     }
-
-    @Test
-    @Disabled
-    @DisplayName("test main")
-    void testMain() {
-        outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-        String s = "no\n";
-        inContent = new ByteArrayInputStream(s.getBytes());
-        System.setIn(inContent);
-
-        assertDoesNotThrow(() -> App.main(new String[]{"--help"}));
-    }
-
-    @Test
-    @DisplayName("esci test")
-    void testEsci() throws IllegalAccessException{
-        //outContent = new ByteArrayOutputStream();
-        //System.setOut(new PrintStream(outContent));
-        String s = "/esci\nsi\n";
-        inContent = new ByteArrayInputStream(s.getBytes());
-        System.setIn(inContent);
-
-        appKeyboard.set(null, new Scanner(inContent));
-
-        assertAll(() -> assertDoesNotThrow(() -> App.Command.ESCI.execute(EMPTY_ARRAY_STRING)),
-                () -> assertFalse((boolean) appRunning.get(null)));
-    }
-
-    @Test
-    @DisplayName("test invalid")
-    void testInvalidWithArgs() {
-        assertDoesNotThrow(() -> App.Command.INVALID.execute(new String[]{"ESCI"}));
-        assertDoesNotThrow(() -> App.Command.INVALID.execute(new String[]{"ESCI", "HELP"}));
-    }
-
 
 }
