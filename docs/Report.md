@@ -465,29 +465,38 @@ Infine l'applicazione è capace di riconoscere comandi inseriti che differiscono
 
 In generale il processo di sviluppo del software, nel team Knuth, ha seguito, personalizzandolo, il workflow stabilito dal framework Scrum affine ai principi dello sviluppo Agile.
 
-Nello specifico, in seguito all'assegnazione di ogni Sprint:
+- In ogni Sprint il team ha utilizzato una **Scrum board digitale** per organizzare il lavoro e per tener traccia dello stato di completamento degli issue che costituiscono lo Sprint Goal (*Sprint Backlog*).
+- Il team, grazie ad una **leadership condivisa**, ha suddiviso il lavoro sulla base delle preferenze e competenze personali cercando di mantenere una distribuzione equa del lavoro. 
+- Tutti i membri del team hanno mantenuto lo **stesso potere decisionale**, con assoluta libertà di contestare una decisione presa. In seguito ad ogni discussione, si è sempre raggiunto un accordo unanime.
+- È sempre stato applicato correttamente il **GitHub flow** per lo sviluppo del progetto.
 
-- Il team, autogestendosi, ha stabilito il corrispondente Sprint Goal selezionando gli elementi del Product Backlog per lo sprint e tenendolo a mente per tutta la durata dello sprint stesso. 
-- Il team ha deciso come organizzare nel tempo le funzionalità richieste andando a costruire una Scrum Board digitale che riportasse lo stato, durante lo sviluppo, degli elementi selezionati al punto precedente.
-- Il team, grazie ad una leadership condivisa, ha assegnato ad ogni membro, ritenuto comunemente più idoneo, lo sviluppo della funzionalità richiesta.
+#### **Daily Scrum Meeting**
 
-Fondamentali, durante il processo di sviluppo, sono stati i Daily Scrum Meeting,  organizzati a inizio giornata, o eccezionalmente spostati in orari compatibili con gli impegni universitari. Hanno permesso al team di ottimizzare la collaborazione tra i membri e l'organizzazione del lavoro nel tempo a disposizione. Tali meeting sono stati importanti per tenere traccia del lavoro individuale e dell'eventuale insorgere di difficoltà, da condividere e risolvere con il team.
+Fondamentali, durante il processo di sviluppo, sono stati i Daily Scrum Meeting, organizzati a inizio giornata, o eccezionalmente spostati in orari compatibili con gli impegni universitari. Hanno permesso al team di ottimizzare la collaborazione tra i membri e l'organizzazione del lavoro nel tempo a disposizione. 
 
-Il team ha dato la dovuta importanza ad ogni Sprint Review:
+#### **Microsoft Teams**
+Negli Sprint 1 e 2 si è cercato, per quanto possibile, di lavorare in modo sincrono su Microsoft Teams 
+- Ha attenuato il disagio derivante dalla mancaza di una sede fisica in cui lavorare
+- Ha facilitato la comunicazione nello svolgimento degli issue assegnati a più persone
+- Ha permesso di applicare, da remoto, la pratica del *pair programming*
+- Ha permesso di risolvere agilmente le difficoltà emerse nei daily meeting
+- Ha facilitato il processo di *review*, dando la possibilità agli assegnatari di rispondere alle domande dei revisori in tempo reale.
 
-- garantendone la partecipazione di ogni membro, preferibilmente di persona quando possibile, altrimenti in modalità telematica
-- traendo spunti di miglioramento per lo sprint successivo.
+#### **Sprint Review**
+Il team ha dato la dovuta importanza ad ogni Sprint Review: ogni membro vi ha partecipato, traendo spunti di miglioramento per lo sprint successivo sia dai consigli del Product Owner sia analizzando errori e punti di forza che hanno caratterizzato il lavoro degli altri team.
 
-Successivamente ad ogni Sprint Review si è organizzata una Sprint Retrospective che il team ha utilizzato come occasione per:
-- discutere e applicare eventuali consigli derivanti dalla review
-- fare considerazioni sulle modalità di lavoro applicate nello sprint appena concluso proponendo idee di miglioramento ed evidenziando aspetti già funzionali
-- avere consapevolezza dell'umore dei vari membri e capire come mantenerlo alto
-- prendere coscienza dei tempi del team e organizzarli in maniera efficiente, ottimizzando i carichi di lavoro. 
+#### **Sprint Retrospective**
+Successivamente ad ogni Sprint Review si è organizzata una Sprint Retrospective, che il team ha utilizzato come occasione per
+- Discutere quanto appreso durante la Review
+- Raccogliere le opinioni dei membri del team in merito alle modalità di lavoro applicate nello sprint appena concluso, proponendo *idee di miglioramento* e riconfermando *aspetti organizzativi già funzionali*
+- Avere consapevolezza dell'*umore* dei vari membri e capire come mantenere alto l'*entusiasmo*
+- Prendere coscienza dei *tempi del team* e riorganizzarsi in maniera efficiente, ottimizzando i carichi di lavoro.
 
-Oltre a quanto detto, per quanto concerne l'organizzazione del lavoro e i tools utilizzati:
+**Tools per l'abbozzo**: lavagne, fogli di carta e post-it per l'*analisi* e la *modellazione* *Object Oriented*.
 
-- si è fatto uso di strumenti sia fisici, quali lavagne, fogli di carta e post-it, sia digitali, quali GitHub, Trello e Teams i quali ci hanno permesso di rendere più agevole il lavoro svolto e di attenuare il disagio derivante dalla mancaza di una sede fisica in cui lavorare
-- per uniformare il lavoro di squadra si è adottata la convenzione di utilizzare IntelliJ come IDE per la scrittura del codice, Visual Studio Code per la creazione di documentazione in formato markdown, StarUML per la creazione di diagrammi e git CLI per il controllo di versione.
+**Tools per l'organizzazione**: *GitHub project*, *Trello* e *Microsoft Teams*. 
+
+**Tools per lo sviluppo**: *IntelliJ IDEA* (per la scrittura del codice), *Visual Studio Code* (per stesura file markdown), *StarUML* (per la creazione di diagrammi) e *git CLI* (per il controllo di versione).
 
 ## 9. Analisi retrospettiva
 ### Sprint 1
