@@ -11,9 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @DisplayName("Una board")
 class BoardTest {
 
+    /** Board per effettuare i test. */
     private Board board;
-    private static final int DEFAULT_COLUMN = 5;
+    /** Valore di default per il numero di righe. */
     private static final int DEFAULT_ROW = 6;
+    /** Valore di default per il numero di colonne. */
+    private static final int DEFAULT_COLUMN = 5;
+
 
     @Nested
     @DisplayName("quando è istanziata con new Board(5, 6)")
@@ -21,7 +25,7 @@ class BoardTest {
 
         @BeforeEach
         void createNewBoard() {
-            board = new Board(DEFAULT_COLUMN, DEFAULT_ROW);
+            board = new Board(DEFAULT_ROW, DEFAULT_COLUMN);
         }
 
         @Test
@@ -46,6 +50,7 @@ class BoardTest {
         @DisplayName("dopo l'inserimento del tentativo \"PROVA\"")
         class PushAGuessTest {
 
+            /** Tentativo per effettuare i test. */
             private Guess guess;
             @BeforeEach
             void pushAGuess() {

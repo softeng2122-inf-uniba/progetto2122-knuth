@@ -11,7 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("Un WordleWordsmithController")
 class WordleWordsmithControllerTest {
 
+    /** Controller del giocatore per effettuare i test. */
     private WordleWordsmithController wordsmithCtr;
+    /** Controller del paroliere per effettuare i test. */
     private WordlePlayerController playerCtr;
 
     @BeforeEach

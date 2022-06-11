@@ -5,39 +5,47 @@ import java.util.Objects;
 /**
  * {@literal <<Entity>>} <br>
  * Classe che rappresenta una partita di Wordle.
- * Fornisce metodi per recuperare le impostazioni
- * della partita, nonché la matrice dei tentativi.
  */
 class WordleGame {
+    /** Parola segreta della partita. */
     private final String secretWord;
+    /** Board associata alla partita. */
     private final Board gameBoard;
 
-    //costruttore con scelta parola e dimensioni del gioco
+    /**
+     * Crea una partita con le impostazioni specificate.
+     *
+     * @param gameSecretWord parola segreta
+     * @param numMaxGuesses tentativi massimi
+     * @param wordLength numero di lettere
+     * @throws NullPointerException se {@code gameSecretWord} è null
+     */
     WordleGame(final String gameSecretWord,
-               final  int numMaxGuesses, final int wordLength) {
+               final int numMaxGuesses,
+               final int wordLength) {
         Objects.requireNonNull(gameSecretWord);
 
         this.secretWord = gameSecretWord;
-        this.gameBoard = new Board(wordLength, numMaxGuesses);
+        this.gameBoard = new Board(numMaxGuesses, wordLength);
     }
 
-    public String getSecretWord() {
+    String getSecretWord() {
         return secretWord;
     }
 
-    public Board getGameBoard() {
+    Board getGameBoard() {
         return gameBoard;
     }
 
-    public int getMaxGuesses() {
+    int getMaxGuesses() {
         return gameBoard.getRowsNumber();
     }
 
-    public int getWordLength() {
+    int getWordLength() {
         return gameBoard.getWordLength();
     }
 
-    public int getNumRemainingGuesses() {
+    int getNumRemainingGuesses() {
         return getMaxGuesses() - gameBoard.getNumFilledRows();
     }
 }

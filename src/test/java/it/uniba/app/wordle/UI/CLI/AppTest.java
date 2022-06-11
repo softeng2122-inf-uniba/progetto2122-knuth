@@ -31,17 +31,28 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class AppTest {
 
     // attributi privati e statici di App a cui serve accedere
+    /** Field per l'accesso all'attributo static final
+     * PLAYER_CONTROLLER di App. */
     private static Field appPlayerController;
+    /** Field per l'accesso all'attributo static
+     * keyboard di App. */
     private static Field appKeyboard;
+    /** Field per l'accesso all'attributo static
+     * console di App. */
     private static Field appConsole;
+    /** Field per l'accesso all'attributo static
+     * running (boolean) di App. */
     private static Field appRunning;
 
-    // stream di output
+    /** Stream di output per il testing. */
     private static ByteArrayOutputStream outContent;
 
+    /** Array di stringhe vuoto. */
     private static final String[] EMPTY_ARRAY_STRING = new String[0];
 
 
+    // crea un nuovo ByteArrayOutputStream e lo utilizza
+    // come output stream per appConsole
     static ByteArrayOutputStream newOutputStream()
                                         throws IllegalAccessException {
 
@@ -54,6 +65,7 @@ class AppTest {
         return out;
     }
 
+    // utilizza la stringa input come input stream per appKeyboard
     static void redirectInputStream(final String input)
                                         throws IllegalAccessException {
 
