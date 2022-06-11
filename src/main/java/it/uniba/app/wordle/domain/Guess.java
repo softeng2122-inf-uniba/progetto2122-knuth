@@ -4,11 +4,11 @@ import java.util.Objects;
 
 /**
  * {@literal <<Entity>>} <br>
- * Classe che rappresenta un tentativo del giocatore.
- * Ogni lettera del tentativo viene memorizzata in un
- * oggetto di {@link LetterBox}.
+ * Classe che rappresenta un tentativo effettuato dal giocatore, le cui lettere
+ * sono memorizzate in un oggetto di {@link LetterBox}.
  */
 class Guess {
+    /** Contiene in ordine le lettere colorate che costituiscono la parola. */
     private final LetterBox[] cellArray;
 
     /**
@@ -17,7 +17,9 @@ class Guess {
      * e incapsula lettera e colore.
      */
     private static class LetterBox {
+        /** Lettera contenuta nella cella. */
         private final Character containedLetter;
+        /** Colore della cella. */
         private Color boxColor;
 
         LetterBox(final char letter, final Color color) {
@@ -27,22 +29,28 @@ class Guess {
             this.boxColor = color;
         }
 
-        public Color getColor() {
+        Color getColor() {
             return boxColor;
         }
 
-        public void setColor(final Color color) {
+        void setColor(final Color color) {
             Objects.requireNonNull(color);
 
             this.boxColor = color;
         }
 
-        public Character getLetter() {
+        Character getLetter() {
             return containedLetter;
         }
     }
 
-    //costruttore di Guess con argomento il tentativo effettuato
+    /**
+     * Crea un tentativo contenente le lettere di {@code guessingWord}
+     * e le colora con {@code Color.NO_COLOR}.
+     *
+     * @param guessingWord parola che costituisce il tentativo
+     * @throws NullPointerException se {@code guessingWord} è null
+     */
     Guess(final String guessingWord) {
         Objects.requireNonNull(guessingWord);
 
@@ -54,23 +62,28 @@ class Guess {
         }
     }
 
-    public Color getColor(final int index) {
+    Color getColor(final int index) {
 
         return cellArray[index].getColor();
     }
 
-    public void setColor(final int index, final Color color) {
+    void setColor(final int index, final Color color) {
         Objects.requireNonNull(color);
 
         cellArray[index].setColor(color);
     }
 
-    public Character getLetter(final int index) {
+    Character getLetter(final int index) {
 
         return cellArray[index].getLetter();
     }
 
-    public String getWord() {
+    /**
+     * Restituisce la stringa della parola che costituisce il tentativo.
+     *
+     * @return parola che costituisce il tentativo
+     */
+    String getWord() {
         StringBuilder s = new StringBuilder();
 
         for (LetterBox lb : cellArray) {

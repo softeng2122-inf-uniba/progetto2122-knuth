@@ -10,9 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 @DisplayName("Un WordleGame")
 class WordleGameTest {
 
+    /** Valore di default per il numero massimo di tentativi. */
     private static final int DEFAULT_MAX_GUESSES = 6;
+    /** Valore di default per la lunghezza dei tentativi. */
     private static final int DEFAULT_WORD_LENGTH = 5;
 
+    /** Partita per effettuare i test. */
     private WordleGame wGame;
 
     @Nested
