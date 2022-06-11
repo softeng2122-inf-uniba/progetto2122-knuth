@@ -309,6 +309,8 @@ Inoltre sono stati applicati i principi **SOLID**:
 
 *I principi non menzionati non sono stati attuati perchè non presenti casi di applicazione*
 
+## 6. RIEPILOGO DEL TEST
+
 ## 7. MANUALE UTENTE
 
 ## scopo dell'applicazione
@@ -339,7 +341,7 @@ Tramite il comando /help, l'applicazione stampa la descrizione del gioco seguita
 
 Nel caso di lancio dell'applicazione con flag --help o -h, la descrizione del gioco è seguita dalla stampa dei comandi ad inizio partita.
 
-p align="center">
+<p align="center">
   <img src="./img/report img/guida utente img/comandHelp.png" alt="comandHelp" width="1000"/>
 </p>
 
@@ -501,7 +503,9 @@ Successivamente ad ogni Sprint Review si è organizzata una Sprint Retrospective
 ## 9. Analisi retrospettiva
 ### Sprint 1
 
-Al termine dello sprint 1 è stato effettuato il meeting retrospettivo tramite videocoferenza su teams. E'stata utilizzata la whiteboard fornita dal software, perciò su ogni riga sono state raccolte le opinioni di ciasun membro del team e organizzata mediante lo schema "arrabbiato, triste, felice" come è possibile vedere di seguito.
+In seguito alla review dello Sprint 1, il team Knuth si è riunito in uno Sprint Retrospective che ha come obiettivi: individuare opportunità di **crescita** e **miglioramento** e incrementare la **produttività** e la **soddisfazione** per gli obiettivi raggiunti (vedasi il punto 8 - "Processo di sviluppo e di organizzazione del lavoro" del presente report).
+
+Il risultato di questo meeting trova rappresentazione nella **whiteboard** digitale riportata di seguito. La whiteboard è stata suddivisa in tre colonne dedicate, rispettivamente, agli aspetti che hanno fatto provare rabbia, tristezza o soddisfazione. Ogni membro del team ha quindi potuto scrivere le proprie opinioni su **post-it** virtuali che ha posizionato sulle rispettive colonne.
 
 <p align="center">
   <img src="./img/report img/Whiteboard Retrospective.png" alt="Whiteboard Retrospective" width="1000"/>
