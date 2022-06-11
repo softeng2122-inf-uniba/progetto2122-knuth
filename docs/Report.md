@@ -178,14 +178,14 @@ Nella modellazione delle classi abbiamo mantenuto una costante attenzione sullla
 
 - Le classi boundary, che costituiscono la parte dell'applicazione adibita alla *User Interface*, comunicano solo tra di loro e con le classi di controllo che implementano le interfacce di **PlayerController** o **WordSmithController**. 
 
-- Le classi **PlayerController** e **WordSmithController** permettono di gestire interamente le partite del gioco: forniscono un'API composta da metodi che:
+- Le classi **WordlePlayerController** e **WordleWordsmithController** permettono di gestire interamente le partite del gioco: forniscono un'API composta da metodi che:
   - sono indipendenti dalla particolare UI implementata
   - racchiudono tutte le interazioni con le classi di tipo entity non esponendole all'esterno
   - controllano tutte le condizioni di integrità per la corretta esecuzione delle partite.
 
 - Le classi entity ricalcano le classi concettuali individuate nel modello di dominio: abbiamo ritenuto opportuno che la classe **LetterBox** (ovvero la cella nel modello di dominio) fosse interna al tentativo, in quanto ciò rispecchia il legame concettuale di composizione.
 
-Abbiamo scelto di memorizzare in **WordleSession**, tramite attributi di classe, le impostazioni di gioco, che vengono impostate dall'utente prima che decida di inziare una partita: alla creazione dell'oggetto partita (classe **WordleGame**) i valori impostati saranno copiati come suoi attributi di istanza e caratterizzeranno la partita.
+E' stata usata la classe **WordleSession** per rappresentare una sessione di gioco in cui in ogni momento può tener traccia di una sola partita o nessuna tramite l'associazione con la classe **WordleGame**, che rappresenta per appunto la partita stessa. Inoltre prima dell'inizio di una partita è possibile settare gli attributi di gioco tramite appositi metodi che agiscono sugli attributi della classe WordleSession. Alla creazione dell'oggetto partita (classe **WordleGame**) i valori impostati saranno copiati come suoi attributi di istanza e caratterizzeranno la partita.
 - Attualmente l'unica impostazione modificata dall'utente è la parola segreta
 - Altre impostazioni sono il numero massimo di tentativi e la lunghezza delle parole, per ora non modificabili
 
@@ -285,9 +285,10 @@ Le lettere restanti sono, ovviamente, da colorare in grigio.
 _nota: se nel tentativo sono presenti più lettere uguali che dovrebbero essere colorate di giallo perché rispettano le condizioni viste, verrà data precedenza a quelle più a sinistra (da notare che a ogni passo verrà decrementato il numero di occorrenze contenuto nel dizionario)._
 
 
-### Pattern design
+### Design pattern
 
 Per migliorare la qualità di ciò che era già stato fatto precedentemente si è deciso di applicare i design pattern laddove possibile cosi da attuare soluzioni collaudate a problemi ricorrenti. In particolare è stato deciso di attuare il pattern "*COMMAND*", alla classe App.Command.java. L'applicazione di questo pattern ha permesso di evitare di accoppiare l'invocatore di una richiesta (ovvero la classe App) con la richiesta. Quindi è stata incapsulata la richiesta in un istanza di Command così che questa possa essere utilizzata come un qualsiasi oggetto e inoltre può essere accessibile anche in un secondo momento.
+Senza l'applicazione di questo pattern, la richiesta verrebbe implementata direttamente all'interno della classe App. Ciò rende impossibile specificare una richiesta in fase di esecuzione. Quindi l'applicazione di questo pattern permette di delegare una richiesta ad un oggetto a run-time.
 
 ### Analisi delle scelte effettuate in adesione all'OO design
 
