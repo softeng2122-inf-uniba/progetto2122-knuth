@@ -16,35 +16,63 @@ import java.util.Scanner;
 
 /**
  * {@literal <<Boundary>>} <br>
- * Classe principale dell'applicazione. <p></p>
- * Contiene il main e i metodi specifici per l'esecuzione dei comandi
- * inseriti dall'utente.
- * Utilizza {@link Parser} per processare l'input e {@link WordlePrinter} per
- * visualizzare l'output.
+ * Classe principale dell'applicazione.
+ *
+ * <p>Contiene il main e i comandi che realizzano le funzionalità descritte
+ * nelle user story.</p>
+ *
+ * <p>Utilizza un oggetto {@link Parser} per processare l'input e
+ * un oggetto {@link WordlePrinter} per visualizzare l'output.</p>
  */
 public final class App {
 
+    /** Controller per il giocatore. */
     private static final PlayerController PLAYER_CONTROLLER =
                          new WordlePlayerController();
-
+    /** Controller per il paroliere. */
     private static final WordsmithController WORDSMITH_CONTROLLER =
                          new WordleWordsmithController(
                          (WordlePlayerController) PLAYER_CONTROLLER);
-
+    /** Scanner per ricevere l'input dell'utente da tastiera. */
     private static Scanner keyboard;
+    /** WordlePrinter stampare l'output dell'applicazione sulla console. */
     private static WordlePrinter console;
+    /** Parser per elaborare i comandi inseriti dall'utente. */
     private static final Parser PARSER = new Parser();
+    /** Flag che indica se l'applicazione deve continuare. */
     private static boolean running = true;
 
     /**
-     * {@literal <<NoECB>>} <br>
+     * {@literal <<Boundary>>} <br>
      * L'enumerazione Command contiene le costanti che rappresentano
-     * i comandi riconosciuti dal gioco.
-     * Le costanti INVALID e SPACE sono comandi fittizi per gestire
-     * eventuali errori di input e caratteri di spaziatura.
+     * i comandi riconosciuti dal {@link Parser}.
+     *
+     * <p>Se vengono forniti più argomenti rispetto a quelli che il
+     * comando si aspetta allora vengono semplicemente ignorati.
+     * La gestione sugli argomenti mancanti viene invece effettuata
+     * all'interno del main, per non avverrà alcuna chiamata a
+     * {@link Command#execute(String[])} in questo caso.</p>
+     *
+     * <p>Le costanti {@link Command#INVALID} e {@link Command#SPACE}
+     * sono comandi fittizi per gestire eventuali errori di input
+     * e caratteri di spaziatura.</p>
      */
     public enum Command {
+        /**
+         * Comando invalido, ovvero un qualsiasi comando inesistente
+         * che l'utente ha provato a inserire.
+         *
+         * <p>Utilizza zero argomenti</p>
+         */
         INVALID(0) {
+            /**
+             * Effettua una stampa per notificare l'invalidità del comando,
+             * segnalando eventualmente l'esistenza di comandi simili.
+             *
+             * @param args array contenente le rappresentazioni sotto forma
+             *             di stringa di eventuali comandi simili a quello
+             *             provato a inserire
+             */
             public void execute(final String[] args) {
                 console.println("Comando invalido");
                 if (args.length != 0) {
@@ -60,12 +88,34 @@ public final class App {
             }
         },
 
+        /**
+         * Comando associato all'inserimento di soli spazi da parte
+         * dell'utente.
+         *
+         * <p>Utilizza zero argomenti</p>
+         */
         SPACE(0) {
+            /**
+             * Non effettua alcun'azione.
+             *
+             * @param args array di argomenti forniti al comando
+             */
             public void execute(final String[] args) {
             }
         },
 
+        /**
+         * Comando {@literal /gioca}.
+         *
+         * <p>Non si aspetta nessun argomento</p>
+         */
         GIOCA(0) {
+            /**
+             * Prova a iniziare una nuova partita e stampa
+             * l'esito dell'esecuzione.
+             *
+             * @param args array di argomenti forniti al comando
+             */
             public void execute(final String[] args) {
                 try {
                     PLAYER_CONTROLLER.startGame();
@@ -77,7 +127,18 @@ public final class App {
             }
         },
 
+        /**
+         * Comando {@literal /nuova <parola>}.
+         *
+         * <p>Si aspetta un solo argomento</p>
+         */
         NUOVA(1) {
+            /**
+             * Prova a impostare la parola segreta della sessione di gioco
+             * e stampa l'esito dell'esecuzione.
+             *
+             * @param args array di argomenti forniti al comando
+             */
             public void execute(final String[] args) {
 
                 String secretWord = args[0];
@@ -91,7 +152,21 @@ public final class App {
             }
         },
 
+        /**
+         * Comando {@literal /abbandona}.
+         *
+         * <p>Non si aspetta nessun argomento</p>
+         */
         ABBANDONA(0) {
+            /**
+             * Prova ad abbandonare la partita in corso
+             * e stampa l'esito dell'esecuzione.
+             *
+             * <p>Se una partita è effettivamente in corso chiede
+             * conferma dell'azione.</p>
+             *
+             * @param args array di argomenti forniti al comando
+             */
             public void execute(final String[] args) {
                 if (!PLAYER_CONTROLLER.isGameRunning()) {
                     console.println("Nessuna partita in corso");
@@ -113,7 +188,20 @@ public final class App {
             }
         },
 
+        /**
+         * Comando che rappresenta il tentativo effettuato dal giocatore.
+         *
+         * <p>Utilizza un solo argomento, ovvero il tentativo stesso</p>
+         */
         GUESS(1) {
+            /**
+             * Prova ad effettuare un tentativo.
+             *
+             * <p>Se va a buon fine stampa la board di gioco aggiornata,
+             * altrimenti stampa l'errore occorso.</p>
+             *
+             * @param args array di argomenti forniti al comando
+             */
             public void execute(final String[] args) {
                 String guessWord = args[0];
 
@@ -131,7 +219,20 @@ public final class App {
             }
         },
 
+        /**
+         * Comando {@literal /esci}.
+         *
+         * <p>Non si aspetta nessun argomento</p>
+         */
         ESCI(0) {
+            /**
+             * Chiude il gioco.
+             *
+             * <p>Chiede conferma dell'azione, in seguito imposta
+             * il flag {@link App#running} a false.</p>
+             *
+             * @param args array di argomenti forniti al comando
+             */
             public void execute(final String[] args) {
                 String answer;
 
@@ -148,7 +249,20 @@ public final class App {
             }
         },
 
+        /**
+         * Comando {@literal /mostra}.
+         *
+         * <p>Non si aspetta nessun argomento</p>
+         */
         MOSTRA(0) {
+            /**
+             * Mostra la parola segreta impostata.
+             *
+             * <p>Se la parola segreta non è stata ancora
+             * impostata mostra invece un messaggio di errore.</p>
+             *
+             * @param args array di argomenti forniti al comando
+             */
             public void execute(final String[] args) {
 
                 try {
@@ -160,23 +274,45 @@ public final class App {
             }
         },
 
+        /**
+         * Comando {@literal /help}.
+         *
+         * <p>Non si aspetta nessun argomento</p>
+         */
         HELP(0) {
+            /**
+             * Mostra una breve descrizione del gioco, seguita dall'elenco
+             * dei comandi disponibili.
+             *
+             * @param args array di argomenti forniti al comando
+             */
             public void execute(final String[] args) {
                 console.printDescription();
                 console.printHelp();
             }
         };
 
+        /** Numero di argomenti atteso per il comando. */
         private final int numArguments;
 
         Command(final int numArgs) {
             this.numArguments = numArgs;
         }
 
+        /**
+         * Restituisce il numero di argomenti attesi per il comando.
+         *
+         * @return numero di argomenti attesi
+         */
         public int getNumArgs() {
             return this.numArguments;
         }
 
+        /**
+         * Esecuzione del comando individuato.
+         *
+         * @param args array di argomenti forniti al comando
+         */
         public abstract void execute(String[] args);
     }
 
@@ -190,15 +326,18 @@ public final class App {
     /**
      * Contiene il ciclo principale di gioco in cui a seconda del
      * comando riconosciuto vengono eseguite le corrispondenti
-     * istruzioni. <p></p>
-     * Successivamente all'invocazione viene visualizzata una breve
+     * istruzioni.
+     *
+     * <p>Successivamente all'invocazione viene visualizzata una breve
      * descrizione del gioco. Se l'app viene invocata con il flag
      * "--help" oppure "-h" viene stampata la lista dei comandi
-     * disponibili.
+     * disponibili.</p>
+     *
      * @param args argomenti in input da linea di comando
      */
     public static void main(final String[] args) {
         //controlla codifica del terminale su cui l'app è eseguita
+        // e imposta keyboard e console
         try {
             Charset encoding = getSystemEncoding();
             keyboard = new Scanner(
@@ -206,10 +345,12 @@ public final class App {
             console = new WordlePrinter(
                     new OutputStreamWriter(System.out, encoding),
                     PLAYER_CONTROLLER);
-        } catch(UnsupportedEncodingException e) {
+
+        } catch (UnsupportedEncodingException e) {
             System.out.println(e.getMessage());
             System.exit(-1);
         }
+
 
         // stampe iniziali
         console.printDescription();
@@ -219,7 +360,7 @@ public final class App {
         }
 
         while (running) {
-            console.print("Wordle> ");
+            console.printf("Wordle> ");
             String inputLine = keyboard.nextLine();
 
             // invia l'input al parser
@@ -243,7 +384,17 @@ public final class App {
         System.exit(0);
     }
 
-    public static Charset getSystemEncoding() throws UnsupportedEncodingException {
+    /**
+     * Restituisce l'encoding del sistema su cui è eseguito il programma.
+     *
+     * <p>Gli unici encoding supportati sono UTF-8 e UTF-16.</p>
+     *
+     * @return il charset corrispondente all'encoding valido
+     * @throws UnsupportedEncodingException se l'encoding del sistema è diverso
+     * da UTF-8 e da UTF-16
+     */
+    public static Charset getSystemEncoding()
+            throws UnsupportedEncodingException {
         String encoding = System.getProperty("file.encoding");
         if (encoding.equalsIgnoreCase("UTF-8")) {
             return StandardCharsets.UTF_8;
@@ -251,8 +402,7 @@ public final class App {
             return StandardCharsets.UTF_16;
         } else {
             throw new UnsupportedEncodingException("Codifica "
-                    + "[" + encoding + "] non supportata");
+                            + "[" + encoding + "] non supportata");
         }
     }
-
 }

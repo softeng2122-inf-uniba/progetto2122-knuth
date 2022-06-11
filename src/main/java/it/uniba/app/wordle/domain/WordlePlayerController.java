@@ -4,19 +4,36 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * {@literal <<Control>>}<br>
+ * Implementazione di {@link PlayerController}, crea e gestisce
+ * una sola sessione di gioco come giocatore.
+ */
 public final class WordlePlayerController implements PlayerController {
 
+    /** Sessione di gioco su cui agire. */
     private final WordleSession session;
 
+    /**
+     * Crea un controller che permette di eseguire i compiti del giocatore.
+     *
+     * Viene creata una sessione di gioco associata al controller, la quale
+     * dovrà essere utilizzata anche da un {@link WordleWordsmithController}
+     * per permettere al paroliere e al giocatore di agire sulla stessa
+     * sessione di gioco.
+     *
+     * @see WordleWordsmithController#WordleWordsmithController(
+     *                                  WordlePlayerController)
+     */
     public WordlePlayerController() {
         session = new WordleSession();
     }
 
     /**
-     * Utilizzato per la comunicazione tra controller, non fa parte dell'API
-     * ma serve al WordleWordsmithController
+     * Restituisce la sessione di gioco, permettendo a un
+     * {@link WordleWordsmithController} di agire sulla stessa.
      *
-     * @return la sessione creata da this
+     * @return la sessione associata a quest'oggetto
      */
     WordleSession getSession() {
         return session;
@@ -208,7 +225,7 @@ public final class WordlePlayerController implements PlayerController {
     /**
      * Controllo sulla parola inserita, che dev'essere
      * della lunghezza appropriata e deve contenere solo
-     * lettere (non altri tipi di caratteri)
+     * caratteri alfabetici.
      *
      * @param word parola da controllare
      * @throws IllegalArgumentException se una delle condizioni
