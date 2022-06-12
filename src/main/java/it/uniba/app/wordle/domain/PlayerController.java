@@ -2,7 +2,7 @@ package it.uniba.app.wordle.domain;
 
 /**
  * {@literal <<Control>>}<br>
- * Controllore che permette di realizzare le funzionalità adibite al giocatore.
+ * Controllore che permette di realizzare le funzionalita' adibite al giocatore.
  *
  * <p>Col complemento di {@link WordsmithController}, fornisce
  * un'<i>Application Programming Interface</i> per gestire interamente
@@ -22,7 +22,7 @@ public interface PlayerController {
     /**
      * Inizia una nuova partita a Wordle.
      *
-     * @throws WordleGameException se una partita è già in corso
+     * @throws WordleGameException se una partita è gia' in corso
      * @throws WordleSettingException se la parola segreta non è stata
      * impostata
      */
@@ -65,7 +65,7 @@ public interface PlayerController {
      *
      * @param guessWord stringa contenente la parola inserita dal giocatore
      * @throws WordleGameException se nessuna partita è in corso
-     * o se è stato già raggiunto il numero massimo di tentativi
+     * o se è stato gia' raggiunto il numero massimo di tentativi
      * @throws IllegalArgumentException se {@code guessWord}
      * non soddisfa la lunghezza prevista o contiene caratteri non alfabetici
      * @throws NullPointerException se {@code guessWord} è null

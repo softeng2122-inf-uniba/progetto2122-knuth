@@ -18,7 +18,7 @@ import java.util.Scanner;
  * {@literal <<Boundary>>} <br>
  * Classe principale dell'applicazione.
  *
- * <p>Contiene il main e i comandi che realizzano le funzionalità descritte
+ * <p>Contiene il main e i comandi che realizzano le funzionalita' descritte
  * nelle user story.</p>
  *
  * <p>Utilizza un oggetto {@link Parser} per processare l'input e
@@ -50,7 +50,7 @@ public final class App {
      * <p>Se vengono forniti più argomenti rispetto a quelli che il
      * comando si aspetta allora vengono semplicemente ignorati.
      * La gestione sugli argomenti mancanti viene invece effettuata
-     * all'interno del main, per non avverrà alcuna chiamata a
+     * all'interno del main, per non avverra' alcuna chiamata a
      * {@link Command#execute(String[])} in questo caso.</p>
      *
      * <p>Le costanti {@link Command#INVALID} e {@link Command#SPACE}
@@ -66,7 +66,7 @@ public final class App {
          */
         INVALID(0) {
             /**
-             * Effettua una stampa per notificare l'invalidità del comando,
+             * Effettua una stampa per notificare l'invalidita' del comando,
              * segnalando eventualmente l'esistenza di comandi simili.
              *
              * @param args array contenente le rappresentazioni sotto forma

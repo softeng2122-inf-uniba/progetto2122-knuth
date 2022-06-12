@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class WordleGameException extends RuntimeException {
 
-    /** Messaggio per denotare la presenza di una partita già in corso. */
+    /** Messaggio per denotare la presenza di una partita gia' in corso. */
     public static final  String EXISTS_GAME = "Partita in corso";
 
     /** Messaggio per denotare l'assenza di una partita in corso. */

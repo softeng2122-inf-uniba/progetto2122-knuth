@@ -32,7 +32,7 @@ public final class ParserToken {
      * simili al comando invalido inserito.
      *
      * <p> Se il risultato di {@link ParserToken#getCommand()} è diverso da
-     * {@link App.Command#INVALID} allora l'array sarà vuoto.</p>
+     * {@link App.Command#INVALID} allora l'array sara' vuoto.</p>
      *
      * <p>Se l'array non è vuoto allora contiene le stringhe relative ai
      * comandi la cui edit distance (ossia il numero di caratteri da

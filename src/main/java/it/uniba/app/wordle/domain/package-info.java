@@ -5,7 +5,7 @@
  *
  * <p>Il package realizza le componenti <i>Model</i> e <i>Presenter</i>
  * in riferimento allo stile architetturale <i>Model-View-Presenter</i>:
- * le classi che rappresentano le entità di dominio costituiscono
+ * le classi che rappresentano le entita' di dominio costituiscono
  * il modello di dati, il quale non viene esposto ai clienti del package
  * ma è manipolato unicamente attraverso le classi di controllo.</p>
  *

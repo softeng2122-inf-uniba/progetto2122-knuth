@@ -18,7 +18,7 @@ class WordleSession {
     private String secretWord;
 
     // in release future saranno modificabili dal giocatore
-    // quindi sarà eliminato il modificatore final
+    // quindi sara' eliminato il modificatore final
     /** Numero di tentativi per le partite. */
     private final int nMaxGuesses;
     /** Numero di lettere dei tentativi per le partite. */

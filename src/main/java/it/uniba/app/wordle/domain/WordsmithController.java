@@ -2,7 +2,7 @@ package it.uniba.app.wordle.domain;
 
 /**
  * {@literal <<Control>>}<br>
- * Controllore che permette di realizzare le funzionalità adibite al paroliere.
+ * Controllore che permette di realizzare le funzionalita' adibite al paroliere.
  *
  * <p>Col complemento di {@link PlayerController}, fornisce
  * un'<i>Application Programming Interface</i> per gestire interamente
@@ -29,7 +29,7 @@ public interface WordsmithController {
      * @throws NullPointerException se {@code newWord} è {@code null}
      * @throws IllegalArgumentException se {@code newWord} non soddisfa
      * la lunghezza prevista o contiene caratteri non alfabetici
-     * @throws WordleGameException se una partita è già in corso
+     * @throws WordleGameException se una partita è gia' in corso
      */
     void setSecretWord(String newWord);
 }

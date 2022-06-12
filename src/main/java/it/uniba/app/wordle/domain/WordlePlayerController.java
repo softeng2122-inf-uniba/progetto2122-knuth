@@ -18,7 +18,7 @@ public final class WordlePlayerController implements PlayerController {
      * Crea un controller che permette di eseguire i compiti del giocatore.
      *
      * Viene creata una sessione di gioco associata al controller, la quale
-     * dovrà essere utilizzata anche da un {@link WordleWordsmithController}
+     * dovra' essere utilizzata anche da un {@link WordleWordsmithController}
      * per permettere al paroliere e al giocatore di agire sulla stessa
      * sessione di gioco.
      *
@@ -103,14 +103,13 @@ public final class WordlePlayerController implements PlayerController {
             throw new WordleGameException(
                     WordleGameException.NO_GUESSES_LEFT);
         }
-        guessWordCheck(guessWord);
 
 
         //Inizializzazione tentativo
         String guessAttempt = guessWord.toUpperCase();
         String secretWord = session.getCurrentGame().getSecretWord();
         Guess newGuess = new Guess(guessAttempt);
-        //Conterrà le coppie (lettera, numOccorrenze) della secret
+        //Conterra' le coppie (lettera, numOccorrenze) della secret
         Map<Character, Integer> letterMap = new HashMap<>();
 
         //Inserimento delle coppie nel dizionario
