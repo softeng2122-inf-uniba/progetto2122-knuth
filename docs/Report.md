@@ -220,7 +220,7 @@ Nei seguenti diagrammi vengono omessi alcuni dettagli facilmente comprensibili d
 _Nota: gli attributi e i metodi della classe parser vengono tutti utilizzati in ogni User story, per cui si presenta tale classe nella sua interezza in modo tale da non ripeterne i membri negli altri diagrammi delle classi._
 
 <p align="center">
-<img src="../drawings/Parser.svg" alt="Parser" width="200" />
+<img src="../drawings/Parser.svg" alt="Parser" width="700" />
 </p>
 
 - **Impostazione manuale parola segreta**: *Come paroliere voglio impostare una parola segreta manualmente*
@@ -230,7 +230,7 @@ _Nota: gli attributi e i metodi della classe parser vengono tutti utilizzati in 
 </p>
 
 <p align="center">
-  <img src="../drawings/SEQ - Nuova parola.svg" alt="SEQ - Nuova parola" width="800"/>
+  <img src="../drawings/SEQ - Nuova parola.svg" alt="SEQ - Nuova parola" width="1000"/>
 </p>
 
 
@@ -271,7 +271,7 @@ Diagramma di sequenza **printBoard**:
 </p>
 
 <p align="center">
-  <img src="../drawings/SEQ - abbandona partita.svg" alt="SEQ - abbandona partita" width="900"/>
+  <img src="../drawings/SEQ - abbandona partita.svg" alt="SEQ - abbandona partita" width="1000"/>
 </p>
 
 
@@ -284,7 +284,7 @@ Diagramma di sequenza **printBoard**:
 - **Tentativo parola segreta**: *Come giocatore voglio effettuare un tentativo per indovinare la parola segreta*
 
 <p align="center">
-  <img src="../drawings/CLS - Tentativo.svg" alt="CLS tentativo" width="1000"/>
+  <img src="../drawings/CLS - Tentativo.svg" alt="CLS tentativo" width="900"/>
 </p>
 
 <p align="center">
