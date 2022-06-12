@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 157.6 223" style="enable-background:new 0 0 157.6 223;" xml:space="preserve">
+	 viewBox="0 0 516 483" style="enable-background:new 0 0 516 483;" xml:space="preserve">
 <style type="text/css">
 	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
 	.st1{fill:#FFFFFF;}
@@ -9,93 +9,194 @@
 	.st3{font-family:'ArialMT';}
 	.st4{font-size:13px;}
 	.st5{font-family:'Arial-BoldMT';}
+	.st6{fill:none;stroke:#000000;stroke-miterlimit:10;stroke-dasharray:3;}
 </style>
 <g>
-	<g transform="translate(-318,-126) scale(1,1)">
-		<rect x="335" y="143" class="st0" width="137.6" height="203"/>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<rect x="303" y="143" class="st0" width="304" height="240"/>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
-		<rect x="328" y="136" class="st1" width="137.6" height="203"/>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<rect x="296" y="136" class="st1" width="304" height="240"/>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
-		<path class="st2" d="M328,136h137.6v203H328V136z"/>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<path class="st2" d="M296,136h304v240H296V136z"/>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
-		<path class="st2" d="M328,174h137.6"/>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<path class="st2" d="M296,174h304"/>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
-		<path class="st2" d="M328,242h137.6"/>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<path class="st2" d="M296,257h304"/>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path class="st2" d="M0,0"/>
-			<text transform="matrix(1 0 0 1 362.4641 152)" class="st3 st4">«boundary»</text>
+			<text transform="matrix(1 0 0 1 413.6655 152)" class="st3 st4">«boundary»</text>
 		</g>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path d="M0,0"/>
-			<text transform="matrix(1 0 0 1 376.5591 167)" class="st5 st4">Parser</text>
+			<text transform="matrix(1 0 0 1 427.7605 167)" class="st5 st4">Parser</text>
 		</g>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path d="M0,0"/>
-			<text transform="matrix(1 0 0 1 333 190)" class="st3 st4">-input: String</text>
+			<text transform="matrix(1 0 0 1 301 190)" class="st3 st4">-input: String</text>
 		</g>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path d="M0,0"/>
-			<text transform="matrix(1 0 0 1 333 205)" class="st3 st4">-command: Command</text>
+			<text transform="matrix(1 0 0 1 301 205)" class="st3 st4">-command: App.Command</text>
 		</g>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path d="M0,0"/>
-			<text transform="matrix(1 0 0 1 333 220)" class="st3 st4">-args: String[]</text>
+			<text transform="matrix(1 0 0 1 301 220)" class="st3 st4">-args: String[]</text>
 		</g>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path d="M0,0"/>
-			<text transform="matrix(1 0 0 1 333 235)" class="st3 st4">-tokens: String[]</text>
+			<text transform="matrix(1 0 0 1 301 235)" class="st3 st4">-tokens: String[]</text>
 		</g>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path d="M0,0"/>
-			<text transform="matrix(1 0 0 1 333 258)" class="st3 st4">+feed()</text>
+			<text transform="matrix(1 0 0 1 301 250)" class="st3 st4">-closeCommands: Set &lt;App.Command&gt;</text>
 		</g>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path d="M0,0"/>
-			<text transform="matrix(1 0 0 1 333 273)" class="st3 st4">-tokenizeInput()</text>
+			<text transform="matrix(1 0 0 1 301 273)" class="st3 st4">+feed()</text>
 		</g>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path d="M0,0"/>
-			<text transform="matrix(1 0 0 1 333 288)" class="st3 st4">-extractCommand()</text>
+			<text transform="matrix(1 0 0 1 301 288)" class="st3 st4">-tokenizeInput()</text>
 		</g>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path d="M0,0"/>
-			<text transform="matrix(1 0 0 1 333 303)" class="st3 st4">-extractArgs()</text>
+			<text transform="matrix(1 0 0 1 301 303)" class="st3 st4">-extractCommand()</text>
 		</g>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path d="M0,0"/>
-			<text transform="matrix(1 0 0 1 333 318)" class="st3 st4">+getCommand()</text>
+			<text transform="matrix(1 0 0 1 301 318)" class="st3 st4">-extractArgs()</text>
 		</g>
 	</g>
-	<g transform="translate(-318,-126) scale(1,1)">
+	<g transform="translate(-94,-126) scale(1,1)">
 		<g>
 			<path d="M0,0"/>
-			<text transform="matrix(1 0 0 1 333 333)" class="st3 st4">+getArgs()</text>
+			<text transform="matrix(1 0 0 1 301 333)" class="st3 st4">-editDistance()</text>
+		</g>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 301 348)" class="st3 st4">-getCloseCommands()</text>
+		</g>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 301 363)" class="st3 st4">+getParserToken()</text>
+		</g>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<rect x="335" y="463" class="st0" width="245.6" height="143"/>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<rect x="328" y="456" class="st1" width="245.6" height="143"/>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<path class="st2" d="M328,456h245.6v143H328V456z"/>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<path class="st2" d="M328,494h245.6"/>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<path class="st2" d="M328,562h245.6"/>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 416.489 472)" class="st3 st4">«boundary»</text>
+		</g>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 411.925 487)" class="st5 st4">ParserToken</text>
+		</g>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 333 510)" class="st3 st4">-command: App.Command</text>
+		</g>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 333 525)" class="st3 st4">-args: String</text>
+		</g>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 333 540)" class="st3 st4">-numMissingArgs: int</text>
+		</g>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 333 555)" class="st3 st4">-closeCommands: Set &lt;App.Command&gt;</text>
+		</g>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 333 578)" class="st3 st4">+getCloseCommandsStrings()</text>
+		</g>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 333 593)" class="st3 st4">+hasMissingArgs()</text>
+		</g>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<path class="st6" d="M449,377v78"/>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<path class="st2" d="M444.8,444.8L449,455l4.2-10.2"/>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<path class="st1" d="M104,280h164l10,10v78H104V280"/>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<path class="st2" d="M104,280h164l10,10v78H104V280L104,280"/>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<path class="st2" d="M268,280v10h10L268,280"/>
+	</g>
+	<g transform="translate(-94,-126) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 109 295)" class="st3 st4">le due classi inoltre</text>
+			<text transform="matrix(1 0 0 1 109 308)" class="st3 st4">utilizzano costanti statiche</text>
+			<text transform="matrix(1 0 0 1 109 321)" class="st3 st4">che rappresentano un array</text>
+			<text transform="matrix(1 0 0 1 109 334)" class="st3 st4">di stringhe vuoto e un</text>
+			<text transform="matrix(1 0 0 1 109 347)" class="st3 st4">insieme di comandi vuoto</text>
 		</g>
 	</g>
 </g>

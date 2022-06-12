@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 644.2 453" style="enable-background:new 0 0 644.2 453;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{font-family:'ArialMT';}
+	.st4{font-size:13px;}
+	.st5{font-family:'Arial-BoldMT';}
+	.st6{fill:none;stroke:#000000;stroke-miterlimit:10;stroke-dasharray:3;}
+</style>
+<g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="247" y="151" class="st0" width="202.7" height="80"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="240" y="144" class="st1" width="202.7" height="80"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M240,144h202.7v80H240V144z"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M240,182h202.7"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M240,205h202.7"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 307.0149 160)" class="st3 st4">«boundary»</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 328.7144 175)" class="st5 st4">App</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 245 198)" class="st3 st4">-keyboard: Scanner</text>
+			<path class="st2" d="M245,199.5h113.5"/>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="279" y="311" class="st0" width="137.6" height="57"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="272" y="304" class="st1" width="137.6" height="57"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M272,304h137.6v57H272V304z"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M272,342h137.6"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M272,352h137.6"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 306.4641 320)" class="st3 st4">«boundary»</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 320.5591 335)" class="st5 st4">Parser</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="487" y="303" class="st0" width="138" height="57"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="480" y="296" class="st1" width="138" height="57"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M480,296h138v57H480V296z"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M480,334h138"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M480,344h138"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 514.6609 312)" class="st3 st4">«boundary»</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 506.136 327)" class="st5 st4">WordlePrinter</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="687" y="135" class="st0" width="184.2" height="112"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="680" y="128" class="st1" width="184.2" height="112"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M680,128h184.2v112H680V128z"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M680,166h184.2"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M680,176h184.2"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 745.3677 144)" class="st3 st4">«control»</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 699.6265 159)" class="st5 st4">WordlePlayerController</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 685 192)" class="st3 st4">+endGame()</text>
+			<path class="st2" d="M685,193.5h73.3"/>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 685 207)" class="st3 st4">+isGameRunning()</text>
+			<path class="st2" d="M685,208.5h109.5"/>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M402,225l103,70"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M494.2,292.8L505,295l-6-9.2"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 349.1313 290)" class="st3 st4">-PARSER</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 516.644 291)" class="st3 st4">-console</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 473.5 295)" class="st3 st4">1</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M341,225l-1,78"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M335.9,292.8L340,303l4.3-10.1"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 317.5 298)" class="st3 st4">1</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="479" y="47" class="st0" width="108" height="70"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="472" y="40" class="st1" width="108" height="70"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M472,40h108v70H472V40z"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M472,78h108"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M472,88h108"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 491.6836 56)" class="st3 st4">«boundary»</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 479.7976 71)" class="st5 st4">App.Command</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 104)" class="st3 st4">+execute()</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st6" d="M411,143l60-36"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M464.5,115.8l6.5-8.8l-10.9,1.6"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 417.5 118)" class="st3 st4">«call»</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M444,184h235"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M668.8,188.2L679,184l-10.2-4.2"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 520.1313 171)" class="st3 st4">-PLAYER_CONTROLLER</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 654.5 201)" class="st3 st4">1</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="303" y="423" class="st0" width="88" height="57"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="296" y="416" class="st1" width="88" height="57"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M296,416h88v57h-88V416z"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M296,454h88"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M296,464h88"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 305.6655 432)" class="st3 st4">«boundary»</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 301.1016 447)" class="st5 st4">ParserToken</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st6" d="M340,362v53"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M335.8,404.8L340,415l4.2-10.2"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="703" y="311" class="st0" width="152" height="113"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<rect x="696" y="304" class="st1" width="152" height="113"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M696,304h152v113H696V304z"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M696,342h152"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M696,395h152"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 749.2341 320)" class="st3 st4">«entity»</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 725.1638 335)" class="st5 st4">WordleSession</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 701 358)" class="st3 st4">-secretWord: String</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 701 373)" class="st3 st4">-nMaxGuesses: int</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 701 388)" class="st3 st4">-wordLength: int</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 701 411)" class="st3 st4">+setCurrentGame()</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M772,241v62"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M767.8,292.8L772,303l4.2-10.2"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 784.1313 298)" class="st3 st4">-session</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 751.5 299)" class="st3 st4">1</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st0" d="M767.5,58.5c0-6.4,5.1-11.5,11.5-11.5s11.5,5.1,11.5,11.5S785.4,70,779,70S767.5,64.9,767.5,58.5z"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st1" d="M760.5,51.5c0-6.4,5.1-11.5,11.5-11.5s11.5,5.1,11.5,11.5S778.4,63,772,63S760.5,57.9,760.5,51.5z"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M760.5,51.5c0-6.4,5.1-11.5,11.5-11.5s11.5,5.1,11.5,11.5S778.4,63,772,63S760.5,57.9,760.5,51.5z"/>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 721.4282 81)" class="st5 st4">PlayerController</text>
+		</g>
+	</g>
+	<g transform="translate(-230,-30) scale(1,1)">
+		<path class="st2" d="M772,127V63"/>
+	</g>
+</g>
+</svg>
