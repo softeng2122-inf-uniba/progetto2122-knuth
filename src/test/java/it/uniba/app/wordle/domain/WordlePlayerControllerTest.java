@@ -320,12 +320,12 @@ class WordlePlayerControllerTest {
                 }
 
                 @Nested
-                @DisplayName("se viene inserito \"TRONO\"")
+                @DisplayName("se viene inserito \"trono\" (minuscolo, case insensitive)")
                 class PushingCorrectGuessTest {
 
                     @BeforeEach
                     void insertCorrectGuess() {
-                        pc.guess("TRONO");
+                        pc.guess("trono");
                     }
 
                     @Test
