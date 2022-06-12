@@ -103,7 +103,7 @@ public final class WordlePlayerController implements PlayerController {
             throw new WordleGameException(
                     WordleGameException.NO_GUESSES_LEFT);
         }
-
+        guessWordCheck(guessWord);
 
         //Inizializzazione tentativo
         String guessAttempt = guessWord.toUpperCase();
