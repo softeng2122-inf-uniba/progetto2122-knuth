@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 292 252" style="enable-background:new 0 0 292 252;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.2;fill:#C0C0C0;enable-background:new    ;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st3{font-family:'Arial-BoldMT';}
+	.st4{font-size:13px;}
+	.st5{fill:none;stroke:#000000;stroke-miterlimit:10;stroke-dasharray:3;}
+	.st6{font-family:'ArialMT';}
+</style>
+<g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<rect x="247" y="175" class="st0" width="57.6" height="15"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<rect x="247" y="189" class="st0" width="144" height="74"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<rect x="240" y="183" class="st1" width="144" height="73"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<path class="st2" d="M240,183h144v73H240V183z"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<rect x="240" y="168" class="st1" width="57.6" height="15"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<path class="st2" d="M240,168h57.6v15H240V168z"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<rect x="240" y="182" class="st1" width="144" height="74"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<path class="st2" d="M240,182h144v74H240V182z"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 274.0791 201)" class="st3 st4">wordle.logic</text>
+		</g>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<rect x="239" y="31" class="st0" width="60.8" height="15"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<rect x="239" y="45" class="st0" width="152" height="58"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<rect x="232" y="39" class="st1" width="152" height="57"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<path class="st2" d="M232,39h152v57H232V39z"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<rect x="232" y="24" class="st1" width="60.8" height="15"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<path class="st2" d="M232,24h60.8v15H232V24z"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<rect x="232" y="38" class="st1" width="152" height="58"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<path class="st2" d="M232,38h152v58H232V38z"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 266.4705 57)" class="st3 st4">wordle.UI.CLI</text>
+		</g>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<path class="st5" d="M309,97l2,70"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<path class="st2" d="M306.5,157l4.5,10l3.9-10.3"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 313.5 136)" class="st6 st4">«import»</text>
+		</g>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<path class="st1" d="M400,192h93l10,10v52H400V192"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<path class="st2" d="M400,192h93l10,10v52H400V192L400,192"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<path class="st2" d="M493,192v10h10L493,192"/>
+	</g>
+	<g transform="translate(-222,-14) scale(1,1)">
+		<g>
+			<path class="st2" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 405 207)" class="st6 st4">le classi entity</text>
+			<text transform="matrix(1 0 0 1 405 220)" class="st6 st4">hanno visibilità</text>
+			<text transform="matrix(1 0 0 1 405 233)" class="st6 st4">di package</text>
+		</g>
+	</g>
+</g>
+</svg>
