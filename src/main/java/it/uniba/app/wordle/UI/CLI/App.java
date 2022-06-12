@@ -47,7 +47,7 @@ public final class App {
      * L'enumerazione Command contiene le costanti che rappresentano
      * i comandi riconosciuti dal {@link Parser}.
      *
-     * <p>Se vengono forniti più argomenti rispetto a quelli che il
+     * <p>Se vengono forniti piu' argomenti rispetto a quelli che il
      * comando si aspetta allora vengono semplicemente ignorati.
      * La gestione sugli argomenti mancanti viene invece effettuata
      * all'interno del main, per non avverra' alcuna chiamata a
@@ -77,9 +77,9 @@ public final class App {
                 console.println("Comando invalido");
                 if (args.length != 0) {
                     if (args.length == 1) {
-                        console.println("Il comando più simile è: ");
+                        console.println("Il comando piu' simile è: ");
                     } else {
-                        console.println("I comandi più simili sono: ");
+                        console.println("I comandi piu' simili sono: ");
                     }
                     for (String closeCommandString : args) {
                         console.println("\t\t" + closeCommandString);
