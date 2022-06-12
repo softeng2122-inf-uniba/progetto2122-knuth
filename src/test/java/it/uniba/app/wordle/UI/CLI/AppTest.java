@@ -50,16 +50,19 @@ class AppTest {
     /** Array di stringhe vuoto. */
     private static final String[] EMPTY_ARRAY_STRING = new String[0];
 
+    /** Encoding per il testing. */
+    private static String encoding;
+
 
     // crea un nuovo ByteArrayOutputStream e lo utilizza
     // come output stream per appConsole
     static ByteArrayOutputStream newOutputStream()
-                                        throws IllegalAccessException {
+            throws IllegalAccessException, UnsupportedEncodingException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         appConsole.set(null, new WordlePrinter(
-                new OutputStreamWriter(out),
+                new OutputStreamWriter(out, encoding),
                 (WordlePlayerController) appPlayerController.get(null)));
 
         return out;
@@ -67,19 +70,23 @@ class AppTest {
 
     // utilizza la stringa input come input stream per appKeyboard
     static void redirectInputStream(final String input)
-                                        throws IllegalAccessException {
+            throws IllegalAccessException, UnsupportedEncodingException {
 
         ByteArrayInputStream in =
-                new ByteArrayInputStream(input.getBytes());
+                new ByteArrayInputStream(input.getBytes(encoding));
 
-        appKeyboard.set(null, new Scanner(in));
+        appKeyboard.set(null, new Scanner(in, encoding));
 
     }
 
 
     @BeforeAll
-    public static void setup()
-            throws NoSuchFieldException, IllegalAccessException {
+    static void setup()
+            throws NoSuchFieldException, IllegalAccessException,
+                                        UnsupportedEncodingException {
+
+        // recupera encoding per il testing
+        encoding = System.getProperty("file.encoding");
 
         // Utilizza reflection per rendere accessibili gli attributi privati
         appPlayerController = App.class.getDeclaredField("PLAYER_CONTROLLER");
@@ -111,7 +118,8 @@ class AppTest {
         @Test
         @DisplayName("la stampa correttamente a seguito "
                     + "del comando \"MOSTRA\"")
-        void testMostra() throws IllegalAccessException {
+        void testMostra() throws IllegalAccessException,
+                                    UnsupportedEncodingException {
 
             // serve ignorare l'output accumulato nel BeforeEach
             // quindi viene creato un nuovo outputStream e
@@ -119,7 +127,7 @@ class AppTest {
             outContent = newOutputStream();
 
             App.Command.MOSTRA.execute(EMPTY_ARRAY_STRING);
-            String outputLine = outContent.toString().trim();
+            String outputLine = outContent.toString(encoding).trim();
             assertEquals("Parola segreta: TRENO", outputLine);
         }
 
@@ -134,7 +142,8 @@ class AppTest {
             }
             @Test
             @DisplayName("non lancia eccezioni al comando \"ABBANDONA\"")
-            void testAbbandona() throws IllegalAccessException {
+            void testAbbandona() throws IllegalAccessException,
+                                        UnsupportedEncodingException {
 
                 // prima di confermare scrivo un input non previsto
                 // per verificare che sia correttamente gestito
@@ -229,7 +238,8 @@ class AppTest {
     @Test
     @DisplayName("non lancia eccezioni al comando \"ESCI\" e imposta "
             + "il flag \"running\" a false")
-    void testEsci() throws IllegalAccessException {
+    void testEsci() throws IllegalAccessException,
+                            UnsupportedEncodingException {
         redirectInputStream("forse\nsi\n");
 
         assertAll(
@@ -254,11 +264,11 @@ class AppTest {
             + "se tale è la codifica del sistema")
     void testEncodingUTF8() {
         System.setProperty("file.encoding", "UTF-8");
-        Charset encoding = StandardCharsets.UTF_8;
+        Charset encodingCharset = StandardCharsets.UTF_8;
 
         assertAll(
                 () -> assertDoesNotThrow(App::getSystemEncoding),
-                () -> assertEquals(encoding, App.getSystemEncoding())
+                () -> assertEquals(encodingCharset, App.getSystemEncoding())
         );
     }
 
@@ -267,11 +277,11 @@ class AppTest {
                 + "se tale è la codifica del sistema")
     void testEncodingUTF16() {
         System.setProperty("file.encoding", "UTF-16");
-        Charset encoding = StandardCharsets.UTF_16;
+        Charset charsetEncoding = StandardCharsets.UTF_16;
 
         assertAll(
                 () -> assertDoesNotThrow(App::getSystemEncoding),
-                () -> assertEquals(encoding, App.getSystemEncoding())
+                () -> assertEquals(charsetEncoding, App.getSystemEncoding())
         );
     }
 

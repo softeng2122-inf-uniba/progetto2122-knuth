@@ -217,7 +217,7 @@ class WordlePlayerControllerTest {
 
             @Nested
             @DisplayName("quando non sono stati effettuati tentativi")
-            public class NoGuessesDoneTest {
+            class NoGuessesDoneTest {
 
                 @Test
                 @DisplayName("getGuessResult restituisce falso")
@@ -236,7 +236,7 @@ class WordlePlayerControllerTest {
 
             @Nested
             @DisplayName("quando viene effettuato un tentativo")
-            public class PushingNewGuessTest {
+            class PushingNewGuessTest {
 
                 @Test
                 @DisplayName("lancia NullPointerException se "
@@ -320,7 +320,8 @@ class WordlePlayerControllerTest {
                 }
 
                 @Nested
-                @DisplayName("se viene inserito \"trono\" (minuscolo, case insensitive)")
+                @DisplayName("se viene inserito \"trono\" "
+                        + "(minuscolo, case insensitive)")
                 class PushingCorrectGuessTest {
 
                     @BeforeEach
