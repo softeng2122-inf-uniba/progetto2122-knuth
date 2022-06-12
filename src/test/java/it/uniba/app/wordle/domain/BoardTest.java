@@ -30,19 +30,19 @@ class BoardTest {
 
         @Test
         @DisplayName("contiene 6 righe")
-        public void testGetRowsNumber() {
+        void testGetRowsNumber() {
             assertEquals(DEFAULT_ROW, board.getRowsNumber());
         }
 
         @Test
         @DisplayName("contiene 5 colonne")
-        public void testGetWordLength() {
+        void testGetWordLength() {
             assertEquals(DEFAULT_COLUMN, board.getWordLength());
         }
 
         @Test
         @DisplayName("è vuota")
-        public void testGetNumFilledRows() {
+        void testGetNumFilledRows() {
             assertEquals(0, board.getNumFilledRows());
         }
 

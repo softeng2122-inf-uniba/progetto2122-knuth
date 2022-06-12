@@ -63,11 +63,11 @@ class ParserTest {
 
         /** nome del metodo per fornire i parametri ai test
          * (input per comandi che non richiedono argomenti). */
-        private final String parameterProvider = "it.uniba.app.wordle.UI.CLI."
-                + "ParserTest#correctNoArgsProvider";
+        private static final String PARAMETER_PROVIDER =
+                "it.uniba.app.wordle.UI.CLI.ParserTest#correctNoArgsProvider";
 
         @ParameterizedTest
-        @MethodSource(parameterProvider)
+        @MethodSource(PARAMETER_PROVIDER)
         @DisplayName("restituisce il comando corretto")
         void testCorrectCommand(final App.Command command, final String input) {
             parser.feed(input);
@@ -77,7 +77,7 @@ class ParserTest {
         }
 
         @ParameterizedTest
-        @MethodSource(parameterProvider)
+        @MethodSource(PARAMETER_PROVIDER)
         @DisplayName("restituisce un array vuoto di argomenti")
         void testCorrectArgs(final App.Command command, final String input) {
             parser.feed(input);
@@ -87,7 +87,7 @@ class ParserTest {
         }
 
         @ParameterizedTest
-        @MethodSource(parameterProvider)
+        @MethodSource(PARAMETER_PROVIDER)
         @DisplayName("restituisce un array vuoto di comandi simili")
         void testNoCloseCommands(final App.Command command,
                                  final String input) {
@@ -98,7 +98,7 @@ class ParserTest {
         }
 
         @ParameterizedTest
-        @MethodSource(parameterProvider)
+        @MethodSource(PARAMETER_PROVIDER)
         @DisplayName("non segnala argomenti mancanti")
         void testNoMissingArgs(final App.Command command, final String input) {
             parser.feed(input);
@@ -117,11 +117,11 @@ class ParserTest {
 
         /** nome del metodo per fornire i parametri ai test
          * (tentativi validi e non). */
-        private final String parameterProvider = "it.uniba.app.wordle.UI.CLI."
-                                                + "ParserTest#guessProvider";
+        private static final String PARAMETER_PROVIDER =
+                "it.uniba.app.wordle.UI.CLI.ParserTest#guessProvider";
 
         @ParameterizedTest
-        @MethodSource(parameterProvider)
+        @MethodSource(PARAMETER_PROVIDER)
         @DisplayName("restituisce il comando corretto (GUESS)")
         void testCorrectCommand(final String input) {
             parser.feed(input);
@@ -131,7 +131,7 @@ class ParserTest {
         }
 
         @ParameterizedTest
-        @MethodSource(parameterProvider)
+        @MethodSource(PARAMETER_PROVIDER)
         @DisplayName("restituisce un array di argomenti"
                     + " contenente solo la parola del tentativo")
         void testCorrectArgs(final String input) {
@@ -144,7 +144,7 @@ class ParserTest {
         }
 
         @ParameterizedTest
-        @MethodSource(parameterProvider)
+        @MethodSource(PARAMETER_PROVIDER)
         @DisplayName("restituisce un array vuoto di comandi simili")
         void testNoCloseCommands(final String input) {
             parser.feed(input);
@@ -154,7 +154,7 @@ class ParserTest {
         }
 
         @ParameterizedTest
-        @MethodSource(parameterProvider)
+        @MethodSource(PARAMETER_PROVIDER)
         @DisplayName("non segnala argomenti mancanti")
         void testNoMissingArgs(final String input) {
             parser.feed(input);
