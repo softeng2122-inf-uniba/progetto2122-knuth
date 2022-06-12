@@ -355,7 +355,17 @@ Con particolare riferimento ai principi **SOLID**:
 
 ## 6. Riepilogo del test
 
+<p align="center">
+  <img src="./img/Jacoco general.png" alt="Jacoco general" width="1000"/>
+</p>
 
+<p align="center">
+  <img src="./img/Jacoco domain.png" alt="Jacoco domain" width="1000"/>
+</p>
+
+<p align="center">
+  <img src="./img/Jacoco CLI.png" alt="Jacoco CLI" width="1000"/>
+</p>
 
 
 ## 7. Manuale utente
