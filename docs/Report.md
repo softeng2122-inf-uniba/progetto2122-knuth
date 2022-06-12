@@ -8,16 +8,7 @@ Wordle è un videogioco in cui il giocatore deve indovinare una parola segreta, 
 - **GIALLO** se è contenuta nella parola segreta ma in una posizione diversa.
 - **GRIGIO** se non è contenuta nella parola segreta.
 
-La versione presentata in questo progetto è una variante del gioco originale che utilizza un'interfaccia a linea di comando. Si gioca inserendo i seguenti comandi:
-    
-- `/gioca` : inizia una nuova partita (la parola segreta deve essere impostata)
-- `/nuova <parola>`: imposta `<parola>` come parola segreta
-- `/mostra`: visualizza la parola segreta impostata
-- `/abbandona`: abbandona la partita in corso
-- `/esci`: chiude il gioco
-- `<parola>`: per effettuare un tentativo
-
-*Nota: tutto il testo inserito a seguito di un comando, e separato da esso con uno o più caratteri di spaziatura, viene ignorato.*
+La versione presentata in questo progetto è una variante del gioco originale che utilizza un'interfaccia a linea di comando. 
 
 ## 2. Modello di dominio
 
@@ -364,6 +355,8 @@ Con particolare riferimento ai principi **SOLID**:
 
 ## 6. RIEPILOGO DEL TEST
 
+
+
 ## 7. MANUALE UTENTE
 
 ### Scopo dell'applicazione
@@ -379,80 +372,77 @@ Questa versione del gioco consente di
 ### Guida ai comandi
 
 Per interagire con l'applicazione si utilizzano i seguenti comandi:
-```
-- /help
-- /gioca
-- /nuova \<parola>
-- /mostra
-- /abbandona
-- /esci
-```
+    
+- `/gioca` : inizia una nuova partita (la parola segreta deve essere impostata)
+- `/nuova <parola>`: imposta `<parola>` come parola segreta
+- `/mostra`: visualizza la parola segreta impostata
+- `/abbandona`: abbandona la partita in corso
+- `/esci`: chiude il gioco
+- `<parola>`: per effettuare un tentativo
 
-Ad ognuno dei comandi è associata la funzionalità che consente di interagire con il gioco a seconda dei casi di seguito elencati.
+*Nota: tutto il testo inserito a seguito di un comando, e separato da esso con uno o più caratteri di spaziatura, viene ignorato.*
 
-1. ### Help
+#### **1. Help**
 
-Tramite il comando */help*, l'applicazione stampa la descrizione del gioco e la lista dei comandi ad ognuno dei quali è affiancata una breve descrizione.
+Tramite il comando `/help`, l'applicazione stampa la descrizione del gioco e la lista dei comandi disponibili.
 
-Nel caso di lancio dell'applicazione con flag *--help* o *-h*, il comando */help* viene richiamato contestualmente all'avvio.
+Nel caso di lancio dell'applicazione con flag `--help` o `-h`, il comando `/help` viene richiamato contestualmente all'avvio.
 
 <p align="center">
   <img src="./img/report img/guida utente img/comandHelp.png" alt="comandHelp" width="1000"/>
 </p>
 
-- ### **Nel ruolo di paroliere**
+### *Nel ruolo di paroliere*
 
-2. ### Inserimento di una parola segreta
+#### **2. Inserimento della parola segreta**
 
-Tramite il comando */nuova \<parola>*, specificando una parola composta da 5 caratteri alfabetici, si imposta la parola segreta in modo tale che le successive richieste di inizio partita abbiano come parola segreta tale parola.
+Tramite il comando `/nuova <parola>`, dove `<parola>` è una parola composta da 5 lettere, si imposta la parola segreta in modo tale che alla creazione di una nuova partita questa sarà la parola da indovinare.
 
 <p align="center">
   <img src="./img/report img/guida utente img/comandoNuovaTrenoOk.png" alt="comandoNuovaTrenoOk" width="350"/>
 </p>
 
-La parola segreta impostata rimane la stessa fin quando non viene rieseguito il comando */nuova* da parte del paroliere.
+La parola segreta impostata rimane la stessa fin quando non viene rieseguito il comando `/nuova` da parte del paroliere.
 
-Nel caso di inserimento di una parola segreta contenente caratteri non compresi tra quelli ammessi, l'applicazione notifica l'errore e non consente di impostare la parola segreta inserita
+Nel caso di inserimento di una parola segreta contenente caratteri non alfabetici o di lunghezza diversa da 5 caratteri, l'applicazione notifica l'errore.
 
 <p align="center">
   <img src="./img/report img/guida utente img/NuovaNonValida.png" alt="NuovaNonValida" width="350"/>
 </p>
 
-Nel caso di inserimento di una parola segreta troppo corta o troppo lunga, l'applicazione notifica l'errore e non consente di impostare la parola segreta inserita.
-
 <p align="center">
   <img src="./img/report img/guida utente img/NuovaLunghezzaInvalida.png" alt="NuovaLunghezzaInvalida" width="350"/>
 </p>
 
-3. ### Stampa parola segreta
+#### **3. Stampa parola segreta**
 
-Tramite il comando */mostra*, in qualsiasi momento del gioco è possibile visualizzare la parola segreta attualmente impostata.
+Tramite il comando `/mostra`, in qualsiasi momento del gioco è possibile visualizzare la parola segreta attualmente impostata.
 
 <p align="center">
   <img src="./img/report img/guida utente img/comandoMostra.png" alt="comandoMostra" width="350"/>
 </p>
 
-Nel caso in cui si esegue il comando */mostra* in assenza di una parola segreta impostata, l'applicazione, tramite messaggio, informa dell'assenza di una parola segreta.
+Nel caso in cui si esegue il comando `/mostra` in assenza di una parola segreta impostata, l'applicazione ne notifica l'assenza.
 
 <p align="center">
   <img src="./img/report img/guida utente img/MostraSenzaParolaImpostata.png" alt="MostraSenzaParolaImpostata" width="350"/>
 </p>
 
-- ### **Nel ruolo di giocatore**
+### *Nel ruolo di giocatore*
 
-4. ### Inizio partita
+#### **4. Inizio partita**
 
-Tramite il comando */gioca*, è possibile iniziare una nuova partita, mostrando la griglia delle lettere vuota.
+Tramite il comando `/gioca` è possibile iniziare una nuova partita, mostrando la griglia delle lettere vuota.
 
-Nel caso in cui si esegue il comando */gioca* in assenza di una parola segreta impostata, l'applicazione, tramite messaggio, informa dell'assenza di una parola segreta, che comporta l'impossibilità di iniziare una nuova partita e di conseguenza non viene stampata la griglia delle lettere.
+Nel caso in cui si esegue il comando `/gioca` in assenza di una parola segreta impostata, l'applicazione informa dell'assenza della parola segreta, per cuinon sarà possibile iniziare una nuova partita e di conseguenza non viene stampata la griglia delle lettere.
 
 <p align="center">
   <img src="./img/report img/guida utente img/comandoGioca.png" alt="comandoGioca" width="300"/>
 </p>
 
-5. ### Svolgimento di una partita
+#### **5. Svolgimento di una partita**
 
-L'inserimento di un nuovo tentativo non è vincolato a nessun comando e richiede il semplice inserimento del tentativo stesso, purchè composto da 5 caratteri alfabetici.
+Per inserire un nuovo tentativo è sufficiente digitare la parola desiderata.
 
 Ogni partita prevede un limite di tentativi possibili pari a 6.
 A seguito dell'inserimento di un tentativo valido, viene aggiornata e stampata la griglia delle lettere. Ad ogni lettera del tentativo viene associato un colore:
@@ -460,59 +450,59 @@ A seguito dell'inserimento di un tentativo valido, viene aggiornata e stampata l
 - **giallo**, nel caso in cui la parola segreta della partita contiene tale lettera ma non in tale posizione
 - **grigio**, nel caso in cui la parola segreta non contiene tale lettera
 
-Nel caso in cui il tentativo inserito non corrisponde alla parola segreta e non è terminato il numero di tentativi disponibili, l'applicazione, una volta stampata la griglia con l'esito del confronto, rimane in attesa di un nuovo tentativo.
+Nel caso in cui il tentativo inserito non corrisponde alla parola segreta e non è terminato il numero di tentativi disponibili, l'applicazione stampa la matrice dei tentativi aggiornata e rimane in attesa di un nuovo comando o tentativo.
 
 <p align="center">
   <img src="./img/report img/guida utente img/tentativi.png" alt="tentativi" width="200"/>
 </p>
 
-Nel caso in cui il tentativo inserito non corrisponde alla parola segreta e il numero di tentativi disponibili è terminato, l'applicazione, una volta stampata la griglia con l'esito del confronto, stampa il messaggio di avviso di terminazione di tentativi disponibili e stampa la parola segreta.
+Nel caso in cui si esauriscono i tentativi disponibile non indovinando la parola segreta, l'applicazione avvisa che la partita è finita e stampa la parola segreta.
 
 <p align="center">
   <img src="./img/report img/guida utente img/parolaNonTrovata.png" alt="parolaNonTrovata" width="300"/>
 </p>
 
-Nel caso in cui prima del termine dei tentativi disponibili viene inserito un tentativo corrispondente alla parola segreta, l'applicazione notifica l'individuazione della parola segreta e restituisce anche il numero di tentativi effettuati per indovinarla
+Nel caso in cui si indovina la parola segreta l'applicazione notifica la vittoria e riporta il numero di tentativi effettuati.
 
 <p align="center">
   <img src="./img/report img/guida utente img/parolaSegretaTrovata.png" alt="parolaSegretaTrovata" width="200"/>
 </p>
 
-Nel caso di inserimento di un tentativo contenente caratteri non compresi tra quelli ammessi, l'applicazione notifica l'errore e non consente di impostare la parola segreta inserita
-
-Nel caso di inserimento di un tentativo troppo corto o troppo lungo, l'applicazione notifica l'errore e non consente di impostare la parola segreta inserita.
+Nel caso di inserimento di un tentativo contenente caratteri non alfabetici o di lunghezza non appropriata, l'applicazione notifica l'errore, non accettando il tentativo.
 
 <p align="center">
   <img src="./img/report img/guida utente img/tentativiNonValidi.png" alt="tentativiNonValidi" width="200"/>
 </p>
 
-6. ### Chiusura di una partita in corso
+#### **6. Chiusura di una partita in corso**
 
-Tramite il comando */abbandona*, si può abbandonare una partita in corso.
+Tramite il comando `/abbandona` si può abbandonare una partita in corso.
 
-Nel caso in cui si inserisce il comando */abbandona* durante una partita, l'applicazione stampa un messaggio di richiesta di conferma dell'abbandono. Nello specifico, si richiede dell'inserimento della stringa "si" nel caso in cui si voglia confermare l'abbandono della partita, l'inserimento della stringa "no" altrimenti. L'applicazione si mette in attesa fin quando non si inserisce una delle due precedenti stringhe.
+Se una partita è in corso, l'applicazione stampa un messaggio di richiesta di conferma.
 
 <p align="center">
   <img src="./img/report img/guida utente img/comandoAbbandona.png" alt="comandoAbbandona" width="500"/>
 </p>
 
-Nel caso in cui si inserisce il comando quando non c'è nessuna partita in corso, l'applicazione notifica l'assenza di una partita in corso.
+Nel caso in cui si inserisce il comando quando non c'è nessuna partita in corso, l'applicazione ne notifica l'assenza.
 
 <p align="center">
   <img src="./img/report img/guida utente img/AbbandonaInvalido.png" alt="AbbandonaInvalido" width="300"/>
 </p>
 
-7. ### Chiusura dell'applicazione
+#### **7. Chiusura dell'applicazione**
 
-Tramite il comando */esci*, si può chiudere l'applicazione in ogni momento della partita.
+Tramite il comando `/esci` si può chiudere l'applicazione in ogni momento della partita.
 
-In caso di inserimento di tale comando, l'applicazione stampa un messaggio di richiesta di conferma della chiusura. Nello specifico, si richiede dell'inserimento della stringa "si" nel caso in cui si voglia confermare la chiusura del gioco, l'inserimento della stringa "no" altrimenti. L'applicazione si mette in attesa fin quando non si inserisce una delle due precedenti stringhe.
+In caso di inserimento di tale comando, l'applicazione stampa un messaggio di richiesta di conferma della chiusura.
 
 <p align="center">
   <img src="./img/report img/guida utente img/comandoEsci.png" alt="comandoEsci" width="400"/>
 </p>
 
-Infine l'applicazione è capace di riconoscere comandi inseriti che differiscono per qualche lettera dal comando inserito, per cui nel qual caso l'utente inserisca un comando errato, ma simile ad un comando fornito dal gioco, l'applicazione fornisce una lista dei comandi più simili.
+#### **8. Comandi invalidi**
+
+L'applicazione è capace di riconoscere comandi che differiscono per qualche lettera da un comando invalido inserito. Nell'eventualità, l'applicazione fornisce una lista dei comandi più simili.
 
 <p align="center">
   <img src="./img/report img/guida utente img/comandiSimili.png" alt="comandiSimili" width="350"/>
