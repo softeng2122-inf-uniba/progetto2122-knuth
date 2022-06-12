@@ -173,6 +173,32 @@ Si è considerata la griglia di gioco come una matrice di tentativi a dimensione
 
     _Per una migliore visualizzazione dei colori è comunque consigliato utilizzare il tema di default in ogni terminale (temi diversi potrebbero portare a una visualizzazione incoerente ed effetti non prevedibili a priori)._
 
+## 4. System design
+
+### 4.1 Stile architetturale adottato
+Lo stile architetturale scelto per il progetto è il **Model-View-Presenter**: offre una corrispondenza con la tassonomia *entity-control-boundary*, già sfruttata per l'implementazione delle user story. Entrambi infatti prevedono l'utilizzo di controllori come unica porta di accesso al modello dei dati da parte dell'interfaccia utente.
+
+_nota: per brevità si ometterà il prefisso **it.uniba.app** dei package._
+
+**Package _wordle.logic_**: si compone dei sottosistemi *model* e *presenter*
+- Le interfacce *PlayerController* e *WordsmithController*, assieme alle loro implementazioni *WordlePlayerController* e *WordleWordsmithController*, costituiscono il sottosistema *presenter* e forniscono un'*Application Programming Interface* completa che permette di giocare a Wordle. L'API:
+  - Può essere utilizzata per qualsiasi tipo di *User Interface* si voglia creare.
+  - Controlla tutte le condizioni di integrità per la corretta esecuzione delle partite.
+  - Gestisce internamente tutte le interazioni con le classi di tipo entity senza esporle all'esterno del package.
+
+- Le classi *entity* ricalcano le classi concettuali individuate nel modello di dominio (con l'aggiunta di *WordleSession*) e costituiscono il sottosistema *model*.
+
+**Package _wordle.UI.CLI_**: si compone del sottosistema *view* che comprende le classi *boundary*
+
+- Le classi contenute realizzano la *Command Line User Interface* per Wordle e utilizzano i servizi delle classi di controllo importando il package _wordle.logic_.
+
+### 4.2 Diagramma dei package
+<p align="center">
+  <img src="../drawings/diagramma dei package.svg" alt="Diagramma dei package" width="300"/>
+</p>
+
+_nota: si è scelto di non riportare il diagramma delle componenti in quanto rappresenterebbe una ridondanza e non aggiungerebbe ulteriori informazioni._
+
 ## 5. OO design
 Nella modellazione delle classi abbiamo mantenuto una costante attenzione verso la suddivisione dei ruoli **entity**, **control** e **boundary**. Due aspetti da notare sono l'introduzione della classe WordleSession e la modalità di comunicazione tra i due tipi diversi di controller.
 
