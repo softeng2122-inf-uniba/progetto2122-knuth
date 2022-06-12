@@ -18,7 +18,7 @@ class WordleGame {
      * @param gameSecretWord parola segreta
      * @param numMaxGuesses tentativi massimi
      * @param wordLength numero di lettere
-     * @throws NullPointerException se {@code gameSecretWord} è null
+     * @throws NullPointerException se {@code gameSecretWord} e' null
      */
     WordleGame(final String gameSecretWord,
                final int numMaxGuesses,

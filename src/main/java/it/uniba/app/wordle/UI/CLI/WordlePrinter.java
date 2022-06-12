@@ -176,7 +176,7 @@ public final class WordlePrinter extends PrintWriter {
         } else {
             if (remainingGuesses == 0) {
                 println("Hai raggiunto il numero massimo di tentativi");
-                println("La parola segreta è: "
+                println("La parola segreta e': "
                         + playerController.getGameSecretWord());
             }
         }

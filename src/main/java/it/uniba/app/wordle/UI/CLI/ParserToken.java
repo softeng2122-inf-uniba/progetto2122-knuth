@@ -18,7 +18,7 @@ public final class ParserToken {
     private final String[] args;
     /** Numero di argomenti mancanti rispetto a quelli previsti dal comando. */
     private int numMissingArgs;
-    /** Insieme di comandi simili a quello digitato (se non è valido). */
+    /** Insieme di comandi simili a quello digitato (se non e' valido). */
     private Set<App.Command> closeCommands;
 
     /** Insieme vuoto di comandi, restituito all'occorrenza (immutabile). */
@@ -31,13 +31,13 @@ public final class ParserToken {
      * Restituisce un array contenente le stringhe relative ai comandi
      * simili al comando invalido inserito.
      *
-     * <p> Se il risultato di {@link ParserToken#getCommand()} è diverso da
-     * {@link App.Command#INVALID} allora l'array sarà vuoto.</p>
+     * <p> Se il risultato di {@link ParserToken#getCommand()} e' diverso da
+     * {@link App.Command#INVALID} allora l'array sara' vuoto.</p>
      *
-     * <p>Se l'array non è vuoto allora contiene le stringhe relative ai
+     * <p>Se l'array non e' vuoto allora contiene le stringhe relative ai
      * comandi la cui edit distance (ossia il numero di caratteri da
      * modificare dalla stringa inserita per arrivare a quella prevista)
-     * è minore o uguale a 2.</p>
+     * e' minore o uguale a 2.</p>
      *
      * @return un array contenente le rappresentazioni sotto forma
      * di stringa dei comandi simili a quello inserito, eventualmente vuoto
@@ -104,7 +104,7 @@ public final class ParserToken {
      */
     public String[] getArgs() {
         if (args.length == 0) {
-            //immutabile, non è un problema restituirlo
+            //immutabile, non e' un problema restituirlo
             return EMPTY_STRING_ARRAY;
         } else {
             return Arrays.copyOf(args, args.length);

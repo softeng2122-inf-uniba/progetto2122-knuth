@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * {@literal <<Entity>>} <br>
- * Classe che rappresenta una sessione di gioco, in cui in ogni momento può
+ * Classe che rappresenta una sessione di gioco, in cui in ogni momento puo'
  * essere in corso una sola partita o nessuna.
  *
  * <p>Contiene anche le impostazioni di gioco, utilizzate quando si crea una
@@ -18,7 +18,7 @@ class WordleSession {
     private String secretWord;
 
     // in release future saranno modificabili dal giocatore
-    // quindi sarà eliminato il modificatore final
+    // quindi sara' eliminato il modificatore final
     /** Numero di tentativi per le partite. */
     private final int nMaxGuesses;
     /** Numero di lettere dei tentativi per le partite. */

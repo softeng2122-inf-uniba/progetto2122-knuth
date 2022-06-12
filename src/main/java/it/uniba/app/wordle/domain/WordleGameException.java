@@ -9,11 +9,11 @@ import java.util.Objects;
  * o alla sua esistenza.
  *
  * <p>Esempio: Precondizione per effettuare un tentativo
- * è l'aver iniziato una partita.</p>
+ * e' l'aver iniziato una partita.</p>
  */
 public class WordleGameException extends RuntimeException {
 
-    /** Messaggio per denotare la presenza di una partita già in corso. */
+    /** Messaggio per denotare la presenza di una partita gia' in corso. */
     public static final  String EXISTS_GAME = "Partita in corso";
 
     /** Messaggio per denotare l'assenza di una partita in corso. */

@@ -18,7 +18,7 @@ import java.util.Scanner;
  * {@literal <<Boundary>>} <br>
  * Classe principale dell'applicazione.
  *
- * <p>Contiene il main e i comandi che realizzano le funzionalità descritte
+ * <p>Contiene il main e i comandi che realizzano le funzionalita' descritte
  * nelle user story.</p>
  *
  * <p>Utilizza un oggetto {@link Parser} per processare l'input e
@@ -47,10 +47,10 @@ public final class App {
      * L'enumerazione Command contiene le costanti che rappresentano
      * i comandi riconosciuti dal {@link Parser}.
      *
-     * <p>Se vengono forniti più argomenti rispetto a quelli che il
+     * <p>Se vengono forniti piu' argomenti rispetto a quelli che il
      * comando si aspetta allora vengono semplicemente ignorati.
      * La gestione sugli argomenti mancanti viene invece effettuata
-     * all'interno del main, per non avverrà alcuna chiamata a
+     * all'interno del main, per non avverra' alcuna chiamata a
      * {@link Command#execute(String[])} in questo caso.</p>
      *
      * <p>Le costanti {@link Command#INVALID} e {@link Command#SPACE}
@@ -66,7 +66,7 @@ public final class App {
          */
         INVALID(0) {
             /**
-             * Effettua una stampa per notificare l'invalidità del comando,
+             * Effettua una stampa per notificare l'invalidita' del comando,
              * segnalando eventualmente l'esistenza di comandi simili.
              *
              * @param args array contenente le rappresentazioni sotto forma
@@ -77,9 +77,9 @@ public final class App {
                 console.println("Comando invalido");
                 if (args.length != 0) {
                     if (args.length == 1) {
-                        console.println("Il comando più simile è: ");
+                        console.println("Il comando piu' simile è: ");
                     } else {
-                        console.println("I comandi più simili sono: ");
+                        console.println("I comandi piu' simili sono: ");
                     }
                     for (String closeCommandString : args) {
                         console.println("\t\t" + closeCommandString);
@@ -162,7 +162,7 @@ public final class App {
              * Prova ad abbandonare la partita in corso
              * e stampa l'esito dell'esecuzione.
              *
-             * <p>Se una partita è effettivamente in corso chiede
+             * <p>Se una partita e' effettivamente in corso chiede
              * conferma dell'azione.</p>
              *
              * @param args array di argomenti forniti al comando
@@ -258,7 +258,7 @@ public final class App {
             /**
              * Mostra la parola segreta impostata.
              *
-             * <p>Se la parola segreta non è stata ancora
+             * <p>Se la parola segreta non e' stata ancora
              * impostata mostra invece un messaggio di errore.</p>
              *
              * @param args array di argomenti forniti al comando
@@ -336,7 +336,7 @@ public final class App {
      * @param args argomenti in input da linea di comando
      */
     public static void main(final String[] args) {
-        //controlla codifica del terminale su cui l'app è eseguita
+        //controlla codifica del terminale su cui l'app e' eseguita
         // e imposta keyboard e console
         try {
             Charset encoding = getSystemEncoding();
@@ -385,12 +385,12 @@ public final class App {
     }
 
     /**
-     * Restituisce l'encoding del sistema su cui è eseguito il programma.
+     * Restituisce l'encoding del sistema su cui e' eseguito il programma.
      *
      * <p>Gli unici encoding supportati sono UTF-8 e UTF-16.</p>
      *
      * @return il charset corrispondente all'encoding valido
-     * @throws UnsupportedEncodingException se l'encoding del sistema è diverso
+     * @throws UnsupportedEncodingException se l'encoding del sistema e' diverso
      * da UTF-8 e da UTF-16
      */
     public static Charset getSystemEncoding()
