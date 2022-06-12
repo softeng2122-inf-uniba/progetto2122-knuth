@@ -205,7 +205,7 @@ Questa classe semplifica la gestione delle **impostazioni di gioco**: è necessa
 
 Questa scelta permette di realizzare facilmente modifiche future riguardanti la presenza di più giocatori (istanziando controller diversi).
 
-### 5.1 DIAGRAMMI USER STORY
+### 5.1 Diagrammi user story
 Nei seguenti diagrammi vengono omessi alcuni dettagli facilmente comprensibili dal codice in quanto appesantirebbero inutilmente la lettura; inoltre i metodi che costituiscono l'interfaccia fornita dalla classe controllo vengono sempre riportati in quanto riteniamo importante evidenziare tutti i metodi per la comunicazione tra la _User Interface_ e l'_API PlayerController_ o l'_API WordSmithController_.
 
 _Nota: gli attributi e i metodi della classe parser vengono tutti utilizzati in ogni User story, per cui si presenta tale classe nella sua interezza in modo tale da non ripeterne i membri negli altri diagrammi delle classi._
@@ -353,11 +353,12 @@ Con particolare riferimento ai principi **SOLID**:
 
 - **Dependency inversion**: le astrazioni, ovvero le classi entity, non dipendono da altre classi; i moduli di alto livello (quali le classi di controllo) non dipendono dalla particolare UI utilizzata.
 
-## 6. RIEPILOGO DEL TEST
+## 6. Riepilogo del test
 
 
 
-## 7. MANUALE UTENTE
+
+## 7. Manuale utente
 
 ### Scopo dell'applicazione
 
