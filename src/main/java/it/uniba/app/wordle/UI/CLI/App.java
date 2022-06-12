@@ -162,7 +162,7 @@ public final class App {
              * Prova ad abbandonare la partita in corso
              * e stampa l'esito dell'esecuzione.
              *
-             * <p>Se una partita è effettivamente in corso chiede
+             * <p>Se una partita e' effettivamente in corso chiede
              * conferma dell'azione.</p>
              *
              * @param args array di argomenti forniti al comando
@@ -258,7 +258,7 @@ public final class App {
             /**
              * Mostra la parola segreta impostata.
              *
-             * <p>Se la parola segreta non è stata ancora
+             * <p>Se la parola segreta non e' stata ancora
              * impostata mostra invece un messaggio di errore.</p>
              *
              * @param args array di argomenti forniti al comando
@@ -336,7 +336,7 @@ public final class App {
      * @param args argomenti in input da linea di comando
      */
     public static void main(final String[] args) {
-        //controlla codifica del terminale su cui l'app è eseguita
+        //controlla codifica del terminale su cui l'app e' eseguita
         // e imposta keyboard e console
         try {
             Charset encoding = getSystemEncoding();
@@ -385,12 +385,12 @@ public final class App {
     }
 
     /**
-     * Restituisce l'encoding del sistema su cui è eseguito il programma.
+     * Restituisce l'encoding del sistema su cui e' eseguito il programma.
      *
      * <p>Gli unici encoding supportati sono UTF-8 e UTF-16.</p>
      *
      * @return il charset corrispondente all'encoding valido
-     * @throws UnsupportedEncodingException se l'encoding del sistema è diverso
+     * @throws UnsupportedEncodingException se l'encoding del sistema e' diverso
      * da UTF-8 e da UTF-16
      */
     public static Charset getSystemEncoding()

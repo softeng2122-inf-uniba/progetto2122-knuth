@@ -86,14 +86,14 @@ public final class Parser {
     /**
      * Estrae il comando contenuto in {@link Parser#tokens}.
      *
-     * <p>Se {@link Parser#tokens} è vuoto,
-     * il comando estratto è {@link App.Command#SPACE}</p>
+     * <p>Se {@link Parser#tokens} e' vuoto,
+     * il comando estratto e' {@link App.Command#SPACE}</p>
      *
      * <p>Se {@link Parser#tokens} contiene un comando non riconosciuto,
-     * il comando estratto è {@link App.Command#INVALID}</p>
+     * il comando estratto e' {@link App.Command#INVALID}</p>
      *
      * <p>Se il primo token non inizia con '/',
-     * il comando estratto è {@link App.Command#GUESS}</p>
+     * il comando estratto e' {@link App.Command#GUESS}</p>
      *
      * @return il comando estratto
      */
@@ -125,7 +125,7 @@ public final class Parser {
      * Estrae gli argomenti inseriti dall'utente presenti
      * in {@link Parser#tokens}.
      *
-     * <p>Se il numero di argomenti inseriti è maggiore rispetto al
+     * <p>Se il numero di argomenti inseriti e' maggiore rispetto al
      * numero di argomenti attesi, quelli in eccesso vengono ignorati.</p>
      *
      * @param extractedCommand comando estratto da
@@ -157,11 +157,11 @@ public final class Parser {
     /**
      * Calcola la distanza di edit tra le stringhe passate in argomento.
      *
-     * <p> La distanza di edit è uguale al minimo numero di caratteri che
+     * <p> La distanza di edit e' uguale al minimo numero di caratteri che
      * devono essere cancellati, inseriti o sostituiti per passare da una
      * stringa ad un'altra.</p>
      *
-     * <p>Questa operazione è commutativa</p>
+     * <p>Questa operazione e' commutativa</p>
      *
      * <p>Per approfondire il funzionamento dell'algoritmo
      * consultare <a href="https://rb.gy/hncbga">questa pagina</a>

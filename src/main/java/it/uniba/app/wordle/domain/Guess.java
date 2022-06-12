@@ -49,7 +49,7 @@ class Guess {
      * e le colora con {@code Color.NO_COLOR}.
      *
      * @param guessingWord parola che costituisce il tentativo
-     * @throws NullPointerException se {@code guessingWord} è null
+     * @throws NullPointerException se {@code guessingWord} e' null
      */
     Guess(final String guessingWord) {
         Objects.requireNonNull(guessingWord);

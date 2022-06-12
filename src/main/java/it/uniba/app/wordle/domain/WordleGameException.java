@@ -9,7 +9,7 @@ import java.util.Objects;
  * o alla sua esistenza.
  *
  * <p>Esempio: Precondizione per effettuare un tentativo
- * è l'aver iniziato una partita.</p>
+ * e' l'aver iniziato una partita.</p>
  */
 public class WordleGameException extends RuntimeException {
 

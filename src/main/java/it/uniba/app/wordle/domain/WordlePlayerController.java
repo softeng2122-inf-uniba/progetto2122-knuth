@@ -228,7 +228,7 @@ public final class WordlePlayerController implements PlayerController {
      *
      * @param word parola da controllare
      * @throws IllegalArgumentException se una delle condizioni
-     * specificate non è verificata
+     * specificate non e' verificata
      */
     private void guessWordCheck(final String word) {
 

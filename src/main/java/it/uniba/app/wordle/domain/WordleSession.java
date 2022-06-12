@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * {@literal <<Entity>>} <br>
- * Classe che rappresenta una sessione di gioco, in cui in ogni momento può
+ * Classe che rappresenta una sessione di gioco, in cui in ogni momento puo'
  * essere in corso una sola partita o nessuna.
  *
  * <p>Contiene anche le impostazioni di gioco, utilizzate quando si crea una

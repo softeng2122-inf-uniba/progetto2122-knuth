@@ -5,7 +5,7 @@ package it.uniba.app.wordle.domain;
  *  Eccezione lanciata in situazioni che richiedono particolari
  *  precondizioni sulle impostazioni di gioco non rispettate.
  *
- *  <p>Esempio: Precondizione per iniziare una partita è l'aver
+ *  <p>Esempio: Precondizione per iniziare una partita e' l'aver
  *  impostato una parola segreta.</p>
  */
 public class WordleSettingException extends RuntimeException {
